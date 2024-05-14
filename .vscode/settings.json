@@ -1,0 +1,31 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "*.csproj": true,
+        ".idea/": true,
+
+        // Unity files
+        "**/*.meta": true,
+        "Library/": true,
+        "Logs/": true,
+        "Temp/": true,
+        "Packages/": true,
+        "ProjectSettings/": true,
+        "UserSettings/": true,
+
+        // Build-time files
+        "Builds/": true,
+        "obj/": true,
+    },
+    "protoc": {
+        "options": [
+            "--proto_path=${workspaceRoot}/Assets/Scripts/Protos/Defs",
+            "--csharp_out=${workspaceRoot}/Assets/Scripts/Protos",
+        ]
+    }
+}

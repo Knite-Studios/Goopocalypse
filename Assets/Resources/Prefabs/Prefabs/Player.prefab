@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9df25ecbaf7c0041994609679d4824b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 1487731616712756, guid: 6bf84799e9bb8bc46890eb79bcbb9664, type: 3}
+  projectileSpawnDistance: 1
 --- !u!114 &1228417230119834834
 MonoBehaviour:
   m_ObjectHideFlags: 0

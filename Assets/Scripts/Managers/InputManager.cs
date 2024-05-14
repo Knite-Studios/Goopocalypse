@@ -8,6 +8,7 @@ namespace Managers
         
         public static InputAction Movement => Instance._inputs.Player.Movement;
         public static InputAction Attack => Instance._inputs.Player.Attack;
+        public static InputAction Mouse => Instance._inputs.Player.Mouse;
 
         protected override void OnAwake()
         {

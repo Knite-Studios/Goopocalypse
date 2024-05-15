@@ -1,76 +1,71 @@
+using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 
 namespace Systems.Attributes
 {
     /// <summary>
-    /// This should be implemented on any "living" entity which has game-oriented statistics.
+    /// Interface for entities that have attributes.
     /// </summary>
     public interface IAttributable
     {
         /// <summary>
-        /// The holder for all attributes.
+        /// Dictionary to hold attributes with different types.
         /// </summary>
-        Dictionary<Attribute, AttributeInstance> Attributes { get; }
+        Dictionary<Attribute, object> Attributes { get; }
+    }
+
+    /// <summary>
+    /// Methods for the IAttributable interface.
+    /// </summary>
+    public static class AttributableMethods
+    {
+        /// <summary>
+        /// Gets the value of an attribute.
+        /// </summary>
+        /// <typeparam name="T">The type of the attribute.</typeparam>
+        /// <param name="obj">The attributable object.</param>
+        /// <param name="attribute">The attribute type.</param>
+        /// <returns>The calculated value of the attribute.</returns>
+        public static T GetAttributeValue<T>(this IAttributable obj, Attribute attribute)
+            where T : struct, IComparable, IConvertible, IFormattable
+        {
+            return obj.GetOrCreateAttribute<T>(attribute)?.Value ?? default;
+        }
 
         /// <summary>
         /// Checks if the object has an attribute.
         /// </summary>
+        /// <param name="obj">The attributable object.</param>
         /// <param name="attribute">The attribute type.</param>
         /// <returns>True if the attribute is on the object.</returns>
-        public bool HasAttribute(Attribute attribute)
+        public static bool HasAttribute(this IAttributable obj, Attribute attribute)
         {
-            return Attributes.ContainsKey(attribute);
+            return obj.Attributes.ContainsKey(attribute);
         }
 
         /// <summary>
-        /// Returns an attribute instance.
+        /// Gets or creates an attribute instance.
         /// </summary>
+        /// <typeparam name="T">The type of the attribute.</typeparam>
+        /// <param name="obj">The attributable object.</param>
         /// <param name="attribute">The attribute type.</param>
-        /// <returns>The attribute instance, or null.</returns>
-        [CanBeNull]
-        public AttributeInstance GetAttribute(Attribute attribute)
-        {
-            return HasAttribute(attribute) ? Attributes[attribute] : null;
-        }
-
-        /// <summary>
-        /// Reads the value of an attribute.
-        /// </summary>
-        /// <param name="attribute">The attribute type.</param>
-        /// <param name="fallback">The default value to use if the attribute is new.</param>
-        /// <returns>The calculated attribute value.</returns>
-        public float AttributeValue(
-            Attribute attribute,
-            float fallback = 0.0f)
-        {
-            return ReadAttribute(attribute, fallback).Value;
-        }
-
-        /// <summary>
-        /// Gets an instance of an attribute.
-        /// Creates the attribute if it doesn't exist.
-        /// </summary>
-        /// <param name="attribute">The attribute type.</param>
-        /// <param name="fallback">The default base value to use if the attribute doesn't exist.</param>
+        /// <param name="defaultValue">The default value if the attribute doesn't exist.</param>
         /// <returns>The attribute instance.</returns>
-        public AttributeInstance ReadAttribute(
+        public static AttributeInstance<T> GetOrCreateAttribute<T>(
+            this IAttributable obj,
             Attribute attribute,
-            float fallback = 0.0f)
+            T defaultValue = default)
+            where T : struct, IComparable, IConvertible, IFormattable
         {
-            if (HasAttribute(attribute))
+            if (obj.Attributes.TryGetValue(attribute, out var instance))
             {
-                return GetAttribute(attribute);
+                return instance as AttributeInstance<T>;
             }
 
-            // Create the attribute instance.
-            var instance = new AttributeInstance
-            {
-                BaseValue = fallback
-            };
-            Attributes[attribute] = instance;
+            var newInstance = new AttributeInstance<T> { BaseValue = defaultValue };
+            obj.Attributes[attribute] = newInstance;
 
-            return GetAttribute(attribute);
+            return newInstance;
         }
     }
 }

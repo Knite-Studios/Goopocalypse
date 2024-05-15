@@ -1,11 +1,14 @@
 using System;
+using Common;
+
 namespace Systems.Attributes
 {
     /// <summary>
     /// A modifier is a mutable value which influences the value of an attribute.
     /// The modifier is only applied to the **base value**, it cannot modify the final result directly.
     /// </summary>
-    public class Modifier<T> : IModifier<T> where T : struct, IComparable, IConvertible, IFormattable
+    public class Modifier<T> : IModifier<T>
+        where T : struct, IComparable, IConvertible, IFormattable
     {
         /// <summary>
         /// This is the value of the modifier.
@@ -25,38 +28,11 @@ namespace Systems.Attributes
         /// <returns>The modifier-influenced value.</returns>
         public T Calculate(T baseValue)
         {
-            switch (Operation)
+            return Operation switch
             {
-                case Operation.Add:
-                    return Add(baseValue, Value);
-                case Operation.Multiply:
-                    return Multiply(baseValue, Value);
-                default:
-                    throw new InvalidOperationException("Unsupported operation");
-            }
-        }
-
-        private static T Add(T a, T b)
-        {
-            return Type.GetTypeCode(typeof(T)) switch
-            {
-                TypeCode.Int32 => (T)(object)((int)(object)a + (int)(object)b),
-                TypeCode.UInt32 => (T)(object)((uint)(object)a + (uint)(object)b),
-                TypeCode.Single => (T)(object)((float)(object)a + (float)(object)b),
-                TypeCode.Double => (T)(object)((double)(object)a + (double)(object)b),
-                _ => throw new InvalidOperationException("Unsupported type for addition")
-            };
-        }
-
-        private static T Multiply(T a, T b)
-        {
-            return Type.GetTypeCode(typeof(T)) switch
-            {
-                TypeCode.Int32 => (T)(object)((int)(object)a * (int)(object)b),
-                TypeCode.UInt32 => (T)(object)((uint)(object)a * (uint)(object)b),
-                TypeCode.Single => (T)(object)((float)(object)a * (float)(object)b),
-                TypeCode.Double => (T)(object)((double)(object)a * (double)(object)b),
-                _ => throw new InvalidOperationException("Unsupported type for multiplication")
+                Operation.Add => Utilities.Add(baseValue, Value),
+                Operation.Multiply => Utilities.Multiply(baseValue, Value),
+                _ => throw new InvalidOperationException("Unsupported operation")
             };
         }
     }

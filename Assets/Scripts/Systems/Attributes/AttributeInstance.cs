@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Systems.Attributes
 {
@@ -16,7 +17,7 @@ namespace Systems.Attributes
         /// <summary>
         /// All value modifiers for this instance.
         /// </summary>
-        private readonly List<IModifier<T>> _modifiers = new List<IModifier<T>>();
+        private readonly Dictionary<string, IModifier<T>> _modifiers = new();
 
         /// <summary>
         /// Getter for the calculated value of the attribute.
@@ -29,22 +30,32 @@ namespace Systems.Attributes
         /// <returns>The value of the attribute, plus modifiers.</returns>
         private T Calculate()
         {
-            var value = BaseValue;
-            foreach (var modifier in _modifiers)
-            {
-                value = modifier.Calculate(value);
-            }
-
-            return value;
+            return _modifiers.Values.Aggregate(BaseValue,
+                (current, modifier) => modifier.Calculate(current));
         }
 
         /// <summary>
         /// Adds a modifier to the attribute instance.
         /// </summary>
-        /// <param name="modifier">The modifier to add.</param>
-        public void AddModifier(IModifier<T> modifier)
+        /// <param name="tag">The modifier's unique identifier.</param>
+        /// <param name="modifier">A modifier instance to add.</param>
+        public void AddModifier(string tag, IModifier<T> modifier) => _modifiers.Add(tag, modifier);
+
+        /// <summary>
+        /// Removes the modifier from the attribute instance.
+        /// </summary>
+        /// <param name="modifier">The modifier instance to remove.</param>
+        public void RemoveModifier(IModifier<T> modifier)
         {
-            _modifiers.Add(modifier);
+            var tag = _modifiers.FirstOrDefault(
+                x => x.Value == modifier).Key;
+            _modifiers.Remove(tag);
         }
+
+        /// <summary>
+        /// Removes the modifier from the attribute instance.
+        /// </summary>
+        /// <param name="tag">The modifier's unique identifier.</param>
+        public void RemoveModifier(string tag) => _modifiers.Remove(tag);
     }
 }

@@ -31,6 +31,13 @@ namespace Systems.Attributes
         {
             return obj.GetOrCreateAttribute<T>(attribute)?.Value ?? default;
         }
+        
+        public static void SetAttributeValue<T>(this IAttributable obj, Attribute attribute, T value)
+            where T : struct, IComparable, IConvertible, IFormattable
+        {
+            var val = obj.GetOrCreateAttribute<T>(attribute);
+            val.BaseValue = value;
+        }
 
         /// <summary>
         /// Checks if the object has an attribute.

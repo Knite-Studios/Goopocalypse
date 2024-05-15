@@ -19,11 +19,6 @@ namespace Player
         /// </summary>
         public string Name { get; private set; }
 
-        /// <summary>
-        /// The current health of the hero.
-        /// </summary>
-        public int CurrentHealth;
-
         #region Attribute Getters
 
         /// <summary>

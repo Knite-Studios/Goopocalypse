@@ -18,7 +18,7 @@ namespace Editor
 
             if (GUILayout.Button("New Hero"))
             {
-                _hero = new HeroV2("archer.lua");
+                _hero = Heroes.Archer;
             }
 
             if (_hero != null)

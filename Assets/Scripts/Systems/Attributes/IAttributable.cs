@@ -29,7 +29,7 @@ namespace Systems.Attributes
         public static T GetAttributeValue<T>(this IAttributable obj, Attribute attribute)
             where T : struct, IComparable, IConvertible, IFormattable
         {
-            return obj.Attributes.TryGetValue(attribute, out var instance) ? ((AttributeInstance<T>)instance).Value : default;
+            return obj.GetOrCreateAttribute<T>(attribute)?.Value ?? default;
         }
 
         /// <summary>
@@ -51,7 +51,10 @@ namespace Systems.Attributes
         /// <param name="attribute">The attribute type.</param>
         /// <param name="defaultValue">The default value if the attribute doesn't exist.</param>
         /// <returns>The attribute instance.</returns>
-        public static AttributeInstance<T> GetOrCreateAttribute<T>(this IAttributable obj, Attribute attribute, T defaultValue)
+        public static AttributeInstance<T> GetOrCreateAttribute<T>(
+            this IAttributable obj,
+            Attribute attribute,
+            T defaultValue = default)
             where T : struct, IComparable, IConvertible, IFormattable
         {
             if (obj.Attributes.TryGetValue(attribute, out var instance))

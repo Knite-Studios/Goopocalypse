@@ -1,6 +1,5 @@
--- Unity.OnStart --> Attributes.Set(`from BaseStats`)
-
-BaseStats = {
+-- These are loaded when the instance is created.
+base_stats = {
     name = "Archer",
     health = 80,
     stamina = 100.0,
@@ -11,6 +10,8 @@ BaseStats = {
     aoe = 0.0
 }
 
-function OnSpecialAbility(name)
-    print(("Player name: ") .. name)
+-- Event handler for when a player casts a special ability.
+-- context: The 'Hero' object instance which cast the ability.
+function On_SpecialAbility(context)
+    print("Archer " .. context.Name .. " used a special ability.")
 end

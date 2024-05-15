@@ -7,8 +7,11 @@
         /// </summary>
         public static T Add<T>(T a, T b)
         {
-            dynamic _a = a, _b = b;
-            return _a + _b;
+            var type = typeof(T);
+            return type.GetMethod("op_Addition") != null
+                ? (T) type.GetMethod("op_Addition")!
+                    .Invoke(null, new object[] { a, b })
+                : throw new System.NotSupportedException("Addition is not supported for this type");
         }
 
         /// <summary>
@@ -16,8 +19,11 @@
         /// </summary>
         public static T Multiply<T>(T a, T b)
         {
-            dynamic _a = a, _b = b;
-            return _a * _b;
+            var type = typeof(T);
+            return type.GetMethod("op_Multiply") != null
+                ? (T) type.GetMethod("op_Multiply")!
+                    .Invoke(null, new object[] { a, b })
+                : throw new System.NotSupportedException("Multiplication is not supported for this type");
         }
     }
 }

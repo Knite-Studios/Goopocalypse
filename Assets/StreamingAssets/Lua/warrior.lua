@@ -1,6 +1,4 @@
--- Unity.OnStart --> Attributes.Set(`from BaseStats`)
-
-BaseStats = {
+base_stats = {
     name = "Warrior",
     health = 100,
     stamina = 100.0,
@@ -11,6 +9,6 @@ BaseStats = {
     aoe = 4.0
 }
 
-function OnSpecialAbility(name)
-    print(("Player name: ") .. name)
+function On_SpecialAbility(context)
+    print("Warrior " .. context.Name .. " used a special ability.")
 end

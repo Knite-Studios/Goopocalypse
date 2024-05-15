@@ -91,8 +91,8 @@ namespace Player
     /// </summary>
     public static class Heroes
     {
-        public static readonly HeroV2 Warrior = new("warrior.lua");
-        public static readonly HeroV2 Mage = new("mage.lua");
-        public static readonly HeroV2 Archer = new("archer.lua");
+        public static HeroV2 Warrior => new("warrior.lua");
+        public static HeroV2 Mage => new("mage.lua");
+        public static HeroV2 Archer => new("archer.lua");
     }
 }

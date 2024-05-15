@@ -1,5 +1,5 @@
-﻿using System;
-using Player;
+﻿using Player;
+using Systems.Attributes;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ namespace Editor
 {
     public class HeroDebug : EditorWindow
     {
-        [MenuItem("Debug/Hero Debug")]
+        [MenuItem("Goopocalypse/Hero Debug")]
         private static void OpenMenu() => GetWindow<HeroDebug>().Show();
 
         private static HeroV2 _hero;
@@ -35,6 +35,11 @@ namespace Editor
                 if (GUILayout.Button("Run Special Ability"))
                 {
                     _hero.SpecialAbility();
+                }
+                
+                if (GUILayout.Button("Increase Health"))
+                {
+                    _hero.SetAttributeValue(Attribute.Health, _hero.Health + 10);
                 }
             }
         }

@@ -410,7 +410,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5835613862599573361}
   - component: {fileID: 4671736620264016797}
-  - component: {fileID: 3817599815434017741}
   - component: {fileID: 2069755517920462340}
   - component: {fileID: 3497838921071505036}
   - component: {fileID: -8435620991260309089}
@@ -459,7 +458,7 @@ MonoBehaviour:
   autoConnectClientBuild: 0
   offlineScene: 
   onlineScene: 
-  transport: {fileID: 3817599815434017741}
+  transport: {fileID: -571842622378581252}
   networkAddress: localhost
   maxConnections: 4
   disconnectInactiveConnections: 0
@@ -485,35 +484,6 @@ MonoBehaviour:
   evaluationMethod: 0
   evaluationInterval: 3
   timeInterpolationGui: 0
---- !u!114 &3817599815434017741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7863957665381897056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  port: 7777
-  DualMode: 1
-  NoDelay: 1
-  Interval: 10
-  Timeout: 10000
-  RecvBufferSize: 7361536
-  SendBufferSize: 7361536
-  FastResend: 2
-  ReceiveWindowSize: 4096
-  SendWindowSize: 4096
-  MaxRetransmit: 40
-  MaximizeSocketBuffers: 1
-  ReliableMaxMessageSize: 297433
-  UnreliableMaxMessageSize: 1194
-  debugLog: 0
-  statisticsGUI: 0
-  statisticsLog: 0
 --- !u!114 &2069755517920462340
 MonoBehaviour:
   m_ObjectHideFlags: 0

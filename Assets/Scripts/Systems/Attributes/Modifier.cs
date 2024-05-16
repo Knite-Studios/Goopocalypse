@@ -45,4 +45,54 @@ namespace Systems.Attributes
         Add,
         Multiply
     }
+
+    /// <summary>
+    /// Extension methods to make modifiers easier to use.
+    /// </summary>
+    public static class ModifierExtensions
+    {
+        /// <summary>
+        /// Adds a new modifier to an object.
+        /// </summary>
+        /// <param name="obj">The attributable object.</param>
+        /// <param name="attribute">The attribute type.</param>
+        /// <param name="modifierTag">The name/ID of the modifier.</param>
+        /// <param name="value">The modifier value.</param>
+        /// <param name="operation">The operation to perform.</param>
+        public static void AddModifier<T>(
+            this IAttributable obj,
+            Attribute attribute,
+            string modifierTag,
+            T value,
+            Operation operation = Operation.Add)
+            where T : struct, IComparable, IConvertible, IFormattable
+        {
+            if (!obj.HasAttribute(attribute))
+            {
+                throw new InvalidOperationException("Attribute does not exist on object");
+            }
+
+            var instance = obj.GetOrCreateAttribute<T>(attribute);
+            instance.AddModifier(modifierTag, new Modifier<T>
+            {
+                Operation = operation,
+                Value = value
+            });
+        }
+
+        /// <summary>
+        /// Removes a modifier from an object.
+        /// </summary>
+        /// <param name="obj">The attributable object.</param>
+        /// <param name="attribute">The attribute type.</param>
+        /// <param name="modifierTag">The name/ID of the modifier.</param>
+        public static void RemoveModifier<T>(
+            this IAttributable obj,
+            Attribute attribute,
+            string modifierTag)
+            where T : struct, IComparable, IConvertible, IFormattable
+        {
+            obj.GetOrCreateAttribute<T>(attribute).RemoveModifier(modifierTag);
+        }
+    }
 }

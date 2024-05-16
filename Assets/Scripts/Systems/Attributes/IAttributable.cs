@@ -31,7 +31,13 @@ namespace Systems.Attributes
         {
             return obj.GetOrCreateAttribute<T>(attribute)?.Value ?? default;
         }
-        
+
+        /// <summary>
+        /// Sets the base value of an attribute.
+        /// </summary>
+        /// <param name="obj">The attributable object.</param>
+        /// <param name="attribute">The attribute type.</param>
+        /// <param name="value">The new base value.</param>
         public static void SetAttributeValue<T>(this IAttributable obj, Attribute attribute, T value)
             where T : struct, IComparable, IConvertible, IFormattable
         {

@@ -1,19 +1,12 @@
-﻿using System.Collections.Generic;
-using Common.Extensions;
-using Managers;
+﻿using Entity;
 using Systems.Attributes;
 using XLua;
 
 namespace Player
 {
     [CSharpCallLua]
-    public class Hero : IAttributable
+    public class Hero : BaseEntity
     {
-        /// <summary>
-        /// Attribute holder map.
-        /// </summary>
-        public Dictionary<Attribute, object> Attributes { get; } = new();
-
         /// <summary>
         /// The name of the hero.
         /// </summary>
@@ -21,73 +14,38 @@ namespace Player
 
         #region Attribute Getters
 
-        /// <summary>
-        /// This is the maximum health of the hero.
-        /// </summary>
-        public int Health => this.GetAttributeValue<int>(Attribute.Health);
         public float Stamina => this.GetAttributeValue<float>(Attribute.Stamina);
-        public float Speed => this.GetAttributeValue<float>(Attribute.Speed);
         public float AttackSpeed => this.GetAttributeValue<float>(Attribute.AttackSpeed);
-        public int AttackDamage => this.GetAttributeValue<int>(Attribute.AttackDamage);
-        public int Armor => this.GetAttributeValue<int>(Attribute.Armor);
         public float AreaOfEffect => this.GetAttributeValue<float>(Attribute.AreaOfEffect);
 
         #endregion
 
         /// <summary>
-        /// Internal function caller for 'SpecialAbility' from Lua.
-        /// </summary>
-        private readonly LuaSpecialAbility _specialAbility;
-
-        /// <summary>
         /// Creates a new hero instance.
         /// </summary>
         /// <param name="luaScript">The path to the hero's Lua script.</param>
-        public Hero(string luaScript)
+        public Hero(string luaScript) : base(luaScript)
         {
-            var env = LuaManager.luaEnv;
-            env.DoFile(luaScript);
 
-            // Load Lua data.
-            ApplyBaseStats(env.Global.Get<LuaTable>("base_stats"));
-            _specialAbility = env.Global.Get<LuaSpecialAbility>(LuaManager.SpecialAbilityFunc);
         }
 
         /// <summary>
         /// Loads the statistics from a Lua script.
         /// </summary>
         /// <param name="stats">The Lua table containing the base stats.</param>
-        private void ApplyBaseStats(LuaTable stats)
+        protected override void ApplyBaseStats(LuaTable stats)
         {
             Name = stats.Get<string>("name");
-            this.GetOrCreateAttribute(Attribute.Health, stats.Get<int>("health"));
             this.GetOrCreateAttribute(Attribute.Stamina, stats.Get<float>("stamina"));
-            this.GetOrCreateAttribute(Attribute.Speed, stats.Get<float>("speed"));
             this.GetOrCreateAttribute(Attribute.AttackSpeed, stats.Get<float>("attack_speed"));
-            this.GetOrCreateAttribute(Attribute.AttackDamage, stats.Get<int>("attack_damage"));
-            this.GetOrCreateAttribute(Attribute.Armor, stats.Get<int>("armor"));
             this.GetOrCreateAttribute(Attribute.AreaOfEffect, stats.Get<float>("aoe"));
         }
-
-        /// <summary>
-        /// Internal function definition for the 'SpecialAbility' function.
-        /// </summary>
-        [CSharpCallLua]
-        private delegate void LuaSpecialAbility(Hero context);
-
-        /// <summary>
-        /// Runs the hero's associated special ability.
-        /// </summary>
-        public void SpecialAbility() => _specialAbility?.Invoke(this);
     }
 
-    /// <summary>
-    /// DEVELOPERS NOTE: This is an example of how to replace the existing hardcoded classes.
-    /// </summary>
     public static class Heroes
     {
-        public static Hero Warrior => new("warrior.lua");
-        public static Hero Mage => new("mage.lua");
-        public static Hero Archer => new("archer.lua");
+        public static Hero Warrior => new("heroes/warrior.lua");
+        public static Hero Mage => new("heroes/mage.lua");
+        public static Hero Archer => new("heroes/archer.lua");
     }
 }

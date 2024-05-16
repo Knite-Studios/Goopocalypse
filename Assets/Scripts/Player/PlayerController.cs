@@ -6,7 +6,7 @@ namespace Player
 {
     public class PlayerController : NetworkBehaviour
     {
-        [SerializeField] private GameObject projectilePrefab;
+        [SerializeField] private PrefabType projectilePrefab; // Temporary for prototype.
         [SerializeField] private GameObject indicator; // Temoprarily used for testing.
         [SerializeField] private float projectileSpawnDistance = 1.0f;
         [SerializeField] private float attackInterval = 2.0f;
@@ -63,13 +63,14 @@ namespace Player
             var angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
             var rotation = Quaternion.Euler(0, 0, angle);
         
-            CmdSpawnProjectile(spawnPos, rotation);
+            CmdSpawnProjectile(projectilePrefab, spawnPos, rotation);
         }
     
         [Command]
-        private void CmdSpawnProjectile(Vector3 position, Quaternion rotation)
+        private void CmdSpawnProjectile(PrefabType projectileType, Vector3 position, Quaternion rotation)
         {
-            var projectile = Instantiate(projectilePrefab, position, rotation);
+            var projectile = PrefabManager.Create(projectileType);
+            projectile.transform.SetPositionAndRotation(position, rotation);
             NetworkServer.Spawn(projectile);
         }
     

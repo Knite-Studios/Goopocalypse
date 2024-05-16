@@ -421,10 +421,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8319438023219136192, guid: 0cfc0356116ba9946b01dd2ebcf1185c, type: 3}
-      propertyPath: transport
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 9078662167537387962, guid: 0cfc0356116ba9946b01dd2ebcf1185c, type: 3}
       propertyPath: m_Name
       value: KcpNetworkManager

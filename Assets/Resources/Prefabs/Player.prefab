@@ -254,7 +254,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  projectilePrefab: {fileID: 1487731616712756, guid: 6bf84799e9bb8bc46890eb79bcbb9664, type: 3}
+  projectilePrefab: 5
   indicator: {fileID: 8207353764106387348}
   projectileSpawnDistance: 1
   attackInterval: 2

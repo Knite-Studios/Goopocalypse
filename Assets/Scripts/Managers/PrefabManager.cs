@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Managers
 {
-    public class PrefabManager : MonoSingleton<PrefabManager>
+    public class PrefabManager : NetworkSingleton<PrefabManager>
     {
         [SerializeField] private List<Prefabs> list;
 
@@ -73,7 +73,7 @@ namespace Managers
                 _pools.Add(prefab.type, new Queue<GameObject>());
                 for (var i = 0; i < prefab.initialPoolSize; i++)
                 {
-                    var newObject = Instantiate(prefab.prefab, root.transform);
+                    var newObject = Instantiate(prefab.prefab, root ? root.transform : transform);
                     newObject.SetActive(false);
                     _pools[prefab.type].Enqueue(newObject);
                 }
@@ -97,6 +97,7 @@ namespace Managers
             {
                 var pool = _pools[prefab];
 
+                // if (pool.Count > 0 && !pool.Peek().activeSelf)
                 if (!pool.Peek().activeSelf)
                 {
                     // Use the object from the pool.
@@ -104,7 +105,9 @@ namespace Managers
                     newObject.SetActive(true);
 
                     // Reset the transform.
+                    // newObject.transform.SetParent(parent, false);
                     newObject.transform.Reset(true, true);
+                    
                     // Call reset.
                     var poolObject = newObject.GetComponent<IPoolObject>();
                     poolObject?.Reset();
@@ -112,7 +115,7 @@ namespace Managers
                 else
                 {
                     // Create a new object.
-                    newObject = Instantiate(prefabData.prefab);
+                    newObject = Instantiate(prefabData.prefab, parent);
                 }
 
                 // Re-add the object to the pool.
@@ -136,6 +139,25 @@ namespace Managers
 
             return newObject;
         }
+
+        /// <summary>
+        /// Returns an object to its pool.
+        /// </summary>
+        /// <param name="prefabType">The type of prefab.</param>
+        /// <param name="obj">The object to return.</param>
+        public static void ReturnToPool(PrefabType prefabType, GameObject obj)
+        {
+            if (!Instance._pools.ContainsKey(prefabType))
+            {
+                Debug.LogError($"No pool exists for prefab type {prefabType}");
+                return;
+            }
+
+            obj.SetActive(false);
+            obj.transform.SetParent(null);
+            Instance._pools[prefabType].Enqueue(obj);
+        
+        }
     }
     
     /// <summary>
@@ -148,6 +170,7 @@ namespace Managers
         ArcherHero = 2,
         MageHero = 3,
         MeleeEnemy = 4,
+        PlaceholderProjectile = 5,
     }
 
     [Serializable]

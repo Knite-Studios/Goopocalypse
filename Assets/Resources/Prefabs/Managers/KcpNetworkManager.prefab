@@ -57,7 +57,7 @@ MonoBehaviour:
   autoConnectClientBuild: 0
   offlineScene: 
   onlineScene: 
-  transport: {fileID: 0}
+  transport: {fileID: 1251298420393972179}
   networkAddress: localhost
   maxConnections: 4
   disconnectInactiveConnections: 0

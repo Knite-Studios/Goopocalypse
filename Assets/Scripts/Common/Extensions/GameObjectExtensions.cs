@@ -33,4 +33,11 @@ public static class GameObjectExtensions
 
         return self.AddComponent(type);
     }
+    
+    /// <summary>
+    /// Checks if the game object has a specific component.
+    /// </summary>
+    /// <returns>true if the component exists.</returns>
+    public static bool Has<T>(this GameObject gameObject) where T : Component
+        => gameObject.GetComponent<T>();
 }

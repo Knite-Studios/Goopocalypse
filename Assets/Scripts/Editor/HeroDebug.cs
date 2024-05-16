@@ -10,7 +10,7 @@ namespace Editor
         [MenuItem("Goopocalypse/Hero Debug")]
         private static void OpenMenu() => GetWindow<HeroDebug>().Show();
 
-        private static HeroV2 _hero;
+        private static Hero _hero;
 
         private void OnGUI()
         {

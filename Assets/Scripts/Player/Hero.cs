@@ -1,13 +1,29 @@
 ﻿using System.Collections.Generic;
+using Common.Extensions;
+using Managers;
 using Systems.Attributes;
 using XLua;
 
 namespace Player
 {
-    [LuaCallCSharp]
+    [CSharpCallLua]
     public class Hero : IAttributable
     {
-        public string Name { get; set; }
+        /// <summary>
+        /// Attribute holder map.
+        /// </summary>
+        public Dictionary<Attribute, object> Attributes { get; } = new();
+
+        /// <summary>
+        /// The name of the hero.
+        /// </summary>
+        public string Name { get; private set; }
+
+        #region Attribute Getters
+
+        /// <summary>
+        /// This is the maximum health of the hero.
+        /// </summary>
         public int Health => this.GetAttributeValue<int>(Attribute.Health);
         public float Stamina => this.GetAttributeValue<float>(Attribute.Stamina);
         public float Speed => this.GetAttributeValue<float>(Attribute.Speed);
@@ -16,28 +32,62 @@ namespace Player
         public int Armor => this.GetAttributeValue<int>(Attribute.Armor);
         public float AreaOfEffect => this.GetAttributeValue<float>(Attribute.AreaOfEffect);
 
-        [CSharpCallLua]
-        protected delegate void SpecialAbilityDelegate(string name);
-        protected SpecialAbilityDelegate LuaSpecialAbility;
-
-        public virtual void SpecialAbility() => LuaSpecialAbility?.Invoke(Name);
+        #endregion
 
         /// <summary>
-        /// Loads the base stats of the hero from a Lua table.
+        /// Internal function caller for 'SpecialAbility' from Lua.
+        /// </summary>
+        private readonly LuaSpecialAbility _specialAbility;
+
+        /// <summary>
+        /// Creates a new hero instance.
+        /// </summary>
+        /// <param name="luaScript">The path to the hero's Lua script.</param>
+        public Hero(string luaScript)
+        {
+            var env = LuaManager.luaEnv;
+            env.DoFile(luaScript);
+
+            // Load Lua data.
+            ApplyBaseStats(env.Global.Get<LuaTable>("base_stats"));
+            _specialAbility = env.Global.Get<LuaSpecialAbility>(LuaManager.SpecialAbilityFunc);
+        }
+
+        /// <summary>
+        /// Loads the statistics from a Lua script.
         /// </summary>
         /// <param name="stats">The Lua table containing the base stats.</param>
-        public void LoadBaseStats(LuaTable stats)
+        private void ApplyBaseStats(LuaTable stats)
         {
             Name = stats.Get<string>("name");
-            this.GetOrCreateAttribute(Attribute.Health, stats.Get<float>("health"));
+            this.GetOrCreateAttribute(Attribute.Health, stats.Get<int>("health"));
             this.GetOrCreateAttribute(Attribute.Stamina, stats.Get<float>("stamina"));
             this.GetOrCreateAttribute(Attribute.Speed, stats.Get<float>("speed"));
             this.GetOrCreateAttribute(Attribute.AttackSpeed, stats.Get<float>("attack_speed"));
-            this.GetOrCreateAttribute(Attribute.AttackDamage, stats.Get<float>("attack_damage"));
-            this.GetOrCreateAttribute(Attribute.Armor, stats.Get<float>("armor"));
+            this.GetOrCreateAttribute(Attribute.AttackDamage, stats.Get<int>("attack_damage"));
+            this.GetOrCreateAttribute(Attribute.Armor, stats.Get<int>("armor"));
             this.GetOrCreateAttribute(Attribute.AreaOfEffect, stats.Get<float>("aoe"));
         }
 
-        public Dictionary<Attribute, object> Attributes { get; } = new();
+        /// <summary>
+        /// Internal function definition for the 'SpecialAbility' function.
+        /// </summary>
+        [CSharpCallLua]
+        private delegate void LuaSpecialAbility(Hero context);
+
+        /// <summary>
+        /// Runs the hero's associated special ability.
+        /// </summary>
+        public void SpecialAbility() => _specialAbility?.Invoke(this);
+    }
+
+    /// <summary>
+    /// DEVELOPERS NOTE: This is an example of how to replace the existing hardcoded classes.
+    /// </summary>
+    public static class Heroes
+    {
+        public static Hero Warrior => new("warrior.lua");
+        public static Hero Mage => new("mage.lua");
+        public static Hero Archer => new("archer.lua");
     }
 }

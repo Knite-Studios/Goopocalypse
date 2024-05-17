@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 using Common.Extensions;
 using Managers;
 using Mirror;
 using Systems.Attributes;
+using GameAttribute = Systems.Attributes.Attribute;
 using XLua;
+using UnityEngine.Events;
 
 namespace Entity
 {
@@ -15,7 +18,7 @@ namespace Entity
         /// <summary>
         /// Attribute holder map.
         /// </summary>
-        public Dictionary<Attribute, object> Attributes { get; } = new();
+        public Dictionary<GameAttribute, object> Attributes { get; } = new();
 
         /// <summary>
         /// The current health of the entity.
@@ -27,12 +30,17 @@ namespace Entity
         /// <summary>
         /// This is the maximum health of the hero.
         /// </summary>
-        public int Health => this.GetAttributeValue<int>(Attribute.Health);
-        public float Speed => this.GetAttributeValue<float>(Attribute.Speed);
-        public int Armor => this.GetAttributeValue<int>(Attribute.Armor);
-        public int AttackDamage => this.GetAttributeValue<int>(Attribute.AttackDamage);
+        public int Health => this.GetAttributeValue<int>(GameAttribute.Health);
+        public float Speed => this.GetAttributeValue<float>(GameAttribute.Speed);
+        public int Armor => this.GetAttributeValue<int>(GameAttribute.Armor);
+        public int AttackDamage => this.GetAttributeValue<int>(GameAttribute.AttackDamage);
 
         #endregion
+
+        /// <summary>
+        /// Event called with the damage dealt to the entity.
+        /// </summary>
+        public event UnityAction<int> OnDamage;
 
         /// <summary>
         /// Internal function caller for 'SpecialAbility' from Lua.
@@ -59,10 +67,10 @@ namespace Entity
         /// <param name="stats">The Lua table containing the base stats.</param>
         protected virtual void ApplyBaseStats(LuaTable stats)
         {
-            this.GetOrCreateAttribute(Attribute.Health, stats.Get<int>("health"));
-            this.GetOrCreateAttribute(Attribute.AttackDamage, stats.Get<int>("attack_damage"));
-            this.GetOrCreateAttribute(Attribute.Armor, stats.Get<int>("armor"));
-            this.GetOrCreateAttribute(Attribute.Speed, stats.Get<float>("speed"));
+            this.GetOrCreateAttribute(GameAttribute.Health, stats.Get<int>("health"));
+            this.GetOrCreateAttribute(GameAttribute.AttackDamage, stats.Get<int>("attack_damage"));
+            this.GetOrCreateAttribute(GameAttribute.Armor, stats.Get<int>("armor"));
+            this.GetOrCreateAttribute(GameAttribute.Speed, stats.Get<float>("speed"));
         }
 
         /// <summary>
@@ -75,5 +83,30 @@ namespace Entity
         /// Runs the hero's associated special ability.
         /// </summary>
         public void SpecialAbility() => specialAbility?.Invoke(this);
+
+        /// <summary>
+        /// Applies damage to the entity's current health.
+        /// TODO: Apply armor reduction to damage.
+        /// </summary>
+        /// <param name="damage">The raw amount to damage.</param>
+        /// <param name="trueDamage">Whether the damage is absolute. (no reductions)</param>
+        public void Damage(int damage, bool trueDamage = false)
+        {
+            CurrentHealth -= damage;
+            OnDamage?.Invoke(damage);
+            
+            if (CurrentHealth <= 0)
+            {
+                Kill();
+            }
+        }
+
+        /// <summary>
+        /// Invoked when the entity dies.
+        /// </summary>
+        public virtual void Kill()
+        {
+            Destroy(gameObject); // TODO: death animation or something ??
+        }
     }
 }

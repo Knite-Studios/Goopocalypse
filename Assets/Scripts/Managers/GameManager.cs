@@ -4,7 +4,7 @@ namespace Managers
 {
     public class GameManager : MonoSingleton<GameManager>
     {
-        public static Action OnGameStart;
+        public static event Action OnGameStart;
 
         protected override void OnAwake()
         {

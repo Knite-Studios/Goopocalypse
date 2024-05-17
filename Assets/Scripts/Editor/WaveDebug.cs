@@ -13,7 +13,7 @@ namespace Editor
         {
             if (GUILayout.Button("Start Game"))
             {
-                GameManager.OnGameStart.Invoke();
+                GameManager.OnGameStart?.Invoke();
             }
         }
     }

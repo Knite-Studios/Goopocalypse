@@ -1,10 +1,13 @@
 ﻿using System;
+using UnityEngine;
+using UnityEngine.Events;
 
 namespace Managers
 {
     public class GameManager : MonoSingleton<GameManager>
     {
         public static Action OnGameStart;
+        public static UnityAction<GameEvent> OnGameEvent;
 
         protected override void OnAwake()
         {
@@ -12,5 +15,18 @@ namespace Managers
             LuaManager.Initialize();
             WaveManager.Initialize();
         }
+    }
+
+    public struct GameEvent
+    {
+        public GameEventType Type;
+
+        public Transform Target;
+    }
+
+    public enum GameEventType
+    {
+        ChestSpawned,
+        EnemyKilled
     }
 }

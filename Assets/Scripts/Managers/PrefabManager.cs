@@ -13,8 +13,8 @@ namespace Managers
     {
         [SerializeField] private List<Prefabs> list;
 
-        private readonly Dictionary<PrefabType, Prefab> _prefabs = new Dictionary<PrefabType, Prefab>();
-        private readonly Dictionary<PrefabType, Queue<GameObject>> _pools = new Dictionary<PrefabType, Queue<GameObject>>();
+        private readonly Dictionary<PrefabType, Prefab> _prefabs = new();
+        private readonly Dictionary<PrefabType, Queue<GameObject>> _pools = new();
 
         /// <summary>
         /// Static shortcut method for creating a prefab.
@@ -40,10 +40,10 @@ namespace Managers
             var component = newObject.GetComponent<T>();
             if (component == null)
                 Debug.LogError($"Prefab {prefab} does not have component {typeof(T)}");
-            
+
             return component;
         }
-        
+
         /// <summary>
         /// Special singleton initializer method.
         /// </summary>
@@ -107,7 +107,7 @@ namespace Managers
                     // Reset the transform.
                     // newObject.transform.SetParent(parent, false);
                     newObject.transform.Reset(true, true);
-                    
+
                     // Call reset.
                     var poolObject = newObject.GetComponent<IPoolObject>();
                     poolObject?.Reset();
@@ -125,7 +125,7 @@ namespace Managers
             {
                 newObject = Instantiate(prefabData.prefab, parent);
             }
-            
+
             newObject.SetActive(active);
 
             if (prefabData.root != null)
@@ -156,10 +156,10 @@ namespace Managers
             obj.SetActive(false);
             obj.transform.SetParent(null);
             Instance._pools[prefabType].Enqueue(obj);
-        
+
         }
     }
-    
+
     /// <summary>
     /// Prefab types to be instantiated.
     /// </summary>

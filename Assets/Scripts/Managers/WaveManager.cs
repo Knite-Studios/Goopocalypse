@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Entity;
 using Mirror;
+using UnityEditor;
 using UnityEngine;
 
 namespace Managers
@@ -13,6 +15,14 @@ namespace Managers
         private bool _isWaveActive;
         private int _enemiesRemaining;
         private List<GameObject> _aliveEnemies = new();
+
+        [SerializeField] private float distance = 2f;
+        private Camera _mainCamera;
+
+        protected override void OnAwake()
+        {
+            _mainCamera = Camera.main;
+        }
 
         private void Start()
         {
@@ -40,14 +50,27 @@ namespace Managers
         {
             while (_isWaveActive)
             {
-                Debug.Log("Try spawning enemies");
                 yield return new WaitForSeconds(3);
+
+                // Pick a random point within the host's camera's view.
+                var radius = _mainCamera.orthographicSize * distance;
+                var point = Random.insideUnitCircle.normalized * radius;
+
+                var enemy = new GameObject("Enemy")
+                {
+                    transform =
+                    {
+                        position = point,
+                        localScale = new Vector3(5, 5, 5)
+                    },
+                };
+                enemy.AddComponent<Enemy>();
+                var renderer = enemy.AddComponent<SpriteRenderer>();
+                renderer.color = Color.red;
+                renderer.sprite = AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/Knob.psd");
+                
+                NetworkServer.Spawn(enemy);
             }
-        }
-
-        private void StartWave()
-        {
-
         }
     }
 }

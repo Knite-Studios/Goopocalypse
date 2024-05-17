@@ -3,6 +3,7 @@ using Common.Extensions;
 using Managers;
 using Mirror;
 using Systems.Attributes;
+using UnityEngine;
 using XLua;
 
 namespace Entity
@@ -10,7 +11,8 @@ namespace Entity
     /// <summary>
     /// The base class for all entities in the game.
     /// </summary>
-    public abstract class BaseEntity : NetworkManager, IAttributable
+    [RequireComponent(typeof(NetworkIdentity))]
+    public abstract class BaseEntity : NetworkBehaviour, IAttributable
     {
         /// <summary>
         /// Attribute holder map.

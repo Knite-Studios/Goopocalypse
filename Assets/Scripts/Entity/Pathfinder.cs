@@ -27,13 +27,18 @@ namespace Entity
         }
 
         /// <summary>
-        /// Gets the manhattan distance to another node.
         /// </summary>
-        public int GetDistanceTo(Node other)
+        public int GetDistanceTo(Node other, DistanceType distanceType = DistanceType.Manhattan)
         {
             var distanceX = Mathf.Abs(X - other.X);
             var distanceY = Mathf.Abs(Y - other.Y);
-            return distanceX + distanceY;
+            
+            return distanceType switch
+            {
+                DistanceType.Manhattan => distanceX + distanceY,
+                DistanceType.Euclidean => (int)Math.Sqrt(distanceX * distanceX + distanceY * distanceY),
+                _ => throw new ArgumentOutOfRangeException(nameof(distanceType), distanceType, null)
+            };
         }
 
         /// <summary>
@@ -67,11 +72,19 @@ namespace Entity
         {
             return a?.position != b?.position;
         }
+
+        public enum DistanceType
+        {
+            Manhattan,
+            Euclidean,
+        }
     }
 
     public class Pathfinder : MonoBehaviour
     {
         public Grid grid;
+        
+        private List<Node> _currentPath;
         
         /// <summary>
         /// Finds the shortest path to the target.
@@ -103,7 +116,8 @@ namespace Entity
                 
                 if (currentNode == destNode)
                 {
-                    return RetracePath(startNode, destNode);
+                    _currentPath = RetracePath(startNode, destNode);
+                    return _currentPath;
                 }
                 
                 closedSet.Add(currentNode);
@@ -145,6 +159,17 @@ namespace Entity
 
             finalPath.Reverse();
             return finalPath;
+        }
+        
+        private void OnDrawGizmos()
+        {
+            if (grid == null) return;
+            
+            Gizmos.color = Color.green;
+            foreach (var node in _currentPath)
+            {
+                Gizmos.DrawSphere(new Vector3(node.X, node.Y, 0), 0.3f);
+            }
         }
     }
 }

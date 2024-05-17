@@ -14,6 +14,7 @@ namespace Managers
             InputManager.Initialize();
             LuaManager.Initialize();
             WaveManager.Initialize();
+            PrefabManager.Initialize();
         }
     }
 

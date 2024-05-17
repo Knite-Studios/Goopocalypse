@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using Common.Extensions;
 using JetBrains.Annotations;
 using UnityEngine;
+using Utils;
 
 namespace Entity
 {
@@ -10,29 +11,29 @@ namespace Entity
     public class Node
     {
         [CanBeNull] public Node parent;
-        public readonly Vector2 position;
+        public readonly Vector2Int position;
         public bool isWalkable;
         public int gCost, hCost;
         
         public int FCost => gCost + hCost;
 
-        public int X => (int) position.x;
-        public int Y => (int) position.y;
+        public int X => position.x;
+        public int Y => position.y;
         
-        public Node(Vector2 position, bool isWalkable)
+        public Node(Vector2Int position, bool isWalkable)
         {
             this.position = position;
             this.isWalkable = isWalkable;
         }
 
         /// <summary>
-        /// Gets the distance to another node.
+        /// Gets the manhattan distance to another node.
         /// </summary>
         public int GetDistanceTo(Node other)
         {
             var distanceX = Mathf.Abs(X - other.X);
             var distanceY = Mathf.Abs(Y - other.Y);
-            return distanceX > distanceY ? distanceY - distanceX : distanceX - distanceY;
+            return distanceX + distanceY;
         }
 
         /// <summary>
@@ -56,7 +57,7 @@ namespace Entity
         /// </summary>
         public static bool operator ==(Node a, Node b)
         {
-            return a!.position == b!.position;
+            return a?.position == b?.position;
         }
 
         /// <summary>
@@ -64,13 +65,14 @@ namespace Entity
         /// </summary>
         public static bool operator !=(Node a, Node b)
         {
-            return a!.position != b!.position;
+            return a?.position != b?.position;
         }
     }
 
     public class Pathfinder : MonoBehaviour
     {
         public Grid grid;
+        
         /// <summary>
         /// Finds the shortest path to the target.
         /// </summary>
@@ -79,41 +81,47 @@ namespace Entity
         [CanBeNull]
         public List<Node> FindPath(Vector2 target)
         {
-            var path = new Dictionary<Node, Node>();
-            var openSet = new List<Node>();
-            var closedSet = new List<Node>();
+            var openSet = new PriorityQueue<Node, int>();
+            var closedSet = new HashSet<Node>();
 
             // Add the starting node to the open set.
-            var startNode = new Node(transform.position, true);
-            openSet.Add(startNode);
-
+            var startNode = grid.GetNode((int)transform.position.x, (int)transform.position.y);
             // Determine the destination node.
-            var destNode = new Node(target, true);
-
-            // Determine the path.
-            var startTime = Time.realtimeSinceStartup;
+            var destNode = grid.GetNode((int)target.x, (int)target.y);
+            
+            if (startNode == null || destNode == null || !startNode.isWalkable || !destNode.isWalkable)
+            {
+                return null;
+            }
+            
+            openSet.Enqueue(startNode, startNode.FCost);
+            
             while (openSet.Count != 0)
             {
-                var currentNode = openSet.OrderBy(node => node.FCost).First();
+                // Get the node with the lowest F cost.
+                var currentNode = openSet.Dequeue();
                 
                 if (currentNode == destNode)
                 {
-                    return RetracePath(path, currentNode);
+                    return RetracePath(startNode, destNode);
                 }
-
-                openSet.Remove(currentNode);
-                foreach (var neighbor in FindNeighbors(currentNode))
+                
+                closedSet.Add(currentNode);
+                
+                foreach (var neighbor in grid.FindNeighbors(currentNode))
                 {
+                    if (!neighbor.isWalkable || closedSet.Contains(neighbor)) continue;
+                    
                     var gCost = currentNode.gCost + currentNode.GetDistanceTo(neighbor);
                     if (gCost < neighbor.gCost || !openSet.Contains(neighbor))
                     {
                         neighbor.gCost = gCost;
                         neighbor.hCost = neighbor.GetDistanceTo(destNode);
                         neighbor.parent = currentNode;
-
+                        
                         if (!openSet.Contains(neighbor))
                         {
-                            openSet.Add(neighbor);
+                            openSet.Enqueue(neighbor, neighbor.FCost);
                         }
                     }
                 }
@@ -123,45 +131,16 @@ namespace Entity
         }
 
         /// <summary>
-        /// Finds the neighbors to a point.
+        /// Retraces the path from the start node to the end node.
         /// </summary>
-        /// <param name="point">The 2D point.</param>
-        /// <returns>An array of the point's neighbors.</returns>
-        private List<Node> FindNeighbors(Node point)
-        {
-            var neighbors = new List<Node>();
-
-            for (var x = -1; x <= 1; x++)
-            {
-                for (var y = -1; y <= 1; y++)
-                {
-                    // Skip the center node.
-                    if (x == 0 && y == 0)
-                    {
-                        continue;
-                    }
-                    
-                    var neighbor = new Vector2(point.X + x, point.Y + y);
-                    neighbors.Add(new Node(neighbor, true));
-                    // TODO: Check if the neighbor is walkable.
-                    // TODO: Check if the neighbor exists in the cache.
-                }
-            }
-
-            return neighbors;
-        }
-
-        /// <summary>
-        /// Retraces the path to the target.
-        /// </summary>
-        private List<Node> RetracePath(Dictionary<Node, Node> path, Node endNode)
+        private List<Node> RetracePath(Node startNode, Node endNode)
         {
             var finalPath = new List<Node>();
             var currentNode = endNode;
-            while (path.ContainsKey(currentNode))
+            while (currentNode != startNode)
             {
                 finalPath.Add(currentNode);
-                currentNode = path[currentNode];
+                currentNode = currentNode!.parent;
             }
 
             finalPath.Reverse();

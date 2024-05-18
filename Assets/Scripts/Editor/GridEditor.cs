@@ -7,16 +7,16 @@ namespace Editor
     [CustomEditor(typeof(Grid))]
     public class GridEditor : UnityEditor.Editor
     {
-        public override void OnInspectorGUI()
-        {
-            DrawDefaultInspector();
-
-            var grid = target as Grid;
-            if (GUILayout.Button("Initialize Grid"))
-            {
-                grid?.InitializeGrid(grid.width, grid.height, grid.unwalkableLayer, grid.walkableLayer, grid.nodeRadius);
-            }
-        }
+        // public override void OnInspectorGUI()
+        // {
+        //     DrawDefaultInspector();
+        //
+        //     var grid = target as Grid;
+        //     if (GUILayout.Button("Initialize Grid"))
+        //     {
+        //         grid?.InitializeGrid(grid.width, grid.height, grid.unwalkableLayer, grid.walkableLayer, grid.nodeRadius);
+        //     }
+        // }
         
         private void OnSceneGUI()
         {

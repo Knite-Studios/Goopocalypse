@@ -14,6 +14,7 @@ namespace Editor
         private Vector2Int _gridDimensions = new Vector2Int(50, 50);
         private Pathfinder _pathfinder;
         private Grid _grid;
+        private int _nodePadding = 1;
 
         private void OnGUI()
         {
@@ -36,6 +37,8 @@ namespace Editor
                 _grid, 
                 typeof(Grid), 
                 true) as Grid;
+            
+            _nodePadding = EditorGUILayout.IntField("Node Padding", _nodePadding);
 
             if (GUILayout.Button("Find Path"))
             {
@@ -56,7 +59,8 @@ namespace Editor
                     _gridDimensions.y, 
                     _grid.unwalkableLayer, 
                     _grid.walkableLayer, 
-                    _grid.nodeRadius);
+                    _grid.nodeRadius,
+                    _nodePadding);
 
                 _pathfinder.grid = _grid;
 

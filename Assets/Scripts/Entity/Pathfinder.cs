@@ -127,20 +127,21 @@ namespace Entity
                 {
                     if (!neighbor.isWalkable || closedSet.Contains(neighbor)) continue;
                     
+                    // Dynamically check for obstacles along the path
+                    var worldPosition = new Vector3(
+                        neighbor.X * grid.nodeDiameter + grid.nodeRadius, 
+                        neighbor.Y * grid.nodeDiameter + grid.nodeRadius, 
+                        0); 
+                    neighbor.isWalkable = !Physics2D.OverlapCircle(worldPosition, grid.nodeRadius, grid.unwalkableLayer);
+                    
+                    if (!neighbor.isWalkable) continue;
+                    
                     var gCost = currentNode.gCost + currentNode.GetDistanceTo(neighbor);
                     if (gCost < neighbor.gCost || !openSet.Contains(neighbor))
                     {
                         neighbor.gCost = gCost;
                         neighbor.hCost = neighbor.GetDistanceTo(destNode);
                         neighbor.parent = currentNode;
-                        
-                        // Dynamically check for obstacles along the path.
-                        var worldPosition = new Vector3(neighbor.X * grid.nodeDiameter + grid.nodeRadius, 
-                            neighbor.Y * grid.nodeDiameter + grid.nodeRadius, 0);
-                        if (Physics2D.OverlapCircle(worldPosition, grid.nodeRadius, grid.unwalkableLayer))
-                        {
-                            neighbor.isWalkable = false;
-                        }
                         
                         if (!openSet.Contains(neighbor))
                         {

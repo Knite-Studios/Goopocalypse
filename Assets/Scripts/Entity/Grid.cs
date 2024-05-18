@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Entity
 {
@@ -9,11 +8,12 @@ namespace Entity
     /// </summary>
     public class Grid : MonoBehaviour
     {
+        public int width, height;
         public LayerMask unwalkableLayer;
         public LayerMask walkableLayer;
-        public float nodeRadius;
-        public int width, height;
-        public float nodeDiameter;
+        public float nodeRadius = 0.5f;
+        public float nodeDiameter = 1;
+        public int nodePadding = 0;
         
         private Node[,] _nodes;
 
@@ -22,7 +22,8 @@ namespace Entity
             int height, 
             LayerMask unwalkableLayerMask, 
             LayerMask walkableLayerMask, 
-            float nodeRadius)
+            float nodeRadius,
+            int nodePadding = 0)
         {
             this.width = width;
             this.height = height;
@@ -30,6 +31,7 @@ namespace Entity
             walkableLayer = walkableLayerMask;
             this.nodeRadius = nodeRadius;
             nodeDiameter = nodeRadius * 2;
+            this.nodePadding = nodePadding;
             _nodes = new Node[width, height];
             InitializeNodes();
         }
@@ -44,11 +46,46 @@ namespace Entity
                 for (var y = 0; y < height; y++)
                 {
                     var worldPoint = new Vector3(x * nodeDiameter + nodeRadius, y * nodeDiameter + nodeRadius, 0);
-                    // var isWalkable = !(Physics2D.OverlapCircle(worldPoint, nodeRadius, unwalkableLayer) &&
-                    //                    Physics2D.OverlapCircle(worldPoint, nodeRadius, walkableLayer));
                     var isWalkable = !Physics2D.OverlapCircle(worldPoint, nodeRadius, unwalkableLayer);
                     _nodes[x, y] = new Node(new Vector2Int(x, y), isWalkable);
                 }
+            }
+            
+            AddNodePadding();
+        }
+
+        /// <summary>
+        /// Adds a padding around the node to create a margin of unwalkable nodes.
+        /// </summary>
+        private void AddNodePadding()
+        {
+            var nodesToPad = new List<Node>();
+
+            for (var x = 0; x < width; x++)
+            {
+                for (var y = 0; y < height; y++)
+                {
+                    if (_nodes[x, y].isWalkable) continue;
+
+                    for (var i = -nodePadding; i <= nodePadding; i++)
+                    {
+                        for (var j = -nodePadding; j <= nodePadding; j++)
+                        {
+                            var checkX = x + i;
+                            var checkY = y + j;
+
+                            if (checkX >= 0 && checkX < width && checkY >= 0 && checkY < height)
+                            {
+                                nodesToPad.Add(_nodes[checkX, checkY]);
+                            }
+                        }
+                    }
+                }
+            }
+            
+            foreach (var node in nodesToPad)
+            {
+                node.isWalkable = false;
             }
         }
 

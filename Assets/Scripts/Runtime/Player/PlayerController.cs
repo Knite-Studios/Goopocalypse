@@ -22,6 +22,14 @@ namespace Player
             _rigidBody = GetComponent<Rigidbody2D>();
         }
 
+        private void Start()
+        {
+            if (isClient)
+            {
+                Camera.main!.transform.SetParent(transform);
+            }
+        }
+
         private void Update()
         {
             if (!isLocalPlayer) return;

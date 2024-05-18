@@ -2101,7 +2101,7 @@ MonoBehaviour:
     m_Bits: 64
   nodeRadius: 0.5
   nodeDiameter: 1
-  nodePadding: 1
+  nodePadding: 0
 --- !u!4 &1514634098
 Transform:
   m_ObjectHideFlags: 0
@@ -2305,6 +2305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1514634097}
+  dynamicPadding: 0
 --- !u!4 &1656156155
 Transform:
   m_ObjectHideFlags: 0

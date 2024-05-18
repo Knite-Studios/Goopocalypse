@@ -12,8 +12,7 @@ namespace Entity
         public LayerMask unwalkableLayer;
         public LayerMask walkableLayer;
         public float nodeRadius = 0.5f;
-        public float nodeDiameter = 1;
-        public int nodePadding = 0;
+        public float nodeDiameter = 1.0f;
         
         private Node[,] _nodes;
 
@@ -22,8 +21,7 @@ namespace Entity
             int height, 
             LayerMask unwalkableLayerMask, 
             LayerMask walkableLayerMask, 
-            float nodeRadius,
-            int nodePadding = 0)
+            float nodeRadius)
         {
             this.width = width;
             this.height = height;
@@ -31,7 +29,6 @@ namespace Entity
             walkableLayer = walkableLayerMask;
             this.nodeRadius = nodeRadius;
             nodeDiameter = nodeRadius * 2;
-            this.nodePadding = nodePadding;
             _nodes = new Node[width, height];
             InitializeNodes();
         }
@@ -45,47 +42,10 @@ namespace Entity
             {
                 for (var y = 0; y < height; y++)
                 {
-                    var worldPoint = new Vector3(x * nodeDiameter + nodeRadius, y * nodeDiameter + nodeRadius, 0);
+                    var worldPoint = new Vector2(x * nodeDiameter + nodeRadius, y * nodeDiameter + nodeRadius);
                     var isWalkable = !Physics2D.OverlapCircle(worldPoint, nodeRadius, unwalkableLayer);
-                    _nodes[x, y] = new Node(new Vector2Int(x, y), isWalkable);
+                    _nodes[x, y] = new Node(new Vector2(x, y), worldPoint, isWalkable);
                 }
-            }
-            
-            AddNodePadding();
-        }
-
-        /// <summary>
-        /// Adds a padding around the node to create a margin of unwalkable nodes.
-        /// </summary>
-        private void AddNodePadding()
-        {
-            var nodesToPad = new List<Node>();
-
-            for (var x = 0; x < width; x++)
-            {
-                for (var y = 0; y < height; y++)
-                {
-                    if (_nodes[x, y].isWalkable) continue;
-
-                    for (var i = -nodePadding; i <= nodePadding; i++)
-                    {
-                        for (var j = -nodePadding; j <= nodePadding; j++)
-                        {
-                            var checkX = x + i;
-                            var checkY = y + j;
-
-                            if (checkX >= 0 && checkX < width && checkY >= 0 && checkY < height)
-                            {
-                                nodesToPad.Add(_nodes[checkX, checkY]);
-                            }
-                        }
-                    }
-                }
-            }
-            
-            foreach (var node in nodesToPad)
-            {
-                node.isWalkable = false;
             }
         }
 
@@ -104,6 +64,20 @@ namespace Entity
             
             return _nodes[x, y];
         }
+
+        /// <summary>
+        /// Gets a node at a specific world position.
+        /// </summary>
+        /// <param name="worldPosition">The world position to get the node for.</param>
+        /// <returns>The node at the specified world position.</returns>
+        public Node GetNode(Vector2 worldPosition)
+        {
+            var percentX = Mathf.Clamp01(worldPosition.x / (width * nodeDiameter));
+            var percentY = Mathf.Clamp01(worldPosition.y / (height * nodeDiameter));
+            var x = Mathf.RoundToInt((width - 1) * percentX);
+            var y = Mathf.RoundToInt((height - 1) * percentY);
+            return _nodes[x, y];
+        }
         
         /// <summary>
         /// Finds the neighbors of a given node.
@@ -120,9 +94,9 @@ namespace Entity
                 {
                     // Skip the center node.
                     if (x == 0 && y == 0) continue;
-
-                    var checkX = node.X + x;
-                    var checkY = node.Y + y;
+                    
+                    var checkX = Mathf.RoundToInt(node.gridPosition.x) + x;
+                    var checkY = Mathf.RoundToInt(node.gridPosition.y) + y;
 
                     var neighbor = GetNode(checkX, checkY);
                     if (neighbor != null)
@@ -142,7 +116,7 @@ namespace Entity
         /// <param name="walkable">Whether the node is walkable or not.</param>
         public void SetWalkable(Vector2 position, bool walkable)
         {
-            var node = GetNode((int) position.x, (int) position.y);
+            var node = GetNode(position);
             if (node != null)
             {
                 node.isWalkable = walkable;

@@ -38,8 +38,6 @@ namespace Editor
                 typeof(Grid), 
                 true) as Grid;
             
-            _nodePadding = EditorGUILayout.IntField("Node Padding", _nodePadding);
-
             if (GUILayout.Button("Find Path"))
             {
                 if (!_targetPosition)
@@ -59,8 +57,7 @@ namespace Editor
                     _gridDimensions.y, 
                     _grid.unwalkableLayer, 
                     _grid.walkableLayer, 
-                    _grid.nodeRadius,
-                    _nodePadding);
+                    _grid.nodeRadius);
 
                 _pathfinder.grid = _grid;
 
@@ -74,7 +71,7 @@ namespace Editor
                 {
                     foreach (var node in path)
                     {
-                        Debug.Log($"Path Node: {node.position}");
+                        Debug.Log($"Path Node: {node.worldPosition}");
                     }
                 }
                 else

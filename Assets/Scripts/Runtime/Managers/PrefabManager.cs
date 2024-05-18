@@ -4,6 +4,7 @@ using System.Linq;
 using Attributes;
 using Interfaces;
 using JetBrains.Annotations;
+using Mirror;
 using Scriptable;
 using UnityEngine;
 
@@ -97,15 +98,14 @@ namespace Managers
             {
                 var pool = _pools[prefab];
 
-                // if (pool.Count > 0 && !pool.Peek().activeSelf)
-                if (!pool.Peek().activeSelf)
+                if (pool.Count > 0 && !pool.Peek().activeSelf)
                 {
                     // Use the object from the pool.
                     newObject = pool.Dequeue();
                     newObject.SetActive(true);
 
                     // Reset the transform.
-                    // newObject.transform.SetParent(parent, false);
+                    newObject.transform.SetParent(parent, false);
                     newObject.transform.Reset(true, true);
 
                     // Call reset.
@@ -154,9 +154,18 @@ namespace Managers
             }
 
             obj.SetActive(false);
-            obj.transform.SetParent(null);
             Instance._pools[prefabType].Enqueue(obj);
 
+            // Return the object to its pool.
+            var prefab = Instance._prefabs[prefabType];
+            obj.transform.SetParent(prefab.shouldPool ?
+                GameObject.Find(prefab.root).transform :
+                null);
+
+            if (obj.Has<NetworkBehaviour>())
+            {
+                NetworkServer.UnSpawn(obj);
+            }
         }
     }
 

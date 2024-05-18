@@ -1,19 +1,26 @@
 using Managers;
 using Mirror;
-using Projectiles;
 using UnityEngine;
 
 namespace Player
 {
     public class PlayerController : NetworkBehaviour
     {
+        public float speed = 0.15f;
+
         [SerializeField] private PrefabType projectilePrefab; // Temporary for prototype.
         [SerializeField] private GameObject indicator; // Temoprarily used for testing.
         [SerializeField] private float projectileSpawnDistance = 1.0f;
         [SerializeField] private float attackInterval = 2.0f;
 
+        private Rigidbody2D _rigidBody;
         private Vector2 _direction;
         private float _attackTimer;
+
+        private void Awake()
+        {
+            _rigidBody = GetComponent<Rigidbody2D>();
+        }
 
         private void Update()
         {
@@ -29,8 +36,9 @@ namespace Player
             if (move != Vector2.zero) _direction = move.normalized;
             // Rotate the indicator based on the direction it's facing.
             indicator.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg);
-            var movement = new Vector3(move.x, move.y, 0);
-            transform.position += movement * (Time.deltaTime * 5.0f);
+            var movement = new Vector3(move.x, move.y, 0) * speed;
+
+            _rigidBody.MovePosition(transform.position + movement);
         }
 
         private void HandleAutoAttack()
@@ -68,7 +76,7 @@ namespace Player
         }
 
         [Command]
-        private static void CmdSpawnProjectile(PrefabType projectileType, Vector3 position, Quaternion rotation)
+        private void CmdSpawnProjectile(PrefabType projectileType, Vector3 position, Quaternion rotation)
         {
             var projectile = PrefabManager.Create(projectileType);
             projectile.transform.SetPositionAndRotation(position, rotation);

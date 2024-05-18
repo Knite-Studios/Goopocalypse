@@ -29,7 +29,7 @@ namespace HierarchyDecorator
         // ------ Standard Colours ------
 
         public readonly static Color SelectionColour = new Color (58f / 255f, 178f / 255f, 178f / 255f, 1);
-    
+
         public readonly static Color HoverColour = new Color (150f / 255f, 150f / 255f, 150f / 255f, 1);
 
         public readonly static Color InactiveColour = new Color (0.20f, 0.20f, 0.20f, 0.35f);
@@ -104,7 +104,7 @@ namespace HierarchyDecorator
 
         public static readonly GUIStyle CenteredBoldLabel;
         public static readonly GUIStyle CenteredLabel;
-        
+
         public static readonly GUIStyle SmallDropdown;
         public static readonly GUIStyle ComponentIconStyle;
 
@@ -139,7 +139,7 @@ namespace HierarchyDecorator
 
         static Style()
         {
-            // Labels 
+            // Labels
 
             Label = new GUIStyle(EditorStyles.label)
             {
@@ -316,7 +316,7 @@ namespace HierarchyDecorator
             ToggleMixed = new GUIStyle (Toggle);
 #endif
 
-            ToolbarTextField = new GUIStyle("ToolbarSeachTextField")
+            ToolbarTextField = new GUIStyle("ToolbarSearchTextField")
             {
                 fixedWidth = 0,
                 margin = new RectOffset(2, 1, 1, 0),

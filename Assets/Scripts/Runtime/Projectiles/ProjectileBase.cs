@@ -2,6 +2,7 @@
 using Interfaces;
 using Managers;
 using Mirror;
+using Player;
 using UnityEngine;
 
 namespace Projectiles
@@ -12,18 +13,24 @@ namespace Projectiles
         [SerializeField] protected float speed = 10.0f;
         [SerializeField] protected float lifetime = 5.0f;
         [SerializeField] protected PrefabType prefabType;
-        
+
         private float _timer;
 
         private void OnEnable()
         {
+            Reset();
+        }
+
+        public void Reset()
+        {
             _timer = lifetime;
         }
-        
+
         private void Update()
         {
-            transform.position += transform.right * (speed * Time.deltaTime);
-            
+            var objTransform = transform;
+            objTransform.position += objTransform.right * (speed * Time.deltaTime);
+
             _timer -= Time.deltaTime;
             if (_timer <= 0)
             {
@@ -34,25 +41,24 @@ namespace Projectiles
         protected virtual void OnTriggerEnter2D(Collider2D other)
         {
             if (!isServer) return;
-            
+
+            // Check if the other object is the owner.
+            if (other.Has<PlayerController>())
+            {
+                return;
+            }
+
             if (other.TryGetComponent(out BaseEntity damageable))
             {
                 // TODO:
                 // - Apply damage to the entity.
                 // - Filter enemies and heroes.
             }
-            
-            PrefabManager.ReturnToPool(prefabType, gameObject);
         }
 
         protected virtual void OnAnimationEnd()
         {
-            Destroy(gameObject);
-        }
-
-        public void Reset()
-        {
-            _timer = lifetime;
+            PrefabManager.ReturnToPool(prefabType, gameObject);
         }
     }
 }

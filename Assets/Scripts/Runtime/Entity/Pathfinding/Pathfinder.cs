@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using Utils;
 
-namespace Entity
+namespace Entity.Pathfinding
 {
     [Serializable]
     public class Node
@@ -15,11 +15,11 @@ namespace Entity
         public readonly Vector2 worldPosition;
         public bool isWalkable;
         public int gCost, hCost;
-        
+
         public int FCost => gCost + hCost;
         public float X => worldPosition.x;
         public float Y => worldPosition.y;
-        
+
         public Node(Vector2 gridPosition, Vector2 worldPosition, bool isWalkable)
         {
             this.gridPosition = gridPosition;
@@ -33,7 +33,7 @@ namespace Entity
         {
             var distanceX = (int)Mathf.Abs(gridPosition.x - other.gridPosition.x);
             var distanceY = (int)Mathf.Abs(gridPosition.y - other.gridPosition.y);
-            
+
             return distanceType switch
             {
                 DistanceType.Basic => distanceX + distanceY,
@@ -89,9 +89,9 @@ namespace Entity
     {
         public Grid grid;
         public float dynamicPadding = 0.5f;
-        
+
         private List<Node> _currentPath;
-        
+
         /// <summary>
         /// Finds the shortest path to the target.
         /// </summary>
@@ -107,50 +107,50 @@ namespace Entity
             var startNode = grid.GetNode(transform.position);
             // Determine the destination node.
             var destNode = grid.GetNode(target);
-            
+
             if (startNode == null || destNode == null || !startNode.isWalkable || !destNode.isWalkable)
             {
                 return null;
             }
-            
+
             openSet.Enqueue(startNode, startNode.FCost);
-            
+
             while (openSet.Count > 0)
             {
                 // Get the node with the lowest F cost.
                 var currentNode = openSet.Dequeue();
-                
+
                 if (currentNode == destNode)
                 {
                     _currentPath = RetracePath(startNode, destNode);
                     return _currentPath;
                 }
-                
+
                 closedSet.Add(currentNode);
-                
+
                 foreach (var neighbor in grid.FindNeighbors(currentNode))
                 {
                     if (!neighbor.isWalkable || closedSet.Contains(neighbor)) continue;
-                    
+
                     // Dynamically check for obstacles along the path.
                     var worldPosition = new Vector3(
-                        neighbor.X * grid.nodeDiameter + grid.nodeRadius, 
-                        neighbor.Y * grid.nodeDiameter + grid.nodeRadius, 
-                        0); 
+                        neighbor.X * grid.nodeDiameter + grid.nodeRadius,
+                        neighbor.Y * grid.nodeDiameter + grid.nodeRadius,
+                        0);
                     neighbor.isWalkable = !Physics2D.OverlapCircle(worldPosition, grid.nodeRadius, grid.unwalkableLayer);
-                    
+
                     if (!neighbor.isWalkable) continue;
 
                     // Apply dynamic padding if the neighbor is near an unwalkable node.
                     if (IsNearUnwalkableNode(neighbor, dynamicPadding)) continue;
-                    
+
                     var gCost = currentNode.gCost + currentNode.GetDistanceTo(neighbor);
                     if (gCost < neighbor.gCost || !openSet.Contains(neighbor))
                     {
                         neighbor.gCost = gCost;
                         neighbor.hCost = neighbor.GetDistanceTo(destNode);
                         neighbor.parent = currentNode;
-                        
+
                         if (!openSet.Contains(neighbor))
                         {
                             openSet.Enqueue(neighbor, neighbor.FCost);
@@ -175,7 +175,7 @@ namespace Entity
                 for (var j = Mathf.FloorToInt(-padding); j <= Mathf.CeilToInt(padding); j++)
                 {
                     if (i == 0 && j == 0) continue;
-                    
+
                     var checkX = Mathf.RoundToInt(node.gridPosition.x) + i;
                     var checkY = Mathf.RoundToInt(node.gridPosition.y) + j;
 
@@ -185,14 +185,14 @@ namespace Entity
                         if (checkNode != null && !checkNode.isWalkable)
                         {
                             var worldPosition = new Vector3(
-                                node.X * grid.nodeDiameter + grid.nodeRadius, 
-                                node.Y * grid.nodeDiameter + grid.nodeRadius, 
+                                node.X * grid.nodeDiameter + grid.nodeRadius,
+                                node.Y * grid.nodeDiameter + grid.nodeRadius,
                                 0);
                             var targetPosition = new Vector3(
                                 checkX * grid.nodeDiameter + grid.nodeRadius,
                                 checkY * grid.nodeDiameter + grid.nodeRadius,
                                 0);
-                            
+
                             if (Vector3.Distance(worldPosition, targetPosition) <= padding * grid.nodeDiameter)
                             {
                                 return true;
@@ -201,7 +201,7 @@ namespace Entity
                     }
                 }
             }
-            
+
             return false;
         }
 
@@ -221,11 +221,11 @@ namespace Entity
             finalPath.Reverse();
             return finalPath;
         }
-        
+
         private void OnDrawGizmos()
         {
             if (_currentPath == null) return;
-            
+
             Gizmos.color = Color.cyan;
             foreach (var node in _currentPath)
             {

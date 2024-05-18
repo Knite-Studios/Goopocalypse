@@ -1,6 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using Grid = Entity.Grid;
+using Grid = Entity.Pathfinding.Grid;
 
 namespace Editor
 {
@@ -17,12 +17,12 @@ namespace Editor
         //         grid?.InitializeGrid(grid.width, grid.height, grid.unwalkableLayer, grid.walkableLayer, grid.nodeRadius);
         //     }
         // }
-        
+
         private void OnSceneGUI()
         {
             var grid = target as Grid;
             Handles.color = Color.yellow;
-            
+
             for (var x = 0; x < grid?.width; x++)
             {
                 for (var y = 0; y < grid.height; y++)

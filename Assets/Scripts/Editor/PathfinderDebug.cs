@@ -1,7 +1,7 @@
-﻿using Entity;
+﻿using Entity.Pathfinding;
 using UnityEditor;
 using UnityEngine;
-using Grid = Entity.Grid;
+using Grid = Entity.Pathfinding.Grid;
 
 namespace Editor
 {
@@ -19,25 +19,25 @@ namespace Editor
         private void OnGUI()
         {
             _targetPosition = EditorGUILayout.ObjectField(
-                "Target Position", 
-                _targetPosition, 
-                typeof(Transform), 
+                "Target Position",
+                _targetPosition,
+                typeof(Transform),
                 true) as Transform;
-            
+
             _gridDimensions = EditorGUILayout.Vector2IntField("Grid Dimensions", _gridDimensions);
-            
+
             _pathfinder = EditorGUILayout.ObjectField(
-                "Pathfinder", 
-                _pathfinder, 
-                typeof(Pathfinder), 
+                "Pathfinder",
+                _pathfinder,
+                typeof(Pathfinder),
                 true) as Pathfinder;
-            
+
             _grid = EditorGUILayout.ObjectField(
-                "Grid", 
-                _grid, 
-                typeof(Grid), 
+                "Grid",
+                _grid,
+                typeof(Grid),
                 true) as Grid;
-            
+
             if (GUILayout.Button("Find Path"))
             {
                 if (!_targetPosition)
@@ -51,12 +51,12 @@ namespace Editor
                     Debug.LogError("Pathfinder is not set.");
                     return;
                 }
-                
+
                 _grid?.InitializeGrid(
-                    _gridDimensions.x, 
-                    _gridDimensions.y, 
-                    _grid.unwalkableLayer, 
-                    _grid.walkableLayer, 
+                    _gridDimensions.x,
+                    _gridDimensions.y,
+                    _grid.unwalkableLayer,
+                    _grid.walkableLayer,
                     _grid.nodeRadius);
 
                 _pathfinder.grid = _grid;

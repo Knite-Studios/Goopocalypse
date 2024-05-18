@@ -35,7 +35,9 @@ namespace Entity
             
             return distanceType switch
             {
-                DistanceType.Manhattan => distanceX + distanceY,
+                DistanceType.Manhattan => distanceX > distanceY
+                    ? 14 * distanceY + 10 * (distanceX - distanceY)
+                    : 14 * distanceX + 10 * (distanceY - distanceX),
                 DistanceType.Euclidean => (int)Math.Sqrt(distanceX * distanceX + distanceY * distanceY),
                 _ => throw new ArgumentOutOfRangeException(nameof(distanceType), distanceType, null)
             };

@@ -15,6 +15,16 @@ namespace Editor
             {
                 GameManager.OnGameStart.Invoke();
             }
+
+            if (GUILayout.Button("Spawn Chest At Player"))
+            {
+                var gameEvent = new GameEvent
+                {
+                    Type = GameEventType.ChestSpawned,
+                    Target = GameObject.Find("Player [connId=0]").transform
+                };
+                GameManager.OnGameEvent?.Invoke(gameEvent);
+            }
         }
     }
 }

@@ -17,11 +17,12 @@ namespace Entity
         /// <param name="luaScript">The path to the enemy's Lua script.</param>
         public Enemy(string luaScript) : base(luaScript)
         {
+        }
+
+        private void Start()
+        {
             _agent = GetComponent<NavMeshAgent>();
-
-            // Initialize current health to maximum health.
             CurrentHealth = Health;
-
             GameManager.OnGameEvent += OnGameEvent;
         }
 
@@ -42,8 +43,14 @@ namespace Entity
                     _agent.SetDestination(gameEvent.Target.position);
                     Debug.Log($"Moving to {gameEvent.Target.name}");
                     break;
-
             }
+        }
+
+        protected override void OnDeath()
+        {
+            // Death logic
+            Debug.Log($"{name} has died.");
+            Destroy(gameObject);
         }
     }
 

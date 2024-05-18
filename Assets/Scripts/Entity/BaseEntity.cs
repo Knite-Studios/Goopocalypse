@@ -10,27 +10,14 @@ using UnityEngine.Events;
 
 namespace Entity
 {
-    /// <summary>
-    /// The base class for all entities in the game.
-    /// </summary>
     [RequireComponent(typeof(NetworkIdentity))]
     public abstract class BaseEntity : NetworkBehaviour, IAttributable
     {
-        /// <summary>
-        /// Attribute holder map.
-        /// </summary>
         public Dictionary<GameAttribute, object> Attributes { get; } = new();
-
-        /// <summary>
-        /// The current health of the entity.
-        /// </summary>
-        public int CurrentHealth { get; set; }
+        public int CurrentHealth { get; protected set; }
 
         #region Attribute Getters
 
-        /// <summary>
-        /// This is the maximum health of the entity.
-        /// </summary>
         public int Health => this.GetAttributeValue<int>(GameAttribute.Health);
         public float Speed => this.GetAttributeValue<float>(GameAttribute.Speed);
         public int Armor => this.GetAttributeValue<int>(GameAttribute.Armor);
@@ -38,34 +25,19 @@ namespace Entity
 
         #endregion
 
-        /// <summary>
-        /// Event called with the damage dealt to the entity.
-        /// </summary>
         public event UnityAction<int> OnDamage;
 
-        /// <summary>
-        /// Internal function caller for 'SpecialAbility' from Lua.
-        /// </summary>
-        protected readonly LuaSpecialAbility specialAbility;
+        private LuaSpecialAbility _specialAbility;
 
-        /// <summary>
-        /// Creates a new entity instance.
-        /// </summary>
-        /// <param name="luaScript">The path to the entity's Lua script.</param>
         public BaseEntity(string luaScript)
         {
             var env = LuaManager.luaEnv;
             env.DoFile(luaScript);
 
-            // Load Lua data.
             ApplyBaseStats(env.Global.Get<LuaTable>("base_stats"));
-            specialAbility = env.Global.Get<LuaSpecialAbility>(LuaManager.SpecialAbilityFunc);
+            _specialAbility = env.Global.Get<LuaSpecialAbility>(LuaManager.SpecialAbilityFunc);
         }
 
-        /// <summary>
-        /// Loads the statistics from a Lua script.
-        /// </summary>
-        /// <param name="stats">The Lua table containing the base stats.</param>
         protected virtual void ApplyBaseStats(LuaTable stats)
         {
             this.GetOrCreateAttribute(GameAttribute.Health, stats.Get<int>("health"));
@@ -74,49 +46,74 @@ namespace Entity
             this.GetOrCreateAttribute(GameAttribute.Speed, stats.Get<float>("speed"));
         }
 
-        /// <summary>
-        /// Internal function definition for the 'SpecialAbility' function.
-        /// </summary>
         [CSharpCallLua]
         protected delegate void LuaSpecialAbility(BaseEntity context);
 
-        /// <summary>
-        /// Runs the entity's associated special ability.
-        /// </summary>
-        public void SpecialAbility() => specialAbility?.Invoke(this);
+        public void SpecialAbility() => _specialAbility?.Invoke(this);
 
-        /// <summary>
-        /// Applies damage to the entity's current health.
-        /// </summary>
-        /// <param name="damage">The raw amount to damage.</param>
-        /// <param name="trueDamage">Whether the damage is absolute (no reductions).</param>
-        public void Damage(int damage, bool trueDamage = false)
+        [Command]
+        public void CmdTakeDamage(int amount)
         {
-            int finalDamage = trueDamage ? damage : Mathf.Max(0, damage - Armor);
+            ApplyDamage(amount);
+        }
+
+        [Server]
+        private void ApplyDamage(int amount)
+        {
+            int finalDamage = Mathf.Max(0, amount - Armor);
             CurrentHealth -= finalDamage;
-            OnDamage?.Invoke(finalDamage);
+            RaiseOnDamage(finalDamage);
 
             if (CurrentHealth <= 0)
             {
-                Kill();
+                CurrentHealth = 0;
+                OnDeath();
             }
+
+            RpcTakeDamage(finalDamage);
         }
 
-        /// <summary>
-        /// Invoked when the entity dies.
-        /// </summary>
+        [ClientRpc]
+        private void RpcTakeDamage(int amount)
+        {
+            // Client-side effects (animations, sounds, etc.)
+            Debug.Log($"{name} took {amount} damage.");
+        }
+
+        [Command]
+        public void CmdHeal(int amount)
+        {
+            ApplyHeal(amount);
+        }
+
+        [Server]
+        private void ApplyHeal(int amount)
+        {
+            CurrentHealth = Mathf.Min(CurrentHealth + amount, Health);
+            RpcHeal(amount);
+        }
+
+        [ClientRpc]
+        private void RpcHeal(int amount)
+        {
+            // Client-side effects (animations, sounds, etc.)
+            Debug.Log($"{name} healed {amount} health.");
+        }
+
+        protected void RaiseOnDamage(int amount)
+        {
+            OnDamage?.Invoke(amount);
+        }
+
+        protected virtual void OnDeath()
+        {
+            // Death logic
+            Debug.Log($"{name} has died.");
+        }
+
         public virtual void Kill()
         {
             Destroy(gameObject); // TODO: death animation or other logic
-        }
-
-        /// <summary>
-        /// Heals the entity by a specified amount.
-        /// </summary>
-        /// <param name="amount">The amount to heal.</param>
-        public void Heal(int amount)
-        {
-            CurrentHealth = Mathf.Min(CurrentHealth + amount, Health);
         }
     }
 }

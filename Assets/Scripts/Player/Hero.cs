@@ -2,6 +2,7 @@
 using Systems.Attributes;
 using XLua;
 using UnityEngine;
+using Mirror;
 
 namespace Player
 {
@@ -18,7 +19,7 @@ namespace Player
         public float Stamina => this.GetAttributeValue<float>(Attribute.Stamina);
         public float AttackSpeed => this.GetAttributeValue<float>(Attribute.AttackSpeed);
         public float AreaOfEffect => this.GetAttributeValue<float>(Attribute.AreaOfEffect);
-        public float MaxHealth => this.GetAttributeValue<float>(Attribute.Health);
+        public int MaxHealth => this.GetAttributeValue<int>(Attribute.Health);
 
         #endregion
 
@@ -37,36 +38,65 @@ namespace Player
         protected override void ApplyBaseStats(LuaTable stats)
         {
             Name = stats.Get<string>("name");
-            this.GetOrCreateAttribute(Attribute.Health, stats.Get<float>("health"));
+            this.GetOrCreateAttribute(Attribute.Health, stats.Get<int>("health"));
             this.GetOrCreateAttribute(Attribute.Stamina, stats.Get<float>("stamina"));
             this.GetOrCreateAttribute(Attribute.AttackSpeed, stats.Get<float>("attack_speed"));
             this.GetOrCreateAttribute(Attribute.AreaOfEffect, stats.Get<float>("aoe"));
         }
 
-        public void TakeDamage(float amount)
+        [Command]
+        public new void CmdTakeDamage(int amount)
         {
-            Health -= amount;
-            if (Health <= 0)
-            {
-                // Handle death
-                Health = 0;
-                OnDeath();
-            }
+            ApplyDamage(amount);
         }
 
-        protected void OnDeath()
+        [Server]
+        private void ApplyDamage(int amount)
+        {
+            int finalDamage = Mathf.Max(0, amount - Armor);
+            CurrentHealth -= finalDamage;
+            RaiseOnDamage(finalDamage);
+
+            if (CurrentHealth <= 0)
+            {
+                CurrentHealth = 0;
+                OnDeath();
+            }
+
+            RpcTakeDamage(finalDamage);
+        }
+
+        [ClientRpc]
+        private void RpcTakeDamage(int amount)
+        {
+            // Client-side effects (animations, sounds, etc.)
+            Debug.Log($"{Name} took {amount} damage.");
+        }
+
+        [Command]
+        public new void CmdHeal(int amount)
+        {
+            ApplyHeal(amount);
+        }
+
+        [Server]
+        private void ApplyHeal(int amount)
+        {
+            CurrentHealth = Mathf.Min(CurrentHealth + amount, MaxHealth);
+            RpcHeal(amount);
+        }
+
+        [ClientRpc]
+        private void RpcHeal(int amount)
+        {
+            // Client-side effects (animations, sounds, etc.)
+            Debug.Log($"{Name} healed {amount} health.");
+        }
+
+        protected override void OnDeath()
         {
             // death handling logic
             Debug.Log($"{Name} has died.");
-        }
-
-        public void Heal(float amount)
-        {
-            Health += amount;
-            if (Health > MaxHealth)
-            {
-                Health = MaxHealth;
-            }
         }
     }
 

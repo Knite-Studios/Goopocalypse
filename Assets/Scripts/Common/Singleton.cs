@@ -59,7 +59,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 
         var singletonObject = new GameObject();
         _instance = singletonObject.AddComponent<T>();
-        singletonObject.name = typeof(T) + " (Singleton)";
+        singletonObject.name = typeof(T) + " (MonoSingleton)";
     }
 
     protected virtual void OnAwake() { }
@@ -90,7 +90,6 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 /// A generic NetworkSingleton class for creating single instances of a NetworkBehaviour.
 /// </summary>
 /// <typeparam name="T">Type of the NetworkSingleton class.</typeparam>
-[RequireComponent(typeof(NetworkIdentity))]
 public class NetworkSingleton<T> : NetworkBehaviour where T : NetworkBehaviour
 {
     private static T _instance;
@@ -129,6 +128,9 @@ public class NetworkSingleton<T> : NetworkBehaviour where T : NetworkBehaviour
                 Destroy(gameObject);
             }
         }
+
+        // Add network identity to the object.
+        gameObject.GetOrAddComponent<NetworkIdentity>();
 
         OnAwake();
     }

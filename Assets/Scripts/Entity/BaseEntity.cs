@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using Common.Extensions;
 using Managers;
 using Mirror;
-using UnityEngine;
+using Systems.Attributes;
 using GameAttribute = Systems.Attributes.Attribute;
+using UnityEngine;
 using XLua;
 using UnityEngine.Events;
 
@@ -61,7 +62,7 @@ namespace Entity
             ApplyBaseStats(env.Global.Get<LuaTable>("base_stats"));
             specialAbility = env.Global.Get<LuaSpecialAbility>(LuaManager.SpecialAbilityFunc);
         }
-        
+
         /// <summary>
         /// Loads the statistics from a Lua script.
         /// </summary>
@@ -95,7 +96,7 @@ namespace Entity
         {
             CurrentHealth -= damage;
             OnDamage?.Invoke(damage);
-            
+
             if (CurrentHealth <= 0)
             {
                 Kill();

@@ -56,6 +56,11 @@ namespace Editor
                         renderer.color = color;
                         renderer.sprite = squareSprite;
                         renderer.sortingOrder = -1;
+
+                        if (isObstacle)
+                        {
+                            tile.AddComponent<BoxCollider>();
+                        }
                     }
                 }
             }

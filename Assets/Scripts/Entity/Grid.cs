@@ -1,20 +1,35 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Entity
 {
     /// <summary>
     /// A grid class that manages and provides access to nodes.
     /// </summary>
-    public class Grid
+    public class Grid : MonoBehaviour
     {
-        private readonly Node[,] _nodes;
-        private readonly int _width, _height;
+        public LayerMask unwalkableLayer;
+        public LayerMask walkableLayer;
+        public float nodeRadius;
+        public int width, height;
+        public float nodeDiameter;
         
-        public Grid(int width, int height)
+        private Node[,] _nodes;
+
+        public void InitializeGrid(
+            int width, 
+            int height, 
+            LayerMask unwalkableLayerMask, 
+            LayerMask walkableLayerMask, 
+            float nodeRadius)
         {
-            _width = width;
-            _height = height;
+            this.width = width;
+            this.height = height;
+            unwalkableLayer = unwalkableLayerMask;
+            walkableLayer = walkableLayerMask;
+            this.nodeRadius = nodeRadius;
+            nodeDiameter = nodeRadius * 2;
             _nodes = new Node[width, height];
             InitializeNodes();
         }
@@ -24,11 +39,15 @@ namespace Entity
         /// </summary>
         private void InitializeNodes()
         {
-            for (var x = 0; x < _width; x++)
+            for (var x = 0; x < width; x++)
             {
-                for (var y = 0; y < _height; y++)
+                for (var y = 0; y < height; y++)
                 {
-                    _nodes[x, y] = new Node(new Vector2Int(x, y), true);
+                    var worldPoint = new Vector3(x * nodeDiameter + nodeRadius, y * nodeDiameter + nodeRadius, 0);
+                    // var isWalkable = !(Physics2D.OverlapCircle(worldPoint, nodeRadius, unwalkableLayer) &&
+                    //                    Physics2D.OverlapCircle(worldPoint, nodeRadius, walkableLayer));
+                    var isWalkable = !Physics2D.OverlapCircle(worldPoint, nodeRadius, unwalkableLayer);
+                    _nodes[x, y] = new Node(new Vector2Int(x, y), isWalkable);
                 }
             }
         }
@@ -41,7 +60,7 @@ namespace Entity
         /// <returns>The node at the specified position.</returns>
         public Node GetNode(int x, int y)
         {
-            if (x < 0 || x >= _width || y < 0 || y >= _height)
+            if (x < 0 || x >= width || y < 0 || y >= height)
             {
                 return null;
             }

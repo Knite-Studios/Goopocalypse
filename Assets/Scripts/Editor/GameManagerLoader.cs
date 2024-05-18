@@ -4,37 +4,40 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-/// <summary>
-/// Static class that loads the game manager into the scene.
-/// </summary>
-#if UNITY_EDITOR
-[InitializeOnLoad]
-public static class GameManagerLoader
+namespace Editor
 {
     /// <summary>
-    /// Static constructor which is called when the class is loaded.
+    /// Static class that loads the game manager into the scene.
     /// </summary>
-    static GameManagerLoader()
+#if UNITY_EDITOR
+    [InitializeOnLoad]
+    public static class GameManagerLoader
     {
-        EditorApplication.playModeStateChanged -= InitializeGameManager;
-        EditorApplication.playModeStateChanged += InitializeGameManager;
-    }
+        /// <summary>
+        /// Static constructor which is called when the class is loaded.
+        /// </summary>
+        static GameManagerLoader()
+        {
+            EditorApplication.playModeStateChanged -= InitializeGameManager;
+            EditorApplication.playModeStateChanged += InitializeGameManager;
+        }
 
-    /// <summary>
-    /// Invoked when the play mode state is changed in the editor.
-    /// </summary>
-    private static void InitializeGameManager(PlayModeStateChange evt)
-    {
-        if (evt != PlayModeStateChange.EnteredPlayMode) return;
+        /// <summary>
+        /// Invoked when the play mode state is changed in the editor.
+        /// </summary>
+        private static void InitializeGameManager(PlayModeStateChange evt)
+        {
+            if (evt != PlayModeStateChange.EnteredPlayMode) return;
 
-        // Add the game manager to the scene.
-        var prefab = Resources.Load<GameObject>("Prefabs/Managers/GameManager");
-        if (prefab == null) throw new Exception("Missing GameManager prefab!");
+            // Add the game manager to the scene.
+            var prefab = Resources.Load<GameObject>("Prefabs/Managers/GameManager");
+            if (prefab == null) throw new Exception("Missing GameManager prefab!");
 
-        var instance = UnityEngine.Object.Instantiate(prefab);
-        if (instance == null) throw new Exception("Failed to instantiate GameManager prefab!");
+            var instance = UnityEngine.Object.Instantiate(prefab);
+            if (instance == null) throw new Exception("Failed to instantiate GameManager prefab!");
 
-        instance.name = "Managers.GameManager (Singleton)";
+            instance.name = "Managers.GameManager (Singleton)";
+        }
     }
 }
 #elif UNITY_STANDALONE_WIN || UNITY_WEBGL

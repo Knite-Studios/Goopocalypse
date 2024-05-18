@@ -16,7 +16,6 @@ namespace Entity
         public int gCost, hCost;
         
         public int FCost => gCost + hCost;
-
         public int X => position.x;
         public int Y => position.y;
         
@@ -111,7 +110,7 @@ namespace Entity
             
             openSet.Enqueue(startNode, startNode.FCost);
             
-            while (openSet.Count != 0)
+            while (openSet.Count > 0)
             {
                 // Get the node with the lowest F cost.
                 var currentNode = openSet.Dequeue();
@@ -135,6 +134,14 @@ namespace Entity
                         neighbor.hCost = neighbor.GetDistanceTo(destNode);
                         neighbor.parent = currentNode;
                         
+                        // Dynamically check for obstacles along the path.
+                        var worldPosition = new Vector3(neighbor.X * grid.nodeDiameter + grid.nodeRadius, 
+                            neighbor.Y * grid.nodeDiameter + grid.nodeRadius, 0);
+                        if (Physics2D.OverlapCircle(worldPosition, grid.nodeRadius, grid.unwalkableLayer))
+                        {
+                            neighbor.isWalkable = false;
+                        }
+                        
                         if (!openSet.Contains(neighbor))
                         {
                             openSet.Enqueue(neighbor, neighbor.FCost);
@@ -156,7 +163,7 @@ namespace Entity
             while (currentNode != startNode)
             {
                 finalPath.Add(currentNode);
-                currentNode = currentNode!.parent;
+                if (currentNode != null) currentNode = currentNode.parent;
             }
 
             finalPath.Reverse();
@@ -165,9 +172,9 @@ namespace Entity
         
         private void OnDrawGizmos()
         {
-            if (grid == null) return;
+            if (_currentPath == null) return;
             
-            Gizmos.color = Color.green;
+            Gizmos.color = Color.cyan;
             foreach (var node in _currentPath)
             {
                 Gizmos.DrawSphere(new Vector3(node.X, node.Y, 0), 0.3f);

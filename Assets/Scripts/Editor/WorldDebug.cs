@@ -60,7 +60,9 @@ namespace Editor
                         if (isObstacle)
                         {
                             tile.AddComponent<BoxCollider2D>();
-                            tile.AddComponent<Rigidbody2D>();
+
+                            var rigidBody = tile.AddComponent<Rigidbody2D>();
+                            rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
                         }
                     }
                 }

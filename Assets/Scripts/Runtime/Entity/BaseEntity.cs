@@ -55,7 +55,7 @@ namespace Entity
         /// <param name="luaScript">The path to the entity's Lua script.</param>
         public BaseEntity(string luaScript)
         {
-            var env = LuaManager.luaEnv;
+            var env = LuaManager.Environment;
             env.DoFile(luaScript);
 
             // Load Lua data.

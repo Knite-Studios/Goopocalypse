@@ -19,7 +19,15 @@ namespace Entity
         {
             _agent = GetComponent<NavMeshAgent>();
 
+            // Initialize current health to maximum health.
+            CurrentHealth = Health;
+
             GameManager.OnGameEvent += OnGameEvent;
+        }
+
+        private void OnDestroy()
+        {
+            GameManager.OnGameEvent -= OnGameEvent;
         }
 
         /// <summary>
@@ -34,6 +42,7 @@ namespace Entity
                     _agent.SetDestination(gameEvent.Target.position);
                     Debug.Log($"Moving to {gameEvent.Target.name}");
                     break;
+
             }
         }
     }

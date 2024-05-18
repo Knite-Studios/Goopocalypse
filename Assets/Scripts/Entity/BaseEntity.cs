@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Common.Extensions;
 using Managers;
@@ -30,7 +29,7 @@ namespace Entity
         #region Attribute Getters
 
         /// <summary>
-        /// This is the maximum health of the hero.
+        /// This is the maximum health of the entity.
         /// </summary>
         public int Health => this.GetAttributeValue<int>(GameAttribute.Health);
         public float Speed => this.GetAttributeValue<float>(GameAttribute.Speed);
@@ -82,20 +81,20 @@ namespace Entity
         protected delegate void LuaSpecialAbility(BaseEntity context);
 
         /// <summary>
-        /// Runs the hero's associated special ability.
+        /// Runs the entity's associated special ability.
         /// </summary>
         public void SpecialAbility() => specialAbility?.Invoke(this);
 
         /// <summary>
         /// Applies damage to the entity's current health.
-        /// TODO: Apply armor reduction to damage.
         /// </summary>
         /// <param name="damage">The raw amount to damage.</param>
-        /// <param name="trueDamage">Whether the damage is absolute. (no reductions)</param>
+        /// <param name="trueDamage">Whether the damage is absolute (no reductions).</param>
         public void Damage(int damage, bool trueDamage = false)
         {
-            CurrentHealth -= damage;
-            OnDamage?.Invoke(damage);
+            int finalDamage = trueDamage ? damage : Mathf.Max(0, damage - Armor);
+            CurrentHealth -= finalDamage;
+            OnDamage?.Invoke(finalDamage);
 
             if (CurrentHealth <= 0)
             {
@@ -108,7 +107,16 @@ namespace Entity
         /// </summary>
         public virtual void Kill()
         {
-            Destroy(gameObject); // TODO: death animation or something ??
+            Destroy(gameObject); // TODO: death animation or other logic
+        }
+
+        /// <summary>
+        /// Heals the entity by a specified amount.
+        /// </summary>
+        /// <param name="amount">The amount to heal.</param>
+        public void Heal(int amount)
+        {
+            CurrentHealth = Mathf.Min(CurrentHealth + amount, Health);
         }
     }
 }

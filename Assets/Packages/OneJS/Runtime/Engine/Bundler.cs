@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using DotNet.Globbing;
 using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
@@ -172,16 +171,8 @@ namespace OneJS.Engine {
         void CheckAndSetScriptLibEtAl() {
             _scriptEngine = GetComponent<ScriptEngine>();
 #if UNITY_EDITOR
-            var indexjsPath = Path.Combine(_scriptEngine.WorkingDir, "index.js");
             var scriptLibPath = Path.Combine(_scriptEngine.WorkingDir, "ScriptLib");
-
-            var indexjsFound = File.Exists(indexjsPath);
             var scriptLibFound = Directory.Exists(scriptLibPath);
-
-            if (!indexjsFound) {
-                File.WriteAllText(indexjsPath, "log(\"[index.js]: OneJS is good to go.\")");
-                Debug.Log("index.js wasn't found. So a default one was created.");
-            }
 
             if (!scriptLibFound) {
                 Extract(_scriptLibZip.bytes);

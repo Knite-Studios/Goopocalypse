@@ -55,12 +55,12 @@ namespace Entity
         /// <param name="luaScript">The path to the entity's Lua script.</param>
         public BaseEntity(string luaScript)
         {
-            var env = LuaManager.Environment;
+            var env = ScriptManager.Environment;
             env.DoFile(luaScript);
 
             // Load Lua data.
             ApplyBaseStats(env.Global.Get<LuaTable>("base_stats"));
-            specialAbility = env.Global.Get<LuaSpecialAbility>(LuaManager.SpecialAbilityFunc);
+            specialAbility = env.Global.Get<LuaSpecialAbility>(ScriptManager.SpecialAbilityFunc);
         }
 
         /// <summary>

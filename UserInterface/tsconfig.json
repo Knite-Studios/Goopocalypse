@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                "ScriptLib/3rdparty/*",
+                "ScriptLib/*",
+                "Addons/*",
+                "Modules/*",
+                "*"
+            ],
+            "@app/*": ["src/*"],
+            "@ui/*": ["src/ui/*"],
+            "@types/*": ["src/types/*"],
+            "@screens/*": ["src/ui/screens/*"],
+            "@components/*": ["src/ui/components/*"]
+        },
+        "strictNullChecks": true,
+        "skipLibCheck": true,
+        "removeComments": true,
+        "jsx": "react",
+        "jsxFactory": "h",
+        "target": "es5",
+        "module": "commonjs",
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "lib": ["ES6", "es2017"]
+    }
+}

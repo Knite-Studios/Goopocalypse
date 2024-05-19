@@ -15,7 +15,10 @@
         "ProjectSettings/": true,
         "UserSettings/": true,
         "Builds/": true,
-        "obj/": true
+        "obj/": true,
+        "**/node_modules": true,
+        "**/bun.lockb": true,
+        "**/out": true
     },
     "protoc": {
         "options": [

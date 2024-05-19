@@ -1,4 +1,5 @@
 ﻿using System;
+using OneJS;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,10 +10,21 @@ namespace Managers
         public static Action OnGameStart;
         public static UnityAction<GameEvent> OnGameEvent;
 
+        /// <summary>
+        /// Reference to the JavaScript ScriptEngine.
+        /// </summary>
+        public static ScriptEngine ScriptEngine => Instance.scriptEngine;
+
+        public ScriptEngine scriptEngine;
+
         protected override void OnAwake()
         {
+            // Set JavaScript engine instance.
+            scriptEngine = FindObjectOfType<ScriptEngine>();
+
+            // Initialize other managers.
             InputManager.Initialize();
-            LuaManager.Initialize();
+            ScriptManager.Initialize();
             WaveManager.Initialize();
             PrefabManager.Initialize();
         }

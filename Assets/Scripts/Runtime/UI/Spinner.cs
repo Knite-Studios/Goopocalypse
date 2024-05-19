@@ -12,7 +12,7 @@ namespace Runtime.UI
 
         private void Start()
         {
-            var env = LuaManager.Environment;
+            var env = ScriptManager.Environment;
             env.DoFile("spinner");
             _luaSpinnerUpdate = env.Global.Get<LuaSpinnerUpdate>("On_Update");
         }

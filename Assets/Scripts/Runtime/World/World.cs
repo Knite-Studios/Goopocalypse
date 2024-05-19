@@ -4,7 +4,6 @@ using Attributes;
 using Entity.Pathfinding;
 using Managers;
 using Mirror;
-using UnityEditor;
 using UnityEngine;
 using Grid = Entity.Pathfinding.Grid;
 using Random = System.Random;
@@ -79,7 +78,7 @@ namespace Runtime.World
                 .ToList()
                 .ForEach(trans => Destroy(trans.gameObject));
 
-            var squareSprite = AssetDatabase.LoadAssetAtPath<Sprite>("Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2/Square.png");
+            var squareSprite = Resources.Load<Sprite>("Art/Textures/Square");
 
             // Generate the world.
             var nodes = new Node[width, height];

@@ -101,6 +101,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  luaScript: enemies/melee_enemy.lua
 --- !u!114 &1916408241842334160
 MonoBehaviour:
   m_ObjectHideFlags: 0

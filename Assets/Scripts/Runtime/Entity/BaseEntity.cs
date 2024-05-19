@@ -27,6 +27,11 @@ namespace Entity
         /// </summary>
         public int CurrentHealth { get; set; }
 
+        /// <summary>
+        /// The Lua script responsible for the logic of the entity.
+        /// </summary>
+        public string luaScript;
+
         #region Attribute Getters
 
         /// <summary>
@@ -47,13 +52,9 @@ namespace Entity
         /// <summary>
         /// Internal function caller for 'SpecialAbility' from Lua.
         /// </summary>
-        protected readonly LuaSpecialAbility specialAbility;
+        protected LuaSpecialAbility specialAbility;
 
-        /// <summary>
-        /// Creates a new entity instance.
-        /// </summary>
-        /// <param name="luaScript">The path to the entity's Lua script.</param>
-        public BaseEntity(string luaScript)
+        protected virtual void Start()
         {
             var env = ScriptManager.Environment;
             env.DoFile(luaScript);

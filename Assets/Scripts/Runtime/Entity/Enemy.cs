@@ -1,6 +1,5 @@
 using Managers;
 using UnityEngine;
-using UnityEngine.AI;
 using XLua;
 
 namespace Entity
@@ -8,12 +7,10 @@ namespace Entity
     [CSharpCallLua]
     public class Enemy : BaseEntity
     {
-        /// <summary>
-        /// Creates a new enemy instance.
-        /// </summary>
-        /// <param name="luaScript">The path to the enemy's Lua script.</param>
-        public Enemy(string luaScript) : base(luaScript)
+        protected override void Start()
         {
+            base.Start();
+
             GameManager.OnGameEvent += OnGameEvent;
         }
 
@@ -30,10 +27,5 @@ namespace Entity
                     break;
             }
         }
-    }
-
-    public static class Enemies
-    {
-        public static Enemy MeleeEnemy => new("enemies/melee_enemy.lua");
     }
 }

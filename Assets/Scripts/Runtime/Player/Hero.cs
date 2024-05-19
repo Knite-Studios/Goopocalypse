@@ -21,15 +21,6 @@ namespace Player
         #endregion
 
         /// <summary>
-        /// Creates a new hero instance.
-        /// </summary>
-        /// <param name="luaScript">The path to the hero's Lua script.</param>
-        public Hero(string luaScript) : base(luaScript)
-        {
-
-        }
-
-        /// <summary>
         /// Loads the statistics from a Lua script.
         /// </summary>
         /// <param name="stats">The Lua table containing the base stats.</param>
@@ -40,12 +31,5 @@ namespace Player
             this.GetOrCreateAttribute(Attribute.AttackSpeed, stats.Get<float>("attack_speed"));
             this.GetOrCreateAttribute(Attribute.AreaOfEffect, stats.Get<float>("aoe"));
         }
-    }
-
-    public static class Heroes
-    {
-        public static Hero Warrior => new("heroes/warrior.lua");
-        public static Hero Mage => new("heroes/mage.lua");
-        public static Hero Archer => new("heroes/archer.lua");
     }
 }

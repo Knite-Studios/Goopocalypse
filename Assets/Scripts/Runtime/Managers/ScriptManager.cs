@@ -32,5 +32,12 @@ namespace Managers
             base.OnDestroy();
             _luaEnv.Dispose();
         }
+
+        #region JavaScript References
+
+        public WaveManager WaveManager => WaveManager.Instance;
+        public GameManager GameManager => GameManager.Instance;
+
+        #endregion
     }
 }

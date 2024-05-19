@@ -78,6 +78,12 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
         // Unsubscribes from the scene unloaded event.
         SceneManager.sceneUnloaded -= OnSceneUnloaded;
+
+        // Unset the instance if it is destroyed.
+        if (_instance == this)
+        {
+            _instance = null;
+        }
     }
 
     protected virtual void OnSceneLoaded(Scene scene, LoadSceneMode mode) { }
@@ -165,6 +171,12 @@ public class NetworkSingleton<T> : NetworkBehaviour where T : NetworkBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
         // Unsubscribes from the scene unloaded event.
         SceneManager.sceneUnloaded -= OnSceneUnloaded;
+
+        // Unset the instance if it is destroyed.
+        if (_instance == this)
+        {
+            _instance = null;
+        }
     }
 
     protected virtual void OnSceneLoaded(Scene scene, LoadSceneMode mode) { }

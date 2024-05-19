@@ -20,7 +20,7 @@ namespace Common.Extensions
             }
 
             var path = Path.Combine(
-                Application.dataPath, LuaManager.LuaRoot, filePath);
+                Application.streamingAssetsPath, ScriptManager.LuaRoot, filePath);
             env.DoString(File.ReadAllText(path));
         }
     }

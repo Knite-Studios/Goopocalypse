@@ -16,5 +16,5 @@ MonoBehaviour:
   - type: 5
     prefab: {fileID: 1487731616712756, guid: 6bf84799e9bb8bc46890eb79bcbb9664, type: 3}
     root: /EntityRoot/Projectiles
-    shouldPool: 1
+    shouldPool: 0
     initialPoolSize: 15

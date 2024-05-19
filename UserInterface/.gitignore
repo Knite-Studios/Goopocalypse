@@ -1,4 +1,4 @@
-﻿node_modules/
-output.css
-out/
 ScriptLib/
+node_modules/
+out/
+output.css

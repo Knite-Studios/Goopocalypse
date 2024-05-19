@@ -34,7 +34,7 @@ namespace Projectiles
             _timer -= Time.deltaTime;
             if (_timer <= 0)
             {
-                PrefabManager.ReturnToPool(prefabType, gameObject);
+                PrefabManager.Destroy(prefabType, gameObject);
             }
         }
 
@@ -58,7 +58,7 @@ namespace Projectiles
 
         protected virtual void OnAnimationEnd()
         {
-            PrefabManager.ReturnToPool(prefabType, gameObject);
+            PrefabManager.Destroy(prefabType, gameObject);
         }
     }
 }

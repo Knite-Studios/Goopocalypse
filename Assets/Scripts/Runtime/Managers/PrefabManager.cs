@@ -141,15 +141,15 @@ namespace Managers
         }
 
         /// <summary>
-        /// Returns an object to its pool.
+        /// Returns an object to its pool, or destroys it.
         /// </summary>
         /// <param name="prefabType">The type of prefab.</param>
         /// <param name="obj">The object to return.</param>
-        public static void ReturnToPool(PrefabType prefabType, GameObject obj)
+        public static void Destroy(PrefabType prefabType, GameObject obj)
         {
             if (!Instance._pools.ContainsKey(prefabType))
             {
-                Debug.LogError($"No pool exists for prefab type {prefabType}");
+                Destroy(obj);
                 return;
             }
 
@@ -162,9 +162,10 @@ namespace Managers
                 GameObject.Find(prefab.root).transform :
                 null);
 
-            if (obj.Has<NetworkBehaviour>())
+            if (obj.TryGetComponent<NetworkBehaviour>(out var netObj))
             {
-                NetworkServer.UnSpawn(obj);
+                if (netObj.isServer)
+                    NetworkServer.UnSpawn(obj);
             }
         }
     }

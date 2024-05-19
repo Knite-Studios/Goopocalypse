@@ -1,27 +1,32 @@
 {
-    "files.exclude": {
-        "**/.git": true,
-        "**/.svn": true,
-        "**/.hg": true,
-        "**/CVS": true,
-        "**/.DS_Store": true,
-        "**/Thumbs.db": true,
-        ".idea/": true,
-        "**/*.meta": true,
-        "Library/": true,
-        "Logs/": true,
-        "Temp/": true,
-        "Packages/": true,
-        "ProjectSettings/": true,
-        "UserSettings/": true,
-        "Builds/": true,
-        "obj/": true
-    },
-    "protoc": {
-        "options": [
-            "--proto_path=${workspaceRoot}/Assets/Scripts/Protos/Defs",
-            "--csharp_out=${workspaceRoot}/Assets/Scripts/Protos"
-        ]
-    },
-    "dotnet.defaultSolution": "Goopocalypse.sln"
+  "typescript.preferences.jsxAttributeCompletionStyle": "braces",
+  "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true,
+      ".idea/": true,
+      "**/*.meta": true,
+      "Library/": true,
+      "Logs/": true,
+      "Temp/": true,
+      "Packages/": true,
+      "ProjectSettings/": true,
+      "UserSettings/": true,
+      "Builds/": true,
+      "obj/": true,
+      "**/node_modules": true,
+      "**/bun.lockb": true,
+      "**/out": true,
+      "**/output.css": true
+  },
+  "protoc": {
+      "options": [
+          "--proto_path=${workspaceRoot}/Assets/Scripts/Protos/Defs",
+          "--csharp_out=${workspaceRoot}/Assets/Scripts/Protos"
+      ]
+  },
+  "dotnet.defaultSolution": "Goopocalypse.sln"
 }

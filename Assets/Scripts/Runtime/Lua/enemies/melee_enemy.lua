@@ -3,6 +3,7 @@ base_stats = {
     health = 20,
     speed = 3.8,
     attack_damage = 10,
+    armor = 10
 }
 
 -- Event handler for when a player casts a special ability.

@@ -21,5 +21,5 @@ MonoBehaviour:
   - type: 4
     prefab: {fileID: 4099676189742912143, guid: 28cf153612d00fd40ac2dad5622bfaf6, type: 3}
     root: /EntityRoot
-    shouldPool: 1
+    shouldPool: 0
     initialPoolSize: 15

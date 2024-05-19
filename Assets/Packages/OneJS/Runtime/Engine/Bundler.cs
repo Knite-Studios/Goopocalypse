@@ -30,25 +30,6 @@ namespace OneJS.Engine {
         [SerializeField]
         TextAsset _scriptLibZip;
 
-        [Tooltip("Default vscode settings.json. If one isn't found under {ProjectDir}/OneJS/.vscode, " +
-                 "this is the template that will be copied over. You normally don't need to touch this.")]
-        [SerializeField]
-        TextAsset _vscodeSettings;
-
-        [Tooltip("Default vscode tasks.json. If one isn't found under {ProjectDir}/OneJS/.vscode, " +
-                 "this is the template that will be copied over. You normally don't need to touch this.")]
-        [SerializeField]
-        TextAsset _vscodeTasks;
-
-        [Tooltip("Default tsconfig.json. If one isn't found under {ProjectDir}/OneJS, " +
-                 "this is the template that will be copied over. You normally don't need to touch this.")]
-        [SerializeField]
-        TextAsset _tsconfig;
-
-        [Tooltip("Default tailwind.config.js. If one isn't found under {ProjectDir}/OneJS, " +
-                 "this is the template that will be copied over. You normally don't need to touch this.")]
-        [SerializeField] TextAsset _tailwindConfig;
-
         [Tooltip("Files and folders that you don't want to be bundled with your standalone app build." +
                  "")]
         [PlainString]
@@ -193,23 +174,9 @@ namespace OneJS.Engine {
 #if UNITY_EDITOR
             var indexjsPath = Path.Combine(_scriptEngine.WorkingDir, "index.js");
             var scriptLibPath = Path.Combine(_scriptEngine.WorkingDir, "ScriptLib");
-            var samplesPath = Path.Combine(_scriptEngine.WorkingDir, "Samples");
-            var tsconfigPath = Path.Combine(_scriptEngine.WorkingDir, "tsconfig.json");
-            var gitignorePath = Path.Combine(_scriptEngine.WorkingDir, ".gitignore");
-            var vscodeSettingsPath = Path.Combine(_scriptEngine.WorkingDir, ".vscode/settings.json");
-            var vscodeTasksPath = Path.Combine(_scriptEngine.WorkingDir, ".vscode/tasks.json");
-            var inputCssPath = Path.Combine(_scriptEngine.WorkingDir, "input.css");
-            var tailwindConfigPath = Path.Combine(_scriptEngine.WorkingDir, "tailwind.config.js");
 
             var indexjsFound = File.Exists(indexjsPath);
             var scriptLibFound = Directory.Exists(scriptLibPath);
-            var samplesFound = Directory.Exists(samplesPath);
-            var tsconfigFound = File.Exists(tsconfigPath);
-            var gitignoreFound = File.Exists(gitignorePath);
-            var vscodeSettingsFound = File.Exists(vscodeSettingsPath);
-            var vscodeTasksFound = File.Exists(vscodeTasksPath);
-            var inputCssFound = File.Exists(inputCssPath);
-            var tailwindConfigFound = File.Exists(tailwindConfigPath);
 
             if (!indexjsFound) {
                 File.WriteAllText(indexjsPath, "log(\"[index.js]: OneJS is good to go.\")");
@@ -219,47 +186,6 @@ namespace OneJS.Engine {
             if (!scriptLibFound) {
                 Extract(_scriptLibZip.bytes);
                 Debug.Log("ScriptLib Folder wasn't found. So a default one was created (from ScriptLib gzip).");
-            }
-
-            if (!samplesFound && _extractSamples) {
-                Extract(_samplesZip.bytes);
-                Debug.Log("Samples Folder Extracted.");
-            }
-
-            if (!tsconfigFound) {
-                File.WriteAllText(tsconfigPath, _tsconfig.text);
-                Debug.Log("tsconfig.json wasn't found. So a default one was created.");
-            }
-
-            if (!gitignoreFound) {
-                File.WriteAllText(gitignorePath, "ScriptLib/\nnode_modules/");
-            }
-
-            if (!vscodeSettingsFound) {
-                var dirPath = Path.Combine(_scriptEngine.WorkingDir, ".vscode");
-                if (!Directory.Exists(dirPath)) {
-                    Directory.CreateDirectory(dirPath);
-                }
-                File.WriteAllText(vscodeSettingsPath, _vscodeSettings.text);
-                Debug.Log(".vscode/settings.json wasn't found. So a default one was created.");
-            }
-
-            if (!vscodeTasksFound) {
-                var dirPath = Path.Combine(_scriptEngine.WorkingDir, ".vscode");
-                if (!Directory.Exists(dirPath)) {
-                    Directory.CreateDirectory(dirPath);
-                }
-                File.WriteAllText(vscodeTasksPath, _vscodeTasks.text);
-                Debug.Log(".vscode/tasks.json wasn't found. So a default one was created.");
-            }
-
-            if (!inputCssFound) {
-                File.WriteAllText(inputCssPath, "@tailwind utilities;");
-            }
-
-            if (!tailwindConfigFound) {
-                File.WriteAllText(tailwindConfigPath, _tailwindConfig.text);
-                Debug.Log("tailwind.config.js wasn't found. So a default one was created.");
             }
 #endif
         }

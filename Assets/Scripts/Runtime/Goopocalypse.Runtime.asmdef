@@ -1,0 +1,20 @@
+{
+    "name": "Goopocalypse.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5f02bfc2ac472da448373ce32aa9b023",
+        "GUID:5b37a11e6fbbe2542aa3580b9973df17",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:30817c1a0e6d646d99c048fc403f5979",
+        "GUID:68bd7fdb68ef2684e982e8a9825b18a5"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

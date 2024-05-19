@@ -14,7 +14,6 @@ namespace Editor
         private Vector2Int _gridDimensions = new Vector2Int(50, 50);
         private Pathfinder _pathfinder;
         private Grid _grid;
-        private int _nodePadding = 1;
 
         private void OnGUI()
         {

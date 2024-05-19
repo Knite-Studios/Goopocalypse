@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace Managers
 {
-    public class GameManager : MonoSingleton<GameManager>
+    public partial class GameManager : MonoSingleton<GameManager>
     {
         public static Action OnGameStart;
         public static UnityAction<GameEvent> OnGameEvent;
@@ -19,6 +19,8 @@ namespace Managers
         public ScriptEngine scriptEngine;
         public NetworkManager networkManager;
 
+        private GameState _state = GameState.Menu;
+
         protected override void OnAwake()
         {
             // Find references.
@@ -30,6 +32,12 @@ namespace Managers
             ScriptManager.Initialize();
             WaveManager.Initialize();
             PrefabManager.Initialize();
+        }
+
+        private void Start()
+        {
+            // Add event listener for game events.
+            OnGameStart += () => State = GameState.Playing;
         }
 
         /// <summary>
@@ -71,5 +79,11 @@ namespace Managers
     {
         ChestSpawned,
         EnemyKilled
+    }
+
+    public enum GameState
+    {
+        Menu,
+        Playing
     }
 }

@@ -1,10 +1,13 @@
 import { h } from "preact";
 import { useState } from "preact/hooks";
 
+import { useEventfulState } from "onejs";
+
 import Button from "@components/Button";
 import Text, { Size } from "@components/Text";
 
 import { ScriptManager } from "game";
+import { GameState } from "@types/enums";
 
 const game = require("game") as ScriptManager;
 
@@ -12,7 +15,9 @@ function App() {
     const [address, setAddress] = useState("127.0.0.1");
     const [port, setPort] = useState(7777);
 
-    return (
+    const [gameState, setGameState] = useEventfulState(game.GameManager, "State");
+
+    return gameState == GameState.Menu ? (
         <div
             style={{ width: "50%" }}
             class={"p-5 text-white"}
@@ -53,7 +58,7 @@ function App() {
                 Join Game (client)
             </Button>
         </div>
-    );
+    ) : <div></div>;
 }
 
 export default App;

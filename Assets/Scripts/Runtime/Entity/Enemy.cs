@@ -6,19 +6,14 @@ using XLua;
 namespace Entity
 {
     [CSharpCallLua]
-    [RequireComponent(typeof(NavMeshAgent))]
     public class Enemy : BaseEntity
     {
-        private NavMeshAgent _agent;
-
         /// <summary>
         /// Creates a new enemy instance.
         /// </summary>
         /// <param name="luaScript">The path to the enemy's Lua script.</param>
         public Enemy(string luaScript) : base(luaScript)
         {
-            _agent = GetComponent<NavMeshAgent>();
-
             GameManager.OnGameEvent += OnGameEvent;
         }
 
@@ -31,7 +26,6 @@ namespace Entity
             switch (gameEvent.Type)
             {
                 case GameEventType.ChestSpawned:
-                    _agent.SetDestination(gameEvent.Target.position);
                     Debug.Log($"Moving to {gameEvent.Target.name}");
                     break;
             }

@@ -38,8 +38,6 @@ namespace XLuaTest
             set;
         }
 
-        public event System.Action<int, double> AEvent;
-
         public int this[string field]
         {
             get
@@ -79,4 +77,3 @@ namespace XLuaTest
         }
     }
 }
-

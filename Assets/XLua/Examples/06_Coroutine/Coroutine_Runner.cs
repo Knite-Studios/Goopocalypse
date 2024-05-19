@@ -14,6 +14,7 @@ namespace XLuaTest
     public static class CoroutineConfig
     {
         [LuaCallCSharp]
+        [Obsolete("Obsolete")]
         public static List<Type> LuaCallCSharp
         {
             get

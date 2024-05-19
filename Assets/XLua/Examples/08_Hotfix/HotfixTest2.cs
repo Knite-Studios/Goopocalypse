@@ -423,10 +423,8 @@ namespace XLuaTest
             {
                 Debug.Log("a:" + a + ",b:" + b);
             };
-            sft.AEvent += cb;
             sft.Start();
             sft.Start();
-            sft.AEvent -= cb;
             sft.Start();
             StatefullTest.StaticFunc(1, 2);
             StatefullTest.StaticFunc("e", 3, 4);
@@ -441,4 +439,3 @@ namespace XLuaTest
         }
     }
 }
-

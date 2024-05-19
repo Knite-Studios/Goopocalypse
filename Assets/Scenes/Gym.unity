@@ -2062,6 +2062,69 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!1 &1175654416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1175654417}
+  m_Layer: 0
+  m_Name: EntityRoot
+  m_TagString: Root
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &1175654417
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175654416}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1416656464}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1416656463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1416656464}
+  m_Layer: 1
+  m_Name: Projectiles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1416656464
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416656463}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1175654417}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1514634096
 GameObject:
   m_ObjectHideFlags: 0
@@ -2091,17 +2154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eaad2cd0361470283f45e029b155f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 50
-  height: 50
-  unwalkableLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  walkableLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  nodeRadius: 0.5
-  nodeDiameter: 1
-  nodePadding: 0
 --- !u!4 &1514634098
 Transform:
   m_ObjectHideFlags: 0
@@ -2304,8 +2356,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41c8cbbf60432f54c97756074514d66a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 1514634097}
-  dynamicPadding: 0
 --- !u!4 &1656156155
 Transform:
   m_ObjectHideFlags: 0
@@ -3175,6 +3225,7 @@ SceneRoots:
   - {fileID: 7392270308422853280}
   - {fileID: 5876231264635097966}
   - {fileID: 1101846127}
+  - {fileID: 1175654417}
   - {fileID: 1514634098}
   - {fileID: 1656156155}
   - {fileID: 103180156}

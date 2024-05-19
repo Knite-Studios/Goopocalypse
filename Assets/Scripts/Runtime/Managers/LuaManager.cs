@@ -4,7 +4,7 @@ namespace Managers
 {
     public class LuaManager : MonoSingleton<LuaManager>
     {
-        public const string LuaRoot = "Scripts/Runtime/Lua/";
+        public const string LuaRoot = "Lua/";
         public const string SpecialAbilityFunc = "On_SpecialAbility";
 
         private readonly LuaEnv _luaEnv = new();

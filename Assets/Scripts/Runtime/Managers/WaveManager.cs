@@ -1,4 +1,5 @@
 using System.Collections;
+using Entity;
 using Mirror;
 using UnityEngine;
 
@@ -21,6 +22,8 @@ namespace Managers
 
         private void Start()
         {
+            if (isClient) return;
+
             GameManager.OnGameStart += OnGameStart;
         }
 
@@ -51,13 +54,15 @@ namespace Managers
         /// <summary>
         /// Creates a wave of enemies.
         /// </summary>
+        [Server]
         public void SpawnWave()
         {
             // TODO: Replace with a proper calculation for enemy count.
             for (var i = 0; i < waveCount; i++)
             {
                 // Spawn an enemy.
-                PrefabManager.Create(PrefabType.MeleeEnemy);
+                var enemy = PrefabManager.Create<Enemy>(PrefabType.MeleeEnemy);
+                NetworkServer.Spawn(enemy.gameObject);
             }
         }
     }

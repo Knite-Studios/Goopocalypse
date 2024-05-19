@@ -7,7 +7,7 @@ namespace Managers
     /// </summary>
     public class ScriptManager : MonoSingleton<ScriptManager>
     {
-        public const string LuaRoot = "Scripts/Lua/";
+        public const string LuaRoot = "Scripts/Runtime/Lua/";
         public const string SpecialAbilityFunc = "On_SpecialAbility";
 
         /// <summary>

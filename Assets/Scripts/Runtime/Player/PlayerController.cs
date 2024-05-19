@@ -6,6 +6,7 @@ namespace Player
 {
     public class PlayerController : NetworkBehaviour
     {
+        public Hero hero;
         public float speed = 0.15f;
 
         [SerializeField] private PrefabType projectilePrefab; // Temporary for prototype.
@@ -24,7 +25,7 @@ namespace Player
 
         private void Start()
         {
-            if (isClient)
+            if (isClient && isLocalPlayer)
             {
                 Camera.main!.transform.SetParent(transform);
             }
@@ -61,20 +62,6 @@ namespace Player
 
         private void HandleAttack()
         {
-            // if (InputManager.Attack.WasReleasedThisFrame())
-            // {
-            //     var mousePos = Camera.main!.ScreenToWorldPoint(InputManager.Mouse.ReadValue<Vector2>());
-            //     mousePos.z = 0;
-            //
-            //     var direction = (mousePos - transform.position).normalized;
-            //     var spawnPosition = transform.position + (direction * projectileSpawnDistance);
-            //
-            //     var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            //     var rotation = Quaternion.Euler(0, 0, angle);
-            //
-            //     CmdSpawnProjectile(spawnPosition, rotation);
-            // }
-
             var spawnPos = transform.position.Add(_direction * projectileSpawnDistance);
 
             var angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
@@ -89,12 +76,6 @@ namespace Player
             var projectile = PrefabManager.Create(projectileType);
             projectile.transform.SetPositionAndRotation(position, rotation);
             NetworkServer.Spawn(projectile);
-        }
-
-        [ClientRpc]
-        public void RpcTakeDamage(int damage)
-        {
-            Debug.Log($"Player took {damage} damage!");
         }
     }
 }

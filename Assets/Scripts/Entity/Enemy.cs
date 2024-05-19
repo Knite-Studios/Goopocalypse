@@ -17,10 +17,6 @@ namespace Entity
         /// <param name="luaScript">The path to the enemy's Lua script.</param>
         public Enemy(string luaScript) : base(luaScript)
         {
-        }
-
-        private void Start()
-        {
             _agent = GetComponent<NavMeshAgent>();
             CurrentHealth = Health;
             GameManager.OnGameEvent += OnGameEvent;

@@ -18,17 +18,16 @@ namespace Editor
 
             if (GUILayout.Button("New Hero"))
             {
-                _hero = Heroes.Archer;
+                _hero = Heroes.Fwend;
             }
 
             if (_hero != null)
             {
                 EditorGUILayout.LabelField("Name", _hero.Name);
+                EditorGUILayout.LabelField("Max Health", _hero.MaxHealth.ToString());
                 EditorGUILayout.LabelField("Health", _hero.Health.ToString());
                 EditorGUILayout.LabelField("Stamina", _hero.Stamina.ToString());
                 EditorGUILayout.LabelField("Speed", _hero.Speed.ToString());
-                EditorGUILayout.LabelField("Attack Speed", _hero.AttackSpeed.ToString());
-                EditorGUILayout.LabelField("Attack Damage", _hero.AttackDamage.ToString());
                 EditorGUILayout.LabelField("Armor", _hero.Armor.ToString());
                 EditorGUILayout.LabelField("Area of Effect", _hero.AreaOfEffect.ToString());
 

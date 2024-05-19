@@ -10,21 +10,37 @@ using UnityEngine.Events;
 
 namespace Entity
 {
+    /// <summary>
+    /// The base class for all entities in the game.
+    /// </summary>
     [RequireComponent(typeof(NetworkIdentity))]
     public abstract class BaseEntity : NetworkBehaviour, IAttributable
     {
+        /// <summary>
+        /// Attribute holder map.
+        /// </summary>
         public Dictionary<GameAttribute, object> Attributes { get; } = new();
+        
+        /// <summary>
+        /// The current health of the entity.
+        /// </summary>
         public int CurrentHealth { get; protected set; }
 
         #region Attribute Getters
 
+        /// <summary>
+        /// This is the maximum health of the entity.
+        /// </summary>
         public int Health => this.GetAttributeValue<int>(GameAttribute.Health);
+        public int MaxHealth => this.GetAttributeValue<int>(GameAttribute.Health);
         public float Speed => this.GetAttributeValue<float>(GameAttribute.Speed);
         public int Armor => this.GetAttributeValue<int>(GameAttribute.Armor);
-        public int AttackDamage => this.GetAttributeValue<int>(GameAttribute.AttackDamage);
 
         #endregion
 
+        /// <summary>
+        /// Event called with the damage dealt to the entity.
+        /// </summary>
         public event UnityAction<int> OnDamage;
 
         private LuaSpecialAbility _specialAbility;
@@ -34,35 +50,51 @@ namespace Entity
             var env = LuaManager.luaEnv;
             env.DoFile(luaScript);
 
+            // Load Lua data.
             ApplyBaseStats(env.Global.Get<LuaTable>("base_stats"));
             _specialAbility = env.Global.Get<LuaSpecialAbility>(LuaManager.SpecialAbilityFunc);
         }
 
+        /// <summary>
+        /// Loads the statistics from a Lua script.
+        /// </summary>
+        /// <param name="stats">The Lua table containing the base stats.</param>
         protected virtual void ApplyBaseStats(LuaTable stats)
         {
             this.GetOrCreateAttribute(GameAttribute.Health, stats.Get<int>("health"));
-            this.GetOrCreateAttribute(GameAttribute.AttackDamage, stats.Get<int>("attack_damage"));
-            this.GetOrCreateAttribute(GameAttribute.Armor, stats.Get<int>("armor"));
+            this.GetOrCreateAttribute(GameAttribute.MaxHealth, stats.Get<int>("max_health"));
             this.GetOrCreateAttribute(GameAttribute.Speed, stats.Get<float>("speed"));
+            this.GetOrCreateAttribute(GameAttribute.Armor, stats.Get<int>("armor"));
         }
 
+        /// <summary>
+        /// Internal function definition for the 'SpecialAbility' function.
+        /// </summary>
         [CSharpCallLua]
         protected delegate void LuaSpecialAbility(BaseEntity context);
 
+        /// <summary>
+        /// Runs the entity's associated special ability.
+        /// </summary>
         public void SpecialAbility() => _specialAbility?.Invoke(this);
 
         [Command]
-        public void CmdTakeDamage(int amount)
+        public virtual void CmdTakeDamage(int damage)
         {
-            ApplyDamage(amount);
+            ApplyDamage(damage);
         }
 
+        /// <summary>
+        /// Applies damage to the entity's current health.
+        /// </summary>
+        /// <param name="damage">The raw amount to damage.</param>
+        /// <param name="trueDamage">Whether the damage is absolute. (no reductions)</param>
         [Server]
-        private void ApplyDamage(int amount)
+        private void ApplyDamage(int damage, bool trueDamage = false)
         {
-            int finalDamage = Mathf.Max(0, amount - Armor);
+            var finalDamage = trueDamage ? damage : Mathf.Max(0, damage - Armor);
             CurrentHealth -= finalDamage;
-            RaiseOnDamage(finalDamage);
+            OnDamage?.Invoke(damage);
 
             if (CurrentHealth <= 0)
             {
@@ -74,14 +106,14 @@ namespace Entity
         }
 
         [ClientRpc]
-        private void RpcTakeDamage(int amount)
+        protected virtual void RpcTakeDamage(int amount)
         {
-            // Client-side effects (animations, sounds, etc.)
+            // Client-side effects (animations, sounds, etc.).
             Debug.Log($"{name} took {amount} damage.");
         }
 
         [Command]
-        public void CmdHeal(int amount)
+        public virtual void CmdHeal(int amount)
         {
             ApplyHeal(amount);
         }
@@ -94,15 +126,10 @@ namespace Entity
         }
 
         [ClientRpc]
-        private void RpcHeal(int amount)
+        protected virtual void RpcHeal(int amount)
         {
-            // Client-side effects (animations, sounds, etc.)
+            // Client-side effects (animations, sounds, etc.).
             Debug.Log($"{name} healed {amount} health.");
-        }
-
-        protected void RaiseOnDamage(int amount)
-        {
-            OnDamage?.Invoke(amount);
         }
 
         protected virtual void OnDeath()

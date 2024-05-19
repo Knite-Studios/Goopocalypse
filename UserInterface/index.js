@@ -1,1 +1,0 @@
-log("[index.js]: OneJS is good to go.")

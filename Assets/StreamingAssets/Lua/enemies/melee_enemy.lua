@@ -1,13 +1,9 @@
 -- These are loaded when the instance is created.
 base_stats = {
-    name = "Archer",
-    health = 80,
-    stamina = 100.0,
+    health = 20,
+    max_health = 20,
     speed = 3.8,
-    attack_speed = 1.4,
-    attack_damage = 14,
-    armor = 6,
-    aoe = 0.0
+    armor = 1,
 }
 
 -- Event handler for when a player casts a special ability.

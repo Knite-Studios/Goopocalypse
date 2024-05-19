@@ -6,10 +6,9 @@ namespace Systems.Attributes
     public enum Attribute
     {
         Health,
+        MaxHealth,
         Stamina,
         Speed,
-        AttackSpeed,
-        AttackDamage,
         Armor,
         AreaOfEffect
     }

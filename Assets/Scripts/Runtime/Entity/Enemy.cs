@@ -11,7 +11,13 @@ namespace Entity
         {
             base.Start();
 
+            CurrentHealth = Health;
             GameManager.OnGameEvent += OnGameEvent;
+        }
+
+        private void OnDestroy()
+        {
+            GameManager.OnGameEvent -= OnGameEvent;
         }
 
         /// <summary>
@@ -26,6 +32,13 @@ namespace Entity
                     Debug.Log($"Moving to {gameEvent.Target.name}");
                     break;
             }
+        }
+
+        protected override void OnDeath()
+        {
+            // Death logic
+            Debug.Log($"{name} has died.");
+            Destroy(gameObject);
         }
     }
 }

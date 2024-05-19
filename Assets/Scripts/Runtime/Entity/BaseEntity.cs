@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Common.Extensions;
-using Managers;
 using Mirror;
 using Systems.Attributes;
 using GameAttribute = Systems.Attributes.Attribute;
@@ -35,12 +32,12 @@ namespace Entity
         #region Attribute Getters
 
         /// <summary>
-        /// This is the maximum health of the hero.
+        /// This is the maximum health of the entity.
         /// </summary>
         public int Health => this.GetAttributeValue<int>(GameAttribute.Health);
+        public int MaxHealth => this.GetAttributeValue<int>(GameAttribute.Health);
         public float Speed => this.GetAttributeValue<float>(GameAttribute.Speed);
         public int Armor => this.GetAttributeValue<int>(GameAttribute.Armor);
-        public int AttackDamage => this.GetAttributeValue<int>(GameAttribute.AttackDamage);
 
         #endregion
 
@@ -52,7 +49,7 @@ namespace Entity
         /// <summary>
         /// Internal function caller for 'SpecialAbility' from Lua.
         /// </summary>
-        protected LuaSpecialAbility specialAbility;
+        private LuaSpecialAbility _specialAbility;
 
         protected virtual void Start()
         {
@@ -61,7 +58,7 @@ namespace Entity
 
             // Load Lua data.
             ApplyBaseStats(env.Global.Get<LuaTable>("base_stats"));
-            specialAbility = env.Global.Get<LuaSpecialAbility>(ScriptManager.SpecialAbilityFunc);
+            _specialAbility = env.Global.Get<LuaSpecialAbility>(ScriptManager.SpecialAbilityFunc);
         }
 
         /// <summary>
@@ -71,9 +68,9 @@ namespace Entity
         protected virtual void ApplyBaseStats(LuaTable stats)
         {
             this.GetOrCreateAttribute(GameAttribute.Health, stats.Get<int>("health"));
-            this.GetOrCreateAttribute(GameAttribute.AttackDamage, stats.Get<int>("attack_damage"));
-            this.GetOrCreateAttribute(GameAttribute.Armor, stats.Get<int>("armor"));
+            this.GetOrCreateAttribute(GameAttribute.MaxHealth, stats.Get<int>("max_health"));
             this.GetOrCreateAttribute(GameAttribute.Speed, stats.Get<float>("speed"));
+            this.GetOrCreateAttribute(GameAttribute.Armor, stats.Get<int>("armor"));
         }
 
         /// <summary>
@@ -83,33 +80,73 @@ namespace Entity
         protected delegate void LuaSpecialAbility(BaseEntity context);
 
         /// <summary>
-        /// Runs the hero's associated special ability.
+        /// Runs the entity's associated special ability.
         /// </summary>
-        public void SpecialAbility() => specialAbility?.Invoke(this);
+        public void SpecialAbility() => _specialAbility?.Invoke(this);
+
+        [Command]
+        public virtual void CmdTakeDamage(int damage)
+        {
+            ApplyDamage(damage);
+        }
 
         /// <summary>
         /// Applies damage to the entity's current health.
-        /// TODO: Apply armor reduction to damage.
         /// </summary>
         /// <param name="damage">The raw amount to damage.</param>
         /// <param name="trueDamage">Whether the damage is absolute. (no reductions)</param>
-        public void Damage(int damage, bool trueDamage = false)
+        [Server]
+        private void ApplyDamage(int damage, bool trueDamage = false)
         {
-            CurrentHealth -= damage;
+            var finalDamage = trueDamage ? damage : Mathf.Max(0, damage - Armor);
+            CurrentHealth -= finalDamage;
             OnDamage?.Invoke(damage);
 
             if (CurrentHealth <= 0)
             {
-                Kill();
+                CurrentHealth = 0;
+                OnDeath();
             }
+
+            RpcTakeDamage(finalDamage);
         }
 
-        /// <summary>
-        /// Invoked when the entity dies.
-        /// </summary>
+        [ClientRpc]
+        protected virtual void RpcTakeDamage(int amount)
+        {
+            // Client-side effects (animations, sounds, etc.).
+            Debug.Log($"{name} took {amount} damage.");
+        }
+
+        [Command]
+        public virtual void CmdHeal(int amount)
+        {
+            ApplyHeal(amount);
+        }
+
+        [Server]
+        private void ApplyHeal(int amount)
+        {
+            CurrentHealth = Mathf.Min(CurrentHealth + amount, Health);
+            RpcHeal(amount);
+        }
+
+        [ClientRpc]
+        protected virtual void RpcHeal(int amount)
+        {
+            // Client-side effects (animations, sounds, etc.).
+            Debug.Log($"{name} healed {amount} health.");
+        }
+
+        protected virtual void OnDeath()
+        {
+            // Death logic
+            Debug.Log($"{name} has died.");
+        }
+
         public virtual void Kill()
         {
-            Destroy(gameObject); // TODO: death animation or something ??
+            Destroy(gameObject); // TODO: death animation or other logic
         }
     }
 }

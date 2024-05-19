@@ -31,7 +31,7 @@ namespace Managers
         private void OnGameStart()
         {
             _gameRunning = true;
-            waveCount = 0;
+            waveCount = 1;
 
             StartCoroutine(CountTimer());
         }
@@ -45,6 +45,19 @@ namespace Managers
             {
                 yield return new WaitForSeconds(1);
                 matchTimer++;
+            }
+        }
+
+        /// <summary>
+        /// Creates a wave of enemies.
+        /// </summary>
+        public void SpawnWave()
+        {
+            // TODO: Replace with a proper calculation for enemy count.
+            for (var i = 0; i < waveCount; i++)
+            {
+                // Spawn an enemy.
+                PrefabManager.Create(PrefabType.MeleeEnemy);
             }
         }
     }

@@ -35,9 +35,9 @@ namespace Player
         }
     }
 
-    public class LuaPlayer
+    public static class LuaPlayer
     {
-        public const string Fwend = "heroes/fwend.lua";
-        public const string Buddie = "heroes/buddie.lua";
+        public const string Fwend = "players/fwend.lua";
+        public const string Buddie = "players/buddie.lua";
     }
 }

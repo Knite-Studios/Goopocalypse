@@ -41,4 +41,9 @@ namespace Entity
             Destroy(gameObject);
         }
     }
+
+    public static class LuaEnemies
+    {
+        public const string MeleeEnemy = "enemies/melee_enemy.lua";
+    }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Attributes;
 using Common.Extensions;
 using Managers;
 using Mirror;
@@ -17,6 +18,12 @@ namespace Entity
     public abstract class BaseEntity : NetworkBehaviour, IAttributable
     {
         /// <summary>
+        /// The Lua script responsible for the logic of the entity.
+        /// </summary>
+        [TitleHeader("Entity Settings")]
+        public string luaScript;
+
+        /// <summary>
         /// Attribute holder map.
         /// </summary>
         public Dictionary<GameAttribute, object> Attributes { get; } = new();
@@ -25,11 +32,6 @@ namespace Entity
         /// The current health of the entity.
         /// </summary>
         public int CurrentHealth { get; set; }
-
-        /// <summary>
-        /// The Lua script responsible for the logic of the entity.
-        /// </summary>
-        public string luaScript;
 
         #region Attribute Getters
 
@@ -55,12 +57,20 @@ namespace Entity
 
         protected virtual void Start()
         {
+            InitializeEntityFromLua();
+        }
+
+        public void InitializeEntityFromLua()
+        {
             var env = ScriptManager.Environment;
             env.DoFile(luaScript);
 
             // Load Lua data.
             ApplyBaseStats(env.Global.Get<LuaTable>("base_stats"));
             _specialAbility = env.Global.Get<LuaSpecialAbility>(ScriptManager.SpecialAbilityFunc);
+
+            // Cleanup.
+            env.Dispose();
         }
 
         /// <summary>

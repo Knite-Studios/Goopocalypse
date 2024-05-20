@@ -1,14 +1,14 @@
+using System;
+using Attributes;
 using Managers;
 using Mirror;
 using UnityEngine;
 
 namespace Player
 {
-    public class PlayerController : NetworkBehaviour
+    public class PlayerController : Player
     {
-        public Hero hero;
-        public float speed = 0.15f;
-
+        [TitleHeader("PlayerController Settings")]
         [SerializeField] private PrefabType projectilePrefab; // Temporary for prototype.
         [SerializeField] private GameObject indicator; // Temoprarily used for testing.
         [SerializeField] private float projectileSpawnDistance = 1.0f;
@@ -23,10 +23,12 @@ namespace Player
             _rigidBody = GetComponent<Rigidbody2D>();
         }
 
-        private void Start()
+        protected override void Start()
         {
             if (isClient && isLocalPlayer)
             {
+                base.Start();
+
                 Camera.main!.transform.SetParent(transform);
             }
         }
@@ -35,8 +37,14 @@ namespace Player
         {
             if (!isLocalPlayer) return;
 
-            HandleMovement();
             HandleAutoAttack();
+        }
+
+        private void FixedUpdate()
+        {
+            if (!isLocalPlayer) return;
+
+            HandleMovement();
         }
 
         private void HandleMovement()
@@ -45,9 +53,12 @@ namespace Player
             if (move != Vector2.zero) _direction = move.normalized;
             // Rotate the indicator based on the direction it's facing.
             indicator.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg);
-            var movement = new Vector3(move.x, move.y, 0) * speed;
+            var movement = move * (Speed * Time.fixedDeltaTime);
 
-            _rigidBody.MovePosition(transform.position + movement);
+            Debug.Log($"Health: {Health} / {MaxHealth}");
+            Debug.Log($"Speed: {Speed}");
+
+            _rigidBody.MovePosition(_rigidBody.position + movement);
         }
 
         private void HandleAutoAttack()

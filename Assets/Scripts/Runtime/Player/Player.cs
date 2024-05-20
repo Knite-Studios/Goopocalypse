@@ -5,7 +5,7 @@ using XLua;
 namespace Player
 {
     [CSharpCallLua]
-    public class Hero : BaseEntity
+    public class Player : BaseEntity
     {
         /// <summary>
         /// The name of the hero.
@@ -33,5 +33,11 @@ namespace Player
             this.GetOrCreateAttribute(Attribute.Armor, stats.Get<int>("armor"));
             this.GetOrCreateAttribute(Attribute.AreaOfEffect, stats.Get<float>("aoe"));
         }
+    }
+
+    public class LuaPlayer
+    {
+        public const string Fwend = "heroes/fwend.lua";
+        public const string Buddie = "heroes/buddie.lua";
     }
 }

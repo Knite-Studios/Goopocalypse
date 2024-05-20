@@ -3,7 +3,7 @@ base_stats = {
     health = 100,
     max_health = 100,
     stamina = 100.0,
-    speed = 1.5,
+    speed = 9.5,
     armor = 8,
     aoe = 3.5
 }

@@ -256,6 +256,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  luaScript: players/fwend
   projectilePrefab: 5
   indicator: {fileID: 8207353764106387348}
   projectileSpawnDistance: 1

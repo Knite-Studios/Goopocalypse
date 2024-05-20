@@ -39,14 +39,15 @@ namespace Editor
                     for (var y = 0; y < _worldSize.y; y++)
                     {
                         var noise = Mathf.PerlinNoise(x * _multiplier, y * _multiplier);
+                        ColorUtility.TryParseHtmlString("#222222", out var groundColor);
                         var isObstacle = noise > _threshold;
-                        var color = isObstacle ? Color.gray : Color.white;
+                        var color = isObstacle ? Color.gray : groundColor;
 
                         var tile = new GameObject($"Tile {x}, {y}", typeof(SpriteRenderer))
                         {
                             transform =
                             {
-                                position = new Vector3(x, y)
+                                position = new Vector3(x + 0.5f, y + 0.5f)
                             },
                             layer = LayerMask.NameToLayer(isObstacle ? "Obstacle" : "Walkable")
                         };

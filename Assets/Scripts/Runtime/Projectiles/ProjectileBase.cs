@@ -1,8 +1,8 @@
 ﻿using Entity;
+using Entity.Player;
 using Interfaces;
 using Managers;
 using Mirror;
-using Player;
 using UnityEngine;
 
 namespace Projectiles

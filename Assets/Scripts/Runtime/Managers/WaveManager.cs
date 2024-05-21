@@ -1,5 +1,4 @@
 using System.Collections;
-using Entity.Enemies;
 using Mirror;
 using UnityEngine;
 
@@ -12,13 +11,10 @@ namespace Managers
         [ReadOnly, SyncVar]
         public long matchTimer;
 
-        private bool _gameRunning;
-        private Camera _camera;
+        [Tooltip("The amount of seconds it takes to spawn a wave.")]
+        public int spawnThreshold = 30;
 
-        /// <summary>
-        /// Cache a reference to the camera for spawning.
-        /// </summary>
-        protected override void OnAwake() => _camera = Camera.main;
+        private bool _gameRunning;
 
         private void Start()
         {
@@ -40,6 +36,19 @@ namespace Managers
         }
 
         /// <summary>
+        /// Called once per second.
+        /// </summary>
+        [Server]
+        private void Tick()
+        {
+            if (matchTimer % spawnThreshold == 0)
+            {
+                SpawnWave();
+                waveCount++;
+            }
+        }
+
+        /// <summary>
         /// Counts the time elapsed since the game started.
         /// </summary>
         private IEnumerator CountTimer()
@@ -48,22 +57,16 @@ namespace Managers
             {
                 yield return new WaitForSeconds(1);
                 matchTimer++;
+
+                Tick();
             }
         }
 
         /// <summary>
         /// Creates a wave of enemies.
+        /// TODO: Add a correct entity count.
         /// </summary>
         [Server]
-        public void SpawnWave()
-        {
-            // TODO: Replace with a proper calculation for enemy count.
-            for (var i = 0; i < waveCount; i++)
-            {
-                // Spawn an enemy.
-                var enemy = PrefabManager.Create<Enemy>(PrefabType.MeleeEnemy);
-                NetworkServer.Spawn(enemy.gameObject);
-            }
-        }
+        public void SpawnWave() => GameManager.OnWaveSpawn?.Invoke(waveCount);
     }
 }

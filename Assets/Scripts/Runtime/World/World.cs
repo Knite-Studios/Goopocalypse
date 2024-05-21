@@ -70,6 +70,11 @@ namespace Runtime.World
         }
 
         /// <summary>
+        /// Determines if a point is walkable.
+        /// </summary>
+        public bool IsWalkable(Vector2 position) => _grid.GetNode(position).isWalkable;
+
+        /// <summary>
         /// Initialize the grid.
         /// </summary>
         public void Initialize()
@@ -136,11 +141,16 @@ namespace Runtime.World
                 Mathf.RoundToInt(width / 2f),
                 Mathf.RoundToInt(height / 2f));
 
+            if (!isServer) return;
+
             // Update the pathfinding grid.
             _grid.InitializeNodes(nodes);
 
             // Invoke world generation event.
             GameManager.OnWorldGenerated?.Invoke(this);
+
+            // Try adding an entity spawner to the world object.
+            gameObject.GetOrAddComponent<EntitySpawner>();
         }
 
         /// <summary>

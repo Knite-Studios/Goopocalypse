@@ -12,13 +12,13 @@ namespace Managers
         public static Action OnGameStart;
         public static UnityAction<GameEvent> OnGameEvent;
         public static UnityAction<World> OnWorldGenerated;
+        public static UnityAction<int> OnWaveSpawn;
 
         /// <summary>
         /// Reference to the JavaScript ScriptEngine.
         /// </summary>
-        public static ScriptEngine ScriptEngine => Instance._scriptEngine;
+        public static ScriptEngine ScriptEngine => FindObjectOfType<ScriptEngine>();
 
-        private ScriptEngine _scriptEngine;
         private NetworkManager _networkManager;
 
         private GameState _state = GameState.Menu;
@@ -26,7 +26,6 @@ namespace Managers
         protected override void OnAwake()
         {
             // Find references.
-            _scriptEngine = FindObjectOfType<ScriptEngine>();
             _networkManager = FindObjectOfType<NetworkManager>();
 
             // Initialize other managers.

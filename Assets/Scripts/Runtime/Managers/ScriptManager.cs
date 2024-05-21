@@ -19,7 +19,7 @@ namespace Managers
 
         private readonly LuaEnv _luaEnv = new();
 
-        protected override void OnAwake()
+        private void Start()
         {
             var scriptEngine = GameManager.ScriptEngine;
             if (scriptEngine == null) return;

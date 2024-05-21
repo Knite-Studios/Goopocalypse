@@ -36,6 +36,13 @@ namespace Player
             virtualCamera.Priority = 100;
         }
 
+        private void OnDestroy()
+        {
+            if (!isLocalPlayer) return;
+
+            EntityManager.Instance.CmdRemovePlayerFromTargetGroup(this);
+        }
+
         private void Update()
         {
             if (!isLocalPlayer) return;
@@ -57,9 +64,6 @@ namespace Player
             // Rotate the indicator based on the direction it's facing.
             indicator.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg);
             var movement = move * (Speed * Time.fixedDeltaTime);
-
-            Debug.Log($"Health: {Health} / {MaxHealth}");
-            Debug.Log($"Speed: {Speed}");
 
             _rigidBody.MovePosition(_rigidBody.position + movement);
         }

@@ -32,6 +32,7 @@ namespace Managers
             ScriptManager.Initialize();
             WaveManager.Initialize();
             PrefabManager.Initialize();
+            EntityManager.Initialize();
         }
 
         private void Start()

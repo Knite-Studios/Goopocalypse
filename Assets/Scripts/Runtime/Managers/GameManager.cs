@@ -16,8 +16,8 @@ namespace Managers
         /// </summary>
         public static ScriptEngine ScriptEngine => Instance.scriptEngine;
 
-        public ScriptEngine scriptEngine;
-        public NetworkManager networkManager;
+        private ScriptEngine scriptEngine;
+        private NetworkManager networkManager;
 
         private GameState _state = GameState.Menu;
 

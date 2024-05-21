@@ -21,5 +21,7 @@ namespace Runtime.UI
         {
             _luaSpinnerUpdate?.Invoke(transform);
         }
+
+        private void OnDestroy() => _luaSpinnerUpdate = null;
     }
 }

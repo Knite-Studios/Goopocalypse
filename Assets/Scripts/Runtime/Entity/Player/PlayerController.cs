@@ -2,6 +2,7 @@ using Attributes;
 using Cinemachine;
 using Managers;
 using Mirror;
+using Runtime.World;
 using UnityEngine;
 
 namespace Entity.Player
@@ -23,6 +24,8 @@ namespace Entity.Player
         private void Awake()
         {
             _rigidBody = GetComponent<Rigidbody2D>();
+
+            GameManager.OnWorldGenerated += OnWorldGenerated;
         }
 
         protected override void Start()
@@ -31,9 +34,12 @@ namespace Entity.Player
 
             if (!isLocalPlayer) return;
 
-            _virtualCamera = Instantiate(virtualCameraPrefab, transform);
-            _virtualCamera.Follow = transform;
-            _virtualCamera.LookAt = transform;
+            // Create the player's virtual camera.
+            var playerTransform = transform;
+
+            _virtualCamera = Instantiate(virtualCameraPrefab, playerTransform);
+            _virtualCamera.Follow = playerTransform;
+            _virtualCamera.LookAt = playerTransform;
             _virtualCamera.Priority = 100;
         }
 
@@ -56,6 +62,11 @@ namespace Entity.Player
             if (!isLocalPlayer) return;
 
             HandleMovement();
+        }
+
+        private void OnWorldGenerated(World world)
+        {
+            transform.SetPositionAndRotation(world.center, Quaternion.identity);
         }
 
         private void HandleMovement()

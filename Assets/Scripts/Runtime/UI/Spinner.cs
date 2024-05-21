@@ -14,12 +14,14 @@ namespace Runtime.UI
         {
             var env = ScriptManager.Environment;
             env.DoFile("spinner");
-            _luaSpinnerUpdate = env.Global.Get<LuaSpinnerUpdate>("On_Update");
+            _luaSpinnerUpdate = env.Global.Get<LuaSpinnerUpdate>(ScriptManager.BehaviorUpdateFunc);
         }
 
         private void Update()
         {
             _luaSpinnerUpdate?.Invoke(transform);
         }
+
+        private void OnDisable() => _luaSpinnerUpdate = null;
     }
 }

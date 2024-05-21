@@ -56,7 +56,7 @@ namespace Entity
         /// </summary>
         private LuaSpecialAbility _specialAbility;
 
-        public void InitializeEntityFromLua()
+        protected void InitializeEntityFromLua()
         {
             var env = ScriptManager.Environment;
             env.DoFile(luaScript);
@@ -82,7 +82,13 @@ namespace Entity
         /// Internal function definition for the 'SpecialAbility' function.
         /// </summary>
         [CSharpCallLua]
-        protected delegate void LuaSpecialAbility(BaseEntity context);
+        private delegate void LuaSpecialAbility(BaseEntity context);
+
+        /// <summary>
+        /// Invoked when the object is destroyed.
+        /// We unset the ability so our Lua environment can destroy peacefully.
+        /// </summary>
+        private void OnDisable() => _specialAbility = null;
 
         /// <summary>
         /// Runs the entity's associated special ability.

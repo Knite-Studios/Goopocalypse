@@ -8,7 +8,9 @@ namespace Managers
     public class ScriptManager : MonoSingleton<ScriptManager>
     {
         public const string LuaRoot = "Lua/";
+
         public const string SpecialAbilityFunc = "On_SpecialAbility";
+        public const string BehaviorUpdateFunc = "On_MonoUpdate";
 
         /// <summary>
         /// Reference to the Lua script engine.
@@ -17,15 +19,17 @@ namespace Managers
 
         private readonly LuaEnv _luaEnv = new();
 
-        // protected override void OnAwake()
-        // {
-        //     // Add this to the ScriptEngine.
-        //     var scriptEngine = GameManager.ScriptEngine;
-        //     scriptEngine.AddRuntimeObject("game", this);
-        //
-        //     // Run the JavaScript entrypoint.
-        //     scriptEngine.RunScript("out/index.js");
-        // }
+        protected override void OnAwake()
+        {
+            // Add this to the ScriptEngine.
+            var scriptEngine = GameManager.ScriptEngine;
+            if (!scriptEngine) return;
+
+            scriptEngine.AddRuntimeObject("game", this);
+
+            // Run the JavaScript entrypoint.
+            scriptEngine.RunScript("out/index.js");
+        }
 
         protected override void OnDestroy()
         {

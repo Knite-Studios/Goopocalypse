@@ -4,7 +4,7 @@ using Managers;
 using Mirror;
 using UnityEngine;
 
-namespace Player
+namespace Entity.Player
 {
     public class PlayerController : Player
     {

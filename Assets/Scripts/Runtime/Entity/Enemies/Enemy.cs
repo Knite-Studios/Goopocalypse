@@ -2,7 +2,7 @@ using Managers;
 using UnityEngine;
 using XLua;
 
-namespace Entity
+namespace Entity.Enemies
 {
     [CSharpCallLua]
     public class Enemy : BaseEntity

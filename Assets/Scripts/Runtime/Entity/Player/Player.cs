@@ -1,10 +1,8 @@
-﻿using System;
-using Entity;
-using Systems.Attributes;
+﻿using Systems.Attributes;
 using XLua;
 using Attribute = Systems.Attributes.Attribute;
 
-namespace Player
+namespace Entity.Player
 {
     [CSharpCallLua]
     public class Player : BaseEntity

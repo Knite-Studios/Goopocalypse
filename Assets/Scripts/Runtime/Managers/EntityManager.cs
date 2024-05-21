@@ -1,7 +1,7 @@
 ﻿using System;
 using Cinemachine;
+using Entity.Player;
 using Mirror;
-using Player;
 using UnityEngine;
 
 namespace Managers

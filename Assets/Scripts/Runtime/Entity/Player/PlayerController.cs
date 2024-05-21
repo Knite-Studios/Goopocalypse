@@ -18,6 +18,7 @@ namespace Entity.Player
         private Rigidbody2D _rigidBody;
         private Vector2 _direction;
         private float _attackTimer;
+        private CinemachineVirtualCamera _virtualCamera;
 
         private void Awake()
         {
@@ -30,10 +31,10 @@ namespace Entity.Player
 
             if (!isLocalPlayer) return;
 
-            var virtualCamera = Instantiate(virtualCameraPrefab, transform);
-            virtualCamera.Follow = transform;
-            virtualCamera.LookAt = transform;
-            virtualCamera.Priority = 100;
+            _virtualCamera = Instantiate(virtualCameraPrefab, transform);
+            _virtualCamera.Follow = transform;
+            _virtualCamera.LookAt = transform;
+            _virtualCamera.Priority = 100;
         }
 
         private void OnDestroy()

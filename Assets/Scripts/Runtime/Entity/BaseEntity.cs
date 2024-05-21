@@ -88,7 +88,7 @@ namespace Entity
         /// Invoked when the object is destroyed.
         /// We unset the ability so our Lua environment can destroy peacefully.
         /// </summary>
-        private void OnDestroy() => _specialAbility = null;
+        private void OnDisable() => _specialAbility = null;
 
         /// <summary>
         /// Runs the entity's associated special ability.

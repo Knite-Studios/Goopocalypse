@@ -21,10 +21,12 @@ namespace Managers
 
         protected override void OnAwake()
         {
-            // Add this to the ScriptEngine.
             var scriptEngine = GameManager.ScriptEngine;
-            if (!scriptEngine) return;
+            if (scriptEngine == null) return;
 
+            // Initialize the script engine.
+            scriptEngine.InitEngine();
+            // Add this to the ScriptEngine.
             scriptEngine.AddRuntimeObject("game", this);
 
             // Run the JavaScript entrypoint.

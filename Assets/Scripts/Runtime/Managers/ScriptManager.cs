@@ -17,15 +17,17 @@ namespace Managers
 
         private readonly LuaEnv _luaEnv = new();
 
-        // protected override void OnAwake()
-        // {
-        //     // Add this to the ScriptEngine.
-        //     var scriptEngine = GameManager.ScriptEngine;
-        //     scriptEngine.AddRuntimeObject("game", this);
-        //
-        //     // Run the JavaScript entrypoint.
-        //     scriptEngine.RunScript("out/index.js");
-        // }
+        protected override void OnAwake()
+        {
+            // Add this to the ScriptEngine.
+            var scriptEngine = GameManager.ScriptEngine;
+            if (!scriptEngine) return;
+
+            scriptEngine.AddRuntimeObject("game", this);
+
+            // Run the JavaScript entrypoint.
+            scriptEngine.RunScript("out/index.js");
+        }
 
         protected override void OnDestroy()
         {

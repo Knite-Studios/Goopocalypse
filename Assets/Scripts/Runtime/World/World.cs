@@ -27,6 +27,8 @@ namespace Runtime.World
         public LayerMask walkable;
         public float nodeRadius = 0.5f;
 
+        [NonSerialized] public Vector2 center;
+
         private Grid _grid;
         private float _nodeDiameter;
 
@@ -123,8 +125,52 @@ namespace Runtime.World
                 }
             }
 
+            // Add a border to the world.
+            DrawLine(1 + height, new Vector2(-1, -1), true, Color.black);
+            DrawLine(1 + width, new Vector2(-1, -1), false, Color.black);
+            DrawLine(2 + height, new Vector2(width, -1), true, Color.black);
+            DrawLine(2 + width, new Vector2(-1, height), false, Color.black);
+
+            // Determine the center.
+            center = new Vector2(
+                Mathf.RoundToInt(width / 2f),
+                Mathf.RoundToInt(height / 2f));
+
             // Update the pathfinding grid.
             _grid.InitializeNodes(nodes);
+
+            // Invoke world generation event.
+            GameManager.OnWorldGenerated?.Invoke(this);
+        }
+
+        /// <summary>
+        /// Draws a line of tiles.
+        /// </summary>
+        private void DrawLine(int length, Vector2 start, bool vertical, Color color)
+        {
+            var sprite = Resources.Load<Sprite>("Art/Textures/Square");
+
+            for (var i = 0; i < length; i++)
+            {
+                var position = vertical
+                    ? new Vector2(start.x, start.y + i)
+                    : new Vector2(start.x + i, start.y);
+
+                var tile = new GameObject($"Tile {position.x}, {position.y}")
+                {
+                    transform = { position = position }
+                };
+                tile.transform.SetParent(gameObject.transform);
+
+                var tileRenderer = tile.AddComponent<SpriteRenderer>();
+                tileRenderer.color = color;
+                tileRenderer.sprite = sprite;
+                tileRenderer.sortingOrder = -1;
+
+                tile.AddComponent<BoxCollider2D>();
+                var rigidBody = tile.AddComponent<Rigidbody2D>();
+                rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
         }
     }
 }

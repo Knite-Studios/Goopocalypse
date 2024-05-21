@@ -1,6 +1,7 @@
 ﻿using System;
 using Mirror;
 using OneJS;
+using Runtime.World;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,22 +11,23 @@ namespace Managers
     {
         public static Action OnGameStart;
         public static UnityAction<GameEvent> OnGameEvent;
+        public static UnityAction<World> OnWorldGenerated;
 
         /// <summary>
         /// Reference to the JavaScript ScriptEngine.
         /// </summary>
-        public static ScriptEngine ScriptEngine => Instance.scriptEngine;
+        public static ScriptEngine ScriptEngine => Instance._scriptEngine;
 
-        private ScriptEngine scriptEngine;
-        private NetworkManager networkManager;
+        private ScriptEngine _scriptEngine;
+        private NetworkManager _networkManager;
 
         private GameState _state = GameState.Menu;
 
         protected override void OnAwake()
         {
             // Find references.
-            scriptEngine = FindObjectOfType<ScriptEngine>();
-            networkManager = FindObjectOfType<NetworkManager>();
+            _scriptEngine = FindObjectOfType<ScriptEngine>();
+            _networkManager = FindObjectOfType<NetworkManager>();
 
             // Initialize other managers.
             InputManager.Initialize();
@@ -44,7 +46,7 @@ namespace Managers
         /// <summary>
         /// Starts the KCP debugging server.
         /// </summary>
-        public void StartDebugServer() => networkManager.StartHost();
+        public void StartDebugServer() => _networkManager.StartHost();
 
         /// <summary>
         /// Connects to the debugging server.
@@ -53,13 +55,13 @@ namespace Managers
         /// <param name="port">The server's port.</param>
         public void JoinDebugServer(string address, ushort port)
         {
-            networkManager.networkAddress = address;
+            _networkManager.networkAddress = address;
             if (Transport.active is PortTransport portTransport)
             {
                 portTransport.Port = port;
             }
 
-            networkManager.StartClient();
+            _networkManager.StartClient();
         }
 
         /// <summary>

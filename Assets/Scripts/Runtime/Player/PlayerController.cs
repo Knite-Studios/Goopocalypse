@@ -1,5 +1,5 @@
-using System;
 using Attributes;
+using Cinemachine;
 using Managers;
 using Mirror;
 using UnityEngine;
@@ -13,6 +13,7 @@ namespace Player
         [SerializeField] private GameObject indicator; // Temoprarily used for testing.
         [SerializeField] private float projectileSpawnDistance = 1.0f;
         [SerializeField] private float attackInterval = 2.0f;
+        [SerializeField] private CinemachineVirtualCamera virtualCameraPrefab;
 
         private Rigidbody2D _rigidBody;
         private Vector2 _direction;
@@ -25,12 +26,14 @@ namespace Player
 
         protected override void Start()
         {
-            if (isClient && isLocalPlayer)
-            {
-                base.Start();
+            base.Start();
 
-                Camera.main!.transform.SetParent(transform);
-            }
+            if (!isLocalPlayer) return;
+
+            var virtualCamera = Instantiate(virtualCameraPrefab, transform);
+            virtualCamera.Follow = transform;
+            virtualCamera.LookAt = transform;
+            virtualCamera.Priority = 100;
         }
 
         private void Update()

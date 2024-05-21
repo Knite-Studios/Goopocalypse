@@ -1,6 +1,8 @@
-﻿using Entity;
+﻿using System;
+using Entity;
 using Systems.Attributes;
 using XLua;
+using Attribute = Systems.Attributes.Attribute;
 
 namespace Player
 {
@@ -18,6 +20,11 @@ namespace Player
         public float AreaOfEffect => this.GetAttributeValue<float>(Attribute.AreaOfEffect);
 
         #endregion
+
+        protected virtual void Start()
+        {
+            InitializeEntityFromLua();
+        }
 
         /// <summary>
         /// Loads the statistics from a Lua script.

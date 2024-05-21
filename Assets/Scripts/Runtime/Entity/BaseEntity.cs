@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Attributes;
 using Common.Extensions;
@@ -55,11 +56,6 @@ namespace Entity
         /// </summary>
         private LuaSpecialAbility _specialAbility;
 
-        protected virtual void Start()
-        {
-            InitializeEntityFromLua();
-        }
-
         public void InitializeEntityFromLua()
         {
             var env = ScriptManager.Environment;
@@ -68,9 +64,6 @@ namespace Entity
             // Load Lua data.
             ApplyBaseStats(env.Global.Get<LuaTable>("base_stats"));
             _specialAbility = env.Global.Get<LuaSpecialAbility>(ScriptManager.SpecialAbilityFunc);
-
-            // Cleanup.
-            env.Dispose();
         }
 
         /// <summary>

@@ -261,6 +261,7 @@ MonoBehaviour:
   indicator: {fileID: 8207353764106387348}
   projectileSpawnDistance: 1
   attackInterval: 2
+  virtualCameraPrefab: {fileID: 5150189588551710226, guid: d6f7a0a033e7219448a21c91a464652a, type: 3}
 --- !u!114 &1228417230119834834
 MonoBehaviour:
   m_ObjectHideFlags: 0

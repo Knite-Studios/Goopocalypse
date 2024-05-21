@@ -7,9 +7,9 @@ namespace Entity
     [CSharpCallLua]
     public class Enemy : BaseEntity
     {
-        protected override void Start()
+        protected virtual void Start()
         {
-            base.Start();
+            InitializeEntityFromLua();
 
             CurrentHealth = Health;
             GameManager.OnGameEvent += OnGameEvent;

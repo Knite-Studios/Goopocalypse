@@ -23,6 +23,8 @@ namespace Editor
             var grid = target as Grid;
             Handles.color = Color.yellow;
 
+            if (!grid!.drawGrid) return;
+
             for (var x = 0; x < grid?.width; x++)
             {
                 for (var y = 0; y < grid.height; y++)

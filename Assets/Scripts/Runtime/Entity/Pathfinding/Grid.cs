@@ -14,6 +14,9 @@ namespace Entity.Pathfinding
         public LayerMask walkableLayer;
         public float nodeRadius = 0.5f;
         public float nodeDiameter = 1.0f;
+#if UNITY_EDITOR
+        public bool drawGrid;
+#endif
 
         private Node[,] _nodes;
 

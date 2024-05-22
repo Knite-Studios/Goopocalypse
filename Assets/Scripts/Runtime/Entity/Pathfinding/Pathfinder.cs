@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
-using Common.Extensions;
 using JetBrains.Annotations;
+using Priority_Queue;
 using UnityEngine;
-using Utils;
 
 namespace Entity.Pathfinding
 {
     [Serializable]
-    public class Node
+    public class Node : FastPriorityQueueNode
     {
         [CanBeNull] public Node parent;
         public readonly Vector2 gridPosition;
@@ -17,8 +16,8 @@ namespace Entity.Pathfinding
         public int gCost, hCost;
 
         public int FCost => gCost + hCost;
-        public int X => (int)worldPosition.x;
-        public int Y => (int)worldPosition.y;
+        public float X => worldPosition.x;
+        public float Y => worldPosition.y;
 
         public Node(Vector2 gridPosition, Vector2 worldPosition, bool isWalkable)
         {
@@ -28,7 +27,12 @@ namespace Entity.Pathfinding
         }
 
         /// <summary>
+        /// Gets the distance to another node.
         /// </summary>
+        /// <param name="other">The target node.</param>
+        /// <param name="distanceType">The type of distance calculation.</param>
+        /// <returns>The distance to the target node.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the distance type is invalid.</exception>
         public int GetDistanceTo(Node other, DistanceType distanceType = DistanceType.Manhattan)
         {
             var distanceX = (int)Mathf.Abs(gridPosition.x - other.gridPosition.x);
@@ -109,7 +113,7 @@ namespace Entity.Pathfinding
         [CanBeNull]
         public List<Node> FindPath(Vector2 target)
         {
-            var openSet = new PriorityQueue<Node, int>();
+            var openSet = new FastPriorityQueue<Node>(grid!.width * grid.height);
             var closedSet = new HashSet<Node>();
 
             // Add the starting node to the open set.
@@ -150,8 +154,7 @@ namespace Entity.Pathfinding
 
                     if (!neighbor.isWalkable) continue;
 
-                    // Apply dynamic padding if the neighbor is near an unwalkable node.
-                    if (IsNearUnwalkableNode(neighbor, dynamicPadding)) continue;
+                    if (neighbor != destNode && IsNearUnwalkableNode(neighbor, dynamicPadding)) continue;
 
                     var gCost = currentNode.gCost + currentNode.GetDistanceTo(neighbor);
                     if (gCost < neighbor.gCost || !openSet.Contains(neighbor))

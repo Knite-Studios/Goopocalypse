@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6366663555990411355}
   - component: {fileID: 3750986339267102359}
   - component: {fileID: 4213181497151378475}
+  - component: {fileID: -8317250460470295815}
   - component: {fileID: 1916408241842334160}
   - component: {fileID: 8003059485362414933}
   - component: {fileID: 8392504234489065209}
@@ -105,6 +106,20 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   luaScript: enemies/melee_enemy.lua
+--- !u!114 &-8317250460470295815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099676189742912143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f884b870e1bfe3b49a0193fdb3282b8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 0}
+  dynamicPadding: 0.5
 --- !u!114 &1916408241842334160
 MonoBehaviour:
   m_ObjectHideFlags: 0

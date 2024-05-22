@@ -2,7 +2,7 @@
 base_stats = {
     health = 20,
     max_health = 20,
-    speed = 3.8,
+    speed = 9.8,
     armor = 1,
 }
 

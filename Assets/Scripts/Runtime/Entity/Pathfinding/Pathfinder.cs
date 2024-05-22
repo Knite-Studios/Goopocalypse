@@ -17,8 +17,8 @@ namespace Entity.Pathfinding
         public int gCost, hCost;
 
         public int FCost => gCost + hCost;
-        public float X => worldPosition.x;
-        public float Y => worldPosition.y;
+        public int X => (int)worldPosition.x;
+        public int Y => (int)worldPosition.y;
 
         public Node(Vector2 gridPosition, Vector2 worldPosition, bool isWalkable)
         {
@@ -87,10 +87,19 @@ namespace Entity.Pathfinding
 
     public class Pathfinder : MonoBehaviour
     {
-        public Grid grid;
+        [CanBeNull] public Grid grid;
         public float dynamicPadding = 0.5f;
 
         private List<Node> _currentPath;
+
+        private void Awake()
+        {
+            grid = FindObjectOfType<Grid>();
+            if (grid == null)
+            {
+                Debug.LogError("No grid found in the scene.");
+            }
+        }
 
         /// <summary>
         /// Finds the shortest path to the target.
@@ -104,7 +113,7 @@ namespace Entity.Pathfinding
             var closedSet = new HashSet<Node>();
 
             // Add the starting node to the open set.
-            var startNode = grid.GetNode(transform.position);
+            var startNode = grid!.GetNode(transform.position);
             // Determine the destination node.
             var destNode = grid.GetNode(target);
 

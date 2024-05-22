@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Entity.Pathfinding
@@ -15,6 +16,11 @@ namespace Entity.Pathfinding
         public float nodeDiameter = 1.0f;
 
         private Node[,] _nodes;
+
+        private void Awake()
+        {
+            InitializeGrid(width, height, unwalkableLayer, walkableLayer, nodeRadius);
+        }
 
         /// <summary>
         /// This creates a grid from scratch.

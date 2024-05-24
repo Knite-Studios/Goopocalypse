@@ -46,7 +46,7 @@ namespace Entity.Pathfinding
             unwalkableLayer = unwalkableLayerMask;
             walkableLayer = walkableLayerMask;
             this.nodeRadius = nodeRadius;
-            nodeDiameter = nodeRadius * 2;
+            // nodeDiameter = nodeRadius * 2;
             _nodes = new Node[width, height];
             InitializeNodes();
         }

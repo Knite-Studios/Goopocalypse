@@ -26,7 +26,7 @@ namespace Entity.Enemies
         {
             InitializeEntityFromLua();
 
-            CurrentHealth = Health;
+            CurrentHealth = MaxHealth;
             Pathfinder = GetComponent<Pathfinder>();
 
             StartCoroutine(FindTarget());
@@ -70,13 +70,6 @@ namespace Entity.Enemies
                     Debug.Log($"Moving to {gameEvent.Target.name}");
                     break;
             }
-        }
-
-        protected override void OnDeath()
-        {
-            // Death logic
-            Debug.Log($"{name} has died.");
-            Destroy(gameObject);
         }
 
         protected virtual IEnumerator FindTarget()

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Attributes;
 using Common.Extensions;
@@ -8,7 +7,6 @@ using Systems.Attributes;
 using GameAttribute = Systems.Attributes.Attribute;
 using UnityEngine;
 using XLua;
-using UnityEngine.Events;
 
 namespace Entity
 {
@@ -16,7 +14,7 @@ namespace Entity
     /// The base class for all entities in the game.
     /// </summary>
     [RequireComponent(typeof(NetworkIdentity))]
-    public abstract class BaseEntity : NetworkBehaviour, IAttributable
+    public abstract class BaseEntity : NetworkBehaviour, IAttributable, IDamageable
     {
         /// <summary>
         /// The Lua script responsible for the logic of the entity.
@@ -32,14 +30,10 @@ namespace Entity
         /// <summary>
         /// The current health of the entity.
         /// </summary>
-        public int CurrentHealth { get; set; }
+        public int CurrentHealth { get; protected set; }
 
         #region Attribute Getters
 
-        /// <summary>
-        /// This is the maximum health of the entity.
-        /// </summary>
-        public int Health => this.GetAttributeValue<int>(GameAttribute.Health);
         public int MaxHealth => this.GetAttributeValue<int>(GameAttribute.Health);
         public float Speed => this.GetAttributeValue<float>(GameAttribute.Speed);
         public int Armor => this.GetAttributeValue<int>(GameAttribute.Armor);
@@ -47,15 +41,13 @@ namespace Entity
         #endregion
 
         /// <summary>
-        /// Event called with the damage dealt to the entity.
-        /// </summary>
-        public event UnityAction<int> OnDamage;
-
-        /// <summary>
         /// Internal function caller for 'SpecialAbility' from Lua.
         /// </summary>
         private LuaSpecialAbility _specialAbility;
 
+        /// <summary>
+        /// Loads the entity's data from a Lua script.
+        /// </summary>
         protected void InitializeEntityFromLua()
         {
             var env = ScriptManager.Environment;
@@ -95,69 +87,42 @@ namespace Entity
         /// </summary>
         public void SpecialAbility() => _specialAbility?.Invoke(this);
 
-        [Command]
-        public virtual void CmdTakeDamage(int damage)
-        {
-            ApplyDamage(damage);
-        }
+        #region IDamageable
 
-        /// <summary>
-        /// Applies damage to the entity's current health.
-        /// </summary>
-        /// <param name="damage">The raw amount to damage.</param>
-        /// <param name="trueDamage">Whether the damage is absolute. (no reductions)</param>
         [Server]
-        private void ApplyDamage(int damage, bool trueDamage = false)
+        public void Damage(int damage, bool trueDamage = false)
         {
             var finalDamage = trueDamage ? damage : Mathf.Max(0, damage - Armor);
+
             CurrentHealth -= finalDamage;
-            OnDamage?.Invoke(damage);
+            OnHealthChange(-finalDamage);
 
-            if (CurrentHealth <= 0)
-            {
-                CurrentHealth = 0;
-                OnDeath();
-            }
+            if (CurrentHealth > 0) return;
 
-            RpcTakeDamage(finalDamage);
-        }
-
-        [ClientRpc]
-        protected virtual void RpcTakeDamage(int amount)
-        {
-            // Client-side effects (animations, sounds, etc.).
-            Debug.Log($"{name} took {amount} damage.");
-        }
-
-        [Command]
-        public virtual void CmdHeal(int amount)
-        {
-            ApplyHeal(amount);
+            CurrentHealth = 0;
+            OnDeath();
         }
 
         [Server]
-        private void ApplyHeal(int amount)
+        public void Heal(int amount)
         {
-            CurrentHealth = Mathf.Min(CurrentHealth + amount, Health);
-            RpcHeal(amount);
+            CurrentHealth = Mathf.Min(CurrentHealth + amount, MaxHealth);
+            OnHealthChange(amount);
         }
 
         [ClientRpc]
-        protected virtual void RpcHeal(int amount)
+        public virtual void OnHealthChange(int amount)
         {
-            // Client-side effects (animations, sounds, etc.).
-            Debug.Log($"{name} healed {amount} health.");
+            Debug.Log($"{gameObject.name}'s health changed by {amount}.");
         }
 
-        protected virtual void OnDeath()
+        [ClientRpc]
+        public virtual void OnDeath()
         {
-            // Death logic
-            Debug.Log($"{name} has died.");
+            // TODO: Play a client-side death animation.
+            Debug.Log($"{gameObject.name} has died.");
         }
 
-        public virtual void Kill()
-        {
-            Destroy(gameObject); // TODO: death animation or other logic
-        }
+        #endregion
     }
 }

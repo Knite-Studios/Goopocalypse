@@ -2,6 +2,7 @@ using Attributes;
 using Cinemachine;
 using Managers;
 using Mirror;
+using Projectiles;
 using Runtime.World;
 using UnityEngine;
 
@@ -103,9 +104,11 @@ namespace Entity.Player
         [Command]
         private void CmdSpawnProjectile(PrefabType projectileType, Vector3 position, Quaternion rotation)
         {
-            var projectile = PrefabManager.Create(projectileType);
+            var projectile = PrefabManager.Create<ProjectileBase>(projectileType);
+            projectile.owner = this;
             projectile.transform.SetPositionAndRotation(position, rotation);
-            NetworkServer.Spawn(projectile);
+
+            NetworkServer.Spawn(projectile.gameObject);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Entity;
-using Entity.Player;
 using Interfaces;
 using Managers;
 using Mirror;
@@ -13,6 +12,8 @@ namespace Projectiles
         [SerializeField] protected float speed = 10.0f;
         [SerializeField] protected float lifetime = 5.0f;
         [SerializeField] protected PrefabType prefabType;
+
+        public BaseEntity owner;
 
         private float _timer;
 
@@ -41,19 +42,14 @@ namespace Projectiles
         protected virtual void OnTriggerEnter2D(Collider2D other)
         {
             if (!isServer) return;
+            if (!other.TryGetComponent(out BaseEntity entity)) return;
 
-            // Check if the other object is the owner.
-            if (other.Has<PlayerController>())
-            {
-                return;
-            }
+            // Check if the projectile should do damage.
+            if (entity == owner) return;
+            if (entity.GetType() == owner.GetType()) return;
 
-            if (other.TryGetComponent(out BaseEntity damageable))
-            {
-                // TODO:
-                // - Apply damage to the entity.
-                // - Filter enemies and heroes.
-            }
+            // Apply damage.
+            entity.CmdDamage(damage);
         }
 
         protected virtual void OnAnimationEnd()

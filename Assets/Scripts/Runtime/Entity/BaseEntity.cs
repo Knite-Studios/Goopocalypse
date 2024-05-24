@@ -30,11 +30,12 @@ namespace Entity
         /// <summary>
         /// The current health of the entity.
         /// </summary>
+        [field: SerializeField, ReadOnly]
         public int CurrentHealth { get; protected set; }
 
         #region Attribute Getters
 
-        public int MaxHealth => this.GetAttributeValue<int>(GameAttribute.Health);
+        public int MaxHealth => this.GetAttributeValue<int>(GameAttribute.MaxHealth);
         public float Speed => this.GetAttributeValue<float>(GameAttribute.Speed);
         public int Armor => this.GetAttributeValue<int>(GameAttribute.Armor);
 
@@ -64,10 +65,11 @@ namespace Entity
         /// <param name="stats">The Lua table containing the base stats.</param>
         protected virtual void ApplyBaseStats(LuaTable stats)
         {
-            this.GetOrCreateAttribute(GameAttribute.Health, stats.Get<int>("health"));
             this.GetOrCreateAttribute(GameAttribute.MaxHealth, stats.Get<int>("max_health"));
             this.GetOrCreateAttribute(GameAttribute.Speed, stats.Get<float>("speed"));
             this.GetOrCreateAttribute(GameAttribute.Armor, stats.Get<int>("armor"));
+
+            CurrentHealth = stats.ContainsKey("health") ? stats.Get<int>("health") : MaxHealth;
         }
 
         /// <summary>
@@ -121,6 +123,8 @@ namespace Entity
         {
             // TODO: Play a client-side death animation.
             Debug.Log($"{gameObject.name} has died.");
+
+            Destroy(gameObject);
         }
 
         #endregion

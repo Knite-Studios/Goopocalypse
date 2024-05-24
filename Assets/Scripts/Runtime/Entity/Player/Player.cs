@@ -30,12 +30,10 @@ namespace Entity.Player
         /// <param name="stats">The Lua table containing the base stats.</param>
         protected override void ApplyBaseStats(LuaTable stats)
         {
+            base.ApplyBaseStats(stats);
+
             Name = stats.Get<string>("name");
-            this.GetOrCreateAttribute(Attribute.Health, stats.Get<int>("health"));
-            this.GetOrCreateAttribute(Attribute.MaxHealth, stats.Get<int>("max_health"));
             this.GetOrCreateAttribute(Attribute.Stamina, stats.Get<float>("stamina"));
-            this.GetOrCreateAttribute(Attribute.Speed, stats.Get<float>("speed"));
-            this.GetOrCreateAttribute(Attribute.Armor, stats.Get<int>("armor"));
             this.GetOrCreateAttribute(Attribute.AreaOfEffect, stats.Get<float>("aoe"));
         }
     }

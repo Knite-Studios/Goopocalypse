@@ -26,7 +26,6 @@ namespace Entity.Enemies
         {
             InitializeEntityFromLua();
 
-            CurrentHealth = MaxHealth;
             Pathfinder = GetComponent<Pathfinder>();
 
             StartCoroutine(FindTarget());

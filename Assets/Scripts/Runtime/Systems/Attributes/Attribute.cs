@@ -5,7 +5,6 @@ namespace Systems.Attributes
     /// </summary>
     public enum Attribute
     {
-        Health,
         MaxHealth,
         Stamina,
         Speed,

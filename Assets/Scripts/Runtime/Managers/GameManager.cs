@@ -21,19 +21,20 @@ namespace Managers
 
         private NetworkManager _networkManager;
 
-        private GameState _state = GameState.Menu;
+        [EventfulProperty] private GameState _state = GameState.Menu;
 
         protected override void OnAwake()
         {
-            // Find references.
-            _networkManager = FindObjectOfType<NetworkManager>();
-
             // Initialize other managers.
+            LobbyManager.Initialize();
             InputManager.Initialize();
             ScriptManager.Initialize();
             WaveManager.Initialize();
             PrefabManager.Initialize();
             EntityManager.Initialize();
+
+            // Find references.
+            _networkManager = FindObjectOfType<NetworkManager>();
         }
 
         private void Start()

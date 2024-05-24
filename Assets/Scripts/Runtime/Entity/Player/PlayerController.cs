@@ -11,7 +11,7 @@ namespace Entity.Player
     {
         [TitleHeader("PlayerController Settings")]
         [SerializeField] private PrefabType projectilePrefab; // Temporary for prototype.
-        [SerializeField] private GameObject indicator; // Temoprarily used for testing.
+        [SerializeField] private GameObject indicator; // Temporarily used for testing.
         [SerializeField] private float projectileSpawnDistance = 1.0f;
         [SerializeField] private float attackInterval = 2.0f;
         [SerializeField] private CinemachineVirtualCamera virtualCameraPrefab;

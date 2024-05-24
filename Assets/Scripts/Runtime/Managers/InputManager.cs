@@ -8,7 +8,6 @@ namespace Managers
 
         public static InputAction Movement => Instance._inputs.Player.Movement;
         public static InputAction Attack => Instance._inputs.Player.Attack;
-        public static InputAction Mouse => Instance._inputs.Player.Mouse;
         public static InputAction Interact => Instance._inputs.Player.Interact;
         public static InputAction Dab => Instance._inputs.Player.Dab;
         public static InputAction Inventory => Instance._inputs.Player.Inventory;

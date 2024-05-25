@@ -111,7 +111,7 @@ namespace Managers
             // Check if the user is already connected.
             if (_networkManager.isNetworkActive)
             {
-                _networkManager.StopClient();
+                return;
             }
 
             var hostAddress = SteamMatchmaking.GetLobbyData(

@@ -14,8 +14,10 @@ declare module "game" {
         static Environment: LuaEnv
         static LuaRoot: string
         static SpecialAbilityFunc: string
+        static BehaviorUpdateFunc: string
         WaveManager: WaveManager
         GameManager: GameManager
+        LobbyManager: LobbyManager
         constructor()
     }
 
@@ -23,11 +25,25 @@ declare module "game" {
         static ScriptEngine: ScriptEngine
         static OnGameStart: () => void
         static OnGameEvent: UnityAction<GameEvent>
-        scriptEngine: ScriptEngine
-        networkManager: NetworkManager
+        static OnWorldGenerated: UnityAction<World>
+        static OnWaveSpawn: UnityAction<number>
+        State: GameState
+        add_OnStateChanged(handler: (a: GameState) => void): void
+        remove_OnStateChanged(handler: (a: GameState) => void): void
+        OnStateChanged: OneJS.Event<(a: GameState) => void>
         constructor()
         StartDebugServer(): void
         JoinDebugServer(address: string, port: number): void
+        StartGame(): void
+    }
+
+    export class LobbyManager extends MonoSingleton<LobbyManager> {
+        static Initialize(): void
+        transport: TransportType
+        constructor()
+        MakeLobby(): void
+        InvitePlayer(): void
+        CmdReady(): void
         StartGame(): void
     }
 

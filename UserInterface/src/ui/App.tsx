@@ -57,6 +57,24 @@ function App() {
             >
                 Join Game (client)
             </Button>
+
+            <Button
+                class={"mb-4 bg-blue-500"}
+                onClick={() => {
+                    game.LobbyManager.MakeLobby();
+                }}
+            >
+                Create Steam Lobby
+            </Button>
+
+            <Button
+                class={"mb-4 bg-blue-500"}
+                onClick={() => {
+                    game.GameManager.StartGame();
+                }}
+            >
+                Start Game
+            </Button>
         </div>
     ) : <div></div>;
 }

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8981350353231899329}
   - component: {fileID: 2445742020371246768}
+  - component: {fileID: 6901030457300921214}
   - component: {fileID: 960628337629287531}
-  - component: {fileID: 63840344964676662}
   - component: {fileID: 3510853793755969180}
   - component: {fileID: 373759063022453756}
   m_Layer: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transport: 1
---- !u!114 &960628337629287531
+--- !u!114 &6901030457300921214
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,19 +58,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5484923494096344816}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef4bffeda13d7a748973ff9204401c07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &63840344964676662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5484923494096344816}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aab4c8111b7c411b9b92cf3dbc5bd4e, type: 3}
+  m_Script: {fileID: 11500000, guid: fcffb4a8e1844fdc84b16539b8069006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
@@ -82,19 +70,19 @@ MonoBehaviour:
   autoConnectClientBuild: 0
   offlineScene: 
   onlineScene: 
-  transport: {fileID: 3510853793755969180}
+  transport: {fileID: 373759063022453756}
   networkAddress: localhost
   maxConnections: 100
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 8490824003797150612, guid: 5fdf15be923673c499acbdc26bd6b723, type: 3}
-  autoCreatePlayer: 1
+  autoCreatePlayer: 0
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 4099676189742912143, guid: 28cf153612d00fd40ac2dad5622bfaf6, type: 3}
-  - {fileID: 1487731616712756, guid: 6bf84799e9bb8bc46890eb79bcbb9664, type: 3}
-  exceptionsDisconnect: 0
+  - {fileID: 5253541422817533265, guid: 33f9d2043f61fdf45ac30e51b969cb94, type: 3}
+  exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2
     bufferLimit: 32
@@ -109,6 +97,18 @@ MonoBehaviour:
   evaluationMethod: 0
   evaluationInterval: 3
   timeInterpolationGui: 0
+--- !u!114 &960628337629287531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5484923494096344816}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4bffeda13d7a748973ff9204401c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3510853793755969180
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -125,6 +125,7 @@ namespace Managers
             // TODO: Implement loading screen.
 
             // Invoke the game start event.
+            Debug.Log("Finished! Starting game...");
             OnGameStart?.Invoke();
         }
 
@@ -186,6 +187,8 @@ namespace Managers
             var world = WaveManager.Instance.World;
             world.seed = req.seed;
             world.Generate();
+
+            NetworkClient.Send(new DoWorldGenC2SRsp());
         }
 
         #endregion

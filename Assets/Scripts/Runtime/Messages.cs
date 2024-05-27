@@ -21,10 +21,19 @@ namespace Runtime
     }
 
     /// <summary>
+    /// Server -> (broadcast) -> Client
+    /// All clients should generate the world when received.
+    /// </summary>
+    public struct DoWorldGenS2CReq : NetworkMessage
+    {
+        public int seed;
+    }
+
+    /// <summary>
     /// Client -> Server
     /// Informs the server that the client has finished generating the world.
     /// </summary>
-    public struct WorldGenDoneC2SNotify : NetworkMessage
+    public struct DoWorldGenC2SRsp : NetworkMessage
     {
 
     }

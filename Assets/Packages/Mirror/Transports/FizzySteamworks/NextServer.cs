@@ -74,7 +74,9 @@ namespace Mirror.FizzySteam
             {
                 if (connToMirrorID.Count >= maxConnections)
                 {
+#if LOG_ENABLED
                     Debug.Log($"Incoming connection {clientSteamID} would exceed max connection count. Rejecting.");
+#endif
 #if UNITY_SERVER
                     SteamGameServerNetworkingSockets.CloseConnection(param.m_hConn, 0, "Max Connection Count", false);
 #else
@@ -91,11 +93,15 @@ namespace Mirror.FizzySteam
                 if ((res = SteamNetworkingSockets.AcceptConnection(param.m_hConn)) == EResult.k_EResultOK)
 #endif
                 {
+#if LOG_ENABLED
                     Debug.Log($"Accepting connection {clientSteamID}");
+#endif
                 }
                 else
                 {
+#if LOG_ENABLED
                     Debug.Log($"Connection {clientSteamID} could not be accepted: {res}");
+#endif
                 }
             }
             else if (param.m_info.m_eState == ESteamNetworkingConnectionState.k_ESteamNetworkingConnectionState_Connected)
@@ -103,8 +109,11 @@ namespace Mirror.FizzySteam
                 int connectionId = nextConnectionID++;
                 connToMirrorID.Add(param.m_hConn, connectionId);
                 steamIDToMirrorID.Add(param.m_info.m_identityRemote.GetSteamID(), connectionId);
+
                 OnConnected?.Invoke(connectionId);
+#if LOG_ENABLED
                 Debug.Log($"Client with SteamID {clientSteamID} connected. Assigning connection id {connectionId}");
+#endif
             }
             else if (param.m_info.m_eState == ESteamNetworkingConnectionState.k_ESteamNetworkingConnectionState_ClosedByPeer || param.m_info.m_eState == ESteamNetworkingConnectionState.k_ESteamNetworkingConnectionState_ProblemDetectedLocally)
             {
@@ -115,7 +124,9 @@ namespace Mirror.FizzySteam
             }
             else
             {
+#if LOG_ENABLED
                 Debug.Log($"Connection {clientSteamID} state changed: {param.m_info.m_eState}");
+#endif
             }
         }
 
@@ -128,15 +139,20 @@ namespace Mirror.FizzySteam
             SteamNetworkingSockets.CloseConnection(socket, 0, "Graceful disconnect", false);
 #endif
             connToMirrorID.Remove(connId);
+
             steamIDToMirrorID.Remove(connId);
+#if LOG_ENABLED
             Debug.Log($"Client with ConnectionID {connId} disconnected.");
+#endif
         }
 
         public void Disconnect(int connectionId)
         {
             if (connToMirrorID.TryGetValue(connectionId, out HSteamNetConnection conn))
             {
+#if LOG_ENABLED
                 Debug.Log($"Connection id {connectionId} disconnected.");
+#endif
 #if UNITY_SERVER
                 SteamGameServerNetworkingSockets.CloseConnection(conn, 0, "Disconnected by server", false);
 #else
@@ -197,7 +213,9 @@ namespace Mirror.FizzySteam
 
                 if (res == EResult.k_EResultNoConnection || res == EResult.k_EResultInvalidParam)
                 {
+#if LOG_ENABLED
                     Debug.Log($"Connection to {connectionId} was lost.");
+#endif
                     InternalDisconnect(connectionId, conn);
                 }
                 else if (res != EResult.k_EResultOK)

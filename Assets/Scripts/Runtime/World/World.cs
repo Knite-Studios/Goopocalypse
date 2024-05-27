@@ -45,9 +45,8 @@ namespace Runtime.World
             _grid.nodeRadius = nodeRadius;
             _grid.nodeDiameter = _nodeDiameter;
 
-            // Generate a random offset for the tiles.
+            // Set the world seed.
             if (seed == -1) seed = (int) DateTime.Now.Ticks;
-            _tileOffset = new Random(seed).Next(0, 1000);
         }
 
         private void Start()
@@ -67,6 +66,8 @@ namespace Runtime.World
         /// </summary>
         public void Generate()
         {
+            _tileOffset = new Random(seed).Next(0, 1000);
+
             var worldRoot = gameObject.transform;
             // Clear the world.
             worldRoot.transform.Cast<Transform>()

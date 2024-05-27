@@ -111,12 +111,6 @@ namespace Managers
                 NetworkServer.AddPlayerForConnection(player, playerObject);
             }
 
-            // Spawn the wave manager.
-            if (NetworkServer.activeHost)
-            {
-                NetworkServer.Spawn(WaveManager.Instance.gameObject);
-            }
-
             // Generate the world.
             _loadedPlayers.Clear();
             _loadTask = new TaskCompletionSource<object>();

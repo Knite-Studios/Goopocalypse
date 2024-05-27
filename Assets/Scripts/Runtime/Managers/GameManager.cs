@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Mirror;
 using OneJS;
+using Runtime;
 using Runtime.World;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace Managers
 {
@@ -20,6 +24,9 @@ namespace Managers
         public static ScriptEngine ScriptEngine => FindObjectOfType<ScriptEngine>();
 
         private NetworkManager _networkManager;
+        private readonly List<NetworkConnectionToClient> _loadedPlayers = new();
+
+        private TaskCompletionSource<object> _loadTask;
 
         [EventfulProperty] private GameState _state = GameState.Menu;
 
@@ -35,6 +42,12 @@ namespace Managers
 
             // Find references.
             _networkManager = FindObjectOfType<NetworkManager>();
+
+            // Register packet handlers.
+            NetworkServer.RegisterHandler<EnterSceneDoneC2SNotify>(OnEnterSceneDone);
+            NetworkServer.RegisterHandler<WorldGenDoneC2SNotify>(OnWorldGenDone);
+
+            NetworkClient.RegisterHandler<TransferSceneS2CNotify>(OnTransferScene);
         }
 
         private void Start()
@@ -68,7 +81,114 @@ namespace Managers
         /// Method for JavaScript use.
         /// Starts the game by invoking the event.
         /// </summary>
-        public void StartGame() => OnGameStart.Invoke();
+        public async void StartGame()
+        {
+            if (!NetworkServer.active) return;
+            if (!NetworkServer.activeHost)
+            {
+                Debug.LogWarning("Client called StartGame method. Ignoring.");
+                return;
+            }
+
+            // Close Steam lobby.
+            LobbyManager.Instance.CloseLobby();
+
+            // Transfer all players to game scene.
+            _loadedPlayers.Clear();
+            _loadTask = new TaskCompletionSource<object>();
+
+            NetworkServer.SendToAll(new TransferSceneS2CNotify
+            {
+                sceneId = Scenes.Game
+            });
+
+            // Wait for players to finish loading.
+            Debug.Log("Waiting for players to load scene...");
+            await _loadTask.Task;
+
+            // Spawn all player prefabs.
+            foreach (var player in _loadedPlayers)
+            {
+                var playerObject = Instantiate(_networkManager.playerPrefab);
+                NetworkServer.AddPlayerForConnection(player, playerObject);
+            }
+
+            // Spawn the wave manager.
+            if (NetworkServer.activeHost)
+            {
+                NetworkServer.Spawn(WaveManager.Instance.gameObject);
+            }
+
+            // Synchronize the world seed.
+            WaveManager.Instance.RpcSetWorldSeed();
+            // Generate the world.
+            _loadedPlayers.Clear();
+            _loadTask = new TaskCompletionSource<object>();
+
+            WaveManager.Instance.RpcGenerateWorld();
+
+            // Wait for players to finish generating the world.
+            Debug.Log("Waiting for players to generate world...");
+            await _loadTask.Task;
+
+            // Dismiss loading screen.
+            // TODO: Implement loading screen.
+
+            // Invoke the game start event.
+            OnGameStart?.Invoke();
+        }
+
+        #region Packet Handlers
+
+        /// <summary>
+        /// Invoked when the server is notified that the client has entered the scene.
+        /// </summary>
+        private static void OnEnterSceneDone(
+            NetworkConnectionToClient conn,
+            EnterSceneDoneC2SNotify notify)
+        {
+            var instance = Instance;
+
+            instance._loadedPlayers.Add(conn);
+            Debug.Log($"Player {conn.address} finished loading scene.");
+
+            // Check if all players have finished loading.
+            if (instance._loadedPlayers.Count == NetworkServer.connections.Count)
+            {
+                instance._loadTask.SetResult(null);
+            }
+        }
+
+        /// <summary>
+        /// Invoked when the server is notified that the client has finished generating the world.
+        /// </summary>
+        private static void OnWorldGenDone(
+            NetworkConnectionToClient conn,
+            WorldGenDoneC2SNotify notify)
+        {
+            var instance = Instance;
+
+            instance._loadedPlayers.Add(conn);
+            Debug.Log($"Player {conn.address} finished generating world.");
+
+            // Check if all players have finished generating the world.
+            if (instance._loadedPlayers.Count == NetworkServer.connections.Count)
+            {
+                instance._loadTask.SetResult(null);
+            }
+        }
+
+        /// <summary>
+        /// Invoked when the client is requested to transfer scenes.
+        /// </summary>
+        private static void OnTransferScene(TransferSceneS2CNotify notify)
+        {
+            var operation = SceneManager.LoadSceneAsync(notify.sceneId);
+            operation.completed += _ => NetworkClient.Send(new EnterSceneDoneC2SNotify());
+            // TODO: Display scene loading screen.
+        }
+
+        #endregion
     }
 
     public struct GameEvent

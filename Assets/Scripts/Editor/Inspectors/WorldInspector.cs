@@ -14,7 +14,7 @@ namespace Editor
             if (GUILayout.Button("Generate World"))
             {
                 var world = target as World;
-                world!.Initialize();
+                world!.Generate();
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Common.Extensions;
 using kcp2k;
 using Mirror;
@@ -12,6 +13,9 @@ namespace Managers
     public class LobbyManager : MonoSingleton<LobbyManager>
     {
         private const string LobbyConnectKey = "HostSteamId";
+
+        public static Action<NetworkConnectionToClient> OnPlayerConnected;
+        public static Action<NetworkConnectionToClient> OnPlayerDisconnected;
 
         /// <summary>
         /// Special singleton initializer method.
@@ -38,6 +42,15 @@ namespace Managers
 
         #endregion
 
+        #region Server Fields
+
+        /// <summary>
+        /// This list is inclusive of the host player.
+        /// </summary>
+        private List<NetworkIdentity> _players = new();
+
+        #endregion
+
         protected override void OnAwake()
         {
             _networkManager = GetComponent<NetworkManager>();
@@ -50,6 +63,7 @@ namespace Managers
             }
 #endif
 
+            // Prepare network transport.
             _networkManager.transport = transport switch
             {
                 TransportType.Kcp => gameObject.GetComponent<KcpTransport>(),
@@ -65,7 +79,31 @@ namespace Managers
 
             _networkManager.transport.enabled = true;
             _networkManager.enabled = true;
+
+            // Add callbacks for Mirror events.
+            OnPlayerConnected += OnConnected;
+            OnPlayerDisconnected += OnDisconnected;
         }
+
+        #region Mirror Callbacks
+
+        /// <summary>
+        /// Invoked when a client connects to the server.
+        /// </summary>
+        private void OnConnected(NetworkConnectionToClient conn)
+        {
+            _players.Add(conn.identity);
+        }
+
+        /// <summary>
+        /// Invoked when a client disconnects from the server.
+        /// </summary>
+        private void OnDisconnected(NetworkConnectionToClient conn)
+        {
+            _players.Remove(conn.identity);
+        }
+
+        #endregion
 
         #region Steam Callbacks
 
@@ -92,7 +130,11 @@ namespace Managers
                 _lobbyId, LobbyConnectKey,
                 SteamUser.GetSteamID().ToString());
 
-            _networkManager.StartHost();
+            if (!NetworkServer.active)
+            {
+                // Only start hosting if the server isn't running.
+                _networkManager.StartHost();
+            }
         }
 
         /// <summary>
@@ -123,6 +165,32 @@ namespace Managers
 
         #endregion
 
+        #region Network Callbacks
+
+        /// <summary>
+        /// Informs the server that the player is ready.
+        /// </summary>
+        // [Command]
+        private void CmdReady()
+        {
+            // TODO: Keep track of how many players are ready.
+            // Once all players are ready, give the server the go-ahead to start the game.
+        }
+
+        /// <summary>
+        /// Invoked by the server to prepare the game.
+        /// Creates player objects and changes to the main game scene.
+        /// </summary>
+        // [ClientRpc]
+        private void StartGame()
+        {
+            // Spawn the player prefab.
+        }
+
+        #endregion
+
+        #region Lobby Methods
+
         /// <summary>
         /// Creates a lobby for players to join.
         /// </summary>
@@ -137,6 +205,26 @@ namespace Managers
                     break;
                 case TransportType.Kcp:
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        /// <summary>
+        /// Closes an open lobby, if it exists.
+        /// </summary>
+        public void CloseLobby()
+        {
+            switch (transport)
+            {
+                case TransportType.Steam:
+                    if (!_lobbyId.IsValid()) return;
+                    SteamMatchmaking.SetLobbyJoinable(_lobbyId, false);
+                    break;
+                case TransportType.Kcp:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
@@ -154,25 +242,7 @@ namespace Managers
             // TODO: Show IP and port to connect.
         }
 
-        /// <summary>
-        /// Informs the server that the player is ready.
-        /// </summary>
-        // [Command]
-        public void CmdReady()
-        {
-            // TODO: Keep track of how many players are ready.
-            // Once all players are ready, give the server the go-ahead to start the game.
-        }
-
-        /// <summary>
-        /// Invoked by the server to prepare the game.
-        /// Creates player objects and changes to the main game scene.
-        /// </summary>
-        // [ClientRpc]
-        public void StartGame()
-        {
-            // Spawn the player prefab.
-        }
+        #endregion
     }
 
     public enum TransportType

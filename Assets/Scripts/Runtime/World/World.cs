@@ -3,17 +3,15 @@ using System.Linq;
 using Attributes;
 using Entity.Pathfinding;
 using Managers;
-using Mirror;
 using UnityEngine;
 using Grid = Entity.Pathfinding.Grid;
 using Random = System.Random;
 
 namespace Runtime.World
 {
-    [RequireComponent(typeof(NetworkIdentity))]
-    public class World : NetworkBehaviour
+    public class World : MonoBehaviour
     {
-        [SerializeField, SyncVar] private int seed = 1234567890;
+        [SerializeField] public int seed = 1234567890;
         [SerializeField] private bool generateOnStart;
 
         [TitleHeader("World Settings")]
@@ -56,17 +54,7 @@ namespace Runtime.World
         {
             if (!generateOnStart) return;
 
-            Initialize();
-        }
-
-        private void OnEnable()
-        {
-            GameManager.OnGameStart += Initialize;
-        }
-
-        private void OnDisable()
-        {
-            GameManager.OnGameStart -= Initialize;
+            Generate();
         }
 
         /// <summary>
@@ -77,7 +65,7 @@ namespace Runtime.World
         /// <summary>
         /// Initialize the grid.
         /// </summary>
-        public void Initialize()
+        public void Generate()
         {
             var worldRoot = gameObject.transform;
             // Clear the world.
@@ -140,8 +128,6 @@ namespace Runtime.World
             center = new Vector2(
                 Mathf.RoundToInt(width / 2f),
                 Mathf.RoundToInt(height / 2f));
-
-            if (!isServer) return;
 
             // Update the pathfinding grid.
             _grid.InitializeNodes(nodes);

@@ -57,4 +57,13 @@ namespace Runtime
     {
 
     }
+
+    /// <summary>
+    /// Server -> (broadcast) -> Client
+    /// Informs all clients that the game has started.
+    /// </summary>
+    public struct GameStartS2CNotify : NetworkMessage
+    {
+
+    }
 }

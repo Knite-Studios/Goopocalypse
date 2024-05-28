@@ -50,6 +50,7 @@ namespace Managers
             NetworkClient.RegisterHandler<TransferSceneS2CNotify>(OnTransferScene);
             NetworkClient.RegisterHandler<DoWorldGenS2CReq>(OnWorldGenReq);
             NetworkClient.RegisterHandler<PlayerLoginSuccessS2CNotify>(OnLoginSuccess);
+            NetworkClient.RegisterHandler<GameStartS2CNotify>(OnNetworkGameStart);
         }
 
         private void Start()
@@ -127,7 +128,7 @@ namespace Managers
 
             // Invoke the game start event.
             Debug.Log("Finished! Starting game...");
-            OnGameStart?.Invoke();
+            NetworkServer.SendToAll(new GameStartS2CNotify());
         }
 
         #region Packet Handlers
@@ -200,6 +201,12 @@ namespace Managers
             Instance.State = GameState.Lobby;
             Debug.Log("Client finished connecting to the server.");
         }
+
+        /// <summary>
+        /// Invoked when the server notifies the client that the game has started.
+        /// </summary>
+        private static void OnNetworkGameStart(GameStartS2CNotify notify)
+            => OnGameStart?.Invoke();
 
         #endregion
     }

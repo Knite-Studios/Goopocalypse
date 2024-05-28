@@ -13,29 +13,57 @@ function LobbyScreen({ game }: { game: ScriptManager }) {
     const [players, _]: [PlayerSession[], any] = useEventfulState(LobbyManager, "Players");
 
     return (
-        <div>
-            <div>
-                { players[0] && (
-                    <image
-                        image={players[0].profileIcon}
-                    />
-                ) }
+        <div style={{
+            display: "Flex",
+            flexDirection: "Column",
+            alignItems: "Center",
+            justifyContent: "Center",
+            height: "100%"
+        }}>
+            <div style={{
+                display: "Flex",
+                flexDirection: "Row",
+                justifyContent: "Center",
+                alignItems: "Center",
+                width: "100%",
+                flexWrap: "Wrap"
+            }}>
 
-                <Text size={Size.Large}>
-                    {players[0] != null ? players[0].userId?.toString() : "No Player"}
-                </Text>
-            </div>
+                <div style={{
+                    display: "Flex",
+                    alignItems: "Center",
+                    marginLeft: 50,
+                    marginRight: 50
+                }}>
+                    { players[0] && (
+                        <image
+                            image={players[0].profileIcon}
+                        />
+                    ) }
 
-            <div>
-                { players[1] && (
-                    <image
-                        image={players[1].profileIcon}
-                    />
-                ) }
+                    <Text size={Size.Large}>
+                        {players[0] != null ? players[0].userId?.toString() : "No Player"}
+                    </Text>
+                </div>
 
-                <Text size={Size.Large}>
-                    {players[1] != null ? players[1].userId?.toString() : "No Player"}
-                </Text>
+                <div style={{
+                        display: "Flex",
+                        flexDirection: "Column",
+                        alignItems: "Center",
+                        marginLeft: 50,
+                        marginRight: 50
+                    }}>
+                        { players[1] && (
+                            <image
+                                image={players[1].profileIcon}
+                            />
+                        ) }
+
+                        <Text size={Size.Large}>
+                            {players[1] != null ? players[1].userId?.toString() : "No Player"}
+                        </Text>
+                </div>
+
             </div>
 
             <Button

@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: -7773854495348174623}
   - component: {fileID: 6894903057209637159}
   m_Layer: 3
-  m_Name: Player
+  m_Name: Player_Buddie
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -231,7 +231,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.4156766, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -256,7 +256,8 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  luaScript: players/fwend
+  luaScript: players/buddie
+  <CurrentHealth>k__BackingField: 0
   projectilePrefab: 5
   indicator: {fileID: 8207353764106387348}
   projectileSpawnDistance: 1
@@ -309,7 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  _assetId: 3440508282
+  _assetId: 1061423710
   serverOnly: 0
   visibility: 0
   hasSpawned: 0

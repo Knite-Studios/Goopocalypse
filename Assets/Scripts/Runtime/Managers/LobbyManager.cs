@@ -97,6 +97,8 @@ namespace Managers
                 return;
             }
 
+            Debug.Log($"Client {conn.address} connected.");
+
             Texture2D profileIcon = null;
             if (transport == TransportType.Steam)
             {

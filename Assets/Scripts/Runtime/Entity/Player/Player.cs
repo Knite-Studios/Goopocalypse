@@ -46,7 +46,11 @@ namespace Entity.Player
     [Serializable]
     public struct PlayerSession
     {
-        public NetworkConnectionToClient connection;
+        /// <summary>
+        /// This is only applicable on the server.
+        /// </summary>
+        [CanBeNull, NonSerialized] public NetworkConnectionToClient connection;
+
         public ulong userId;
         public PlayerRole role;
         [CanBeNull] public Texture2D profileIcon;

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using Common;
 using Common.Extensions;
 using Entity.Player;
@@ -8,6 +7,7 @@ using kcp2k;
 using Mirror;
 using Mirror.FizzySteam;
 using OneJS;
+using Runtime;
 using Steamworks;
 using UnityEngine;
 
@@ -81,6 +81,9 @@ namespace Managers
             // Add callbacks for Mirror events.
             OnPlayerConnected += OnConnected;
             OnPlayerDisconnected += OnDisconnected;
+
+            // Register packet handlers.
+            NetworkClient.RegisterHandler<PlayersListS2CNotify>(OnPlayersList);
         }
 
         #region Mirror Callbacks
@@ -136,6 +139,11 @@ namespace Managers
                 profileIcon = profileIcon
             });
             OnPlayersChanged?.Invoke(_players);
+
+            // Notify all players of the change in player list.
+            NetworkServer.SendToAll(new PlayersListS2CNotify { players = _players });
+            // Inform the client that the login was successful.
+            conn.Send(new PlayerLoginSuccessS2CNotify());
         }
 
         /// <summary>
@@ -146,6 +154,17 @@ namespace Managers
             _players.Remove(_players.Find(
                 p => p.connection == conn));
         }
+
+        #endregion
+
+        #region Packet Handlers
+
+        /// <summary>
+        /// Sets the list of players connected to the server.
+        /// </summary>
+        /// <param name="notify"></param>
+        private static void OnPlayersList(PlayersListS2CNotify notify)
+            => Instance._players = notify.players;
 
         #endregion
 

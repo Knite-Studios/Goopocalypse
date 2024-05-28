@@ -1,4 +1,6 @@
-﻿using Mirror;
+﻿using System.Collections.Generic;
+using Entity.Player;
+using Mirror;
 
 namespace Runtime
 {
@@ -34,6 +36,24 @@ namespace Runtime
     /// Informs the server that the client has finished generating the world.
     /// </summary>
     public struct DoWorldGenC2SRsp : NetworkMessage
+    {
+
+    }
+
+    /// <summary>
+    /// Server -> (broadcast) -> Client
+    /// Informs all clients of the players connected.
+    /// </summary>
+    public struct PlayersListS2CNotify : NetworkMessage
+    {
+        public List<PlayerSession> players;
+    }
+
+    /// <summary>
+    /// Server -> Client
+    /// Informs a client that the login was successful.
+    /// </summary>
+    public struct PlayerLoginSuccessS2CNotify : NetworkMessage
     {
 
     }

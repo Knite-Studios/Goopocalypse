@@ -49,6 +49,7 @@ namespace Managers
 
             NetworkClient.RegisterHandler<TransferSceneS2CNotify>(OnTransferScene);
             NetworkClient.RegisterHandler<DoWorldGenS2CReq>(OnWorldGenReq);
+            NetworkClient.RegisterHandler<PlayerLoginSuccessS2CNotify>(OnLoginSuccess);
         }
 
         private void Start()
@@ -189,6 +190,15 @@ namespace Managers
             world.Generate();
 
             NetworkClient.Send(new DoWorldGenC2SRsp());
+        }
+
+        /// <summary>
+        /// Invoked when the server notifies the client that the login was successful.
+        /// </summary>
+        private static void OnLoginSuccess(PlayerLoginSuccessS2CNotify notify)
+        {
+            Instance._state = GameState.Lobby;
+            Debug.Log("Client finished connecting to the server.");
         }
 
         #endregion

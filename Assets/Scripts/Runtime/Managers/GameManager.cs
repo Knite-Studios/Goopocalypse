@@ -197,7 +197,7 @@ namespace Managers
         /// </summary>
         private static void OnLoginSuccess(PlayerLoginSuccessS2CNotify notify)
         {
-            Instance._state = GameState.Lobby;
+            Instance.State = GameState.Lobby;
             Debug.Log("Client finished connecting to the server.");
         }
 

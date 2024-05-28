@@ -1,6 +1,7 @@
 using System.Collections;
 using Mirror;
 using OneJS;
+using Runtime;
 using Runtime.World;
 using UnityEngine;
 
@@ -26,16 +27,38 @@ namespace Managers
         private World _world;
         private bool _gameRunning;
 
+        protected override void OnAwake()
+        {
+            NetworkClient.RegisterHandler<WaveInfoS2CNotify>(OnWaveInfo);
+        }
+
         private void Start()
         {
             GameManager.OnGameStart += OnGameStart;
         }
+
+        #region Packet Handlers
+
+        /// <summary>
+        /// Invoked when the server notifies the clients of the current wave info.
+        /// </summary>
+        private static void OnWaveInfo(WaveInfoS2CNotify notify)
+        {
+            // Do not run if we are the host.
+            if (NetworkServer.activeHost) return;
+
+            Instance.WaveCount = notify.wave;
+            Instance.MatchTimer = notify.timer;
+        }
+
+        #endregion
 
         /// <summary>
         /// Invoked when the game starts.
         /// </summary>
         private void OnGameStart()
         {
+            // Do not run if we are a client.
             if (!NetworkServer.activeHost) return;
 
             _gameRunning = true;
@@ -54,6 +77,10 @@ namespace Managers
                 SpawnWave();
                 WaveCount++;
             }
+
+            // Broadcast wave info.
+            NetworkServer.SendToAll(new WaveInfoS2CNotify
+                { wave = WaveCount, timer = MatchTimer });
         }
 
         /// <summary>

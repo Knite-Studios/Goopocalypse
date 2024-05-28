@@ -66,4 +66,14 @@ namespace Runtime
     {
 
     }
+
+    /// <summary>
+    /// Server -> (broadcast) -> Client
+    /// Informs all clients of the current wave data.
+    /// </summary>
+    public struct WaveInfoS2CNotify : NetworkMessage
+    {
+        public int wave;
+        public long timer;
+    }
 }

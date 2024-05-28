@@ -62,6 +62,8 @@ internal static class AutoSaveExtension
     /// </summary>
     private static void Save()
     {
+        if (EditorApplication.isPlaying) return;
+
         // Save the open scenes and any assets.
         EditorSceneManager.SaveOpenScenes();
         AssetDatabase.SaveAssets();

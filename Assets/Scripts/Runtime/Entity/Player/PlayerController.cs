@@ -67,7 +67,7 @@ namespace Entity.Player
 
         private void OnWorldGenerated(World world)
         {
-            transform.SetPositionAndRotation(world.center, Quaternion.identity);
+            transform.SetPositionAndRotation(world.spawnPoint, Quaternion.identity);
         }
 
         private void HandleMovement()

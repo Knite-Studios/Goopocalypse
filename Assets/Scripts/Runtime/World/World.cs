@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Attributes;
+using Common;
 using Entity.Pathfinding;
 using Managers;
 using UnityEngine;
@@ -25,7 +26,7 @@ namespace Runtime.World
         public LayerMask walkable;
         public float nodeRadius = 0.5f;
 
-        [NonSerialized] public Vector2 center;
+        [NonSerialized] public Vector2 center, spawnPoint;
 
         private Grid _grid;
         private float _nodeDiameter;
@@ -60,6 +61,17 @@ namespace Runtime.World
         /// Determines if a point is walkable.
         /// </summary>
         public bool IsWalkable(Vector2 position) => _grid.GetNode(position).isWalkable;
+
+        /// <summary>
+        /// Determines if the given spawn point is valid.
+        /// </summary>
+        public bool IsValidSpawn(Vector2 spawn)
+        {
+            if (spawn.x < 0 || spawn.x >= width ||
+                spawn.y < 0 || spawn.y >= height)
+                return false;
+            return IsWalkable(spawn);
+        }
 
         /// <summary>
         /// Initialize the grid.
@@ -132,6 +144,11 @@ namespace Runtime.World
 
             // Update the pathfinding grid.
             _grid.InitializeNodes(nodes);
+
+            // Determine a player spawn point.
+            spawnPoint = IsValidSpawn(center) ?
+                center : MathUtilities.FindValidSpawn(
+                    center, 4f, IsValidSpawn);
 
             // Invoke world generation event.
             GameManager.OnWorldGenerated?.Invoke(this);

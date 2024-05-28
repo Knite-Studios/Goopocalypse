@@ -1,14 +1,34 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEditor.SceneManagement;
-using UnityEngine;
+using static System.Reflection.BindingFlags;
 
 /// <summary>
 /// This static class registers the autosave methods when playmode state changes
 /// in the editor.
 /// </summary>
 [InitializeOnLoad]
-static class AutoSaveExtension
+internal static class AutoSaveExtension
 {
+    /// <summary>
+    /// Property for the UnityEditor focus changed event.
+    /// </summary>
+    private static Action<bool> UnityEditorFocusChanged
+    {
+        get
+        {
+            var fieldInfo = typeof(EditorApplication)
+                .GetField("focusChanged", Static | NonPublic);
+            return (Action<bool>)fieldInfo!.GetValue(null);
+        }
+        set
+        {
+            var fieldInfo = typeof(EditorApplication)
+                .GetField("focusChanged", Static | NonPublic);
+            fieldInfo?.SetValue(null, value);
+        }
+    }
+
     /// <summary>
     /// Static constructor that gets called when Unity fires up or recompiles the scripts.
     /// (triggered by the InitializeOnLoad attribute above)
@@ -20,22 +40,32 @@ static class AutoSaveExtension
         // subscribe to the playModeStateChanged event more than once.
         EditorApplication.playModeStateChanged -= AutoSaveWhenPlaymodeStarts;
         EditorApplication.playModeStateChanged += AutoSaveWhenPlaymodeStarts;
+
+        UnityEditorFocusChanged -= _ => Save();
+        UnityEditorFocusChanged += _ => Save();
     }
 
     /// <summary>
-    /// This method saves open scenes and other assets when entering playmode. 
+    /// This method saves open scenes and other assets when entering playmode.
     /// </summary>
     /// <param name="playModeStateChange">The enum that specifies how the playmode is changing in the editor.</param>
     private static void AutoSaveWhenPlaymodeStarts(PlayModeStateChange playModeStateChange)
     {
         // If we're exiting edit mode (entering play mode)
-        if(playModeStateChange == PlayModeStateChange.ExitingEditMode)
-        {
-            Debug.Log("EckTechGames.AutoSave - Saving Scenes and Assets");
+        if (playModeStateChange != PlayModeStateChange.ExitingEditMode) return;
 
-            // Save the open scenes and any assets.
-            EditorSceneManager.SaveOpenScenes();
-            AssetDatabase.SaveAssets();
-        }
+        Save();
+    }
+
+    /// <summary>
+    /// Saves the open scenes and any assets.
+    /// </summary>
+    private static void Save()
+    {
+        if (EditorApplication.isPlaying) return;
+
+        // Save the open scenes and any assets.
+        EditorSceneManager.SaveOpenScenes();
+        AssetDatabase.SaveAssets();
     }
 }

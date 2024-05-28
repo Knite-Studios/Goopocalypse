@@ -1,8 +1,8 @@
-﻿using Entity.Enemies;
+﻿using Common;
+using Entity.Enemies;
 using Managers;
 using Mirror;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Runtime.World
 {
@@ -30,11 +30,7 @@ namespace Runtime.World
         /// </summary>
         private bool IsValidSpawn(Vector2 point)
         {
-            // Check if the point is outside of the world's bounds.
-            if (point.x < 0 || point.x >= _world.width ||
-                point.y < 0 || point.y >= _world.height)
-                return false;
-            return _world.IsWalkable(point);
+            return _world.IsValidSpawn(point);
         }
 
         /// <summary>
@@ -47,24 +43,17 @@ namespace Runtime.World
             {
                 // Determine where to spawn the enemy.
                 var radius = _camera.orthographicSize * 2;
-
-                Vector3 spawnPoint;
-                while (true)
-                {
-                    var point = (Random.insideUnitCircle.normalized * radius).Round();
-                    spawnPoint = point + _world.center;
-
-                    if (IsValidSpawn(spawnPoint)) break;
-                }
+                var spawnPoint = MathUtilities.FindValidSpawn(
+                    _world.center, radius, IsValidSpawn);
 
                 // Spawn an enemy.
                 var enemy = PrefabManager.Create<Enemy>(PrefabType.MeleeEnemy);
-                enemy.gameObject.transform.SetPositionAndRotation(
-                    spawnPoint, Quaternion.identity);
-                // Target the player.
-                // enemy.Target = EntityManager.Player;
 
-                NetworkServer.Spawn(enemy.gameObject);
+                GameObject enemyObject;
+                (enemyObject = enemy.gameObject).transform.SetPositionAndRotation(
+                    spawnPoint, Quaternion.identity);
+
+                NetworkServer.Spawn(enemyObject);
             }
         }
     }

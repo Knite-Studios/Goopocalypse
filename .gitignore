@@ -77,5 +77,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-# Build folder
+# Build Materials
 Build/
+ScriptsBundleZip.bytes

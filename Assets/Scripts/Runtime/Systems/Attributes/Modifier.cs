@@ -30,8 +30,8 @@ namespace Systems.Attributes
         {
             return Operation switch
             {
-                Operation.Add => Utilities.Add(baseValue, Value),
-                Operation.Multiply => Utilities.Multiply(baseValue, Value),
+                Operation.Add => MathUtilities.Add(baseValue, Value),
+                Operation.Multiply => MathUtilities.Multiply(baseValue, Value),
                 _ => throw new InvalidOperationException("Unsupported operation")
             };
         }

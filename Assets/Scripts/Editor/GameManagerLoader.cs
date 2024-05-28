@@ -1,8 +1,10 @@
 ﻿using System;
 #if UNITY_EDITOR
+using Managers;
 using UnityEditor;
 #endif
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Editor
 {
@@ -29,11 +31,14 @@ namespace Editor
         {
             if (evt != PlayModeStateChange.EnteredPlayMode) return;
 
+            // Check if a GameManager already exists in the scene.
+            if (Object.FindObjectOfType<GameManager>() != null) return;
+
             // Add the game manager to the scene.
             var prefab = Resources.Load<GameObject>("Prefabs/Managers/GameManager");
             if (prefab == null) throw new Exception("Missing GameManager prefab!");
 
-            var instance = UnityEngine.Object.Instantiate(prefab);
+            var instance = Object.Instantiate(prefab);
             if (instance == null) throw new Exception("Failed to instantiate GameManager prefab!");
 
             instance.name = "Managers.GameManager (Singleton)";
@@ -46,6 +51,9 @@ public static class GameManagerLoader
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void InitializeGameManager()
     {
+        // Check if a GameManager already exists in the scene.
+        if (Object.FindObjectOfType<GameManager>() != null) return;
+
         // Add the game manager to the scene.
         var prefab = Resources.Load<GameObject>("Prefabs/Managers/GameManager");
         if (prefab == null) throw new Exception("Missing GameManager prefab!");

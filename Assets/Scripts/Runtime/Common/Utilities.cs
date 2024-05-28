@@ -1,9 +1,10 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Common
 {
-    public static class Utilities
+    public static class MathUtilities
     {
         /// <summary>
         /// Attempts to reflectively add two values.
@@ -27,6 +28,29 @@ namespace Common
                 ? (T) type.GetMethod("op_Multiply")!
                     .Invoke(null, new object[] { a, b })
                 : throw new NotSupportedException("Multiplication is not supported for this type");
+        }
+
+        /// <summary>
+        /// Finds a valid spawning point within a radius of the origin.
+        /// </summary>
+        /// <param name="origin">The origin point.</param>
+        /// <param name="radius">The radius to search.</param>
+        /// <param name="isValidSpawn">The function to use to check the spawn validity.</param>
+        /// <returns></returns>
+        public static Vector2 FindValidSpawn(
+            Vector2 origin, float radius,
+            Func<Vector2, bool> isValidSpawn)
+        {
+            Vector3 spawnPoint;
+            while (true)
+            {
+                var point = (Random.insideUnitCircle.normalized * radius).Round();
+                spawnPoint = point + origin;
+
+                if (isValidSpawn(spawnPoint)) break;
+            }
+
+            return spawnPoint;
         }
     }
 

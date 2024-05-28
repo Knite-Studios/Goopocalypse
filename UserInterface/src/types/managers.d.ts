@@ -38,13 +38,18 @@ declare module "game" {
     }
 
     export class LobbyManager extends MonoSingleton<LobbyManager> {
+        static OnPlayerConnected: (a: NetworkConnectionToClient) => void
+        static OnPlayerDisconnected: (a: NetworkConnectionToClient) => void
         static Initialize(): void
+        Players: List<PlayerSession>
+        add_OnPlayersChanged(handler: (a: List<PlayerSession>) => void): void
+        remove_OnPlayersChanged(handler: (a: List<PlayerSession>) => void): void
+        OnPlayersChanged: OneJS.Event<(a: List<PlayerSession>) => void>
         transport: TransportType
         constructor()
         MakeLobby(): void
+        CloseLobby(): void
         InvitePlayer(): void
-        CmdReady(): void
-        StartGame(): void
     }
 
     export const game: ScriptManager;

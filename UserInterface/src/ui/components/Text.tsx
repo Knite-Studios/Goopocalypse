@@ -15,7 +15,7 @@ interface IProps {
     bold?: boolean;
     italic?: boolean;
 
-    children: string;
+    children: string | string[] | undefined;
 }
 
 function Text(props: IProps) {

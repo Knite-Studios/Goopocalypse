@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using Common;
 using Common.Extensions;
+using Entity.Player;
 using kcp2k;
 using Mirror;
 using Mirror.FizzySteam;
+using OneJS;
 using Steamworks;
 using UnityEngine;
 
 namespace Managers
 {
     [RequireComponent(typeof(NetworkManager))]
-    public class LobbyManager : MonoSingleton<LobbyManager>
+    public partial class LobbyManager : MonoSingleton<LobbyManager>
     {
         private const string LobbyConnectKey = "HostSteamId";
 
@@ -36,18 +40,12 @@ namespace Managers
         private NetworkManager _networkManager;
         private SteamManager _steamManager;
 
+        [EventfulProperty]
+        private List<PlayerSession> _players = new();
+
         #region Steam Fields
 
         private CSteamID _lobbyId;
-
-        #endregion
-
-        #region Server Fields
-
-        /// <summary>
-        /// This list is inclusive of the host player.
-        /// </summary>
-        private List<NetworkIdentity> _players = new();
 
         #endregion
 
@@ -92,7 +90,50 @@ namespace Managers
         /// </summary>
         private void OnConnected(NetworkConnectionToClient conn)
         {
-            _players.Add(conn.identity);
+            // Check if the client is already connected.
+            if (_players.Exists(p => p.connection == conn))
+            {
+                Debug.LogWarning($"Client {conn.address} tried connecting multiple times!");
+                return;
+            }
+
+            Texture2D profileIcon = null;
+            if (transport == TransportType.Steam)
+            {
+                var steamId = conn.address.ToSteamId();
+
+                // Fetch the user's profile icon.
+                var icon = SteamFriends.GetLargeFriendAvatar(steamId);
+                var valid = SteamUtils.GetImageSize(icon,
+                    out var width, out var height);
+                if (!valid)
+                {
+                    Debug.LogWarning("Failed to fetch Steam user's profile icon.");
+                    return;
+                }
+
+                // Get the bytes of the user's profile icon.
+                var buffer = new byte[width * height * 4];
+                valid = SteamUtils.GetImageRGBA(icon, buffer, buffer.Length);
+                if (!valid)
+                {
+                    Debug.LogWarning("Failed to load Steam user's profile icon.");
+                    return;
+                }
+
+                // Convert the profile icon to a texture.
+                profileIcon = ImageUtilities.FromBytes((int)width, (int)height, buffer);
+            }
+
+            _players.Add(new PlayerSession
+            {
+                connection = conn,
+                userId = conn.address == "localhost" ?
+                    0 : ulong.Parse(conn.address),
+                role = PlayerRole.None,
+                profileIcon = profileIcon
+            });
+            OnPlayersChanged?.Invoke(_players);
         }
 
         /// <summary>
@@ -100,7 +141,8 @@ namespace Managers
         /// </summary>
         private void OnDisconnected(NetworkConnectionToClient conn)
         {
-            _players.Remove(conn.identity);
+            _players.Remove(_players.Find(
+                p => p.connection == conn));
         }
 
         #endregion
@@ -208,6 +250,9 @@ namespace Managers
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
+            // Change the game state.
+            GameManager.Instance.State = GameState.Lobby;
         }
 
         /// <summary>

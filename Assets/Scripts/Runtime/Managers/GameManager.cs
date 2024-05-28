@@ -210,6 +210,8 @@ namespace Managers
     public enum GameState
     {
         Menu,
+        Lobby,
+        Loading,
         Playing
     }
 }

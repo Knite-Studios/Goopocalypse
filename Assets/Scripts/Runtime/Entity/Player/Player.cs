@@ -1,4 +1,9 @@
-﻿using Systems.Attributes;
+﻿using System;
+using JetBrains.Annotations;
+using Mirror;
+using Steamworks;
+using Systems.Attributes;
+using UnityEngine;
 using XLua;
 using Attribute = Systems.Attributes.Attribute;
 
@@ -36,6 +41,15 @@ namespace Entity.Player
             this.GetOrCreateAttribute(Attribute.Stamina, stats.Get<float>("stamina"));
             this.GetOrCreateAttribute(Attribute.AreaOfEffect, stats.Get<float>("aoe"));
         }
+    }
+
+    [Serializable]
+    public struct PlayerSession
+    {
+        public NetworkConnectionToClient connection;
+        public ulong userId;
+        public PlayerRole role;
+        [CanBeNull] public Texture2D profileIcon;
     }
 
     public static class LuaPlayer

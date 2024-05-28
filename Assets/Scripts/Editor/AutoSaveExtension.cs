@@ -23,19 +23,16 @@ static class AutoSaveExtension
     }
 
     /// <summary>
-    /// This method saves open scenes and other assets when entering playmode. 
+    /// This method saves open scenes and other assets when entering playmode.
     /// </summary>
     /// <param name="playModeStateChange">The enum that specifies how the playmode is changing in the editor.</param>
     private static void AutoSaveWhenPlaymodeStarts(PlayModeStateChange playModeStateChange)
     {
         // If we're exiting edit mode (entering play mode)
-        if(playModeStateChange == PlayModeStateChange.ExitingEditMode)
-        {
-            Debug.Log("EckTechGames.AutoSave - Saving Scenes and Assets");
+        if (playModeStateChange != PlayModeStateChange.ExitingEditMode) return;
 
-            // Save the open scenes and any assets.
-            EditorSceneManager.SaveOpenScenes();
-            AssetDatabase.SaveAssets();
-        }
+        // Save the open scenes and any assets.
+        EditorSceneManager.SaveOpenScenes();
+        AssetDatabase.SaveAssets();
     }
 }

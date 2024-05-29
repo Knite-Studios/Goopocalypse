@@ -1,7 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
 using Mirror;
-using Steamworks;
 using Systems.Attributes;
 using UnityEngine;
 using XLua;
@@ -12,6 +11,8 @@ namespace Entity.Player
     [CSharpCallLua]
     public class Player : BaseEntity
     {
+        public PlayerRole playerRole;
+
         /// <summary>
         /// The name of the hero.
         /// </summary>
@@ -26,6 +27,12 @@ namespace Entity.Player
 
         protected virtual void Start()
         {
+            luaScript = PlayerRoleMap.Map[playerRole];
+            // TODO: Store data of Fwend and Buddie, containing the role, sprite, etc.
+            // Temporary to distinguish between Fwend and Buddie.
+            var sprite = GetComponent<SpriteRenderer>();
+            sprite.color = playerRole == PlayerRole.Fwend ? Color.red : Color.blue;
+
             InitializeEntityFromLua();
         }
 

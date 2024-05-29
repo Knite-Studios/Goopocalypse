@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Entity.Player;
 using Mirror;
 using OneJS;
 using Runtime;
@@ -110,6 +111,9 @@ namespace Managers
             foreach (var player in _loadedPlayers)
             {
                 var playerObject = Instantiate(_networkManager.playerPrefab);
+                var playerController = playerObject.GetComponent<PlayerController>();
+                // TODO: Replace later with the actual player role selected from the lobby.
+                playerController.playerRole = player.address == "localhost" ? PlayerRole.Buddie : PlayerRole.Fwend;
                 NetworkServer.AddPlayerForConnection(player, playerObject);
             }
 

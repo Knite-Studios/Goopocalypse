@@ -46,8 +46,10 @@ namespace Entity.Player
         /// <exception cref="Exception">Thrown when the player role is not found in the map.</exception>
         private void InitializePlayerConfig()
         {
+            if (!PlayerRoleMap.Map.ContainsKey(playerRole))
+                throw new Exception($"Missing player config for role: {playerRole}");
+
             var config = PlayerRoleMap.Map[playerRole];
-            if (config == null) throw new Exception($"Missing player config for role: {playerRole}");
 
             luaScript = config.luaScript;
             // animator = config.animator;

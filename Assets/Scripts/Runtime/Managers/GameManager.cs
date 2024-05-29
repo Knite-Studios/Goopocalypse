@@ -112,8 +112,7 @@ namespace Managers
             {
                 var playerObject = Instantiate(_networkManager.playerPrefab);
                 var playerController = playerObject.GetComponent<PlayerController>();
-                // TODO: Replace later with the actual player role selected from the lobby.
-                playerController.playerRole = player.address == "localhost" ? PlayerRole.Buddie : PlayerRole.Fwend;
+                playerController.playerRole = LobbyManager.Instance.GetPlayerRole(player);
                 NetworkServer.AddPlayerForConnection(player, playerObject);
             }
 

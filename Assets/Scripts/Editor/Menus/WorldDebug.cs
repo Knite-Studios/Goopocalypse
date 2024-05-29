@@ -56,7 +56,7 @@ namespace Editor
                         var renderer = tile.GetComponent<SpriteRenderer>();
                         renderer.color = color;
                         renderer.sprite = squareSprite;
-                        renderer.sortingOrder = -1;
+                        renderer.sortingOrder = -10;
 
                         if (isObstacle)
                         {

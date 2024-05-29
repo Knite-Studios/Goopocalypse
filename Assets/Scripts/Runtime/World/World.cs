@@ -99,7 +99,8 @@ namespace Runtime.World
                         (y + _tileOffset) * multiplier);
 
                     var isObstacle = noise > threshold;
-                    var color = isObstacle ? Color.gray : Color.white;
+                    var color = isObstacle ? Color.gray :
+                        ColorUtility.TryParseHtmlString("#222222", out var c) ? c : Color.white;
 
                     // Create the tile.
                     var position = new Vector2(x, y);
@@ -113,7 +114,7 @@ namespace Runtime.World
                     var tileRenderer = tile.AddComponent<SpriteRenderer>();
                     tileRenderer.color = color;
                     tileRenderer.sprite = squareSprite;
-                    tileRenderer.sortingOrder = -1;
+                    tileRenderer.sortingOrder = -10;
 
                     // Add a collider and rigid body if it's an obstacle.
                     if (isObstacle)
@@ -179,7 +180,7 @@ namespace Runtime.World
                 var tileRenderer = tile.AddComponent<SpriteRenderer>();
                 tileRenderer.color = color;
                 tileRenderer.sprite = sprite;
-                tileRenderer.sortingOrder = -1;
+                tileRenderer.sortingOrder = -10;
 
                 tile.AddComponent<BoxCollider2D>();
                 var rigidBody = tile.AddComponent<Rigidbody2D>();

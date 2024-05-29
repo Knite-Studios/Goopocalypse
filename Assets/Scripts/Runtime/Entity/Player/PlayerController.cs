@@ -17,14 +17,13 @@ namespace Entity.Player
         [SerializeField] private float attackInterval = 2.0f;
         [SerializeField] private CinemachineVirtualCamera virtualCameraPrefab;
 
-        private Rigidbody2D _rigidBody;
         private Vector2 _direction;
         private float _attackTimer;
         private CinemachineVirtualCamera _virtualCamera;
 
-        private void Awake()
+        protected override void Awake()
         {
-            _rigidBody = GetComponent<Rigidbody2D>();
+            base.Awake();
 
             GameManager.OnWorldGenerated += OnWorldGenerated;
         }
@@ -74,11 +73,15 @@ namespace Entity.Player
         {
             var move = InputManager.Movement.ReadValue<Vector2>();
             if (move != Vector2.zero) _direction = move.normalized;
+
             // Rotate the indicator based on the direction it's facing.
             indicator.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg);
-            var movement = move * (Speed * Time.fixedDeltaTime);
 
-            _rigidBody.MovePosition(_rigidBody.position + movement);
+            // Flip the sprite based on the direction it's facing.
+            SpriteRenderer.flipX = _direction.x < 0;
+
+            var movement = move * (Speed * Time.fixedDeltaTime);
+            Rb.MovePosition(Rb.position + movement);
         }
 
         private void HandleAutoAttack()

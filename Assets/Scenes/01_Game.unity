@@ -284,7 +284,7 @@ MonoBehaviour:
   width: 50
   height: 50
   threshold: 0.6
-  multiplier: 0.1
+  multiplier: 0.03
   unwalkable:
     serializedVersion: 2
     m_Bits: 128

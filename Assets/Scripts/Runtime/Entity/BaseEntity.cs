@@ -41,6 +41,15 @@ namespace Entity
 
         #endregion
 
+        protected SpriteRenderer SpriteRenderer;
+        protected Rigidbody2D Rb;
+
+        protected virtual void Awake()
+        {
+            SpriteRenderer = GetComponent<SpriteRenderer>();
+            Rb = GetComponent<Rigidbody2D>();
+        }
+
         /// <summary>
         /// Internal function caller for 'SpecialAbility' from Lua.
         /// </summary>

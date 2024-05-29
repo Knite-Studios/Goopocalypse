@@ -25,15 +25,39 @@ namespace Entity.Player
 
         #endregion
 
+        private HingeJoint2D _joint;
+        private Collider2D _collider;
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            _joint = GetComponent<HingeJoint2D>();
+            _collider = GetComponent<Collider2D>();
+        }
+
         protected virtual void Start()
         {
-            luaScript = PlayerRoleMap.Map[playerRole];
-            // TODO: Store data of Fwend and Buddie, containing the role, sprite, etc.
-            // Temporary to distinguish between Fwend and Buddie.
-            var sprite = GetComponent<SpriteRenderer>();
-            sprite.color = playerRole == PlayerRole.Fwend ? Color.red : Color.blue;
-
+            InitializePlayerConfig();
             InitializeEntityFromLua();
+        }
+
+        /// <summary>
+        /// Loads the player's configuration from the scriptable object.
+        /// </summary>
+        /// <exception cref="Exception">Thrown when the player role is not found in the map.</exception>
+        private void InitializePlayerConfig()
+        {
+            var config = PlayerRoleMap.Map[playerRole];
+            if (config == null) throw new Exception($"Missing player config for role: {playerRole}");
+
+            luaScript = config.luaScript;
+            // animator = config.animator;
+            SpriteRenderer.sprite = config.sprite;
+            Rb.mass = config.mass;
+            _joint.autoConfigureConnectedAnchor = config.autoConfigureConnectedAnchor;
+            _collider.offset = config.colliderOffset;
+            _collider.GetComponent<BoxCollider2D>().size = config.colliderSize;
         }
 
         /// <summary>

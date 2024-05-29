@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Scriptable;
+using UnityEngine;
 
 namespace Entity.Player
 {
@@ -11,12 +13,14 @@ namespace Entity.Player
 
     public static class PlayerRoleMap
     {
-        public static readonly Dictionary<PlayerRole, string> Map = new();
+        private const string PlayerConfigPath = "Prefabs/Entities/Player/";
+
+        public static readonly Dictionary<PlayerRole, PlayerConfig> Map = new();
 
         static PlayerRoleMap()
         {
-            Map.Add(PlayerRole.Buddie, LuaPlayer.Buddie);
-            Map.Add(PlayerRole.Fwend, LuaPlayer.Fwend);
+            Map.Add(PlayerRole.Buddie, Resources.Load<PlayerConfig>(PlayerConfigPath + "Config_Buddie"));
+            Map.Add(PlayerRole.Fwend, Resources.Load<PlayerConfig>(PlayerConfigPath + "Config_Fwend"));
         }
     }
 }

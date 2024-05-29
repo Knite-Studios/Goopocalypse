@@ -12,15 +12,9 @@ namespace Entity.Enemies
     {
         protected Pathfinder Pathfinder;
         protected Transform Target;
-        protected Rigidbody2D Rb;
 
         private List<Node> _currentPath;
         private int _currentPathIndex;
-
-        private void Awake()
-        {
-            Rb = GetComponent<Rigidbody2D>();
-        }
 
         protected virtual void Start()
         {

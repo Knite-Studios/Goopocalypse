@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78e7360cb2ba44c78a7293e7a71f8f94, type: 3}
+  m_Name: Config_Fwend
+  m_EditorClassIdentifier: 
+  luaScript: players/fwend.lua
+  animator: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 82b09ad9618f3984eb8a0069fbe741b1, type: 3}
+  mass: 1
+  autoConfigureConnectedAnchor: 0
+  colliderOffset: {x: 0, y: -0.35}
+  colliderSize: {x: 1.4, y: 1.3}

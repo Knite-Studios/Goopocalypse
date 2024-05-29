@@ -40,10 +40,6 @@ function LobbyScreen({ game }: { game: ScriptManager }) {
     const [players, _]: [List<PlayerSession>, any] = useEventfulState(LobbyManager, "Players");
     const [roles, __]: [PlayerRoles, any] = useEventfulState(LobbyManager, "Roles");
 
-    for (const player of Object.keys(roles)) {
-        log(`Key: ${player}, Value: ${roles[player]}`);
-    }
-
     return (
         <div class={"w-full h-full flex flex-col justify-center"}>
             <div class={"w-full flex flex-row justify-center mb-8"}>

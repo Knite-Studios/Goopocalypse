@@ -11,7 +11,7 @@ namespace Entity.Player
     [CSharpCallLua]
     public class Player : BaseEntity
     {
-        public PlayerRole playerRole;
+        [SyncVar] public PlayerRole playerRole;
 
         /// <summary>
         /// The name of the hero.

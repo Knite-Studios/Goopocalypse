@@ -47,6 +47,13 @@ namespace Runtime
     public struct PlayersListS2CNotify : NetworkMessage
     {
         public List<PlayerSession> players;
+        public List<PlayerRoleEntry> roles;
+
+        public struct PlayerRoleEntry
+        {
+            public string userId;
+            public PlayerRole role;
+        }
     }
 
     /// <summary>
@@ -75,5 +82,14 @@ namespace Runtime
     {
         public int wave;
         public long timer;
+    }
+
+    /// <summary>
+    /// Client -> Server
+    /// Requests the server to change the player's role.
+    /// </summary>
+    public struct ChangeRoleC2SReq : NetworkMessage
+    {
+        public PlayerRole role;
     }
 }

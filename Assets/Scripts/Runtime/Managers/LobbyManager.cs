@@ -40,8 +40,8 @@ namespace Managers
         private NetworkManager _networkManager;
         private SteamManager _steamManager;
 
-        [EventfulProperty]
-        private List<PlayerSession> _players = new();
+        [EventfulProperty] private List<PlayerSession> _players = new();
+        [EventfulProperty] private Dictionary<string, PlayerRole> _roles = new();
 
         #region Steam Fields
 
@@ -83,8 +83,33 @@ namespace Managers
             OnPlayerDisconnected += OnDisconnected;
 
             // Register packet handlers.
+            NetworkServer.RegisterHandler<ChangeRoleC2SReq>(OnChangeRole);
+
             NetworkClient.RegisterHandler<PlayersListS2CNotify>(OnPlayersList);
         }
+
+        /// <summary>
+        /// Sends the player list to all connected clients.
+        /// </summary>
+        private void UpdatePlayers()
+        {
+            // Convert the role dictionary into an entry list.
+            var roles = new List<PlayersListS2CNotify.PlayerRoleEntry>();
+            foreach (var (userId, role) in _roles)
+            {
+                roles.Add(new PlayersListS2CNotify.PlayerRoleEntry
+                    { userId = userId, role = role });
+            }
+
+            NetworkServer.SendToAll(new PlayersListS2CNotify
+                { players = _players, roles = roles });
+        }
+
+        /// <summary>
+        /// Finds a player by connection.
+        /// </summary>
+        private PlayerSession FindPlayer(NetworkConnectionToClient conn)
+            => Players.Find(p => p.address == conn.address);
 
         #region Mirror Callbacks
 
@@ -100,12 +125,12 @@ namespace Managers
                 return;
             }
 
-            Debug.Log($"Client {conn.address} connected.");
-
+            string userId;
             Texture2D profileIcon = null;
             if (transport == TransportType.Steam)
             {
                 var steamId = conn.address.ToSteamId();
+                userId = steamId.m_SteamID.ToString();
 
                 // Fetch the user's profile icon.
                 var icon = SteamFriends.GetLargeFriendAvatar(steamId);
@@ -129,19 +154,25 @@ namespace Managers
                 // Convert the profile icon to a texture.
                 profileIcon = ImageUtilities.FromBytes((int)width, (int)height, buffer);
             }
+            else
+            {
+                userId = conn.connectionId.ToString();
+            }
 
-            _players.Add(new PlayerSession
+            Players.Add(new PlayerSession
             {
                 connection = conn,
-                userId = conn.address == "localhost" ?
-                    0 : ulong.Parse(conn.address),
-                role = PlayerRole.None,
+                address = conn.address,
+                userId = userId,
                 profileIcon = profileIcon
             });
-            OnPlayersChanged?.Invoke(_players);
+            Roles[userId] = PlayerRole.None;
+
+            OnPlayersChanged?.Invoke(Players);
+            OnRolesChanged?.Invoke(Roles);
 
             // Notify all players of the change in player list.
-            NetworkServer.SendToAll(new PlayersListS2CNotify { players = _players });
+            UpdatePlayers();
             // Inform the client that the login was successful.
             conn.Send(new PlayerLoginSuccessS2CNotify());
         }
@@ -150,21 +181,49 @@ namespace Managers
         /// Invoked when a client disconnects from the server.
         /// </summary>
         private void OnDisconnected(NetworkConnectionToClient conn)
-        {
-            _players.Remove(_players.Find(
-                p => p.connection == conn));
-        }
+            => Players.Remove(FindPlayer(conn));
 
         #endregion
 
         #region Packet Handlers
 
         /// <summary>
+        /// Invoked when the client requests to change their role.
+        /// </summary>
+        private static void OnChangeRole(NetworkConnectionToClient conn, ChangeRoleC2SReq req)
+        {
+            var roles = Instance.Roles;
+
+            // Check if the role has already been taken.
+            if (roles.ContainsValue(req.role))
+            {
+                Debug.LogWarning($"Role {req.role} is already taken!");
+                return;
+            }
+
+            // Update the player's role.
+            var player = Instance.FindPlayer(conn);
+            roles[player.userId] = req.role;
+
+            // Send the updated player list to all clients.
+            Instance.UpdatePlayers();
+        }
+
+        /// <summary>
         /// Sets the list of players connected to the server.
         /// </summary>
         /// <param name="notify"></param>
         private static void OnPlayersList(PlayersListS2CNotify notify)
-            => Instance._players = notify.players;
+        {
+            Instance.Players = notify.players;
+
+            Instance.Roles.Clear();
+            foreach (var roleEntry in notify.roles)
+            {
+                Instance.Roles[roleEntry.userId] = roleEntry.role;
+            }
+            Instance.OnRolesChanged?.Invoke(Instance.Roles);
+        }
 
         #endregion
 

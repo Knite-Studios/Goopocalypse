@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Entity.Player;
+using Managers;
 using Mirror;
-using Runtime;
 using UnityEngine;
 
 namespace Entity
@@ -22,14 +22,49 @@ namespace Entity
         private Transform _buddie;
         private Transform _fwend;
         private LineRenderer _lineRenderer;
+        private Rigidbody2D _lastSegmentRigidbody;
 
         private void Awake()
         {
-            NetworkClient.RegisterHandler<PlayersListS2CNotify>(OnPlayerListReceived);
             _lineRenderer = gameObject.GetOrAddComponent<LineRenderer>();
             _lineRenderer.startWidth = 0.1f;
             _lineRenderer.endWidth = 0.1f;
             _lineRenderer.positionCount = _segmentLength;
+        }
+
+        private void Start()
+        {
+            // If there is only one player, disable the rope.
+            if (LobbyManager.Instance.Players.Count == 1)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+
+            var lastSegment = transform.childCount - 1;
+            _lastSegmentRigidbody = transform.GetChild(lastSegment).GetComponent<Rigidbody2D>();
+
+            foreach (var player in LobbyManager.Instance.Players)
+            {
+                var controller = player.connection.identity.GetComponent<PlayerController>();
+                switch (controller.playerRole)
+                {
+                    case PlayerRole.Fwend:
+                        _fwend = controller.transform;
+                        var joint = gameObject.GetOrAddComponent<HingeJoint2D>();
+                        joint.connectedBody = _lastSegmentRigidbody;
+                        break;
+                    case PlayerRole.Buddie:
+                        _buddie = controller.transform;
+                        break;
+                    case PlayerRole.None:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+
+            if (_fwend && _buddie) InitializeRope();
         }
 
         private void Update()
@@ -44,38 +79,6 @@ namespace Entity
             if (!_fwend || !_buddie) return;
 
             Simulate();
-        }
-
-        private void OnPlayerListReceived(PlayersListS2CNotify message)
-        {
-            // If there's only 1 player, we don't need to create a rope.
-            if (message.players.Count == 1)
-            {
-                gameObject.SetActive(false);
-                return;
-            }
-
-            foreach (var player in message.players)
-            {
-                if (player.connection != connectionToServer) continue;
-
-                var controller = player.connection.identity.GetComponent<PlayerController>();
-                switch (controller.playerRole)
-                {
-                    case PlayerRole.Fwend:
-                        _fwend = controller.transform;
-                        break;
-                    case PlayerRole.Buddie:
-                        _buddie = controller.transform;
-                        break;
-                    case PlayerRole.None:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-
-            if (_fwend && _buddie) InitializeRope();
         }
 
         private void InitializeRope()

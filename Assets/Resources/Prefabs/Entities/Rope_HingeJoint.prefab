@@ -194,6 +194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6381482675304725532}
   - component: {fileID: 3077380104026957612}
+  - component: {fileID: 601527631976762953}
   m_Layer: 8
   m_Name: Rope_HingeJoint
   m_TagString: Untagged
@@ -244,6 +245,28 @@ MonoBehaviour:
   serverOnly: 0
   visibility: 0
   hasSpawned: 0
+--- !u!114 &601527631976762953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230821839452077211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fd7a3872b2b47d29a144c4a734baeaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  maxLenght: 1
+  elasticity: 0.1
+  damping: 0.1
+  collisionLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  ropeSegmentPrefab: {fileID: 0}
 --- !u!1 &306529824286769069
 GameObject:
   m_ObjectHideFlags: 0

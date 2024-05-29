@@ -108,8 +108,14 @@ namespace Managers
         /// <summary>
         /// Finds a player by connection.
         /// </summary>
-        private PlayerSession FindPlayer(NetworkConnectionToClient conn)
+        public PlayerSession FindPlayer(NetworkConnectionToClient conn)
             => Players.Find(p => p.address == conn.address);
+
+        /// <summary>
+        /// Determines a player's role by network connection.
+        /// </summary>
+        public PlayerRole GetPlayerRole(NetworkConnectionToClient conn)
+            => Roles[FindPlayer(conn).userId];
 
         #region Mirror Callbacks
 

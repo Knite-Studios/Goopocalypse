@@ -9,7 +9,6 @@ namespace Scriptable
         public Animator animator;
         public Sprite sprite;
         public float mass;
-        public bool autoConfigureConnectedAnchor;
         public Vector2 colliderOffset;
         public Vector2 colliderSize;
     }

@@ -25,14 +25,12 @@ namespace Entity.Player
 
         #endregion
 
-        private HingeJoint2D _joint;
         private Collider2D _collider;
 
         protected override void Awake()
         {
             base.Awake();
 
-            _joint = GetComponent<HingeJoint2D>();
             _collider = GetComponent<Collider2D>();
         }
 
@@ -55,7 +53,6 @@ namespace Entity.Player
             // animator = config.animator;
             SpriteRenderer.sprite = config.sprite;
             Rb.mass = config.mass;
-            _joint.autoConfigureConnectedAnchor = config.autoConfigureConnectedAnchor;
             _collider.offset = config.colliderOffset;
             _collider.GetComponent<BoxCollider2D>().size = config.colliderSize;
         }

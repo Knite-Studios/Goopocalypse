@@ -1,8 +1,8 @@
 declare module "game" {
     export class PlayerSession {
         connection: NetworkConnectionToClient
-        userId: number | null
-        role: PlayerRole | null
+        address: string
+        userId: string
         profileIcon: Texture2D
     }
 }

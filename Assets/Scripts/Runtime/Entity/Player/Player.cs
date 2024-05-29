@@ -81,8 +81,7 @@ namespace Entity.Player
         /// </summary>
         [CanBeNull, NonSerialized] public NetworkConnectionToClient connection;
 
-        public ulong userId;
-        public PlayerRole role;
+        public string address, userId;
         [CanBeNull] public Texture2D profileIcon;
     }
 

@@ -35,6 +35,7 @@ declare module "game" {
         StartDebugServer(): void
         JoinDebugServer(address: string, port: number): void
         StartGame(): void
+        ChangeRole(role: PlayerRole): void
     }
 
     export class LobbyManager extends MonoSingleton<LobbyManager> {
@@ -42,9 +43,13 @@ declare module "game" {
         static OnPlayerDisconnected: (a: NetworkConnectionToClient) => void
         static Initialize(): void
         Players: List<PlayerSession>
+        Roles: Dictionary<string, PlayerRole>
         add_OnPlayersChanged(handler: (a: List<PlayerSession>) => void): void
         remove_OnPlayersChanged(handler: (a: List<PlayerSession>) => void): void
         OnPlayersChanged: OneJS.Event<(a: List<PlayerSession>) => void>
+        add_OnRolesChanged(handler: (a: Dictionary<string, PlayerRole>) => void): void
+        remove_OnRolesChanged(handler: (a: Dictionary<string, PlayerRole>) => void): void
+        OnRolesChanged: OneJS.Event<(a: Dictionary<string, PlayerRole>) => void>
         transport: TransportType
         constructor()
         MakeLobby(): void

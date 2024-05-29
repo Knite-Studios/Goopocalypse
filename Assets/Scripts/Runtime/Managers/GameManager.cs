@@ -135,6 +135,12 @@ namespace Managers
             NetworkServer.SendToAll(new GameStartS2CNotify());
         }
 
+        /// <summary>
+        /// Requests to change the role on the server.
+        /// </summary>
+        public void ChangeRole(PlayerRole role) =>
+            NetworkClient.Send(new ChangeRoleC2SReq { role = role });
+
         #region Packet Handlers
 
         /// <summary>

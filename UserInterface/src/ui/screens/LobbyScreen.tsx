@@ -7,73 +7,83 @@ import Text, { Size } from "@components/Text";
 
 import type { PlayerSession, ScriptManager } from "game";
 
+import { PlayerRole } from "@types/enums";
+import { List } from "System/Collections/Generic";
+
+interface IPlayerProps {
+    session: PlayerSession;
+    role?: PlayerRole;
+}
+
+function Player({ session, role }: IPlayerProps) {
+    log(`User ID: ${session.userId}, Role: ${role}`);
+
+    return (
+        <div class={"flex items-center mx-[50px] text-center"}>
+            <image
+                image={session.profileIcon}
+            />
+
+            <Text size={Size.Large}>
+                {session.userId ?? "No ID"}
+                {role?.toString() ?? "No Role"}
+            </Text>
+        </div>
+    );
+}
+
+type PlayerRoles = { [key: string]: PlayerRole };
+
 function LobbyScreen({ game }: { game: ScriptManager }) {
     const { LobbyManager, GameManager } = game;
 
-    const [players, _]: [PlayerSession[], any] = useEventfulState(LobbyManager, "Players");
+    const [players, _]: [List<PlayerSession>, any] = useEventfulState(LobbyManager, "Players");
+    const [roles, __]: [PlayerRoles, any] = useEventfulState(LobbyManager, "Roles");
+
+    for (const player of Object.keys(roles)) {
+        log(`Key: ${player}, Value: ${roles[player]}`);
+    }
 
     return (
-        <div style={{
-            display: "Flex",
-            flexDirection: "Column",
-            alignItems: "Center",
-            justifyContent: "Center",
-            height: "100%"
-        }}>
-            <div style={{
-                display: "Flex",
-                flexDirection: "Row",
-                justifyContent: "Center",
-                alignItems: "Center",
-                width: "100%",
-                flexWrap: "Wrap"
-            }}>
-
-                <div style={{
-                    display: "Flex",
-                    alignItems: "Center",
-                    marginLeft: 50,
-                    marginRight: 50
-                }}>
-                    { players[0] && (
-                        <image
-                            image={players[0].profileIcon}
-                        />
-                    ) }
-
-                    <Text size={Size.Large}>
-                        {players[0] != null ? players[0].userId?.toString() : "No Player"}
-                    </Text>
-                </div>
-
-                <div style={{
-                        display: "Flex",
-                        flexDirection: "Column",
-                        alignItems: "Center",
-                        marginLeft: 50,
-                        marginRight: 50
-                    }}>
-                        { players[1] && (
-                            <image
-                                image={players[1].profileIcon}
-                            />
-                        ) }
-
-                        <Text size={Size.Large}>
-                            {players[1] != null ? players[1].userId?.toString() : "No Player"}
-                        </Text>
-                </div>
-
+        <div class={"w-full h-full flex flex-col justify-center"}>
+            <div class={"w-full flex flex-row justify-center mb-8"}>
+                { players.ToArray().map((player, index) => (
+                    <Player
+                        key={index}
+                        session={player}
+                        role={roles[player.userId]}
+                    />
+                )) }
             </div>
 
-            <Button
-                class={"mb-4 bg-blue-500"}
-                onClick={() => {
-                    GameManager.StartGame();
-                }}
-            >
-                Start Game
-            </Button>
+            <div class={"w-full flex flex-row justify-center"}>
+                <Button
+                    class={"w-64 mr-8 bg-blue-500"}
+                    onClick={() => {
+                        GameManager.StartGame();
+                    }}
+                >
+                    Start Game
+                </Button>
+
+                <Button
+                    class={"mr-8 bg-blue-500"}
+                    onClick={() => {
+                        GameManager.ChangeRole(PlayerRole.Fwend);
+                    }}
+                >
+                    Change to Fwend
+                </Button>
+
+                <Button
+                    class={"bg-blue-500"}
+                    onClick={() => {
+                        GameManager.ChangeRole(PlayerRole.Buddie);
+                    }}
+                >
+                    Change to Buddie
+                </Button>
+            </div>
         </div>
     );
 }

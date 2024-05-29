@@ -16,8 +16,6 @@ interface IPlayerProps {
 }
 
 function Player({ session, role }: IPlayerProps) {
-    log(`User ID: ${session.userId}, Role: ${role}`);
-
     return (
         <div class={"flex items-center mx-[50px] text-center"}>
             <image

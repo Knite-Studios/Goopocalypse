@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   luaScript: players/fwend.lua
   animator: {fileID: 0}
-  sprite: {fileID: 21300000, guid: 82b09ad9618f3984eb8a0069fbe741b1, type: 3}
+  sprite: {fileID: 21300000, guid: 41ab1848eeb5bf046a41abd2d44ad8ab, type: 3}
   mass: 1
-  autoConfigureConnectedAnchor: 0
   colliderOffset: {x: 0, y: -0.35}
   colliderSize: {x: 1.4, y: 1.3}

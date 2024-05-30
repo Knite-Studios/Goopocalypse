@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using JetBrains.Annotations;
+using Managers;
 using Mirror;
 using Systems.Attributes;
 using UnityEngine;
@@ -12,6 +14,7 @@ namespace Entity.Player
     public class Player : BaseEntity
     {
         [SyncVar] public PlayerRole playerRole;
+        public Transform rope;
 
         /// <summary>
         /// The name of the hero.
@@ -38,6 +41,29 @@ namespace Entity.Player
         {
             InitializePlayerConfig();
             InitializeEntityFromLua();
+        }
+
+        /// <summary>
+        /// Temporary method for prototyping.
+        /// </summary>
+        private void InitializeRope()
+        {
+            switch (playerRole)
+            {
+                case PlayerRole.Fwend:
+                    var buddie = (from player in LobbyManager.Instance.Players
+                        select player.connection!.identity.GetComponent<PlayerController>()
+                        into controller where controller.playerRole == PlayerRole.Buddie select controller)
+                        .FirstOrDefault();
+
+                    var lastSegment = buddie!.rope.childCount - 1;
+                    var lastSegmentRigidbody = transform.GetChild(lastSegment).GetComponent<Rigidbody2D>();
+                    var joint = gameObject.GetOrAddComponent<HingeJoint2D>();
+                    joint.connectedBody = lastSegmentRigidbody;
+                    break;
+                case PlayerRole.Buddie:
+                    break;
+            }
         }
 
         /// <summary>

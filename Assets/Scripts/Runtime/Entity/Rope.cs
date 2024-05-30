@@ -41,9 +41,6 @@ namespace Entity
                 return;
             }
 
-            var lastSegment = transform.childCount - 1;
-            _lastSegmentRigidbody = transform.GetChild(lastSegment).GetComponent<Rigidbody2D>();
-
             foreach (var player in LobbyManager.Instance.Players)
             {
                 var controller = player.connection.identity.GetComponent<PlayerController>();
@@ -51,8 +48,8 @@ namespace Entity
                 {
                     case PlayerRole.Fwend:
                         _fwend = controller.transform;
-                        var joint = gameObject.GetOrAddComponent<HingeJoint2D>();
-                        joint.connectedBody = _lastSegmentRigidbody;
+                        // Temporary for prototype purposes.
+                        gameObject.SetActive(false);
                         break;
                     case PlayerRole.Buddie:
                         _buddie = controller.transform;
@@ -64,21 +61,21 @@ namespace Entity
                 }
             }
 
-            if (_fwend && _buddie) InitializeRope();
+            // if (_fwend && _buddie) InitializeRope();
         }
 
         private void Update()
         {
             if (!_fwend || !_buddie) return;
 
-            DrawRope();
+            // DrawRope();
         }
 
         private void FixedUpdate()
         {
             if (!_fwend || !_buddie) return;
 
-            Simulate();
+            // Simulate();
         }
 
         private void InitializeRope()

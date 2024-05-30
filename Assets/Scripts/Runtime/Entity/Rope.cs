@@ -9,6 +9,9 @@ namespace Entity
 {
     public class Rope : NetworkBehaviour
     {
+        public HingeJoint2D firstSegmentHingeJoint; // Temporary.
+        public Rigidbody2D lastSegmentRigidbody; // Temporary.
+
         public float maxLenght = 1.0f;
         public float elasticity = 0.1f;
         public float damping = 0.1f;
@@ -22,14 +25,14 @@ namespace Entity
         private Transform _buddie;
         private Transform _fwend;
         private LineRenderer _lineRenderer;
-        private Rigidbody2D _lastSegmentRigidbody;
+
 
         private void Awake()
         {
-            _lineRenderer = gameObject.GetOrAddComponent<LineRenderer>();
-            _lineRenderer.startWidth = 0.1f;
-            _lineRenderer.endWidth = 0.1f;
-            _lineRenderer.positionCount = _segmentLength;
+            // _lineRenderer = gameObject.GetOrAddComponent<LineRenderer>();
+            // _lineRenderer.startWidth = 0.1f;
+            // _lineRenderer.endWidth = 0.1f;
+            // _lineRenderer.positionCount = _segmentLength;
         }
 
         private void Start()
@@ -41,32 +44,30 @@ namespace Entity
                 return;
             }
 
-            foreach (var player in LobbyManager.Instance.Players)
-            {
-                var controller = player.connection.identity.GetComponent<PlayerController>();
-                switch (controller.playerRole)
-                {
-                    case PlayerRole.Fwend:
-                        _fwend = controller.transform;
-                        // Temporary for prototype purposes.
-                        gameObject.SetActive(false);
-                        break;
-                    case PlayerRole.Buddie:
-                        _buddie = controller.transform;
-                        break;
-                    case PlayerRole.None:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-
             // if (_fwend && _buddie) InitializeRope();
         }
 
         private void Update()
         {
-            if (!_fwend || !_buddie) return;
+            if (!_fwend || !_buddie)
+            {
+                // TODO: Find a better way to get the players.
+                var findPlayers = FindObjectsOfType<PlayerController>();
+                foreach (var player in findPlayers)
+                {
+                    switch (player.playerRole)
+                    {
+                        case PlayerRole.Fwend:
+                            _fwend = player.transform;
+                            _fwend.gameObject.GetOrAddComponent<HingeJoint2D>().connectedBody = lastSegmentRigidbody;
+                            break;
+                        case PlayerRole.Buddie:
+                            _buddie = player.transform;
+                            firstSegmentHingeJoint.connectedBody = _buddie.gameObject.GetComponent<Rigidbody2D>();
+                            break;
+                    }
+                }
+            }
 
             // DrawRope();
         }

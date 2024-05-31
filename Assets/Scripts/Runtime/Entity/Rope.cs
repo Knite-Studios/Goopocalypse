@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Entity.Player;
 using Managers;
 using Mirror;
@@ -9,9 +8,6 @@ namespace Entity
 {
     public class Rope : NetworkBehaviour
     {
-        public HingeJoint2D firstSegmentHingeJoint; // Temporary.
-        public Rigidbody2D lastSegmentRigidbody; // Temporary.
-
         public float maxLenght = 1.0f;
         public float elasticity = 0.1f;
         public float damping = 0.1f;
@@ -29,10 +25,10 @@ namespace Entity
 
         private void Awake()
         {
-            // _lineRenderer = gameObject.GetOrAddComponent<LineRenderer>();
-            // _lineRenderer.startWidth = 0.1f;
-            // _lineRenderer.endWidth = 0.1f;
-            // _lineRenderer.positionCount = _segmentLength;
+            _lineRenderer = gameObject.GetOrAddComponent<LineRenderer>();
+            _lineRenderer.startWidth = 0.1f;
+            _lineRenderer.endWidth = 0.1f;
+            _lineRenderer.positionCount = _segmentLength;
         }
 
         private void Start()
@@ -44,7 +40,7 @@ namespace Entity
                 return;
             }
 
-            // if (_fwend && _buddie) InitializeRope();
+            if (_fwend && _buddie) InitializeRope();
         }
 
         private void Update()
@@ -59,24 +55,22 @@ namespace Entity
                     {
                         case PlayerRole.Fwend:
                             _fwend = player.transform;
-                            _fwend.gameObject.GetOrAddComponent<HingeJoint2D>().connectedBody = lastSegmentRigidbody;
                             break;
                         case PlayerRole.Buddie:
                             _buddie = player.transform;
-                            firstSegmentHingeJoint.connectedBody = _buddie.gameObject.GetComponent<Rigidbody2D>();
                             break;
                     }
                 }
             }
 
-            // DrawRope();
+            DrawRope();
         }
 
         private void FixedUpdate()
         {
             if (!_fwend || !_buddie) return;
 
-            // Simulate();
+            Simulate();
         }
 
         private void InitializeRope()

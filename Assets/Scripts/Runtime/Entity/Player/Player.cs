@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using JetBrains.Annotations;
-using Managers;
 using Mirror;
 using Systems.Attributes;
 using UnityEngine;
@@ -14,7 +12,6 @@ namespace Entity.Player
     public class Player : BaseEntity
     {
         [SyncVar] public PlayerRole playerRole;
-        public Transform rope;
 
         /// <summary>
         /// The name of the hero.

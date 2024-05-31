@@ -43,13 +43,6 @@ namespace Entity.Player
             _virtualCamera.Priority = 100;
         }
 
-        private void OnDestroy()
-        {
-            if (!isLocalPlayer) return;
-
-            EntityManager.Instance.CmdRemovePlayerFromTargetGroup(this);
-        }
-
         private void Update()
         {
             if (!isLocalPlayer) return;

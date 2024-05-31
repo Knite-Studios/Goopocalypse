@@ -246,6 +246,7 @@ MonoBehaviour:
   syncInterval: 0
   firstSegmentHingeJoint: {fileID: 209106220480401236}
   lastSegmentRigidbody: {fileID: 823918931010329610}
+  fwendPrefab: {fileID: 8490824003797150612, guid: 5fdf15be923673c499acbdc26bd6b723, type: 3}
   maxLenght: 1
   elasticity: 0.1
   damping: 0.1

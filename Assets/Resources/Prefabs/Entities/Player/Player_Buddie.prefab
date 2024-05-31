@@ -259,7 +259,7 @@ MonoBehaviour:
   luaScript: players/fwend
   <CurrentHealth>k__BackingField: 0
   playerRole: 1
-  rope: {fileID: 0}
+  ropePrefab: {fileID: 230821839452077211, guid: 0d1a4c27efc978847bb427bfa44ac374, type: 3}
   projectilePrefab: 5
   indicator: {fileID: 8207353764106387348}
   projectileSpawnDistance: 1

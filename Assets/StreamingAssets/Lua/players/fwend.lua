@@ -8,11 +8,6 @@ base_stats = {
     aoe = 3.5
 }
 
-function On_Start(gameObject)
-    local joint = gameObject:AddComponent("HingeJoint2D")
-    joint.autoConfigureConnectedAnchor = false
-end
-
 function On_SpecialAbility(context)
     print("Fwend " .. context.name .. " used a special ability.")
 end

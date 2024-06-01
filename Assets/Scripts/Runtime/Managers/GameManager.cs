@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common;
 using Entity;
 using Entity.Player;
 using Mirror;
 using OneJS;
 using Runtime;
 using Runtime.World;
+using Steamworks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -30,6 +32,9 @@ namespace Managers
         private readonly List<NetworkConnectionToClient> _loadedPlayers = new();
 
         private TaskCompletionSource<object> _loadTask;
+
+        [EventfulProperty] private Texture2D _profilePicture;
+        [EventfulProperty] private string _username;
 
         [EventfulProperty] private GameState _state = GameState.Menu;
 
@@ -60,6 +65,14 @@ namespace Managers
         {
             // Add event listener for game events.
             OnGameStart += () => State = GameState.Playing;
+
+            // Check if Steam is active.
+            if (SteamAPI.IsSteamRunning())
+            {
+                // Load the user's profile picture.
+                ProfilePicture = SteamUtilities.LoadLocalAvatar();
+                Username = SteamFriends.GetPersonaName();
+            }
         }
 
         /// <summary>

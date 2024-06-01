@@ -27,7 +27,15 @@ declare module "game" {
         static OnGameEvent: UnityAction<GameEvent>
         static OnWorldGenerated: UnityAction<World>
         static OnWaveSpawn: UnityAction<number>
+        ProfilePicture: Texture2D
+        Username: string
         State: GameState
+        add_OnProfilePictureChanged(handler: (a: Texture2D) => void): void
+        remove_OnProfilePictureChanged(handler: (a: Texture2D) => void): void
+        OnProfilePictureChanged: OneJS.Event<(a: Texture2D) => void>
+        add_OnUsernameChanged(handler: (a: string) => void): void
+        remove_OnUsernameChanged(handler: (a: string) => void): void
+        OnUsernameChanged: OneJS.Event<(a: string) => void>
         add_OnStateChanged(handler: (a: GameState) => void): void
         remove_OnStateChanged(handler: (a: GameState) => void): void
         OnStateChanged: OneJS.Event<(a: GameState) => void>

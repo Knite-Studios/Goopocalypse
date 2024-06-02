@@ -5,6 +5,7 @@ namespace Entity.Player
 {
     public class MonoPlayerController : MonoBehaviour
     {
+        public PlayerRole playerRole;
         public float moveSpeed = 10.0f;
 
         private Rigidbody2D _rb;

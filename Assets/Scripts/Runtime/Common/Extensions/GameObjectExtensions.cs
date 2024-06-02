@@ -32,4 +32,17 @@ public static class GameObjectExtensions
     public static bool Has<T>(this GameObject gameObject)
         where T : Component
         => gameObject.GetComponent<T>();
+
+
+    /// <summary>
+    /// Checks if the colliding object is the player.
+    /// </summary>
+    public static bool IsPlayer(this Collider2D other)
+        => other.gameObject.CompareLayer("Player") || other.gameObject.CompareTag("Player");
+
+    /// <summary>
+    /// Checks if the colliding object is the player.
+    /// </summary>
+    public static bool IsPlayer(this Collision2D other)
+        => other.gameObject.CompareLayer("Player") || other.gameObject.CompareTag("Player");
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ProjectilePrefabs
   m_EditorClassIdentifier: 
   prefabs:
-  - type: 5
+  - type: 2
     prefab: {fileID: 1487731616712756, guid: 6bf84799e9bb8bc46890eb79bcbb9664, type: 3}
     root: /EntityRoot/Projectiles
     shouldPool: 0

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Entity;
 using Entity.Player;
 using Mirror;
 using OneJS;
@@ -107,6 +109,8 @@ namespace Managers
             Debug.Log("Waiting for players to load scene...");
             await _loadTask.Task;
 
+            var playerControllers = new List<PlayerController>();
+
             // Spawn all player prefabs.
             foreach (var player in _loadedPlayers)
             {
@@ -114,6 +118,16 @@ namespace Managers
                 var playerController = playerObject.GetComponent<PlayerController>();
                 playerController.playerRole = LobbyManager.Instance.GetPlayerRole(player);
                 NetworkServer.AddPlayerForConnection(player, playerObject);
+                playerControllers.Add(playerController);
+            }
+
+            // Connect the players with the link.
+            if (playerControllers.Count == 2)
+            {
+                var link = PrefabManager.Create<Link>(PrefabType.Link);
+                link.fwend = playerControllers.First(player => player.playerRole == PlayerRole.Fwend).transform;
+                link.buddie = playerControllers.First(player => player.playerRole == PlayerRole.Buddie).transform;
+                NetworkServer.Spawn(link.gameObject);
             }
 
             // Generate the world.

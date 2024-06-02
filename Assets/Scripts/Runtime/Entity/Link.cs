@@ -1,17 +1,17 @@
-﻿using System;
-using Entity.Player;
+﻿using Entity.Player;
+using Mirror;
 using UnityEngine;
 
 namespace Entity
 {
-    public class Link : MonoBehaviour
+    public class Link : NetworkBehaviour
     {
-        public float maxDistance = 5.0f;
+        public Transform fwend;
+        public Transform buddie;
+        [SerializeField] public float maxDistance = 5.0f;
 
         private LineRenderer _lineRenderer;
         private BoxCollider2D _collider;
-        private Transform _fwend;
-        private Transform _buddie;
 
         private void Start()
         {
@@ -31,18 +31,18 @@ namespace Entity
 
         private void Update()
         {
-            if (!_fwend || !_buddie)
+            if (!fwend || !buddie)
             {
-                var findPlayers = FindObjectsOfType<MonoPlayerController>();
+                var findPlayers = FindObjectsOfType<PlayerController>();
                 foreach (var player in findPlayers)
                 {
                     switch (player.playerRole)
                     {
                         case PlayerRole.Fwend:
-                            _fwend = player.transform;
+                            fwend = player.transform;
                             break;
                         case PlayerRole.Buddie:
-                            _buddie = player.transform;
+                            buddie = player.transform;
                             break;
                     }
                 }
@@ -50,20 +50,20 @@ namespace Entity
                 return;
             }
 
-            if (Vector2.Distance(_fwend.position, _buddie.position) <= maxDistance)
+            if (Vector2.Distance(fwend.position, buddie.position) <= maxDistance)
             {
                 if (!_collider.enabled) _collider.enabled = true;
 
                 // Connect the players with a line.
-                _lineRenderer.SetPosition(0, _fwend.position);
-                _lineRenderer.SetPosition(1, _buddie.position);
+                _lineRenderer.SetPosition(0, fwend.position);
+                _lineRenderer.SetPosition(1, buddie.position);
 
                 // Get the midpoint between the players and adjust the collider size dynamically.
-                var midpoint = (_fwend.position + _buddie.position) / 2;
+                var midpoint = (fwend.position + buddie.position) / 2;
                 transform.position = midpoint;
-                var distance = Vector2.Distance(_fwend.position, _buddie.position);
+                var distance = Vector2.Distance(fwend.position, buddie.position);
                 _collider.size = new Vector2(distance, 0.3f);
-                transform.right = (_buddie.position - _fwend.position).normalized;
+                transform.right = (buddie.position - fwend.position).normalized;
             }
             else
             {

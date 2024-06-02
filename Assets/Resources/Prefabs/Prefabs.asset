@@ -14,11 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - type: 1
-    prefab: {fileID: 8490824003797150612, guid: 5fdf15be923673c499acbdc26bd6b723, type: 3}
-    root: 
-    shouldPool: 0
-    initialPoolSize: 0
-  - type: 4
     prefab: {fileID: 4099676189742912143, guid: 28cf153612d00fd40ac2dad5622bfaf6, type: 3}
     root: /EntityRoot
     shouldPool: 0

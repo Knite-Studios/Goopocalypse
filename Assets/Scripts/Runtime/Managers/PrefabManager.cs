@@ -176,11 +176,9 @@ namespace Managers
     public enum PrefabType
     {
         None = 0,
-        WarriorHero = 1,
-        ArcherHero = 2,
-        MageHero = 3,
-        MeleeEnemy = 4,
-        PlaceholderProjectile = 5,
+        MeleeEnemy = 1,
+        PlaceholderProjectile = 2,
+        Link = 3,
     }
 
     [Serializable]

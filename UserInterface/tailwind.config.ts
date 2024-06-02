@@ -1,10 +1,19 @@
 import plugin from "tailwindcss/plugin";
+import { Config } from "tailwindcss/types/config";
 
 import * as onejs from "./ScriptLib/onejs-tw-config";
 
 export default {
     content: [...onejs.paths, "./src/**/*.{tsx,ts}"],
-    theme: onejs.theme,
+    theme: {
+        ...onejs.theme,
+        extend: {
+            colors: {
+                boxgrad: "#ececff",
+                boxtext: "#b8b7ce"
+            }
+        }
+    },
     plugins: [
         ...onejs.plugins,
         plugin(function ({ addUtilities }) {
@@ -19,4 +28,4 @@ export default {
         })
     ],
     corePlugins: onejs.corePlugins
-};
+} satisfies Config;

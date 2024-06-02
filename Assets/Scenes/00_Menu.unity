@@ -270,6 +270,10 @@ PrefabInstance:
       propertyPath: _excludeTS
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6324388976432546210, guid: 171073f8a323d004f82984c58ed3049a, type: 3}
+      propertyPath: _scriptsBundleZip
+      value: 
+      objectReference: {fileID: 4900000, guid: 9b4c9ac4ca62334478b16bd28ca121f6, type: 3}
     - target: {fileID: 6661873769672997505, guid: 171073f8a323d004f82984c58ed3049a, type: 3}
       propertyPath: _runOnStart
       value: 0

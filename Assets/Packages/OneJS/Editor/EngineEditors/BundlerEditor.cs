@@ -55,10 +55,10 @@ namespace OneJS.Editor {
                 EditorGUILayout.PropertyField(_scriptsBundleZip, new GUIContent("ScriptsBundle.zip"));
                 EditorGUILayout.PropertyField(_scriptLibZip, new GUIContent("ScriptLib.zip"));
                 EditorGUILayout.PropertyField(_samplesZip, new GUIContent("Samples.zip"));
-                EditorGUILayout.PropertyField(_vscodeSettings, new GUIContent("settings.json"));
-                EditorGUILayout.PropertyField(_vscodeTasks, new GUIContent("tasks.json"));
-                EditorGUILayout.PropertyField(_tsconfig, new GUIContent("tsconfig.json"));
-                EditorGUILayout.PropertyField(_tailwindConfig, new GUIContent("tailwind.config.js"));
+                // EditorGUILayout.PropertyField(_vscodeSettings, new GUIContent("settings.json"));
+                // EditorGUILayout.PropertyField(_vscodeTasks, new GUIContent("tasks.json"));
+                // EditorGUILayout.PropertyField(_tsconfig, new GUIContent("tsconfig.json"));
+                // EditorGUILayout.PropertyField(_tailwindConfig, new GUIContent("tailwind.config.js"));
             }
             if (GUILayout.Button(
                     new GUIContent("Bundle Scripts for Deployment",

@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: -7773854495348174623}
   - component: {fileID: 6894903057209637159}
   m_Layer: 3
-  m_Name: Player_Fwend
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -258,9 +258,8 @@ MonoBehaviour:
   syncInterval: 0
   luaScript: players/fwend
   <CurrentHealth>k__BackingField: 0
-  playerRole: 2
-  ropePrefab: {fileID: 0}
-  projectilePrefab: 5
+  playerRole: 1
+  projectilePrefab: 2
   indicator: {fileID: 8207353764106387348}
   projectileSpawnDistance: 1
   attackInterval: 2
@@ -312,7 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  _assetId: 3440508282
+  _assetId: 1805958733
   serverOnly: 0
   visibility: 0
   hasSpawned: 0

@@ -1,15 +1,16 @@
 import { h } from "preact";
+import { Style } from "preact/jsx";
+
+import * as resources from "@ui/resources";
 
 export enum Size {
-    Footnote = 16,
-    Small = 24,
-    Normal = 36,
-    Large = 48,
-    Title = 64
+    Normal = 64,
+    Large = 96
 }
 
 interface IProps {
     class?: string;
+    style?: Style;
 
     size?: Size;
     bold?: boolean;
@@ -25,7 +26,8 @@ function Text(props: IProps) {
             style={{
                 fontSize: props.size || Size.Normal,
                 unityFontStyleAndWeight: props.bold && props.italic ? "BoldAndItalic" :
-                    props.bold ? "Bold" : props.italic ? "Italic" : "Normal"
+                    props.bold ? "Bold" : props.italic ? "Italic" : "Normal",
+                unityFontDefinition: resources.ThaleahFat
             }}
         >
             {props.children}

@@ -7,7 +7,7 @@ import Text, { Size } from "@components/Text";
 
 import type { PlayerSession, ScriptManager } from "game";
 
-import { PlayerRole } from "@types/enums";
+import { PlayerRole } from "@type/enums";
 import { List } from "System/Collections/Generic";
 
 interface IPlayerProps {

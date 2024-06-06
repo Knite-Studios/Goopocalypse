@@ -11,7 +11,7 @@
             ],
             "@app/*": ["src/*"],
             "@ui/*": ["src/ui/*"],
-            "@types/*": ["src/types/*"],
+            "@type/*": ["src/types/*"],
             "@screens/*": ["src/ui/screens/*"],
             "@components/*": ["src/ui/components/*"]
         },

@@ -7,7 +7,7 @@ import LobbyScreen from "@screens/LobbyScreen";
 import GameScreen from "@screens/GameScreen";
 
 import { ScriptManager } from "game";
-import { GameState } from "@types/enums";
+import { GameState } from "@type/enums";
 
 const game = require("game") as ScriptManager;
 

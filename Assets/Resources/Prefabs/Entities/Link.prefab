@@ -52,7 +52,7 @@ MonoBehaviour:
   syncInterval: 0
   fwend: {fileID: 0}
   buddie: {fileID: 0}
-  maxDistance: 5
+  maxDistance: 10
 --- !u!120 &2957496096868646278
 LineRenderer:
   serializedVersion: 2

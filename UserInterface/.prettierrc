@@ -1,0 +1,28 @@
+{
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "endOfLine": "crlf",
+    "jsxSingleQuote": false,
+    "jsxBracketSameLine": false,
+    "semi": true,
+    "singleQuote": false,
+    "tabWidth": 4,
+    "trailingComma": "none",
+    "useTabs": false,
+
+    "importOrder": [
+        "^@components/(.*)$",
+        "^@screens/(.*)$",
+        "^@ui/(.*)$",
+        "^@type/(.*)$",
+        "^@app/(.*)$",
+        "^game/(.*)$",
+        "^UnityEngine/(.*)$",
+        "^onejs/(.*)$",
+        "^[./]"
+    ],
+
+    "plugins": [
+        "@trivago/prettier-plugin-sort-imports"
+    ]
+}

@@ -10,6 +10,7 @@
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "esbuild": "^0.20.2",
+    "prettier": "^3.3.1",
     "tailwindcss": "3.4.3",
     "typescript": "5.4.5"
   }

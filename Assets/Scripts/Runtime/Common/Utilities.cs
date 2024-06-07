@@ -1,4 +1,5 @@
 ﻿using System;
+using Steamworks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -86,4 +87,45 @@ namespace Common
             return flipped;
         }
     }
+
+#if !DISABLESTEAMWORKS
+    public static class SteamUtilities
+    {
+        /// <summary>
+        /// Loads the avatar of the current user.
+        /// </summary>
+        public static Texture2D LoadLocalAvatar()
+        {
+            return LoadAvatar(SteamUser.GetSteamID());
+        }
+
+        /// <summary>
+        /// Loads the avatar of the specified user.
+        /// </summary>
+        public static Texture2D LoadAvatar(CSteamID steamId)
+        {
+            // Fetch the user's profile icon.
+            var icon = SteamFriends.GetLargeFriendAvatar(steamId);
+            var valid = SteamUtils.GetImageSize(icon,
+                out var width, out var height);
+            if (!valid)
+            {
+                Debug.LogWarning("Failed to fetch Steam user's profile icon.");
+                return null;
+            }
+
+            // Get the bytes of the user's profile icon.
+            var buffer = new byte[width * height * 4];
+            valid = SteamUtils.GetImageRGBA(icon, buffer, buffer.Length);
+            if (!valid)
+            {
+                Debug.LogWarning("Failed to load Steam user's profile icon.");
+                return null;
+            }
+
+            // Convert the profile icon to a texture.
+            return ImageUtilities.FromBytes((int)width, (int)height, buffer);
+        }
+    }
+#endif
 }

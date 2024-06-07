@@ -138,27 +138,7 @@ namespace Managers
                 var steamId = conn.address.ToSteamId();
                 userId = steamId.m_SteamID.ToString();
 
-                // Fetch the user's profile icon.
-                var icon = SteamFriends.GetLargeFriendAvatar(steamId);
-                var valid = SteamUtils.GetImageSize(icon,
-                    out var width, out var height);
-                if (!valid)
-                {
-                    Debug.LogWarning("Failed to fetch Steam user's profile icon.");
-                    return;
-                }
-
-                // Get the bytes of the user's profile icon.
-                var buffer = new byte[width * height * 4];
-                valid = SteamUtils.GetImageRGBA(icon, buffer, buffer.Length);
-                if (!valid)
-                {
-                    Debug.LogWarning("Failed to load Steam user's profile icon.");
-                    return;
-                }
-
-                // Convert the profile icon to a texture.
-                profileIcon = ImageUtilities.FromBytes((int)width, (int)height, buffer);
+                profileIcon = SteamUtilities.LoadAvatar(steamId);
             }
             else
             {

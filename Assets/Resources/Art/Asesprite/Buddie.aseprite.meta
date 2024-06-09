@@ -141,6 +141,226 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: Buddie_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 208
+      width: 58
+      height: 58
+    spriteID: 24a73d2ce1630b4479038c4c7734e867
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 208}
+  - name: Buddie_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 70
+      y: 4
+      width: 60
+      height: 57
+    spriteID: b53cb4da2009c9248a5a0c949f362f14
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 70, y: 4}
+  - name: Buddie_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 274
+      width: 58
+      height: 58
+    spriteID: 33fc5c5249693fd44bd9c57a6775db5f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 274}
+  - name: Buddie_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 72
+      width: 58
+      height: 60
+    spriteID: 99a17d5b9cb6a7e4eb537c0a4be91684
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 72}
+  - name: Buddie_Frame_5
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 340
+      width: 58
+      height: 58
+    spriteID: 6ec6b81dde02dc7478793c121f538fd0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 340}
+  - name: Buddie_Frame_6
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 70
+      y: 69
+      width: 60
+      height: 57
+    spriteID: d2cfd516e8a199e4994b18e1a26f59ac
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 70, y: 69}
+  - name: Buddie_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 406
+      width: 58
+      height: 58
+    spriteID: 2e0797d0832c9484d9de4e4af4108046
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 406}
+  - name: Buddie_Frame_8
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 140
+      width: 58
+      height: 60
+    spriteID: 079dfb223251d374381f9f370954c344
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 140}
+  - name: Buddie_Frame_9
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 70
+      y: 199
+      width: 58
+      height: 58
+    spriteID: 7eafbd76e9ef5ee4ab4c29ac6186d81d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 70, y: 199}
+  - name: Buddie_Frame_10
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 70
+      y: 134
+      width: 60
+      height: 57
+    spriteID: 8f5cc6a0e6787824e89bacd2f061661e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 70, y: 134}
+  - name: Buddie_Frame_11
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 70
+      y: 265
+      width: 58
+      height: 58
+    spriteID: 303d41a100322cd459c26355d73d0bae
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 70, y: 265}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -150,7 +370,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: Buddie
+    - name: Buddie_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -159,6 +379,105 @@ ScriptedImporter:
         width: 58
         height: 60
       spriteId: a3eb35877558fd54bbd9982451e97e54
+    - name: Buddie_Frame_1
+      frameIndex: 1
+      additiveSortOrder: 0
+      cellRect:
+        x: 3
+        y: 0
+        width: 58
+        height: 58
+      spriteId: 24a73d2ce1630b4479038c4c7734e867
+    - name: Buddie_Frame_2
+      frameIndex: 2
+      additiveSortOrder: 0
+      cellRect:
+        x: 2
+        y: 0
+        width: 60
+        height: 57
+      spriteId: b53cb4da2009c9248a5a0c949f362f14
+    - name: Buddie_Frame_3
+      frameIndex: 3
+      additiveSortOrder: 0
+      cellRect:
+        x: 3
+        y: 0
+        width: 58
+        height: 58
+      spriteId: 33fc5c5249693fd44bd9c57a6775db5f
+    - name: Buddie_Frame_4
+      frameIndex: 4
+      additiveSortOrder: 0
+      cellRect:
+        x: 3
+        y: 0
+        width: 58
+        height: 60
+      spriteId: 99a17d5b9cb6a7e4eb537c0a4be91684
+    - name: Buddie_Frame_5
+      frameIndex: 5
+      additiveSortOrder: 0
+      cellRect:
+        x: 3
+        y: 0
+        width: 58
+        height: 58
+      spriteId: 6ec6b81dde02dc7478793c121f538fd0
+    - name: Buddie_Frame_6
+      frameIndex: 6
+      additiveSortOrder: 0
+      cellRect:
+        x: 2
+        y: 0
+        width: 60
+        height: 57
+      spriteId: d2cfd516e8a199e4994b18e1a26f59ac
+    - name: Buddie_Frame_7
+      frameIndex: 7
+      additiveSortOrder: 0
+      cellRect:
+        x: 3
+        y: 0
+        width: 58
+        height: 58
+      spriteId: 2e0797d0832c9484d9de4e4af4108046
+    - name: Buddie_Frame_8
+      frameIndex: 8
+      additiveSortOrder: 0
+      cellRect:
+        x: 3
+        y: 0
+        width: 58
+        height: 60
+      spriteId: 079dfb223251d374381f9f370954c344
+    - name: Buddie_Frame_9
+      frameIndex: 9
+      additiveSortOrder: 0
+      cellRect:
+        x: 3
+        y: 0
+        width: 58
+        height: 58
+      spriteId: 7eafbd76e9ef5ee4ab4c29ac6186d81d
+    - name: Buddie_Frame_10
+      frameIndex: 10
+      additiveSortOrder: 0
+      cellRect:
+        x: 2
+        y: 0
+        width: 60
+        height: 57
+      spriteId: 8f5cc6a0e6787824e89bacd2f061661e
+    - name: Buddie_Frame_11
+      frameIndex: 11
+      additiveSortOrder: 0
+      cellRect:
+        x: 3
+        y: 0
+        width: 58
+        height: 58
+      spriteId: 303d41a100322cd459c26355d73d0bae
     linkedCells: []
     parentIndex: -1
   platformSettings:

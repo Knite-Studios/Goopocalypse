@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Common;
@@ -18,6 +19,8 @@ namespace Managers
 {
     public partial class GameManager : MonoSingleton<GameManager>
     {
+        [NaughtyAttributes.Scene] public int gameScene;
+
         public static Action OnGameStart;
         public static UnityAction<GameEvent> OnGameEvent;
         public static UnityAction<World> OnWorldGenerated;
@@ -116,7 +119,8 @@ namespace Managers
             _loadedPlayers.Clear();
             _loadTask = new TaskCompletionSource<object>();
 
-            NetworkServer.SendToAll(new TransferSceneS2CNotify { sceneId = Scenes.Game });
+            // TODO: Temporary for testing ONLY.
+            NetworkServer.SendToAll(new TransferSceneS2CNotify { sceneId = gameScene });
 
             // Wait for players to finish loading.
             Debug.Log("Waiting for players to load scene...");
@@ -132,6 +136,7 @@ namespace Managers
                 playerController.playerRole = LobbyManager.Instance.GetPlayerRole(player);
                 NetworkServer.AddPlayerForConnection(player, playerObject);
                 playerControllers.Add(playerController);
+                EntityManager.RegisterPlayer(playerController);
             }
 
             // Connect the players with the link.

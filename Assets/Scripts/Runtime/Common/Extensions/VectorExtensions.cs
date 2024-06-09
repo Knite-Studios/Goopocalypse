@@ -97,4 +97,10 @@ public static class VectorExtensions
     /// </summary>
     public static Vector2 Round(this Vector2 vector2) =>
         new(Mathf.Round(vector2.x), Mathf.Round(vector2.y));
+
+    /// <summary>
+    /// Converts a Vector3 to a Vector2.
+    /// </summary>
+    public static Vector2 ToVector2(this Vector3 vector3) =>
+        new Vector2(vector3.x, vector3.y);
 }

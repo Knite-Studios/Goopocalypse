@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Entity.Pathfinding;
+using Entity.Player;
 using Managers;
 using UnityEngine;
 using XLua;
@@ -12,9 +14,8 @@ namespace Entity.Enemies
     {
         protected Pathfinder Pathfinder;
         protected Transform Target;
-
-        private List<Node> _currentPath;
-        private int _currentPathIndex;
+        protected List<Node> CurrentPath;
+        protected int CurrentPathIndex;
 
         protected virtual void Start()
         {
@@ -28,11 +29,11 @@ namespace Entity.Enemies
             GameManager.OnGameEvent += OnGameEvent;
         }
 
-        private void FixedUpdate()
+        protected virtual void FixedUpdate()
         {
-            if (_currentPath == null || _currentPathIndex >= _currentPath.Count) return;
+            if (CurrentPath == null || CurrentPathIndex >= CurrentPath.Count) return;
 
-            var node = _currentPath[_currentPathIndex];
+            var node = CurrentPath[CurrentPathIndex];
             var targetPosition = node.worldPosition;
 
             if (Vector2.Distance(transform.position, targetPosition) > 0.1f)
@@ -42,7 +43,7 @@ namespace Entity.Enemies
             }
             else
             {
-                _currentPathIndex++;
+                CurrentPathIndex++;
             }
         }
 
@@ -69,7 +70,7 @@ namespace Entity.Enemies
         {
             while (!Target)
             {
-                var player = GameObject.FindWithTag("Player"); // TODO: Change with entity manager later.
+                var player = GetNearestPlayer();
                 if (player) Target = player.transform;
                 yield return new WaitForSeconds(1.0f);
             }
@@ -81,14 +82,82 @@ namespace Entity.Enemies
             {
                 if (Target)
                 {
-                    _currentPath = Pathfinder.FindPath(Target.position);
-                    _currentPathIndex = 0;
+                    CurrentPath = Pathfinder.FindPath(Target.position);
+                    CurrentPathIndex = 0;
                 }
 
                 yield return new WaitForSeconds(0.3f);
             }
 
             // ReSharper disable once IteratorNeverReturns
+        }
+
+        /// <summary>
+        /// Finds the nearest player.
+        /// </summary>
+        protected PlayerController GetNearestPlayer()
+        {
+            var players = EntityManager.Instance.players;
+            // TODO: Temporary. REMOVE LATER.
+            if (players.Count == 0) players = GameObject.FindGameObjectsWithTag("Player").ToList().ConvertAll(player
+                => player.GetComponent<PlayerController>());
+
+            var nearestPlayer = players
+                .OrderBy(player => Vector2.Distance(transform.position, player.transform.position))
+                .FirstOrDefault();
+
+            return nearestPlayer;
+        }
+
+        /// <summary>
+        /// Finds the furthest player.
+        /// </summary>
+        protected PlayerController GetFurthestPlayer()
+        {
+            var players = EntityManager.Instance.players;
+            // TODO: Temporary. REMOVE LATER.
+            if (players.Count == 0) players = GameObject.FindGameObjectsWithTag("Player").ToList().ConvertAll(player
+                => player.GetComponent<PlayerController>());
+
+            var furthestPlayer = players
+                .OrderByDescending(player => Vector2.Distance(transform.position, player.transform.position))
+                .FirstOrDefault();
+
+            return furthestPlayer;
+        }
+
+        /// <summary>
+        /// Finds a random player.
+        /// </summary>
+        protected PlayerController GetRandomPlayer()
+        {
+            var players = EntityManager.Instance.players;
+            // TODO: Temporary. REMOVE LATER.
+            if (players.Count == 0) players = GameObject.FindGameObjectsWithTag("Player").ToList().ConvertAll(player
+                => player.GetComponent<PlayerController>());
+
+            return players[Random.Range(0, players.Count)];
+        }
+
+        /// <summary>
+        /// Finds the nearest moving player by velocity.
+        /// </summary>
+        protected PlayerController GetNearestMovingPlayer()
+        {
+            var players = EntityManager.Instance.players;
+            // TODO: Temporary. REMOVE LATER.
+            if (players.Count == 0) players = GameObject.FindGameObjectsWithTag("Player").ToList().ConvertAll(player
+                => player.GetComponent<PlayerController>());
+
+            var movingPlayers = players
+                .Where(player => player.Rb.velocity.magnitude > 0.1f)
+                .ToList();
+
+            var closestMovingPlayer = movingPlayers
+                .OrderBy(player => Vector2.Distance(transform.position, player.transform.position))
+                .FirstOrDefault();
+
+            return closestMovingPlayer;
         }
     }
 

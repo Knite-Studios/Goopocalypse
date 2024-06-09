@@ -17,7 +17,7 @@ interface IPlayerProps {
 
 function Player({ session, role }: IPlayerProps) {
     return (
-        <div class={"flex items-center mx-[50px] text-center"}>
+        <div class={"items-center mx-[50px] text-center"}>
             <image
                 image={session.profileIcon}
             />
@@ -39,8 +39,8 @@ function LobbyScreen({ game }: { game: ScriptManager }) {
     const [roles, __]: [PlayerRoles, any] = useEventfulState(LobbyManager, "Roles");
 
     return (
-        <div class={"w-full h-full flex flex-col justify-center"}>
-            <div class={"w-full flex flex-row justify-center mb-8"}>
+        <div class={"w-full h-full flex-col justify-center"}>
+            <div class={"w-full flex-row justify-center mb-8"}>
                 { players.ToArray().map((player, index) => (
                     <Player
                         key={index}
@@ -50,7 +50,7 @@ function LobbyScreen({ game }: { game: ScriptManager }) {
                 )) }
             </div>
 
-            <div class={"w-full flex flex-row justify-center"}>
+            <div class={"w-full flex-row justify-center"}>
                 <Button
                     class={"w-64 mr-8 bg-blue-500"}
                     onClick={() => {

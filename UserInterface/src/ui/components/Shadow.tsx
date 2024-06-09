@@ -12,7 +12,7 @@ function Shadow(props: IProps) {
 
     return (
         <div
-            class={"flex flex-col"}
+            class={"flex-col"}
         >
             <div
                 class={"absolute w-full h-full"}

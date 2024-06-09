@@ -23,9 +23,9 @@ function MenuButton(props: IMenuButtonProps) {
     const [highlighted, setHighlighted] = useState(false);
 
     return (
-        <div class={"flex flex-col"}>
+        <div class={"flex-col"}>
             { highlighted ? (
-                <div class={"flex flex-row"}>
+                <div class={"flex-row"}>
                     <TextBox
                         onMouseOver={() => setHighlighted(true)}
                         onMouseOut={() => setHighlighted(false)}
@@ -66,7 +66,7 @@ function MenuScreen({ game }: { game: ScriptManager }) {
                     image={resources.Logo}
                 />
 
-                <div class={"flex flex-col ml-16"}>
+                <div class={"flex-col ml-16"}>
                     <MenuButton onClick={() => log("solo")}>
                         Play Solo
                     </MenuButton>

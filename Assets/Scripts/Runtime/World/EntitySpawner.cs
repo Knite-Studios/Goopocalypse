@@ -47,7 +47,7 @@ namespace Runtime.World
                     _world.center, radius, IsValidSpawn);
 
                 // Spawn an enemy.
-                var enemy = PrefabManager.Create<Enemy>(PrefabType.MeleeEnemy);
+                var enemy = PrefabManager.Create<Enemy>(PrefabType.BasicEnemy);
 
                 GameObject enemyObject;
                 (enemyObject = enemy.gameObject).transform.SetPositionAndRotation(

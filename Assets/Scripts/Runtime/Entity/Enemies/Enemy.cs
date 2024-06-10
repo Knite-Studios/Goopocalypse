@@ -146,11 +146,13 @@ namespace Entity.Enemies
         {
             var players = EntityManager.Instance.players;
             // TODO: Temporary. REMOVE LATER.
-            if (players.Count == 0) players = GameObject.FindGameObjectsWithTag("Player").ToList().ConvertAll(player
-                => player.GetComponent<PlayerController>());
+            if (players.Count == 0)
+                players = GameObject.FindGameObjectsWithTag("Player")
+                    .Select(player => player.GetComponent<PlayerController>())
+                    .ToList();
 
             var movingPlayers = players
-                .Where(player => player.Rb.velocity.magnitude > 0.1f)
+                .Where(player => player.IsMoving)
                 .ToList();
 
             var closestMovingPlayer = movingPlayers

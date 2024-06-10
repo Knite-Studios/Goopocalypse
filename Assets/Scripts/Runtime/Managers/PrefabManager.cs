@@ -176,7 +176,7 @@ namespace Managers
     public enum PrefabType
     {
         None = 0,
-        MeleeEnemy = 1,
+        BasicEnemy = 1,
         PlaceholderProjectile = 2,
         Link = 3,
     }

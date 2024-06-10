@@ -12,6 +12,8 @@ namespace Entity.Player
         [SerializeField] private GameObject indicator; // Temporarily used for testing.
         [SerializeField] private CinemachineVirtualCamera virtualCameraPrefab;
 
+        public bool IsMoving { get; private set; }
+
         private Vector2 _direction;
         private float _attackTimer;
         private CinemachineVirtualCamera _virtualCamera;
@@ -53,6 +55,7 @@ namespace Entity.Player
         private void HandleMovement()
         {
             var move = InputManager.Movement.ReadValue<Vector2>();
+            IsMoving = move != Vector2.zero;
             if (move != Vector2.zero) _direction = move.normalized;
 
             // Rotate the indicator based on the direction it's facing.

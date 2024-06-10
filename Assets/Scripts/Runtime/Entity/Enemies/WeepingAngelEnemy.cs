@@ -7,11 +7,29 @@ namespace Entity.Enemies
     {
         protected override IEnumerator FindTarget()
         {
-            while (!Target)
+            while (true)
             {
                 var player = GetNearestMovingPlayer();
-                if (player) Target = player.transform;
-                yield return new WaitForSeconds(1.0f);
+                Target = player ? player.transform : null;
+                yield return new WaitForSeconds(0.3f);
+            }
+        }
+
+        protected override IEnumerator UpdatePath()
+        {
+            while (true)
+            {
+                if (Target)
+                {
+                    CurrentPath = Pathfinder.FindPath(Target.position);
+                    CurrentPathIndex = 0;
+                }
+                else
+                {
+                    CurrentPath = null;
+                }
+
+                yield return new WaitForSeconds(0.3f);
             }
         }
     }

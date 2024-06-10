@@ -25,6 +25,15 @@ namespace Entity.Player
 
             bool isMoving = move != Vector2.zero;
             _animator.SetBool("IsMoving", isMoving);
+
+            if (move.x < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1); 
+            }
+            else if (move.x > 0)
+            {
+                transform.localScale = new Vector3(1, 1, 1); 
+            }
         }
     }
 }

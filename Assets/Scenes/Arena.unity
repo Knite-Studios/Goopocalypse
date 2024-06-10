@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fwend
       objectReference: {fileID: 0}
+    - target: {fileID: -2253911629886400664, guid: 5f257f7485939ff46b9cd3c2a5ba06a1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: 5f257f7485939ff46b9cd3c2a5ba06a1, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -231,7 +235,7 @@ Animator:
   m_GameObject: {fileID: 196542725}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 317195160622638912, guid: 5f257f7485939ff46b9cd3c2a5ba06a1, type: 3}
+  m_Controller: {fileID: 9100000, guid: 1bb994bbc2e1ced4f8be4574e652446f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -277,7 +281,7 @@ BoxCollider2D:
   m_Offset: {x: 0.015625, y: 0.3125}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.47727275, y: 0}
+    pivot: {x: 0.47727275, y: -0.8}
     oldSize: {x: 0.6875, y: 0.625}
     newSize: {x: 0.6875, y: 0.625}
     adaptiveTilingThreshold: 0.5
@@ -327,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRole: 2
-  moveSpeed: 5
+  moveSpeed: 4
   _animator: {fileID: 196542726}
 --- !u!1001 &521147604
 PrefabInstance:
@@ -347,7 +351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: eb080146f1dc00d49b53444e669d6bd4, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: eb080146f1dc00d49b53444e669d6bd4, type: 3}
       propertyPath: m_SortingOrder
@@ -413,6 +417,10 @@ PrefabInstance:
     - target: {fileID: -2253911629886400664, guid: 5f257f7485939ff46b9cd3c2a5ba06a1, type: 3}
       propertyPath: m_Name
       value: Buddie
+      objectReference: {fileID: 0}
+    - target: {fileID: -2253911629886400664, guid: 5f257f7485939ff46b9cd3c2a5ba06a1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: 5f257f7485939ff46b9cd3c2a5ba06a1, type: 3}
       propertyPath: m_Sprite
@@ -574,7 +582,7 @@ BoxCollider2D:
   m_Offset: {x: 0.015625, y: 0.3125}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: -0.53333336}
     oldSize: {x: 0.90625, y: 0.9375}
     newSize: {x: 0.6875, y: 0.625}
     adaptiveTilingThreshold: 0.5
@@ -594,7 +602,7 @@ Animator:
   m_GameObject: {fileID: 634177778}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: -4882624431803919366, guid: da5b48a1fad954b4faca14934f63b35f, type: 3}
+  m_Controller: {fileID: 9100000, guid: 8870f9daac97f2a478609ebf7ffacab5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

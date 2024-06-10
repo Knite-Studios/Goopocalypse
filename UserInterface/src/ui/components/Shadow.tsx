@@ -20,9 +20,7 @@ function Shadow(props: IProps) {
                     top: radius, left: radius,
                     backgroundColor: color
                 }}
-            >
-                a
-            </div>
+            />
 
             {props.children}
         </div>

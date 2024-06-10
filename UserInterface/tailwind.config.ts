@@ -27,5 +27,9 @@ export default {
             });
         })
     ],
-    corePlugins: onejs.corePlugins
+    corePlugins: {
+        ...onejs.corePlugins,
+        boxShadow: false,
+        boxShadowColor: false
+    }
 } satisfies Config;

@@ -13,8 +13,8 @@ function GameScreen({ game }: { game: ScriptManager }) {
     const [matchTimer, __]: [number, any] = useEventfulState(WaveManager, "MatchTimer");
 
     return (
-        <div class={"p-16 flex flex-col w-full h-full text-blue-400"}>
-            <div class={"flex flex-col self-center text-center"}>
+        <div class={"p-16 flex-col w-full h-full text-blue-400"}>
+            <div class={"flex-col self-center text-center"}>
                 <Text size={Size.Normal}>{`Wave ${waveCount.toString()}`}</Text>
                 <Text size={Size.Large}>{matchTimer.toString()}</Text>
             </div>

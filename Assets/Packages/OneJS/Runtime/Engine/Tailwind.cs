@@ -54,6 +54,13 @@ namespace OneJS.Engine {
         }
 
         void OnEnable() {
+#if UNITY_EDITOR
+            if (!_baseStyleSheet)
+            {
+                GenerateUssFiles();
+            }
+#endif
+
             if (!_uiDocument.rootVisualElement.styleSheets.Contains(_baseStyleSheet))
                 _uiDocument.rootVisualElement.styleSheets.Add(_baseStyleSheet);
         }
@@ -148,7 +155,19 @@ namespace OneJS.Engine {
             baseCss = Regex.Replace(baseCss, @"@media[^\{]+\{([^\{\}]+\{[^\{\}]+\}[^\{\}]*)+\}", "",
                 RegexOptions.Singleline);
             baseCss = TransformCssText(baseCss);
-            File.WriteAllText(GetAbsoluteAssetPath(_baseStyleSheet), baseCss);
+
+            if (!_baseStyleSheet)
+            {
+                // Generate the file.
+                File.WriteAllText(Path.Combine(Application.dataPath, "Packages/OneJS/Misc Assets/UI Assets/StyleSheets/Tailwind/base.uss"), baseCss);
+                // Set the reference to the file.
+                _baseStyleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Packages/OneJS/Misc Assets/UI Assets/StyleSheets/Tailwind/base.uss");
+            }
+            else
+            {
+                File.WriteAllText(GetAbsoluteAssetPath(_baseStyleSheet), baseCss);
+            }
+
             // AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(_baseStyleSheet));
             AssetDatabase.Refresh();
             // TODO determine if Refresh() has substantial performance impact on large projects

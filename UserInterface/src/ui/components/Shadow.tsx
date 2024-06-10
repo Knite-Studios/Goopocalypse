@@ -12,7 +12,7 @@ function Shadow(props: IProps) {
 
     return (
         <div
-            class={"flex flex-col"}
+            class={"flex-col"}
         >
             <div
                 class={"absolute w-full h-full"}
@@ -20,9 +20,7 @@ function Shadow(props: IProps) {
                     top: radius, left: radius,
                     backgroundColor: color
                 }}
-            >
-                a
-            </div>
+            />
 
             {props.children}
         </div>

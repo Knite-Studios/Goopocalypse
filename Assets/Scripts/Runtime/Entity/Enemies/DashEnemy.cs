@@ -5,36 +5,58 @@ namespace Entity.Enemies
 {
     public class DashEnemy : Enemy
     {
+        [SerializeField] private float detectionRadius = 5.0f;
+        [SerializeField] private float chargeTime = 1.0f;
         [SerializeField] private float dashSpeed = 10.0f;
-        [SerializeField] private float dashDistance = 5.0f;
-        [SerializeField] private float dashDelay = 1.0f;
 
+        private bool _isCharging;
         private bool _isDashing;
 
         protected override void FixedUpdate()
         {
-            if (!_isDashing && Target && Vector2.Distance(transform.position, Target.position) <= dashDistance)
+            if (_isDashing) return;
+
+            if (CurrentPath == null || CurrentPathIndex >= CurrentPath.Count) return;
+
+            var node = CurrentPath[CurrentPathIndex];
+            var targetPosition = node.worldPosition;
+
+            if (Vector2.Distance(transform.position, targetPosition) > 0.1f)
             {
-                StartCoroutine(Dash());
+                var direction = (targetPosition - (Vector2)transform.position).normalized;
+                Rb.MovePosition(Rb.position + direction * (Speed * Time.fixedDeltaTime));
+            }
+            else
+            {
+                CurrentPathIndex++;
             }
 
-            base.FixedUpdate();
+            if (Target && Vector2.Distance(transform.position, Target.position) <= detectionRadius && !_isCharging)
+                StartCoroutine(ChargeAndDash());
         }
 
-        private IEnumerator Dash()
+        private IEnumerator ChargeAndDash()
         {
+            _isCharging = true;
+
+            // Stop moving during the charge.
+            CurrentPath = null;
+
+            // Wait for the charge time.
+            yield return new WaitForSeconds(chargeTime);
+
+            // Dash towards the player.
+            _isCharging = false;
             _isDashing = true;
+            var dashDirection = (Target.position - transform.position).normalized;
+            var dashDuration = detectionRadius / dashSpeed;
 
-            var direction = (Target.position - transform.position).normalized;
-            var targetPosition = (Vector2)transform.position + direction.ToVector2() * dashDistance;
-            var originalPosition = transform.position;
-            var elapsedTime = 0.0f;
-
-            while (elapsedTime < dashDelay)
+            var elapsedTime = 0f;
+            while (elapsedTime < dashDuration)
             {
-                elapsedTime += Time.deltaTime;
-                Rb.MovePosition(Vector2.Lerp(originalPosition, targetPosition, elapsedTime / dashDelay));
-                yield return null;
+                Rb.MovePosition(Rb.position + dashDirection.ToVector2() * (dashSpeed * Time.fixedDeltaTime));
+                elapsedTime += Time.fixedDeltaTime;
+                yield return new WaitForFixedUpdate();
             }
 
             _isDashing = false;

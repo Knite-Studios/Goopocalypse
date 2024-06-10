@@ -42,7 +42,7 @@ namespace Entity
         #endregion
 
         protected SpriteRenderer SpriteRenderer;
-        protected internal Rigidbody2D Rb;
+        protected Rigidbody2D Rb;
 
         protected virtual void Awake()
         {

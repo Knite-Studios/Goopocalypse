@@ -41,18 +41,5 @@ namespace Entity.Enemies
                 yield return new WaitForSeconds(0.3f);
             }
         }
-
-        /// <summary>
-        /// Gets a random walkable position around the specified position within a given radius.
-        /// </summary>
-        private Vector2? GetRandomWalkablePositionAround(Vector2 center, float radius)
-        {
-            // NOTE: Might be best to do recurssion here.
-            var grid = Pathfinder.grid;
-            var randomPosition = center + Random.insideUnitCircle * radius;
-            var node = grid!.GetNode(randomPosition);
-
-            return node != null && node.isWalkable ? randomPosition : null;
-        }
     }
 }

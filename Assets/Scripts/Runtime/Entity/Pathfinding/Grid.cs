@@ -132,6 +132,16 @@ namespace Entity.Pathfinding
         }
 
         /// <summary>
+        /// Checks if a node is walkable.
+        /// </summary>
+        /// <param name="position">The position of the node.</param>
+        public bool IsWalkable(Vector2 position)
+        {
+            var node = GetNode(position);
+            return node != null && node.isWalkable;
+        }
+
+        /// <summary>
         /// Sets a node at a specific position to be walkable or not.
         /// </summary>
         /// <param name="position">The position of the node.</param>

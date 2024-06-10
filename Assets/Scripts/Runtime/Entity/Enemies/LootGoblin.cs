@@ -1,18 +1,64 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using Attributes;
+using UnityEngine;
 
 namespace Entity.Enemies
 {
     public class LootGoblin : Enemy
     {
-        protected override void FixedUpdate()
+        [TitleHeader("Loot Goblin Settings")]
+        [SerializeField] private float patrolRadius = 5.0f;
+        [SerializeField] private float detectionRadius = 5.0f;
+        [SerializeField] private float patrolCooldown = 2.0f;
+
+        private bool _isPatrolling = true;
+
+        protected override IEnumerator UpdatePath()
         {
-            if (Target)
+            while (true)
             {
-                var direction = (transform.position - Target.position).normalized;
-                Rb.MovePosition(Rb.position + direction.ToVector2() * (Speed * Time.fixedDeltaTime));
+                if (Target && Vector2.Distance(transform.position, Target.position) <= detectionRadius)
+                {
+                    // Run away from the player continuously.
+                    while (Vector2.Distance(transform.position, Target.position) <= detectionRadius)
+                    {
+                        var fleeDirection = (transform.position - Target.position).normalized;
+                        var fleePosition = (Vector2)transform.position + fleeDirection.ToVector2() * patrolRadius;
+
+                        // Add randomness to the flee position.
+                        fleePosition += Random.insideUnitCircle * (patrolRadius * 0.5f);
+
+                        CurrentPath = Pathfinder.FindPath(fleePosition);
+                        CurrentPathIndex = 0;
+                        yield return new WaitForSeconds(0.3f);
+                    }
+                }
+                else
+                {
+                    if (!_isPatrolling)
+                    {
+                        _isPatrolling = true;
+                    }
+                    else
+                    {
+                        var randomPosition = GetRandomWalkablePositionAround(transform.position, patrolRadius);
+                        if (randomPosition.HasValue)
+                        {
+                            CurrentPath = Pathfinder.FindPath(randomPosition.Value);
+                            CurrentPathIndex = 0;
+                        }
+                    }
+
+                    yield return new WaitForSeconds(patrolCooldown);
+                }
             }
 
-            // TODO: Bounce off the boundery walls logic.
+            // ReSharper disable once IteratorNeverReturns
+        }
+
+        protected override IEnumerator FindTarget()
+        {
+            yield return null;
         }
     }
 }

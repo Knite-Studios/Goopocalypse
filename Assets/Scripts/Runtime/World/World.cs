@@ -109,6 +109,9 @@ namespace Runtime.World
                         transform = { position = position }
                     };
                     tile.transform.SetParent(worldRoot);
+                    tile.layer = isObstacle
+                        ? LayerMask.NameToLayer("Obstacle")
+                        : LayerMask.NameToLayer("Walkable");
 
                     // Update the renderer.
                     var tileRenderer = tile.AddComponent<SpriteRenderer>();
@@ -181,6 +184,7 @@ namespace Runtime.World
                 tileRenderer.color = color;
                 tileRenderer.sprite = sprite;
                 tileRenderer.sortingOrder = -10;
+                tile.layer = LayerMask.NameToLayer("Obstacle");
 
                 tile.AddComponent<BoxCollider2D>();
                 var rigidBody = tile.AddComponent<Rigidbody2D>();

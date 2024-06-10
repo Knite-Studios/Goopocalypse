@@ -21,7 +21,7 @@ function Label(props: IProps) {
                     class={"self-end"}
                     style={{
                         width: 129, height: 66,
-                        top: 11, right: 20
+                        top: 15, right: 20
                     }}
                     image={resources.Flag}
                 />

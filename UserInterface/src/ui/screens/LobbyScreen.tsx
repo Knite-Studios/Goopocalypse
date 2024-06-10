@@ -52,7 +52,7 @@ function LobbyScreen({ game }: { game: ScriptManager }) {
 
             <div class={"w-full flex-row justify-center"}>
                 <Button
-                    class={"w-64 mr-8 bg-blue-500"}
+                    class={"w-80 mr-8 bg-blue-500"}
                     onClick={() => {
                         GameManager.StartGame();
                     }}

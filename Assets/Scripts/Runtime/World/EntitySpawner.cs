@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using System.Collections.Generic;
+using Common;
 using Entity.Enemies;
 using Managers;
 using Mirror;
@@ -34,6 +35,14 @@ namespace Runtime.World
         }
 
         /// <summary>
+        /// Returns a random enemy with the given list of enemies.
+        /// </summary>
+        private PrefabType GetRandomEnemy(List<PrefabType> enemies)
+        {
+            return enemies[Random.Range(0, enemies.Count)];
+        }
+
+        /// <summary>
         /// Spawns a wave of enemies.
         /// </summary>
         /// <param name="count">The amount of enemies to spawn.</param>
@@ -46,8 +55,18 @@ namespace Runtime.World
                 var spawnPoint = MathUtilities.FindValidSpawn(
                     _world.center, radius, IsValidSpawn);
 
+                // TODO: Temporary for prototype.
+                var enemyList = new List<PrefabType>
+                {
+                    PrefabType.BasicEnemy,
+                    PrefabType.DashEnemy,
+                    PrefabType.LootGoblin,
+                    PrefabType.RandomEnemy,
+                    PrefabType.RangedEnemy,
+                    PrefabType.WeepingAngelEnemy
+                };
                 // Spawn an enemy.
-                var enemy = PrefabManager.Create<Enemy>(PrefabType.BasicEnemy);
+                var enemy = PrefabManager.Create<Enemy>(GetRandomEnemy(enemyList));
 
                 GameObject enemyObject;
                 (enemyObject = enemy.gameObject).transform.SetPositionAndRotation(

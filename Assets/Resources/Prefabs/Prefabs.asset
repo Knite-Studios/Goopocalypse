@@ -18,3 +18,28 @@ MonoBehaviour:
     root: /EntityRoot
     shouldPool: 0
     initialPoolSize: 15
+  - type: 2
+    prefab: {fileID: 4751257989261520612, guid: ed0f3c10ca7b4d44bbd34d530cecd3d1, type: 3}
+    root: /EntityRoot
+    shouldPool: 0
+    initialPoolSize: 15
+  - type: 3
+    prefab: {fileID: 560475076594008384, guid: babbc01b1ff673f499a614a08680572d, type: 3}
+    root: /EntityRoot
+    shouldPool: 0
+    initialPoolSize: 15
+  - type: 4
+    prefab: {fileID: 2025978129988184381, guid: 21fee307985a2f84b944e8df7cfd9d90, type: 3}
+    root: /EntityRoot
+    shouldPool: 0
+    initialPoolSize: 15
+  - type: 5
+    prefab: {fileID: 6221677431926859948, guid: cfed09aa3611b9a43ae5b1d47070a2fc, type: 3}
+    root: /EntityRoot
+    shouldPool: 0
+    initialPoolSize: 15
+  - type: 6
+    prefab: {fileID: 7837837132373050533, guid: ed81dbaa1c2b8e44e811552f60ccc6f2, type: 3}
+    root: /EntityRoot
+    shouldPool: 0
+    initialPoolSize: 15

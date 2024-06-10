@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LinkPrefab
   m_EditorClassIdentifier: 
   prefabs:
-  - type: 3
+  - type: 8
     prefab: {fileID: 3292102036650932474, guid: d8626b9150f895e43aa851a3786425de, type: 3}
     root: 
     shouldPool: 0

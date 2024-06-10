@@ -177,8 +177,13 @@ namespace Managers
     {
         None = 0,
         BasicEnemy = 1,
-        PlaceholderProjectile = 2,
-        Link = 3,
+        DashEnemy = 2,
+        LootGoblin = 3,
+        RandomEnemy = 4,
+        RangedEnemy = 5,
+        WeepingAngelEnemy = 6,
+        PlaceholderProjectile = 7,
+        Link = 8,
     }
 
     [Serializable]

@@ -2,6 +2,8 @@ import { h } from "preact";
 
 import { useEventfulState } from "onejs";
 
+import DebugScreen from "./screens/DebugScreen";
+
 import MenuScreen from "@screens/MenuScreen";
 import LobbyScreen from "@screens/LobbyScreen";
 import GameScreen from "@screens/GameScreen";
@@ -16,7 +18,7 @@ function App() {
 
     switch (gameState) {
         case GameState.Menu:
-            return <MenuScreen game={game} />;
+            return <DebugScreen game={game} />;
         case GameState.Lobby:
             return <LobbyScreen game={game} />;
         case GameState.Playing:

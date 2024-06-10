@@ -24,6 +24,8 @@ namespace Entity.Enemies
 
         protected override void FixedUpdate()
         {
+            if (!isServer) return;
+
             if (!Target) return;
 
             var distance = Vector2.Distance(transform.position, Target.transform.position);
@@ -51,7 +53,7 @@ namespace Entity.Enemies
                 var spawnRotation = Quaternion.Euler(0, 0, angle);
 
                 // Spawn the projectile.
-                CmdSpawnProjectile(spawnPosition, spawnRotation);
+                SpawnProjectile(spawnPosition, spawnRotation);
             }
             else
             {
@@ -78,8 +80,8 @@ namespace Entity.Enemies
             }
         }
 
-        [Command]
-        private void CmdSpawnProjectile(Vector3 position, Quaternion rotation)
+        [Server]
+        private void SpawnProjectile(Vector3 position, Quaternion rotation)
         {
             var projectile = PrefabManager.Create<ProjectileBase>(projectileType);
             projectile.owner = this;

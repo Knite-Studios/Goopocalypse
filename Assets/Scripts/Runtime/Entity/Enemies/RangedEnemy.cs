@@ -10,27 +10,29 @@ namespace Entity.Enemies
     {
         [TitleHeader("Ranged Enemy Settings")]
         [SerializeField] private PrefabType projectileType;
-        [SerializeField] private float attackRange;
-        [SerializeField] private float attackInterval;
+        [SerializeField] private float attackRange = 5.0f;
+        [SerializeField] private float attackInterval = 1.5f;
 
         private float _attackTimer;
 
         protected override void Start()
         {
             base.Start();
+
+            _attackTimer = attackInterval;
         }
 
         protected override void FixedUpdate()
         {
-            base.FixedUpdate();
+            if (!Target) return;
 
-            if (Target && Vector2.Distance(transform.position, Target.position) <= attackRange)
-            {
+            var distance = Vector2.Distance(transform.position, Target.transform.position);
+
+            if (distance <= attackRange)
                 HandleAttack();
-            }
+            else
+                FollowTarget();
         }
-
-        // TODO: Only pathfind when the target is out of range.
 
         private void HandleAttack()
         {
@@ -55,6 +57,24 @@ namespace Entity.Enemies
             {
                 // Decrease the attack timer.
                 _attackTimer -= Time.deltaTime;
+            }
+        }
+
+        private void FollowTarget()
+        {
+            if (CurrentPath == null || CurrentPathIndex >= CurrentPath.Count) return;
+
+            var node = CurrentPath[CurrentPathIndex];
+            var targetPosition = node.worldPosition;
+
+            if (Vector2.Distance(transform.position, targetPosition) > 0.1f)
+            {
+                var direction = (targetPosition - (Vector2)transform.position).normalized;
+                Rb.MovePosition(Rb.position + direction * (Speed * Time.fixedDeltaTime));
+            }
+            else
+            {
+                CurrentPathIndex++;
             }
         }
 

@@ -26,8 +26,9 @@ function TextBox(props: IProps) {
             onMouseOut={props.onMouseOut}
         >
             <Shadow color={"#bfbfbf"} radius={5}>
-                <div class={props.class +
-                    " grow-0 w-auto flex-row py-2.5 px-[20px] bg-boxgrad text-boxtext items-center"}
+                <div class={"grow-0 w-auto flex-row py-2.5 px-[20px] " +
+                    "bg-boxgrad text-boxtext items-center " +
+                    props.class}
                      style={{ minWidth: "auto", maxWidth: "none" }}
                      onMouseOver={props.onMouseOver}
                      onMouseOut={props.onMouseOut}

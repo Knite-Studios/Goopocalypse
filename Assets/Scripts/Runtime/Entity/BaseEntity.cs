@@ -4,6 +4,7 @@ using Common.Extensions;
 using Managers;
 using Mirror;
 using Systems.Attributes;
+using UnityEditor.Animations;
 using GameAttribute = Systems.Attributes.Attribute;
 using UnityEngine;
 using XLua;
@@ -43,11 +44,13 @@ namespace Entity
 
         protected SpriteRenderer SpriteRenderer;
         protected Rigidbody2D Rb;
+        protected Animator Animator;
 
         protected virtual void Awake()
         {
             SpriteRenderer = GetComponent<SpriteRenderer>();
             Rb = GetComponent<Rigidbody2D>();
+            Animator = GetComponent<Animator>();
         }
 
         /// <summary>

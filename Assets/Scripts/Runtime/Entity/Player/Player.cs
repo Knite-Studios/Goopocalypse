@@ -50,7 +50,7 @@ namespace Entity.Player
                 throw new Exception($"Missing player config for role: {playerRole}");
 
             luaScript = config.luaScript;
-            // animator = config.animator;
+            Animator.runtimeAnimatorController = config.animatorController;
             SpriteRenderer.sprite = config.sprite;
             Rb.mass = config.mass;
             _collider.offset = config.colliderOffset;

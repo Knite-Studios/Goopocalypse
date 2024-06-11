@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Config_Fwend
   m_EditorClassIdentifier: 
   luaScript: players/fwend.lua
-  animator: {fileID: 0}
-  sprite: {fileID: 21300000, guid: 41ab1848eeb5bf046a41abd2d44ad8ab, type: 3}
+  animatorController: {fileID: 9100000, guid: 1bb994bbc2e1ced4f8be4574e652446f, type: 2}
+  sprite: {fileID: -2513610387572724556, guid: 5f257f7485939ff46b9cd3c2a5ba06a1, type: 3}
   mass: 1
-  colliderOffset: {x: 0, y: -0.35}
-  colliderSize: {x: 1.4, y: 1.3}
+  colliderOffset: {x: 0, y: 0.8}
+  colliderSize: {x: 0.8, y: 0.7}

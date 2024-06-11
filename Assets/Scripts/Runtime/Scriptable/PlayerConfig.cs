@@ -6,7 +6,7 @@ namespace Scriptable
     public class PlayerConfig : ScriptableObject
     {
         public string luaScript;
-        public Animator animator;
+        public RuntimeAnimatorController animatorController;
         public Sprite sprite;
         public float mass;
         public Vector2 colliderOffset;

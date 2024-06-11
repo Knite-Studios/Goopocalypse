@@ -9,7 +9,6 @@ namespace Entity.Player
     public class PlayerController : Player
     {
         [TitleHeader("PlayerController Settings")]
-        [SerializeField] private GameObject indicator; // Temporarily used for testing.
         [SerializeField] private CinemachineVirtualCamera virtualCameraPrefab;
 
         public bool IsMoving { get; private set; }
@@ -17,6 +16,8 @@ namespace Entity.Player
         private Vector2 _direction;
         private float _attackTimer;
         private CinemachineVirtualCamera _virtualCamera;
+
+        private static readonly int Moving = Animator.StringToHash("IsMoving");
 
         protected override void Awake()
         {
@@ -56,10 +57,8 @@ namespace Entity.Player
         {
             var move = InputManager.Movement.ReadValue<Vector2>();
             IsMoving = move != Vector2.zero;
+            Animator.SetBool(Moving, IsMoving);
             if (move != Vector2.zero) _direction = move.normalized;
-
-            // Rotate the indicator based on the direction it's facing.
-            indicator.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg);
 
             // Flip the sprite based on the direction it's facing.
             SpriteRenderer.flipX = _direction.x < 0;

@@ -123,7 +123,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Dasher
     originalName: 
-    pivot: {x: 0.52380955, y: 0}
+    pivot: {x: 0.52380955, y: -0.7804878}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -154,8 +154,8 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 10
-        y: 0
+        x: 42
+        y: 32
         width: 42
         height: 41
       spriteId: 7b97ef84ec1a48643a744730b668f105
@@ -189,4 +189,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 64, y: 64}
+  canvasSize: {x: 128, y: 128}

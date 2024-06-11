@@ -123,7 +123,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Ghost_Frame_0
     originalName: 
-    pivot: {x: 0.50877196, y: 0}
+    pivot: {x: 0.50877196, y: -0.82051283}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -143,7 +143,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 62}
   - name: Ghost_Frame_1
     originalName: 
-    pivot: {x: 0.50877196, y: 0}
+    pivot: {x: 0.50877196, y: -0.64}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -174,8 +174,8 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 3
-        y: 0
+        x: 35
+        y: 32
         width: 57
         height: 39
       spriteId: 3ca61d9a8a779824c82268c04e4c76d4
@@ -183,8 +183,8 @@ ScriptedImporter:
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
-        x: 3
-        y: 0
+        x: 35
+        y: 32
         width: 57
         height: 50
       spriteId: d4826e365fca7d54f80742497f5c09c6
@@ -218,4 +218,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 64, y: 64}
+  canvasSize: {x: 128, y: 128}

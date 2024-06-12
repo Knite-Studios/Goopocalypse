@@ -4,13 +4,14 @@ using Entity.Enemies;
 using Managers;
 using Mirror;
 using UnityEngine;
+using Grid = Entity.Pathfinding.Grid;
 
 namespace Runtime.World
 {
     public class EntitySpawner : MonoBehaviour
     {
         private Camera _camera;
-        private World _world;
+        private Grid _grid;
 
         /// <summary>
         /// Cache a reference to the camera for spawning.
@@ -18,7 +19,6 @@ namespace Runtime.World
         private void Awake()
         {
             _camera = Camera.main;
-            _world = FindObjectOfType<World>();
         }
 
         private void OnEnable() => GameManager.OnWaveSpawn += SpawnWave;
@@ -31,7 +31,7 @@ namespace Runtime.World
         /// </summary>
         private bool IsValidSpawn(Vector2 point)
         {
-            return _world.IsValidSpawn(point);
+            return _grid.IsWalkable(point);
         }
 
         /// <summary>
@@ -51,9 +51,10 @@ namespace Runtime.World
             for (var i = 0; i < count; i++)
             {
                 // Determine where to spawn the enemy.
+                // TODO: Pick a random spawn point center.
                 var radius = _camera.orthographicSize * 2;
                 var spawnPoint = MathUtilities.FindValidSpawn(
-                    _world.center, radius, IsValidSpawn);
+                    Vector2.zero, radius, IsValidSpawn);
 
                 // TODO: Temporary for prototype.
                 var enemyList = new List<PrefabType>

@@ -2,7 +2,6 @@ using System.Collections;
 using Mirror;
 using OneJS;
 using Runtime;
-using Runtime.World;
 using UnityEngine;
 
 namespace Managers
@@ -15,16 +14,6 @@ namespace Managers
         [Tooltip("The amount of seconds it takes to spawn a wave.")]
         public int spawnThreshold = 30;
 
-        public World World
-        {
-            get
-            {
-                if (_world == null) _world = FindObjectOfType<World>();
-                return _world;
-            }
-        }
-
-        private World _world;
         private bool _gameRunning;
 
         protected override void OnAwake()

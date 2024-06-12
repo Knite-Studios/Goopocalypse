@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Common;
@@ -9,7 +8,6 @@ using Entity.Player;
 using Mirror;
 using OneJS;
 using Runtime;
-using Runtime.World;
 using Steamworks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -23,7 +21,6 @@ namespace Managers
 
         public static Action OnGameStart;
         public static UnityAction<GameEvent> OnGameEvent;
-        public static UnityAction<World> OnWorldGenerated;
         public static UnityAction<int> OnWaveSpawn;
 
         /// <summary>
@@ -56,10 +53,8 @@ namespace Managers
 
             // Register packet handlers.
             NetworkServer.RegisterHandler<EnterSceneDoneC2SNotify>(OnEnterSceneDone);
-            NetworkServer.RegisterHandler<DoWorldGenC2SRsp>(OnWorldGenDone);
 
             NetworkClient.RegisterHandler<TransferSceneS2CNotify>(OnTransferScene);
-            NetworkClient.RegisterHandler<DoWorldGenS2CReq>(OnWorldGenReq);
             NetworkClient.RegisterHandler<PlayerLoginSuccessS2CNotify>(OnLoginSuccess);
             NetworkClient.RegisterHandler<GameStartS2CNotify>(OnNetworkGameStart);
         }
@@ -148,16 +143,6 @@ namespace Managers
                 NetworkServer.Spawn(link.gameObject);
             }
 
-            // Generate the world.
-            _loadedPlayers.Clear();
-            _loadTask = new TaskCompletionSource<object>();
-
-            NetworkServer.SendToAll(new DoWorldGenS2CReq { seed = (int)DateTime.Now.Ticks });
-
-            // Wait for players to finish generating the world.
-            Debug.Log("Waiting for players to generate world...");
-            await _loadTask.Task;
-
             // Dismiss loading screen.
             // TODO: Implement loading screen.
 
@@ -194,25 +179,6 @@ namespace Managers
         }
 
         /// <summary>
-        /// Invoked when the server is notified that the client has finished generating the world.
-        /// </summary>
-        private static void OnWorldGenDone(
-            NetworkConnectionToClient conn,
-            DoWorldGenC2SRsp notify)
-        {
-            var instance = Instance;
-
-            instance._loadedPlayers.Add(conn);
-            Debug.Log($"Player {conn.address} finished generating world.");
-
-            // Check if all players have finished generating the world.
-            if (instance._loadedPlayers.Count == NetworkServer.connections.Count)
-            {
-                instance._loadTask.SetResult(null);
-            }
-        }
-
-        /// <summary>
         /// Invoked when the client is requested to transfer scenes.
         /// </summary>
         private static void OnTransferScene(TransferSceneS2CNotify notify)
@@ -220,18 +186,6 @@ namespace Managers
             var operation = SceneManager.LoadSceneAsync(notify.sceneId);
             operation.completed += _ => NetworkClient.Send(new EnterSceneDoneC2SNotify());
             // TODO: Display scene loading screen.
-        }
-
-        /// <summary>
-        /// Invoked when the server requests the client to generate the world.
-        /// </summary>
-        private static void OnWorldGenReq(DoWorldGenS2CReq req)
-        {
-            var world = WaveManager.Instance.World;
-            world.seed = req.seed;
-            world.Generate();
-
-            NetworkClient.Send(new DoWorldGenC2SRsp());
         }
 
         /// <summary>

@@ -13,7 +13,7 @@ namespace HierarchyDecorator
         /// Draw both MonoBehaviours and built in.
         /// </summary>
         Unity = 1,
-        
+
         /// <summary>
         /// Display MonoBehaviours
         /// </summary>
@@ -124,12 +124,12 @@ namespace HierarchyDecorator
         public bool DisplayAll => showAll.HasFlag(DisplayMode.Unity | DisplayMode.Custom);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool DisplayBuiltIn => showAll.HasFlag(DisplayMode.Unity);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool DisplayMonoScripts => showAll.HasFlag(DisplayMode.Custom);
 
@@ -149,7 +149,7 @@ namespace HierarchyDecorator
         public ComponentGroup AllCustomComponents => allCustomComponents;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ComponentGroup ExcludedComponents => excludedComponents;
 
@@ -182,7 +182,7 @@ namespace HierarchyDecorator
 
             if (allTypes == null || isDirty)
             {
-                allTypes = ReflectionUtility.GetSubTypesFromAssemblies(typeof(Component), 
+                allTypes = ReflectionUtility.GetSubTypesFromAssemblies(typeof(Component),
                         t => t.Assembly.FullName.StartsWith("Unity"))
                     .OrderBy(t => t.Name)
                     .ToArray();
@@ -197,14 +197,14 @@ namespace HierarchyDecorator
 
             if (isDirty)
             {
-                // Get the count of unity types 
+                // Get the count of unity types
 
                 UnityCount = allTypes.Length;
                 Dictionary<string, ComponentGroup> cachedGroups = new Dictionary<string, ComponentGroup>();
 
                 for (int i = 0; i < UnityCount; i++)
                 {
-                    // Find the category for the type 
+                    // Find the category for the type
                     // If the group doesn't exist, create one
 
                     Type type = allTypes[i];
@@ -237,7 +237,7 @@ namespace HierarchyDecorator
                 isDirty = false;
             }
         }
-        
+
         /// <summary>
         /// Update the components type and content.
         /// </summary>
@@ -245,7 +245,7 @@ namespace HierarchyDecorator
         public void UpdateComponents(bool updateContent = true)
         {
             // Update built in components first
-            
+
             for (int i = 0; i < unityGroups.Length; i++)
             {
                 ComponentGroup group = unityGroups[i];
@@ -254,7 +254,7 @@ namespace HierarchyDecorator
 
             UpdateGroup(excludedComponents);
 
-            // Update custom components 
+            // Update custom components
 
             for (int i = 0; i < allCustomComponents.Count; i++)
             {
@@ -304,7 +304,7 @@ namespace HierarchyDecorator
                 }
             }
 
-            // Make sure excluded components have all 
+            // Make sure excluded components have all
 
             for (int i = 0; i < allTypes.Length; i++)
             {
@@ -360,9 +360,9 @@ namespace HierarchyDecorator
                 types.Clear();
             }
         }
-        
+
         /// <summary>
-        /// Set component data to dirty. 
+        /// Set component data to dirty.
         /// </summary>
         public void SetDirty()
         {
@@ -418,7 +418,7 @@ namespace HierarchyDecorator
             MonoScript script = MonoScript.FromMonoBehaviour(component as MonoBehaviour);
             ComponentType type = new ComponentType(component.GetType(), false);
             type.UpdateType(script);
-            
+
             RegisterCustomComponent(type);
         }
 
@@ -440,7 +440,7 @@ namespace HierarchyDecorator
 
             if (allCustomComponents.Contains(component))
             {
-                Debug.LogError($"Attempted to register a component that already exists.");
+                // Debug.LogError($"Attempted to register a component that already exists.");
                 return;
             }
 
@@ -485,7 +485,7 @@ namespace HierarchyDecorator
         /// <param name="component">The component returned if one is found. Otherwise will be null.</param>
         /// <returns>Returns true if a component was found, otherwise will return false.</returns>
         public bool TryGetComponent(Type type, out ComponentType component)
-        {  
+        {
             // If the given type is null, there is nothing to look for
 
             if (type == null)
@@ -501,7 +501,7 @@ namespace HierarchyDecorator
                 for (int j = 0; j < group.Count; j++)
                 {
                     component = group.Get(j);
-                    
+
                     // Found component with required type, return
 
                     if (component.Type == type)
@@ -564,7 +564,7 @@ namespace HierarchyDecorator
         private string GetTypeCategory(Type type)
         {
             // Cannot categorize null type.
-            
+
             if (type == null)
             {
                 return null;
@@ -573,7 +573,7 @@ namespace HierarchyDecorator
             foreach (var filter in ComponentFilters)
             {
                 // Return the filter name if the type is valid
-                
+
                 if (filter.IsValidFilter(type))
                 {
                     return filter.Name;
@@ -581,7 +581,7 @@ namespace HierarchyDecorator
             }
 
             // Return the default filter, so the type can still be categorized
-           
+
             return DefaultFilter.Name;
         }
     }

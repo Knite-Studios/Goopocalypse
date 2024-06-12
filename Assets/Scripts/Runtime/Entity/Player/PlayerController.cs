@@ -1,7 +1,6 @@
 using Attributes;
 using Cinemachine;
 using Managers;
-using Runtime.World;
 using UnityEngine;
 
 namespace Entity.Player
@@ -18,13 +17,6 @@ namespace Entity.Player
         private CinemachineVirtualCamera _virtualCamera;
 
         private static readonly int Moving = Animator.StringToHash("IsMoving");
-
-        protected override void Awake()
-        {
-            base.Awake();
-
-            GameManager.OnWorldGenerated += OnWorldGenerated;
-        }
 
         protected override void Start()
         {
@@ -46,11 +38,6 @@ namespace Entity.Player
             if (!isLocalPlayer) return;
 
             HandleMovement();
-        }
-
-        private void OnWorldGenerated(World world)
-        {
-            transform.SetPositionAndRotation(world.spawnPoint, Quaternion.identity);
         }
 
         private void HandleMovement()

@@ -8,6 +8,7 @@ import type { ScriptManager } from "game";
 
 import { parseColor } from "onejs/utils/color-parser";
 import TextBox from "@components/TextBox";
+import { Size } from "@components/Text";
 
 function CoopScreen({ game }: { game: ScriptManager }) {
     return (
@@ -32,21 +33,26 @@ function CoopScreen({ game }: { game: ScriptManager }) {
                     Co-Op
                 </Label>
 
-                <div class={"w-full flex-row justify-between items-center"}>
+                <div class={"ml-[128px] w-full flex-row justify-between items-center"}>
                     <div>
-                        <TextBox label={"Local Co-Op"} />
-                        <TextBox label={"Online Co-Op"} />
+                        <TextBox labelSize={Size.ExtraLarge} label={"Local Co-Op"} />
+                        <div class={"mb-14"} />
+                        <div class={"flex-row"}>
+                            <TextBox labelSize={Size.Large} label={"Online Co-Op"} invert />
+                        </div>
                     </div>
 
                     <image
                         image={resources.Placeholder}
                     />
+
+                    <div class={"mr-14"} />
                 </div>
 
-                <div class={"flex-row self-end"}>
-                    <TextBox label={"Select"} />
+                <div class={"flex-row self-end mr-16"}>
+                    <TextBox label={"Select"} invert />
                     <div class={"mr-6"} />
-                    <TextBox label={"Back"} />
+                    <TextBox label={"Back"} invert />
                 </div>
             </div>
         </div>

@@ -14,6 +14,7 @@ interface IProps {
     class?: string;
     containerClass?: string;
 
+    invert?: boolean;
     positioning?: Style; // This gets applied to the underlying shadow container.
 
     onPress?: () => void; // Having this declared makes this element a button.
@@ -22,6 +23,9 @@ interface IProps {
 }
 
 function TextBox(props: IProps) {
+    const bgClass = props.invert ? "bg-boxtext" : "bg-boxgrad";
+    const labelClass = props.invert ? "text-white" : "text-boxtext";
+
     return (
         <div
             style={props.positioning}
@@ -31,7 +35,7 @@ function TextBox(props: IProps) {
         >
             <Shadow color={"#bfbfbf"} radius={5}>
                 <div class={"grow-0 w-auto flex-row p-1 px-[20px] " +
-                    "bg-boxgrad text-boxtext items-center " +
+                    `${bgClass} text-boxtext items-center ` +
                     props.class}
                      style={{ minWidth: "auto", maxWidth: "none" }}
                      onMouseOver={props.onMouseOver}
@@ -45,6 +49,7 @@ function TextBox(props: IProps) {
                     ) }
 
                     <Text
+                        class={labelClass}
                         size={props.labelSize || Size.Normal}
                     >
                         {props.label}

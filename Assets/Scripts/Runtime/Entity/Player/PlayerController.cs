@@ -48,7 +48,9 @@ namespace Entity.Player
             if (move != Vector2.zero) _direction = move.normalized;
 
             // Flip the sprite based on the direction it's facing.
-            SpriteRenderer.flipX = _direction.x < 0;
+            var scale = transform.localScale;
+            transform.localScale = scale.SetX(move.x < 0 ? -1 : 1);
+
 
             var movement = move * (Speed * Time.fixedDeltaTime);
             Rb.MovePosition(Rb.position + movement);

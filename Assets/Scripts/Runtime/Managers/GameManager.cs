@@ -33,10 +33,16 @@ namespace Managers
 
         private TaskCompletionSource<object> _loadTask;
 
+        #region JavaScript Accessible
+
         [EventfulProperty] private Texture2D _profilePicture;
         [EventfulProperty] private string _username;
 
         [EventfulProperty] private GameState _state = GameState.Menu;
+
+        public event Action<string> OnRouteUpdate;
+
+        #endregion
 
         protected override void OnAwake()
         {
@@ -156,6 +162,11 @@ namespace Managers
         /// </summary>
         public void ChangeRole(PlayerRole role) =>
             NetworkClient.Send(new ChangeRoleC2SReq { role = role });
+
+        /// <summary>
+        /// Navigate the user interface to a specific path.
+        /// </summary>
+        public void Navigate(string path) => OnRouteUpdate?.Invoke(path);
 
         #region Packet Handlers
 

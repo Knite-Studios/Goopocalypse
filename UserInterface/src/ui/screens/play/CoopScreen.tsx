@@ -1,16 +1,15 @@
 import { h } from "preact";
 
 import Label from "@components/Label";
+import { Size } from "@components/Text";
+import TextBox from "@components/TextBox";
 
+import { ScreenProps } from "@ui/App";
 import * as resources from "@ui/resources";
 
-import type { ScriptManager } from "game";
-
 import { parseColor } from "onejs/utils/color-parser";
-import TextBox from "@components/TextBox";
-import { Size } from "@components/Text";
 
-function CoopScreen({ game }: { game: ScriptManager }) {
+function CoopScreen({ navigate }: ScreenProps) {
     return (
         <div class={"w-full h-full bg-boxgrad"}>
             <gradientrect
@@ -50,9 +49,18 @@ function CoopScreen({ game }: { game: ScriptManager }) {
                 </div>
 
                 <div class={"flex-row self-end mr-16"}>
-                    <TextBox label={"Select"} invert />
+                    <TextBox
+                        label={"Select"}
+                        invert
+                    />
+
                     <div class={"mr-6"} />
-                    <TextBox label={"Back"} invert />
+
+                    <TextBox
+                        label={"Back"}
+                        onPress={() => navigate("/")}
+                        invert
+                    />
                 </div>
             </div>
         </div>

@@ -56,11 +56,13 @@ namespace Entity.Pathfinding
         /// </summary>
         private void InitializeNodes()
         {
+            var gridCenterOffset = new Vector2((width - 1) * nodeRadius, (height - 1) * nodeRadius);
+
             for (var x = 0; x < width; x++)
             {
                 for (var y = 0; y < height; y++)
                 {
-                    var worldPoint = new Vector2(x * nodeDiameter + nodeRadius, y * nodeDiameter + nodeRadius);
+                    var worldPoint = new Vector2(x * nodeDiameter, y * nodeDiameter) - gridCenterOffset;
                     var isWalkable = !Physics2D.OverlapCircle(worldPoint, nodeRadius, unwalkableLayer);
                     _nodes[x, y] = new Node(new Vector2(x, y), worldPoint, isWalkable);
                 }

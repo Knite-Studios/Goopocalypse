@@ -1,24 +1,54 @@
 import { h } from "preact";
+import { useEffect, useState } from "preact/hooks";
 
 import { useEventfulState } from "onejs";
 
-import DebugScreen from "./screens/DebugScreen";
+import Router, { Route } from "@ui/Router";
 
+import DebugScreen from "@screens/DebugScreen";
 import MenuScreen from "@screens/MenuScreen";
 import LobbyScreen from "@screens/LobbyScreen";
 import GameScreen from "@screens/GameScreen";
 
+import CoopScreen from "@screens/play/CoopScreen";
+
 import { ScriptManager } from "game";
 import { GameState } from "@type/enums";
+import SoloScreen from "@screens/play/SoloScreen";
 
 const game = require("game") as ScriptManager;
 
+export type ScreenProps = {
+    game: ScriptManager,
+    navigate: (r: string) => void;
+};
+
 function App() {
-    const [gameState, setGameState] = useEventfulState(game.GameManager, "State");
+    const { GameManager } = game;
+
+    const [currentRoute, navigate] = useState("/");
+    const [gameState, setGameState] = useEventfulState(GameManager, "State");
+
+    // Register the router event listener.
+    useEffect(() => {
+        GameManager.remove_OnRouteUpdate(navigate);
+        GameManager.add_OnRouteUpdate(navigate);
+
+        onEngineReload(() => {
+            GameManager.remove_OnRouteUpdate(navigate);
+        });
+    }, []);
 
     switch (gameState) {
         case GameState.Menu:
-            return <DebugScreen game={game} />;
+            return (
+                <Router setRoute={navigate} route={currentRoute}>
+                    <Route path={"/"} element={<MenuScreen game={game} />} />
+                    <Route path={"/play/solo"} element={<SoloScreen game={game} />} />
+                    <Route path={"/play/coop"} element={<CoopScreen game={game} />} />
+                    <Route path={"/debug"} element={<DebugScreen game={game} />} />
+                </Router>
+            );
         case GameState.Lobby:
             return <LobbyScreen game={game} />;
         case GameState.Playing:

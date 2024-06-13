@@ -4,6 +4,7 @@ import { useState } from "preact/hooks";
 import Text from "@components/Text";
 import TextBox from "@components/TextBox";
 
+import type { ScreenProps } from "@ui/App";
 import * as resources from "@ui/resources";
 
 import type { ScriptManager } from "game";
@@ -52,7 +53,7 @@ function MenuButton(props: IMenuButtonProps) {
     );
 }
 
-function MenuScreen({ game }: { game: ScriptManager }) {
+function MenuScreen({ game, navigate }: ScreenProps) {
     const { GameManager } = game;
 
     const [username, _] = useEventfulState(GameManager, "Username");
@@ -67,11 +68,11 @@ function MenuScreen({ game }: { game: ScriptManager }) {
                 />
 
                 <div class={"flex-col ml-16"}>
-                    <MenuButton onClick={() => log("solo")}>
+                    <MenuButton onClick={() => navigate("/play/solo")}>
                         Play Solo
                     </MenuButton>
 
-                    <MenuButton onClick={() => null}>
+                    <MenuButton onClick={() => navigate("/play/coop")}>
                         Play Co-Op
                     </MenuButton>
 

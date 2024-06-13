@@ -42,8 +42,8 @@ namespace Entity.Player
 
         protected virtual void Start()
         {
-            InitializePlayerConfig();
             InitializeEntityFromLua();
+            InitializePlayerConfig();
             InitializePlayerCamera();
         }
 
@@ -71,6 +71,7 @@ namespace Entity.Player
         {
             var playerTransform = transform;
             _virtualCamera = Instantiate(virtualCameraPrefab, playerTransform);
+            _virtualCamera.m_Lens.OrthographicSize = this.GetAttributeValue<float>(Attribute.CameraDistance);
             _virtualCamera.Follow = playerTransform;
             _virtualCamera.LookAt = playerTransform;
             _virtualCamera.Priority = 100;
@@ -87,6 +88,7 @@ namespace Entity.Player
             Name = stats.Get<string>("name");
             this.GetOrCreateAttribute(Attribute.Stamina, stats.Get<float>("stamina"));
             this.GetOrCreateAttribute(Attribute.AreaOfEffect, stats.Get<float>("aoe"));
+            this.GetOrCreateAttribute(Attribute.CameraDistance, stats.Get<float>("camera_distance"));
         }
 
         [ClientRpc]

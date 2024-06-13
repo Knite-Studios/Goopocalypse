@@ -44385,7 +44385,7 @@ Transform:
   m_GameObject: {fileID: 858755795}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11, y: 15, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -44436,7 +44436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   width: 100
-  height: 100
+  height: 70
   unwalkableLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -44445,7 +44445,7 @@ MonoBehaviour:
     m_Bits: 64
   nodeRadius: 0.25
   nodeDiameter: 1
-  drawGrid: 1
+  drawGrid: 0
 --- !u!4 &1019384266
 Transform:
   m_ObjectHideFlags: 0
@@ -45065,7 +45065,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 13
+  orthographic size: 3.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -45090,7 +45090,7 @@ Transform:
   m_GameObject: {fileID: 1967619635}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.45937014, z: -34.24871}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -1,4 +1,7 @@
 ﻿using System;
+using Attributes;
+using Cinemachine;
+using Effects;
 using JetBrains.Annotations;
 using Mirror;
 using Systems.Attributes;
@@ -11,7 +14,9 @@ namespace Entity.Player
     [CSharpCallLua]
     public class Player : BaseEntity
     {
+        [TitleHeader("PlayerController Settings")]
         [SyncVar] public PlayerRole playerRole;
+        [SerializeField] private CinemachineVirtualCamera virtualCameraPrefab;
 
         /// <summary>
         /// The name of the hero.
@@ -26,6 +31,7 @@ namespace Entity.Player
         #endregion
 
         private Collider2D _collider;
+        private CinemachineVirtualCamera _virtualCamera;
 
         protected override void Awake()
         {
@@ -38,6 +44,7 @@ namespace Entity.Player
         {
             InitializePlayerConfig();
             InitializeEntityFromLua();
+            InitializePlayerCamera();
         }
 
         /// <summary>
@@ -58,6 +65,18 @@ namespace Entity.Player
         }
 
         /// <summary>
+        /// Creates the player's own camera.
+        /// </summary>
+        private void InitializePlayerCamera()
+        {
+            var playerTransform = transform;
+            _virtualCamera = Instantiate(virtualCameraPrefab, playerTransform);
+            _virtualCamera.Follow = playerTransform;
+            _virtualCamera.LookAt = playerTransform;
+            _virtualCamera.Priority = 100;
+        }
+
+        /// <summary>
         /// Loads the statistics from a Lua script.
         /// </summary>
         /// <param name="stats">The Lua table containing the base stats.</param>
@@ -68,6 +87,17 @@ namespace Entity.Player
             Name = stats.Get<string>("name");
             this.GetOrCreateAttribute(Attribute.Stamina, stats.Get<float>("stamina"));
             this.GetOrCreateAttribute(Attribute.AreaOfEffect, stats.Get<float>("aoe"));
+        }
+
+        [ClientRpc]
+        public override void OnDeath()
+        {
+            onDeathEvent?.Invoke();
+            // TODO: Call PrefabManager.Create for death particle effect and Network.Spawn.
+            // TODO: Play death sound one shot with proximity and ensure other clients can hear it.
+            CameraShake.TriggerShake(_virtualCamera);
+
+            base.OnDeath();
         }
     }
 

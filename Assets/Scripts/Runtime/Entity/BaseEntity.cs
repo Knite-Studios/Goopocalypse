@@ -6,6 +6,7 @@ using Mirror;
 using Systems.Attributes;
 using GameAttribute = Systems.Attributes.Attribute;
 using UnityEngine;
+using UnityEngine.Events;
 using XLua;
 
 namespace Entity
@@ -21,6 +22,7 @@ namespace Entity
         /// </summary>
         [TitleHeader("Entity Settings")]
         public string luaScript;
+        public UnityEvent onDeathEvent;
 
         /// <summary>
         /// Attribute holder map.

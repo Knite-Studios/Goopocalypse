@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Common;
-using Entity.Enemies;
 using Entity.Pathfinding;
 using Managers;
 using Mirror;
@@ -10,8 +9,10 @@ namespace Runtime.World
 {
     public class EntitySpawner : MonoBehaviour
     {
+        [SerializeField]
+        private PathfindingGrid grid;
+
         private Camera _camera;
-        private PathfindingGrid _grid;
 
         /// <summary>
         /// Cache a reference to the camera for spawning.
@@ -31,7 +32,7 @@ namespace Runtime.World
         /// </summary>
         private bool IsValidSpawn(Vector2 point)
         {
-            return _grid.IsWalkable(point);
+            return grid.IsWalkable(point);
         }
 
         /// <summary>

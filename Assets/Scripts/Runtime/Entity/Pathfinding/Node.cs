@@ -9,8 +9,16 @@ namespace Entity.Pathfinding
     public class Node : FastPriorityQueueNode
     {
         [CanBeNull] public Node parent;
-        public readonly Vector2 GridPosition;
+
+        /// <summary>
+        /// GridPosition -> Position of node on the pathfinding grid. (Bottom Left Cell - Cell Position)
+        /// WorldPosition -> Position of node using Unity's transform/world coordinates. (based on transform)
+        /// CellPosition -> Position of node using Unity's tilemap coordinates. (based on tilemap)
+        /// </summary>
+        public readonly Vector2Int GridPosition;
+
         public readonly Vector2 WorldPosition;
+
         public bool isWalkable;
         public int gCost, hCost;
 
@@ -18,10 +26,10 @@ namespace Entity.Pathfinding
         public float X => WorldPosition.x;
         public float Y => WorldPosition.y;
 
-        public Node(Vector2 gridPosition, Vector2 worldPosition, bool isWalkable)
+        public Node(Vector2Int gridPosition, Vector2 worldPosition, bool isWalkable)
         {
-            this.GridPosition = gridPosition;
-            this.WorldPosition = worldPosition;
+            GridPosition = gridPosition;
+            WorldPosition = worldPosition;
             this.isWalkable = isWalkable;
         }
 
@@ -34,8 +42,8 @@ namespace Entity.Pathfinding
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the distance type is invalid.</exception>
         public int GetDistanceTo(Node other, DistanceType distanceType = DistanceType.Manhattan)
         {
-            var distanceX = (int)Mathf.Abs(GridPosition.x - other.GridPosition.x);
-            var distanceY = (int)Mathf.Abs(GridPosition.y - other.GridPosition.y);
+            var distanceX = Mathf.Abs(GridPosition.x - other.GridPosition.x);
+            var distanceY = Mathf.Abs(GridPosition.y - other.GridPosition.y);
 
             return distanceType switch
             {

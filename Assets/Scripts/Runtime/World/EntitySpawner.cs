@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using Common;
 using Entity.Enemies;
+using Entity.Pathfinding;
 using Managers;
 using Mirror;
 using UnityEngine;
-using Grid = Entity.Pathfinding.Grid;
 
 namespace Runtime.World
 {
     public class EntitySpawner : MonoBehaviour
     {
         private Camera _camera;
-        private Grid _grid;
+        private PathfindingGrid _grid;
 
         /// <summary>
         /// Cache a reference to the camera for spawning.

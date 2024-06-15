@@ -8,14 +8,14 @@ namespace Entity.Pathfinding
 {
     public class Pathfinder : MonoBehaviour
     {
-        [CanBeNull] public Grid grid;
+        [CanBeNull] public PathfindingGrid grid;
         public float dynamicPadding = 0.5f;
 
         private List<Node> _currentPath;
 
         private void Awake()
         {
-            grid = FindObjectOfType<Grid>();
+            grid = FindObjectOfType<PathfindingGrid>();
             if (grid == null)
             {
                 Debug.LogError("No grid found in the scene.");
@@ -69,9 +69,8 @@ namespace Entity.Pathfinding
                         0);
                     neighbor.isWalkable = !Physics2D.OverlapCircle(worldPosition, grid.nodeRadius, grid.unwalkableLayer);
 
-                    if (!neighbor.isWalkable) continue;
-
-                    if (neighbor != destNode && IsNearUnwalkableNode(neighbor, dynamicPadding)) continue;
+                    // if (!neighbor.isWalkable) continue;
+                    // if (neighbor != destNode && IsNearUnwalkableNode(neighbor, dynamicPadding)) continue;
 
                     var gCost = currentNode.gCost + currentNode.GetDistanceTo(neighbor);
                     if (gCost < neighbor.gCost || !openSet.Contains(neighbor))

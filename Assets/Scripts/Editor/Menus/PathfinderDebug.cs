@@ -1,7 +1,6 @@
 ﻿using Entity.Pathfinding;
 using UnityEditor;
 using UnityEngine;
-using Grid = Entity.Pathfinding.Grid;
 
 namespace Editor.Menus
 {
@@ -12,7 +11,11 @@ namespace Editor.Menus
 
         private Transform _targetPosition;
         private Pathfinder _pathfinder;
-        private Grid _grid;
+        private PathfindingGrid _grid;
+
+        private Transform _gridCheck;
+
+        private int _targetX, _targetY;
 
         private void OnGUI()
         {
@@ -31,8 +34,8 @@ namespace Editor.Menus
             _grid = EditorGUILayout.ObjectField(
                 "Grid",
                 _grid,
-                typeof(Grid),
-                true) as Grid;
+                typeof(PathfindingGrid),
+                true) as PathfindingGrid;
 
             if (GUILayout.Button("Find Path"))
             {
@@ -75,6 +78,37 @@ namespace Editor.Menus
                 {
                     Debug.Log("No path found!");
                 }
+            }
+
+            GUILayout.Space(24);
+
+            _gridCheck = EditorGUILayout.ObjectField(
+                "Object to Check",
+                _gridCheck,
+                typeof(Transform),
+                true) as Transform;
+
+            if (GUILayout.Button("Log Player Details") && _gridCheck)
+            {
+                var gridPos = _grid!.ToGridPosition(_gridCheck.position);
+                Debug.Log($"Player grid position: {gridPos}");
+
+                if (gridPos != null)
+                {
+                    var node = _grid.GetNode(gridPos.x, gridPos.y);
+                    Debug.Log($"Node world position: {node?.WorldPosition}");
+                }
+            }
+
+            GUILayout.Space(24);
+
+            _targetX = EditorGUILayout.IntField("Target X", _targetX);
+            _targetY = EditorGUILayout.IntField("Target Y", _targetY);
+
+            if (GUILayout.Button("Log Node Details"))
+            {
+                var node = _grid!.GetNode(_targetX, _targetY);
+                Debug.Log($"Node world position: {node?.WorldPosition}");
             }
         }
     }

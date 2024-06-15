@@ -1,15 +1,15 @@
-﻿using UnityEditor;
+﻿using Entity.Pathfinding;
+using UnityEditor;
 using UnityEngine;
-using Grid = Entity.Pathfinding.Grid;
 
 namespace Editor.Inspectors
 {
-    [CustomEditor(typeof(Grid))]
+    [CustomEditor(typeof(PathfindingGrid))]
     public class GridEditor : UnityEditor.Editor
     {
         private void OnSceneGUI()
         {
-            var grid = target as Grid;
+            var grid = target as PathfindingGrid;
             Handles.color = Color.yellow;
 
             if (!grid!.drawGrid) return;

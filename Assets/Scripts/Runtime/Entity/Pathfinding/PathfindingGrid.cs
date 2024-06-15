@@ -8,8 +8,9 @@ namespace Entity.Pathfinding
     /// <summary>
     /// A grid class that manages and provides access to nodes.
     /// </summary>
-    public class Grid : MonoBehaviour
+    public class PathfindingGrid : MonoBehaviour
     {
+        public Grid tileGrid;
         public Tilemap groundTilemap;
         public List<Tilemap> unwalkableTilemaps;
         public int width, height;
@@ -20,9 +21,12 @@ namespace Entity.Pathfinding
 
         public Vector3Int gridWorldSize;
         public Vector3Int gridPosition;
+
 #if UNITY_EDITOR
         public bool drawGrid;
 #endif
+
+        private Vector2Int _offset, _origin;
 
         private Node[,] _nodes;
 
@@ -31,17 +35,65 @@ namespace Entity.Pathfinding
             InitializeGrid();
         }
 
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            if (!drawGrid || _nodes == null) return;
+
+            foreach (var node in _nodes)
+            {
+                if (node != null && node.isWalkable)
+                {
+                    var pos = node.WorldPosition;
+                    var vec3 = new Vector3(pos.x, pos.y, 0);
+                    Gizmos.DrawCube(vec3, Vector3.one * .1f);
+                }
+            }
+        }
+#endif
+
         public void InitializeGrid()
         {
             var bounds = groundTilemap.cellBounds;
-            width = bounds.size.x;
-            height = bounds.size.y;
 
-            gridWorldSize = bounds.size;
-            gridPosition = bounds.position + Vector3Int.RoundToInt(transform.position);
+            // Store variables required for calculating grid position.
+            _offset = new Vector2Int(
+                (int) (1 / tileGrid.cellSize.x),
+                (int) (1 / tileGrid.cellSize.y));
+            // gridPosition (absolute) * offset == integer number
+            _origin = bounds.min.ToVector2();
 
-            _nodes = new Node[gridWorldSize.x, gridWorldSize.y];
+            width = bounds.size.x * _offset.x;
+            height = bounds.size.y * _offset.y;
+
+            _nodes = new Node[width, height];
             InitializeNodes();
+        }
+
+        /// <summary>
+        /// Converts a world position to a pathfinder grid position.
+        /// </summary>
+        public Vector2Int ToGridPosition(Vector2 worldPosition)
+        {
+            // Determine the tile position from the world position.
+            var tilePosition = groundTilemap.WorldToCell(worldPosition);
+            return ToGridPosition(tilePosition.ToVector2());
+        }
+
+        /// <summary>
+        /// Converts the position of a tile/cell to a pathfinder grid position.
+        /// </summary>
+        public Vector2Int ToGridPosition(Vector2Int cellPosition)
+        {
+            return ToGridPosition(cellPosition.x, cellPosition.y);
+        }
+
+        /// <summary>
+        /// Converts the position of a tile/cell to a pathfinder grid position.
+        /// </summary>
+        public Vector2Int ToGridPosition(int x, int y)
+        {
+            return new Vector2Int(x - _origin.x, y - _origin.y);
         }
 
         /// <summary>
@@ -49,22 +101,36 @@ namespace Entity.Pathfinding
         /// </summary>
         private void InitializeNodes()
         {
-            for (var x = 0; x < width; x++)
+            var bounds = groundTilemap.cellBounds;
+
+            // Get all tilemaps.
+            var tileMaps = FindObjectsOfType<Tilemap>();
+
+            for (var x = bounds.min.x; x < bounds.max.x; x++)
             {
-                for (var y = 0; y < height; y++)
+                for (var y = bounds.min.y; y < bounds.max.y; y++)
                 {
                     var cellPosition = new Vector3Int(x, y, 0);
+
+                    // Check if the cell is a real cell.
+                    // This fails if no tile is present on any layer.
+                    if (!tileMaps.Any(tm => tm.HasTile(cellPosition))) continue;
+
+                    // "Normalize" our position to anchor to the bottom left corner.
+                    var gridLocalPos = ToGridPosition(x, y);
+
+                    // Determine if the cell is walkable at all.
+                    var isWalkable = !unwalkableTilemaps.Any(tilemap => tilemap.HasTile(cellPosition));
+                    // Determine the real world position of the cell.
                     var worldPoint = groundTilemap.CellToWorld(cellPosition) + groundTilemap.tileAnchor;
-                    var isWalkable = groundTilemap.HasTile(cellPosition) && !unwalkableTilemaps.Any(tilemap => tilemap.HasTile(cellPosition));
-                    _nodes[x, y] = new Node(new Vector2(x, y), worldPoint, isWalkable);
+                    // Create our node.
+                    _nodes[gridLocalPos.x, gridLocalPos.y] =
+                        new Node(gridLocalPos, worldPoint, isWalkable);
+
+                    Debug.Log($"Node position: {gridLocalPos.x}, {gridLocalPos.y}");
                 }
             }
         }
-
-        /// <summary>
-        /// Sets the nodes of the grid.
-        /// </summary>
-        public void InitializeNodes(Node[,] nodes) => _nodes = nodes;
 
         /// <summary>
         /// Gets a node at a specific position.
@@ -89,11 +155,8 @@ namespace Entity.Pathfinding
         /// <returns>The node at the specified world position.</returns>
         public Node GetNode(Vector2 worldPosition)
         {
-            var percentX = Mathf.Clamp01(worldPosition.x / (width * nodeDiameter));
-            var percentY = Mathf.Clamp01(worldPosition.y / (height * nodeDiameter));
-            var x = Mathf.RoundToInt((width - 1) * percentX);
-            var y = Mathf.RoundToInt((height - 1) * percentY);
-            return _nodes[x, y];
+            var position = ToGridPosition(worldPosition);
+            return _nodes[position.x, position.y];
         }
 
         /// <summary>
@@ -112,8 +175,8 @@ namespace Entity.Pathfinding
                     // Skip the center node.
                     if (x == 0 && y == 0) continue;
 
-                    var checkX = Mathf.RoundToInt(node.GridPosition.x) + x;
-                    var checkY = Mathf.RoundToInt(node.GridPosition.y) + y;
+                    var checkX = node.GridPosition.x + x;
+                    var checkY = node.GridPosition.y + y;
 
                     var neighbor = GetNode(checkX, checkY);
                     if (neighbor != null)

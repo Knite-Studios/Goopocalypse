@@ -6,89 +6,6 @@ using UnityEngine;
 
 namespace Entity.Pathfinding
 {
-    [Serializable]
-    public class Node : FastPriorityQueueNode
-    {
-        [CanBeNull] public Node parent;
-        public readonly Vector2 gridPosition;
-        public readonly Vector2 worldPosition;
-        public bool isWalkable;
-        public int gCost, hCost;
-
-        public int FCost => gCost + hCost;
-        public float X => worldPosition.x;
-        public float Y => worldPosition.y;
-
-        public Node(Vector2 gridPosition, Vector2 worldPosition, bool isWalkable)
-        {
-            this.gridPosition = gridPosition;
-            this.worldPosition = worldPosition;
-            this.isWalkable = isWalkable;
-        }
-
-        /// <summary>
-        /// Gets the distance to another node.
-        /// </summary>
-        /// <param name="other">The target node.</param>
-        /// <param name="distanceType">The type of distance calculation.</param>
-        /// <returns>The distance to the target node.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when the distance type is invalid.</exception>
-        public int GetDistanceTo(Node other, DistanceType distanceType = DistanceType.Manhattan)
-        {
-            var distanceX = (int)Mathf.Abs(gridPosition.x - other.gridPosition.x);
-            var distanceY = (int)Mathf.Abs(gridPosition.y - other.gridPosition.y);
-
-            return distanceType switch
-            {
-                DistanceType.Basic => distanceX + distanceY,
-                DistanceType.Manhattan => distanceX > distanceY
-                    ? 14 * distanceY + 10 * (distanceX - distanceY)
-                    : 14 * distanceX + 10 * (distanceY - distanceX),
-                DistanceType.Euclidean => (int)Math.Sqrt(distanceX * distanceX + distanceY * distanceY),
-                _ => throw new ArgumentOutOfRangeException(nameof(distanceType), distanceType, null)
-            };
-        }
-
-        /// <summary>
-        /// Determines if two nodes are equal.
-        /// </summary>
-        public override bool Equals(object obj)
-        {
-            return obj is Node node && worldPosition == node.worldPosition;
-        }
-
-        /// <summary>
-        /// Gets the hash code of the node.
-        /// </summary>
-        public override int GetHashCode()
-        {
-            return worldPosition.GetHashCode();
-        }
-
-        /// <summary>
-        /// Determines if two nodes are equal.
-        /// </summary>
-        public static bool operator ==(Node a, Node b)
-        {
-            return a?.worldPosition == b?.worldPosition;
-        }
-
-        /// <summary>
-        /// Determines if two nodes are not equal.
-        /// </summary>
-        public static bool operator !=(Node a, Node b)
-        {
-            return a?.worldPosition != b?.worldPosition;
-        }
-
-        public enum DistanceType
-        {
-            Basic,
-            Manhattan,
-            Euclidean,
-        }
-    }
-
     public class Pathfinder : MonoBehaviour
     {
         [CanBeNull] public Grid grid;
@@ -188,8 +105,8 @@ namespace Entity.Pathfinding
                 {
                     if (i == 0 && j == 0) continue;
 
-                    var checkX = Mathf.RoundToInt(node.gridPosition.x) + i;
-                    var checkY = Mathf.RoundToInt(node.gridPosition.y) + j;
+                    var checkX = Mathf.RoundToInt(node.GridPosition.x) + i;
+                    var checkY = Mathf.RoundToInt(node.GridPosition.y) + j;
 
                     if (checkX >= 0 && checkX < grid.width && checkY >= 0 && checkY < grid.height)
                     {

@@ -133,11 +133,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 664813114997568455, guid: ed0f3c10ca7b4d44bbd34d530cecd3d1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.136274
+      value: -0.31
       objectReference: {fileID: 0}
     - target: {fileID: 664813114997568455, guid: ed0f3c10ca7b4d44bbd34d530cecd3d1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.86412
+      value: -2.44
       objectReference: {fileID: 0}
     - target: {fileID: 664813114997568455, guid: ed0f3c10ca7b4d44bbd34d530cecd3d1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -174,6 +174,14 @@ PrefabInstance:
     - target: {fileID: 4751257989261520612, guid: ed0f3c10ca7b4d44bbd34d530cecd3d1, type: 3}
       propertyPath: m_Name
       value: DashEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5115015492099450120, guid: ed0f3c10ca7b4d44bbd34d530cecd3d1, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5115015492099450120, guid: ed0f3c10ca7b4d44bbd34d530cecd3d1, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 110551003
       objectReference: {fileID: 0}
     - target: {fileID: 7628881734956992627, guid: ed0f3c10ca7b4d44bbd34d530cecd3d1, type: 3}
       propertyPath: sceneId
@@ -239,8 +247,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 110551003
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0, b: 0.9424448, a: 1}
@@ -262,7 +270,7 @@ Transform:
   m_GameObject: {fileID: 103180154}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.37, y: 7.45, z: 0}
+  m_LocalPosition: {x: -5.03, y: -0.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44435,17 +44443,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d2b460122b84c41bf770e96b0a4e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 100
-  height: 70
+  groundTilemap: {fileID: 457903270}
+  unwalkableTilemaps:
+  - {fileID: 301710953}
+  - {fileID: 773599856}
+  width: 71
+  height: 53
   unwalkableLayer:
     serializedVersion: 2
     m_Bits: 128
   walkableLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   nodeRadius: 0.25
   nodeDiameter: 1
-  drawGrid: 0
+  gridWorldSize: {x: 0, y: 0, z: 0}
+  gridPosition: {x: 0, y: 0, z: 0}
+  drawGrid: 1
 --- !u!4 &1019384266
 Transform:
   m_ObjectHideFlags: 0
@@ -44700,6 +44714,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d2b460122b84c41bf770e96b0a4e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundTilemap: {fileID: 0}
+  unwalkableTilemaps: []
   width: 100
   height: 100
   unwalkableLayer:
@@ -44707,9 +44723,11 @@ MonoBehaviour:
     m_Bits: 129
   walkableLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   nodeRadius: 0.25
   nodeDiameter: 1
+  gridWorldSize: {x: 0, y: 0, z: 0}
+  gridPosition: {x: 0, y: 0, z: 0}
   drawGrid: 1
 --- !u!4 &1514634098
 Transform:

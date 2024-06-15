@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Entity.Pathfinding
 {
@@ -8,12 +10,16 @@ namespace Entity.Pathfinding
     /// </summary>
     public class Grid : MonoBehaviour
     {
+        public Tilemap groundTilemap;
+        public List<Tilemap> unwalkableTilemaps;
         public int width, height;
         public LayerMask unwalkableLayer;
         public LayerMask walkableLayer;
         public float nodeRadius = 0.5f;
         public float nodeDiameter = 1.0f;
 
+        public Vector3Int gridWorldSize;
+        public Vector3Int gridPosition;
 #if UNITY_EDITOR
         public bool drawGrid;
 #endif
@@ -22,32 +28,19 @@ namespace Entity.Pathfinding
 
         private void Awake()
         {
-            InitializeGrid(width, height, unwalkableLayer, walkableLayer, nodeRadius);
+            InitializeGrid();
         }
 
-        /// <summary>
-        /// This creates a grid from scratch.
-        /// Usually only used for testing.
-        /// </summary>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="unwalkableLayerMask"></param>
-        /// <param name="walkableLayerMask"></param>
-        /// <param name="nodeRadius"></param>
-        public void InitializeGrid(
-            int width,
-            int height,
-            LayerMask unwalkableLayerMask,
-            LayerMask walkableLayerMask,
-            float nodeRadius)
+        public void InitializeGrid()
         {
-            this.width = width;
-            this.height = height;
-            unwalkableLayer = unwalkableLayerMask;
-            walkableLayer = walkableLayerMask;
-            this.nodeRadius = nodeRadius;
-            // nodeDiameter = nodeRadius * 2;
-            _nodes = new Node[width, height];
+            var bounds = groundTilemap.cellBounds;
+            width = bounds.size.x;
+            height = bounds.size.y;
+
+            gridWorldSize = bounds.size;
+            gridPosition = bounds.position + Vector3Int.RoundToInt(transform.position);
+
+            _nodes = new Node[gridWorldSize.x, gridWorldSize.y];
             InitializeNodes();
         }
 
@@ -56,14 +49,13 @@ namespace Entity.Pathfinding
         /// </summary>
         private void InitializeNodes()
         {
-            var gridCenterOffset = new Vector2((width - 1) * nodeRadius, (height - 1) * nodeRadius);
-
             for (var x = 0; x < width; x++)
             {
                 for (var y = 0; y < height; y++)
                 {
-                    var worldPoint = new Vector2(x * nodeDiameter, y * nodeDiameter) - gridCenterOffset;
-                    var isWalkable = !Physics2D.OverlapCircle(worldPoint, nodeRadius, unwalkableLayer);
+                    var cellPosition = new Vector3Int(x, y, 0);
+                    var worldPoint = groundTilemap.CellToWorld(cellPosition) + groundTilemap.tileAnchor;
+                    var isWalkable = groundTilemap.HasTile(cellPosition) && !unwalkableTilemaps.Any(tilemap => tilemap.HasTile(cellPosition));
                     _nodes[x, y] = new Node(new Vector2(x, y), worldPoint, isWalkable);
                 }
             }
@@ -120,8 +112,8 @@ namespace Entity.Pathfinding
                     // Skip the center node.
                     if (x == 0 && y == 0) continue;
 
-                    var checkX = Mathf.RoundToInt(node.gridPosition.x) + x;
-                    var checkY = Mathf.RoundToInt(node.gridPosition.y) + y;
+                    var checkX = Mathf.RoundToInt(node.GridPosition.x) + x;
+                    var checkY = Mathf.RoundToInt(node.GridPosition.y) + y;
 
                     var neighbor = GetNode(checkX, checkY);
                     if (neighbor != null)

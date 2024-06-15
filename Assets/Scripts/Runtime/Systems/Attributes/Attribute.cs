@@ -9,6 +9,7 @@ namespace Systems.Attributes
         Stamina,
         Speed,
         Armor,
-        AreaOfEffect
+        AreaOfEffect,
+        CameraDistance,
     }
 }

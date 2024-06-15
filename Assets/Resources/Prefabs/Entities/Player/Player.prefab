@@ -107,6 +107,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   luaScript: players/fwend
+  onDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
   <CurrentHealth>k__BackingField: 0
   playerRole: 1
   virtualCameraPrefab: {fileID: 1226844540982855168, guid: d6f7a0a033e7219448a21c91a464652a, type: 3}
@@ -172,7 +175,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8490824003797150612}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
   m_Name: 

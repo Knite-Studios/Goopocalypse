@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f7fd98edc54969ac29a3ae37df5e31, type: 3}
   m_Name: Spawns
   m_EditorClassIdentifier: 
-  type: 1
-  points:
-  - {x: 14.54, y: -7.87}
-  - {x: -4.22, y: -4.18}
-  - {x: 13.78, y: 2.33}
+  type: 0
+  points: []
   enemies: 010000000200000003000000040000000500000006000000

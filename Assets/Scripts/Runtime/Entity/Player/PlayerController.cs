@@ -1,3 +1,5 @@
+using System;
+using Entity.StateMachines;
 using Managers;
 using UnityEngine;
 
@@ -5,32 +7,45 @@ namespace Entity.Player
 {
     public class PlayerController : Player
     {
-        public bool IsMoving { get; private set; }
+        [HideInInspector] public IdleState IdleState;
+        [HideInInspector] public MovingState MovingState;
 
-        private Vector2 _direction;
-        private static readonly int Moving = Animator.StringToHash("IsMoving");
+        public bool IsMoving => InputManager.Movement.ReadValue<Vector2>() != Vector2.zero;
+
+        private BaseState<BaseEntity> _currentState;
+
+        protected override void Start()
+        {
+            base.Start();
+
+            // Initialize the player states.
+            InitializeStates();
+            ChangeState(IdleState);
+        }
+
+        private void Update()
+        {
+            _currentState?.UpdateState();
+        }
 
         private void FixedUpdate()
         {
             if (!isLocalPlayer) return;
 
-            HandleMovement();
+            _currentState?.FixedUpdateState();
         }
 
-        private void HandleMovement()
+        private void InitializeStates()
         {
-            var move = InputManager.Movement.ReadValue<Vector2>();
-            IsMoving = move != Vector2.zero;
-            Animator.SetBool(Moving, IsMoving);
-            if (move != Vector2.zero) _direction = move.normalized;
+            IdleState = new IdleState("Idle", this);
+            MovingState = new MovingState("Moving", this);
+        }
 
-            // Flip the sprite based on the direction it's facing.
-            var scale = transform.localScale;
-            transform.localScale = scale.SetX(_direction.x < 0 ? -1 : 1);
-
-
-            var movement = move * (Speed * Time.fixedDeltaTime);
-            Rb.MovePosition(Rb.position + movement);
+        public void ChangeState(PlayerBaseState state)
+        {
+            _currentState?.ExitState();
+            _currentState = state;
+            _currentState.EnterState();
         }
     }
 }

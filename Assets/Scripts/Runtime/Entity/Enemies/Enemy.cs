@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using Entity.Player;
 using Managers;
 using UnityEngine;
 using XLua;
+using Random = UnityEngine.Random;
 
 namespace Entity.Enemies
 {
@@ -50,6 +52,14 @@ namespace Entity.Enemies
         private void OnDestroy()
         {
             GameManager.OnGameEvent -= OnGameEvent;
+        }
+
+        protected virtual void OnCollisionEnter2D(Collision2D other)
+        {
+            if (!other.IsPlayer()) return;
+            if (!other.gameObject.TryGetComponent(out BaseEntity entity)) return;
+
+            entity.Damage(entity.MaxHealth, true);
         }
 
         /// <summary>

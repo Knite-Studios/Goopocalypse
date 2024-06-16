@@ -51,23 +51,13 @@ namespace Runtime.World
             for (var i = 0; i < count; i++)
             {
                 // Determine where to spawn the enemy.
-                // TODO: Pick a random spawn point center.
                 var radius = _camera.orthographicSize * 2;
-                var spawnPoint = MathUtilities.FindValidSpawn(
-                    Vector2.zero, radius, IsValidSpawn);
+                var spawn = MathUtilities.FindValidSpawn(
+                    _camera.transform.position.ToVector2(),
+                    radius, IsValidSpawn);
 
-                // TODO: Temporary for prototype.
-                var enemyList = new List<PrefabType>
-                {
-                    PrefabType.BasicEnemy,
-                    PrefabType.DashEnemy,
-                    PrefabType.LootGoblin,
-                    PrefabType.RandomEnemy,
-                    PrefabType.RangedEnemy,
-                    PrefabType.WeepingAngelEnemy
-                };
                 // Spawn an enemy.
-                var enemy = PrefabManager.Create<Enemy>(GetRandomEnemy(enemyList));
+                var (enemy, spawnPoint) = EntityManager.Instance.SpawnRandom(spawn);
 
                 GameObject enemyObject;
                 (enemyObject = enemy.gameObject).transform.SetPositionAndRotation(

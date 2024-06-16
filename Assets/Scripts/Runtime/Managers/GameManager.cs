@@ -195,6 +195,11 @@ namespace Managers
         private static void OnTransferScene(TransferSceneS2CNotify notify)
         {
             var operation = SceneManager.LoadSceneAsync(notify.sceneId);
+            if (operation == null)
+            {
+                throw new Exception("Failed to load scene.");
+            }
+
             operation.completed += _ => NetworkClient.Send(new EnterSceneDoneC2SNotify());
             // TODO: Display scene loading screen.
         }

@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: Spawns
   m_EditorClassIdentifier: 
   type: 0
-  points: []
+  points:
+  - {x: -5.02, y: 2.18}
+  - {x: 18.3, y: 2.32}
+  - {x: -4.98, y: -4.41}
+  - {x: 18.58, y: -4.79}
+  - {x: -4.91, y: -11.39}
+  - {x: 18.51, y: -11.04}
   enemies: 010000000200000003000000040000000500000006000000

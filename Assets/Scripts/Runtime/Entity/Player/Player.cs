@@ -69,6 +69,8 @@ namespace Entity.Player
         /// </summary>
         private void InitializePlayerCamera()
         {
+            if (!isLocalPlayer) return;
+
             var playerTransform = transform;
             _virtualCamera = Instantiate(virtualCameraPrefab, playerTransform);
             _virtualCamera.m_Lens.OrthographicSize = this.GetAttributeValue<float>(Attribute.CameraDistance);

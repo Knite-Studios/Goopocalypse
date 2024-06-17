@@ -15,8 +15,6 @@ namespace Entity.Player
 
         protected override void Start()
         {
-            if (!isLocalPlayer) return;
-
             base.Start();
 
             // Initialize the player states.

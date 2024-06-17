@@ -126,8 +126,6 @@ namespace Entity.Pathfinding
                     // Create our node.
                     _nodes[gridLocalPos.x, gridLocalPos.y] =
                         new Node(gridLocalPos, worldPoint, isWalkable);
-
-                    Debug.Log($"Node position: {gridLocalPos.x}, {gridLocalPos.y}");
                 }
             }
         }

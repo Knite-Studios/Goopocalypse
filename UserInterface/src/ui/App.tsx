@@ -43,7 +43,7 @@ function App() {
         case GameState.Menu:
             return (
                 <Router setRoute={navigate} route={currentRoute}>
-                    <Route path={"/"} element={<MenuScreen game={game} />} />
+                    <Route path={"/"} element={<DebugScreen game={game} />} />
                     <Route path={"/play/solo"} element={<SoloScreen game={game} />} />
                     <Route path={"/play/coop"} element={<CoopScreen game={game} />} />
                     <Route path={"/debug"} element={<DebugScreen game={game} />} />

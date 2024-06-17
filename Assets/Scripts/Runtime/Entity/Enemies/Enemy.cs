@@ -6,6 +6,7 @@ using Entity.Player;
 using Managers;
 using UnityEngine;
 using XLua;
+using Random = UnityEngine.Random;
 
 namespace Entity.Enemies
 {
@@ -34,7 +35,7 @@ namespace Entity.Enemies
             if (CurrentPath == null || CurrentPathIndex >= CurrentPath.Count) return;
 
             var node = CurrentPath[CurrentPathIndex];
-            var targetPosition = node.worldPosition;
+            var targetPosition = node.WorldPosition;
 
             if (Vector2.Distance(transform.position, targetPosition) > 0.1f)
             {
@@ -50,6 +51,14 @@ namespace Entity.Enemies
         private void OnDestroy()
         {
             GameManager.OnGameEvent -= OnGameEvent;
+        }
+
+        protected virtual void OnCollisionEnter2D(Collision2D other)
+        {
+            if (!other.IsPlayer()) return;
+            if (!other.gameObject.TryGetComponent(out BaseEntity entity)) return;
+
+            entity.Damage(entity.MaxHealth, true);
         }
 
         /// <summary>

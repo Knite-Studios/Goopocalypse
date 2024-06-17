@@ -1,9 +1,8 @@
 ﻿using Entity.Pathfinding;
 using UnityEditor;
 using UnityEngine;
-using Grid = Entity.Pathfinding.Grid;
 
-namespace Editor
+namespace Editor.Menus
 {
     public class PathfinderDebug : EditorWindow
     {
@@ -11,9 +10,12 @@ namespace Editor
         private static void OpenMenu() => GetWindow<PathfinderDebug>().Show();
 
         private Transform _targetPosition;
-        private Vector2Int _gridDimensions = new Vector2Int(50, 50);
         private Pathfinder _pathfinder;
-        private Grid _grid;
+        private PathfindingGrid _grid;
+
+        private Transform _gridCheck;
+
+        private int _targetX, _targetY;
 
         private void OnGUI()
         {
@@ -22,8 +24,6 @@ namespace Editor
                 _targetPosition,
                 typeof(Transform),
                 true) as Transform;
-
-            _gridDimensions = EditorGUILayout.Vector2IntField("Grid Dimensions", _gridDimensions);
 
             _pathfinder = EditorGUILayout.ObjectField(
                 "Pathfinder",
@@ -34,8 +34,8 @@ namespace Editor
             _grid = EditorGUILayout.ObjectField(
                 "Grid",
                 _grid,
-                typeof(Grid),
-                true) as Grid;
+                typeof(PathfindingGrid),
+                true) as PathfindingGrid;
 
             if (GUILayout.Button("Find Path"))
             {
@@ -51,16 +51,17 @@ namespace Editor
                     return;
                 }
 
-                _grid?.InitializeGrid(
-                    _gridDimensions.x,
-                    _gridDimensions.y,
-                    _grid.unwalkableLayer,
-                    _grid.walkableLayer,
-                    _grid.nodeRadius);
+                if (!_grid)
+                {
+                    Debug.LogError("Grid is not set.");
+                    return;
+                }
+
+                _grid.InitializeGrid();
 
                 _pathfinder.grid = _grid;
 
-                var target = new Vector2Int((int)_targetPosition.position.x, (int)_targetPosition.position.y);
+                var target = new Vector2(_targetPosition.position.x, _targetPosition.position.y);
 
                 var startTime = Time.realtimeSinceStartup;
                 var path = _pathfinder.FindPath(target);
@@ -70,13 +71,44 @@ namespace Editor
                 {
                     foreach (var node in path)
                     {
-                        Debug.Log($"Path Node: {node.worldPosition}");
+                        Debug.Log($"Path Node: {node.WorldPosition}");
                     }
                 }
                 else
                 {
                     Debug.Log("No path found!");
                 }
+            }
+
+            GUILayout.Space(24);
+
+            _gridCheck = EditorGUILayout.ObjectField(
+                "Object to Check",
+                _gridCheck,
+                typeof(Transform),
+                true) as Transform;
+
+            if (GUILayout.Button("Log Player Details") && _gridCheck)
+            {
+                var gridPos = _grid!.ToGridPosition(_gridCheck.position);
+                Debug.Log($"Player grid position: {gridPos}");
+
+                if (gridPos != null)
+                {
+                    var node = _grid.GetNode(gridPos.x, gridPos.y);
+                    Debug.Log($"Node world position: {node?.WorldPosition}");
+                }
+            }
+
+            GUILayout.Space(24);
+
+            _targetX = EditorGUILayout.IntField("Target X", _targetX);
+            _targetY = EditorGUILayout.IntField("Target Y", _targetY);
+
+            if (GUILayout.Button("Log Node Details"))
+            {
+                var node = _grid!.GetNode(_targetX, _targetY);
+                Debug.Log($"Node world position: {node?.WorldPosition}");
             }
         }
     }

@@ -48,7 +48,9 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  targetGroup: {fileID: 0}
+  players: []
+  enemies: []
+  spawnData: {fileID: 11400000, guid: 3968e68c1e0e0024e88cd2f6f1902397, type: 2}
 --- !u!114 &316008019451641919
 MonoBehaviour:
   m_ObjectHideFlags: 0

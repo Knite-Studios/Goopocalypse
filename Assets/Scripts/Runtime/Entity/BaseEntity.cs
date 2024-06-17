@@ -44,8 +44,8 @@ namespace Entity
         #endregion
 
         protected SpriteRenderer SpriteRenderer;
-        protected Rigidbody2D Rb;
-        protected Animator Animator;
+        protected internal Rigidbody2D Rb;
+        protected internal Animator Animator;
 
         protected virtual void Awake()
         {

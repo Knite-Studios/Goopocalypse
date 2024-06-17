@@ -12,7 +12,7 @@ namespace Managers
         [EventfulProperty] private long _matchTimer;
 
         [Tooltip("The amount of seconds it takes to spawn a wave.")]
-        public int spawnThreshold = 30;
+        public int spawnThreshold = 10;
 
         private bool _gameRunning;
 

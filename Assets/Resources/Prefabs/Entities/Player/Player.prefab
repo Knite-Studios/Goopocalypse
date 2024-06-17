@@ -111,7 +111,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   <CurrentHealth>k__BackingField: 0
-  playerRole: 1
+  playerRole: 2
   virtualCameraPrefab: {fileID: 1226844540982855168, guid: d6f7a0a033e7219448a21c91a464652a, type: 3}
 --- !u!95 &9078601559106015657
 Animator:

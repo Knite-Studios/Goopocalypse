@@ -480,7 +480,7 @@ namespace Mirror
         {
             if (!active)
             {
-                Debug.LogWarning("Can not send using NetworkServer.SendToAll<T>(T msg) because NetworkServer is not active");
+                // Debug.LogWarning("Can not send using NetworkServer.SendToAll<T>(T msg) because NetworkServer is not active");
                 return;
             }
 

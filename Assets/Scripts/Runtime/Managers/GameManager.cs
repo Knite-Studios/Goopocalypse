@@ -84,7 +84,7 @@ namespace Managers
                 State = GameState.Playing;
                 Navigate("/game");
             };
-            OnGameOver += HandleGameOver;
+            OnGameOver += StopGame;
 
             // Check if Steam is active.
             if (SteamAPI.IsSteamRunning())
@@ -235,7 +235,16 @@ namespace Managers
         /// </summary>
         public void StopGame()
         {
-            // TODO: Implement stop functionality.
+            State = GameState.GameOver;
+            Navigate("/game/over");
+
+            // TODO: Route to game over screen.
+            // We could also add a sound effect here and a delay before transitioning.
+            // Or instead of loading scene, we could let the players decide to restart or quit.
+            if (!LocalMultiplayer)
+                NetworkServer.SendToAll(new TransferSceneS2CNotify { sceneId = menuScene });
+            else
+                LoadScene(0);
         }
 
         #endregion
@@ -306,19 +315,6 @@ namespace Managers
 #elif UNITY_STANDALONE
             Application.Quit();
 #endif
-        }
-
-        private void HandleGameOver()
-        {
-            State = GameState.GameOver;
-
-            // TODO: Route to game over screen.
-            // We could also add a sound effect here and a delay before transitioning.
-            // Or instead of loading scene, we could let the players decide to restart or quit.
-            if (!LocalMultiplayer)
-                NetworkServer.SendToAll(new TransferSceneS2CNotify { sceneId = menuScene });
-            else
-                LoadScene(0);
         }
 
         #region Packet Handlers

@@ -16,5 +16,5 @@ MonoBehaviour:
   animatorController: {fileID: 9100000, guid: 1bb994bbc2e1ced4f8be4574e652446f, type: 2}
   sprite: {fileID: -2513610387572724556, guid: 5f257f7485939ff46b9cd3c2a5ba06a1, type: 3}
   mass: 1
-  colliderOffset: {x: 0, y: 0.8}
-  colliderSize: {x: 0.8, y: 0.7}
+  colliderOffset: {x: 0, y: 0.35}
+  colliderSize: {x: 1, y: 0.7}

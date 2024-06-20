@@ -123,7 +123,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Tough
     originalName: 
-    pivot: {x: 0.5106383, y: -0.8648649}
+    pivot: {x: 0.5106383, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -155,7 +155,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 40
-        y: 32
+        y: 0
         width: 47
         height: 37
       spriteId: 3c9eadc326b236c479bab8d0938e3396

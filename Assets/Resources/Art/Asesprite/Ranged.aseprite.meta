@@ -123,7 +123,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Ranged
     originalName: 
-    pivot: {x: 0.50877196, y: -0.8}
+    pivot: {x: 0.50877196, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -155,7 +155,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 35
-        y: 32
+        y: 0
         width: 57
         height: 40
       spriteId: bac5c881341dcd546824de2255409b83

@@ -123,7 +123,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Ghost_Frame_0
     originalName: 
-    pivot: {x: 0.50877196, y: -0.82051283}
+    pivot: {x: 0.50877196, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -143,7 +143,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 62}
   - name: Ghost_Frame_1
     originalName: 
-    pivot: {x: 0.50877196, y: -0.64}
+    pivot: {x: 0.50877196, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -175,7 +175,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 35
-        y: 32
+        y: 0
         width: 57
         height: 39
       spriteId: 3ca61d9a8a779824c82268c04e4c76d4
@@ -184,7 +184,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 35
-        y: 32
+        y: 0
         width: 57
         height: 50
       spriteId: d4826e365fca7d54f80742497f5c09c6

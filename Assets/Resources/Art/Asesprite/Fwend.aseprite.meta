@@ -123,15 +123,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Fwend
     originalName: 
-    pivot: {x: 0.47727275, y: -0.8}
+    pivot: {x: 0.46428573, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 104
-      y: 101
-      width: 44
-      height: 40
+      x: 148
+      y: 4
+      width: 56
+      height: 41
     spriteID: 05d44ad1690b4bd4c9c55fdc4ae39c2f
     spriteBone: []
     spriteOutline: []
@@ -140,18 +140,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 104, y: 101}
+    uvTransform: {x: 148, y: 4}
   - name: Fwend_Frame_1
     originalName: 
-    pivot: {x: 0.47727275, y: -0.82051283}
+    pivot: {x: 0.46428573, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 167
-      y: 54
-      width: 44
-      height: 39
+      x: 212
+      y: 4
+      width: 56
+      height: 41
     spriteID: dd96774e8dd55db44971fd17a6c2c536
     spriteBone: []
     spriteOutline: []
@@ -160,18 +160,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 167, y: 54}
+    uvTransform: {x: 212, y: 4}
   - name: Fwend_Frame_2
     originalName: 
-    pivot: {x: 0.47727275, y: -0.84210527}
+    pivot: {x: 0.47727275, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 205
-      y: 151
+      x: 208
+      y: 102
       width: 44
-      height: 38
+      height: 39
     spriteID: 1d29de5061abbcc47b8b93875fcd7ac1
     spriteBone: []
     spriteOutline: []
@@ -180,18 +180,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 205, y: 151}
+    uvTransform: {x: 208, y: 102}
   - name: Fwend_Frame_3
     originalName: 
-    pivot: {x: 0.47826087, y: -0.8648649}
+    pivot: {x: 0.47727275, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 271
-      y: 54
-      width: 46
-      height: 37
+      x: 209
+      y: 152
+      width: 44
+      height: 38
     spriteID: ae9dad98df7370b41a5fa6c295317990
     spriteBone: []
     spriteOutline: []
@@ -200,18 +200,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 271, y: 54}
+    uvTransform: {x: 209, y: 152}
   - name: Fwend_Frame_4
     originalName: 
-    pivot: {x: 0.4634146, y: -0.825}
+    pivot: {x: 0.47826087, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 202
-      width: 41
-      height: 40
+      x: 312
+      y: 102
+      width: 46
+      height: 37
     spriteID: b3212164672208348b4ef3b259fd4905
     spriteBone: []
     spriteOutline: []
@@ -220,17 +220,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 202}
+    uvTransform: {x: 312, y: 102}
   - name: Fwend_Frame_5
     originalName: 
-    pivot: {x: 0.47619048, y: -0.85}
+    pivot: {x: 0.4634146, y: -0.025}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 105
-      y: 151
-      width: 42
+      x: 4
+      y: 203
+      width: 41
       height: 40
     spriteID: 33587bed086e71d48b22dad2a8e85452
     spriteBone: []
@@ -240,17 +240,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 105, y: 151}
+    uvTransform: {x: 4, y: 203}
   - name: Fwend_Frame_6
     originalName: 
-    pivot: {x: 0.47727275, y: -0.825}
+    pivot: {x: 0.47619048, y: -0.05}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 156
-      y: 101
-      width: 44
+      x: 53
+      y: 152
+      width: 42
       height: 40
     spriteID: ffffdc6f051275345983d83941d6260c
     spriteBone: []
@@ -260,18 +260,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 156, y: 101}
+    uvTransform: {x: 53, y: 152}
   - name: Fwend_Frame_7
     originalName: 
-    pivot: {x: 0.47826087, y: -0.82051283}
+    pivot: {x: 0.47727275, y: -0.025}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
+      x: 277
       y: 54
-      width: 46
-      height: 39
+      width: 44
+      height: 40
     spriteID: 2ef4d68e108b59b4ea02196dde699d22
     spriteBone: []
     spriteOutline: []
@@ -280,18 +280,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 54}
+    uvTransform: {x: 277, y: 54}
   - name: Fwend_Frame_8
     originalName: 
-    pivot: {x: 0.48936167, y: -0.84210527}
+    pivot: {x: 0.47826087, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 112
+      x: 114
       y: 54
-      width: 47
-      height: 38
+      width: 46
+      height: 39
     spriteID: c04791d991da2fc4e85d1734b9f53963
     spriteBone: []
     spriteOutline: []
@@ -300,18 +300,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 112, y: 54}
+    uvTransform: {x: 114, y: 54}
   - name: Fwend_Frame_9
     originalName: 
-    pivot: {x: 0.47727275, y: -0.8}
+    pivot: {x: 0.48936167, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 208
-      y: 101
-      width: 44
-      height: 40
+      x: 222
+      y: 54
+      width: 47
+      height: 38
     spriteID: 0fca7894bc6020e41b1dda114963701b
     spriteBone: []
     spriteOutline: []
@@ -320,18 +320,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 208, y: 101}
+    uvTransform: {x: 222, y: 54}
   - name: Fwend_Frame_10
     originalName: 
-    pivot: {x: 0.47727275, y: -0.82051283}
+    pivot: {x: 0.47727275, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 219
+      x: 329
       y: 54
       width: 44
-      height: 39
+      height: 40
     spriteID: 9efa0a808d18062449cf746fad938d00
     spriteBone: []
     spriteOutline: []
@@ -340,18 +340,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 219, y: 54}
+    uvTransform: {x: 329, y: 54}
   - name: Fwend_Frame_11
     originalName: 
-    pivot: {x: 0.47727275, y: -0.84210527}
+    pivot: {x: 0.47727275, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 257
-      y: 151
+      x: 260
+      y: 102
       width: 44
-      height: 38
+      height: 39
     spriteID: ca12fe1f4cbef86448531ae41a67be4c
     spriteBone: []
     spriteOutline: []
@@ -360,18 +360,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 257, y: 151}
+    uvTransform: {x: 260, y: 102}
   - name: Fwend_Frame_12
     originalName: 
-    pivot: {x: 0.47826087, y: -0.8648649}
+    pivot: {x: 0.47727275, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 325
-      y: 54
-      width: 46
-      height: 37
+      x: 261
+      y: 152
+      width: 44
+      height: 38
     spriteID: 49b54b70dd837dc48b173f1acf3e98ca
     spriteBone: []
     spriteOutline: []
@@ -380,18 +380,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 325, y: 54}
+    uvTransform: {x: 261, y: 152}
   - name: Fwend_Frame_13
     originalName: 
-    pivot: {x: 0.4634146, y: -0.825}
+    pivot: {x: 0.47826087, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 53
-      y: 202
-      width: 41
-      height: 40
+      x: 366
+      y: 102
+      width: 46
+      height: 37
     spriteID: 755a96bd2da2e3642ad7ad0fb031a999
     spriteBone: []
     spriteOutline: []
@@ -400,17 +400,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 53, y: 202}
+    uvTransform: {x: 366, y: 102}
   - name: Fwend_Frame_14
     originalName: 
-    pivot: {x: 0.47619048, y: -0.85}
+    pivot: {x: 0.4634146, y: -0.025}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 155
-      y: 151
-      width: 42
+      x: 53
+      y: 203
+      width: 41
       height: 40
     spriteID: 1c63597f995df444bbb58ae7dba59d3c
     spriteBone: []
@@ -420,17 +420,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 155, y: 151}
+    uvTransform: {x: 53, y: 203}
   - name: Fwend_Frame_15
     originalName: 
-    pivot: {x: 0.47727275, y: -0.825}
+    pivot: {x: 0.47619048, y: -0.05}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 260
-      y: 101
-      width: 44
+      x: 103
+      y: 152
+      width: 42
       height: 40
     spriteID: b7d5db58b5da2e34681a716c9c062c72
     spriteBone: []
@@ -440,18 +440,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 260, y: 101}
+    uvTransform: {x: 103, y: 152}
   - name: Fwend_Frame_16
     originalName: 
-    pivot: {x: 0.47826087, y: -0.82051283}
+    pivot: {x: 0.47727275, y: -0.025}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 58
+      x: 381
       y: 54
-      width: 46
-      height: 39
+      width: 44
+      height: 40
     spriteID: 4c2c0faa42a0c5e4b8505ad432966df0
     spriteBone: []
     spriteOutline: []
@@ -460,18 +460,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 58, y: 54}
+    uvTransform: {x: 381, y: 54}
   - name: Fwend_Frame_17
     originalName: 
-    pivot: {x: 0.47727275, y: -0.8}
+    pivot: {x: 0.47826087, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 312
-      y: 101
-      width: 44
-      height: 40
+      x: 168
+      y: 54
+      width: 46
+      height: 39
     spriteID: 3be2b58858474e2428366657c98bd7f7
     spriteBone: []
     spriteOutline: []
@@ -480,16 +480,16 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 312, y: 101}
+    uvTransform: {x: 168, y: 54}
   - name: Fwend_Frame_18
     originalName: 
-    pivot: {x: 0.47727275, y: -0.84210527}
+    pivot: {x: 0.47727275, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 309
-      y: 151
+      x: 313
+      y: 152
       width: 44
       height: 38
     spriteID: 961f56095cb5c994ca7eb022a48438d4
@@ -500,16 +500,16 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 309, y: 151}
+    uvTransform: {x: 313, y: 152}
   - name: Fwend_Frame_19
     originalName: 
-    pivot: {x: 0.5, y: -0.8648649}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 102
-      y: 202
+      y: 203
       width: 44
       height: 37
     spriteID: 0b35af7611f81b24eab1ff0387e37ecb
@@ -520,16 +520,16 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 102, y: 202}
+    uvTransform: {x: 102, y: 203}
   - name: Fwend_Frame_20
     originalName: 
-    pivot: {x: 0.5, y: -0.9411765}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 154
-      y: 202
+      y: 203
       width: 46
       height: 34
     spriteID: 881afb2185475e74abfce3710256859c
@@ -540,16 +540,16 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 154, y: 202}
+    uvTransform: {x: 154, y: 203}
   - name: Fwend_Frame_21
     originalName: 
-    pivot: {x: 0.5121951, y: -0.8372093}
+    pivot: {x: 0.5121951, y: -0.093023255}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 151
+      y: 152
       width: 41
       height: 43
     spriteID: 110416ac3a5cdef4bb005c7bddd129a3
@@ -560,16 +560,16 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 151}
+    uvTransform: {x: 4, y: 152}
   - name: Fwend_Frame_22
     originalName: 
-    pivot: {x: 0.5, y: -0.9761905}
+    pivot: {x: 0.5, y: -0.21428572}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 101
+      y: 102
       width: 42
       height: 42
     spriteID: 6f43f2060ff2be743806f4f3ad556c69
@@ -580,16 +580,16 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 101}
+    uvTransform: {x: 4, y: 102}
   - name: Fwend_Frame_23
     originalName: 
-    pivot: {x: 0.5, y: -0.8809524}
+    pivot: {x: 0.5, y: -0.11904762}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 54
-      y: 101
+      y: 102
       width: 42
       height: 42
     spriteID: 28203e80f20b5874388c0ffa23e1ca58
@@ -600,16 +600,16 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 54, y: 101}
+    uvTransform: {x: 54, y: 102}
   - name: Fwend_Frame_24
     originalName: 
-    pivot: {x: 0.47727275, y: -0.825}
+    pivot: {x: 0.47727275, y: -0.025}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 364
-      y: 101
+      x: 433
+      y: 54
       width: 44
       height: 40
     spriteID: 2828587dbb418cb4bb26c9bf997fd203
@@ -620,16 +620,16 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 364, y: 101}
+    uvTransform: {x: 433, y: 54}
   - name: Fwend_Frame_25
     originalName: 
-    pivot: {x: 0.47826087, y: -0.8}
+    pivot: {x: 0.47826087, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 363
-      y: 4
+      x: 4
+      y: 54
       width: 46
       height: 40
     spriteID: a3cb211ef2f73cf47bdc8a331536f671
@@ -640,16 +640,16 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 363, y: 4}
+    uvTransform: {x: 4, y: 54}
   - name: Fwend_Frame_26
     originalName: 
-    pivot: {x: 0.4791667, y: -0.84210527}
+    pivot: {x: 0.4791667, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 417
-      y: 4
+      x: 58
+      y: 54
       width: 48
       height: 38
     spriteID: 60affe3894f083c45ae5cddd75fa7457
@@ -660,16 +660,16 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 417, y: 4}
+    uvTransform: {x: 58, y: 54}
   - name: Fwend_Frame_27
     originalName: 
-    pivot: {x: 0.47727275, y: -0.8}
+    pivot: {x: 0.47727275, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 416
-      y: 101
+      x: 104
+      y: 102
       width: 44
       height: 40
     spriteID: 999eddccc0c999346b74c68d024049d1
@@ -680,16 +680,16 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 416, y: 101}
+    uvTransform: {x: 104, y: 102}
   - name: Fwend_Frame_28
     originalName: 
-    pivot: {x: 1.159091, y: -0.8}
+    pivot: {x: 0.47727275, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 53
-      y: 151
+      x: 156
+      y: 102
       width: 44
       height: 40
     spriteID: d30f3875b0e78274d922ed5210d6c41b
@@ -700,16 +700,16 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 53, y: 151}
+    uvTransform: {x: 156, y: 102}
   - name: Fwend_Frame_29
     originalName: 
-    pivot: {x: 1.1041666, y: -0.9142857}
+    pivot: {x: 0.4791667, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 440
-      y: 54
+      x: 153
+      y: 152
       width: 48
       height: 35
     spriteID: 1a56f9c213b61784980b204cc3014e84
@@ -720,16 +720,16 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 440, y: 54}
+    uvTransform: {x: 153, y: 152}
   - name: Fwend_Frame_30
     originalName: 
-    pivot: {x: 1.0754718, y: -1}
+    pivot: {x: 0.509434, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 379
-      y: 54
+      x: 420
+      y: 102
       width: 53
       height: 32
     spriteID: 6daf88ae95714ed429288ebf5adc50f9
@@ -740,16 +740,16 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 379, y: 54}
+    uvTransform: {x: 420, y: 102}
   - name: Fwend_Frame_31
     originalName: 
-    pivot: {x: 1.0754718, y: -1.032258}
+    pivot: {x: 0.509434, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 418
-      y: 151
+      x: 422
+      y: 152
       width: 53
       height: 31
     spriteID: 9f5252a6ee148d347afac013df313df7
@@ -760,16 +760,16 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 418, y: 151}
+    uvTransform: {x: 422, y: 152}
   - name: Fwend_Frame_32
     originalName: 
-    pivot: {x: 1.1363637, y: -1.03125}
+    pivot: {x: 0.45454547, y: -0.03125}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 208
-      y: 202
+      y: 203
       width: 44
       height: 32
     spriteID: ad4d6204c3260164bb3354fd933c057a
@@ -780,16 +780,16 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 208, y: 202}
+    uvTransform: {x: 208, y: 203}
   - name: Fwend_Frame_33
     originalName: 
-    pivot: {x: 1.1836735, y: -0.9411765}
+    pivot: {x: 0.57142854, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 361
-      y: 151
+      x: 365
+      y: 152
       width: 49
       height: 34
     spriteID: 0e890b763f9d53f4fbecc78ed7414684
@@ -800,15 +800,15 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 361, y: 151}
+    uvTransform: {x: 365, y: 152}
   - name: Fwend_Frame_34
     originalName: 
-    pivot: {x: 1.1428572, y: -1.0487804}
+    pivot: {x: 0.60714287, y: -0.26829267}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 148
+      x: 276
       y: 4
       width: 56
       height: 41
@@ -820,15 +820,15 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 148, y: 4}
+    uvTransform: {x: 276, y: 4}
   - name: Fwend_Frame_35
     originalName: 
-    pivot: {x: 1.015625, y: -1.6666667}
+    pivot: {x: 0.546875, y: -0.6}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 212
+      x: 340
       y: 4
       width: 64
       height: 30
@@ -840,10 +840,10 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 212, y: 4}
+    uvTransform: {x: 340, y: 4}
   - name: Fwend_Frame_36
     originalName: 
-    pivot: {x: 1.031746, y: -1.2619048}
+    pivot: {x: 0.5555556, y: -0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -863,7 +863,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: Fwend_Frame_37
     originalName: 
-    pivot: {x: 1.0307692, y: -1.1351352}
+    pivot: {x: 0.5692308, y: -0.2702703}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -883,12 +883,12 @@ ScriptedImporter:
     uvTransform: {x: 75, y: 4}
   - name: Fwend_Frame_38
     originalName: 
-    pivot: {x: 1.0704225, y: -1.2592592}
+    pivot: {x: 0.6478873, y: -0.074074075}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 284
+      x: 412
       y: 4
       width: 71
       height: 27
@@ -900,16 +900,16 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 284, y: 4}
+    uvTransform: {x: 412, y: 4}
   - name: Fwend_Frame_39
     originalName: 
-    pivot: {x: 0.9534884, y: -2.4285715}
+    pivot: {x: 0.60465115, y: -0.14285715}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 260
-      y: 202
+      y: 203
       width: 86
       height: 14
     spriteID: cd364a94c5a765c40a6ea5c393f4f4ab
@@ -920,7 +920,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 260, y: 202}
+    uvTransform: {x: 260, y: 203}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -934,170 +934,170 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 43
-        y: 32
-        width: 44
-        height: 40
+        x: 38
+        y: 0
+        width: 56
+        height: 41
       spriteId: 05d44ad1690b4bd4c9c55fdc4ae39c2f
+    - name: Fwend_Frame_17
+      frameIndex: 17
+      additiveSortOrder: 0
+      cellRect:
+        x: 38
+        y: 0
+        width: 56
+        height: 41
+      spriteId: dd96774e8dd55db44971fd17a6c2c536
     - name: Fwend_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
         x: 43
-        y: 32
+        y: 0
         width: 44
         height: 39
-      spriteId: dd96774e8dd55db44971fd17a6c2c536
+      spriteId: 1d29de5061abbcc47b8b93875fcd7ac1
     - name: Fwend_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
         x: 43
-        y: 32
+        y: 0
         width: 44
         height: 38
-      spriteId: 1d29de5061abbcc47b8b93875fcd7ac1
+      spriteId: ae9dad98df7370b41a5fa6c295317990
     - name: Fwend_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
         x: 42
-        y: 32
+        y: 0
         width: 46
         height: 37
-      spriteId: ae9dad98df7370b41a5fa6c295317990
+      spriteId: b3212164672208348b4ef3b259fd4905
     - name: Fwend_Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
         x: 45
-        y: 33
+        y: 1
         width: 41
         height: 40
-      spriteId: b3212164672208348b4ef3b259fd4905
+      spriteId: 33587bed086e71d48b22dad2a8e85452
     - name: Fwend_Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
         x: 44
-        y: 34
+        y: 2
         width: 42
         height: 40
-      spriteId: 33587bed086e71d48b22dad2a8e85452
+      spriteId: ffffdc6f051275345983d83941d6260c
     - name: Fwend_Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
         x: 43
-        y: 33
+        y: 1
         width: 44
         height: 40
-      spriteId: ffffdc6f051275345983d83941d6260c
+      spriteId: 2ef4d68e108b59b4ea02196dde699d22
     - name: Fwend_Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
         x: 42
-        y: 32
+        y: 0
         width: 46
         height: 39
-      spriteId: 2ef4d68e108b59b4ea02196dde699d22
+      spriteId: c04791d991da2fc4e85d1734b9f53963
     - name: Fwend_Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
         x: 41
-        y: 32
+        y: 0
         width: 47
         height: 38
-      spriteId: c04791d991da2fc4e85d1734b9f53963
+      spriteId: 0fca7894bc6020e41b1dda114963701b
     - name: Fwend_Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
         x: 43
-        y: 32
+        y: 0
         width: 44
         height: 40
-      spriteId: 0fca7894bc6020e41b1dda114963701b
+      spriteId: 9efa0a808d18062449cf746fad938d00
     - name: Fwend_Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
         x: 43
-        y: 32
+        y: 0
         width: 44
         height: 39
-      spriteId: 9efa0a808d18062449cf746fad938d00
+      spriteId: ca12fe1f4cbef86448531ae41a67be4c
     - name: Fwend_Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
         x: 43
-        y: 32
+        y: 0
         width: 44
         height: 38
-      spriteId: ca12fe1f4cbef86448531ae41a67be4c
+      spriteId: 49b54b70dd837dc48b173f1acf3e98ca
     - name: Fwend_Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
         x: 42
-        y: 32
+        y: 0
         width: 46
         height: 37
-      spriteId: 49b54b70dd837dc48b173f1acf3e98ca
+      spriteId: 755a96bd2da2e3642ad7ad0fb031a999
     - name: Fwend_Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
         x: 45
-        y: 33
+        y: 1
         width: 41
         height: 40
-      spriteId: 755a96bd2da2e3642ad7ad0fb031a999
+      spriteId: 1c63597f995df444bbb58ae7dba59d3c
     - name: Fwend_Frame_14
       frameIndex: 14
       additiveSortOrder: 0
       cellRect:
         x: 44
-        y: 34
+        y: 2
         width: 42
         height: 40
-      spriteId: 1c63597f995df444bbb58ae7dba59d3c
+      spriteId: b7d5db58b5da2e34681a716c9c062c72
     - name: Fwend_Frame_15
       frameIndex: 15
       additiveSortOrder: 0
       cellRect:
         x: 43
-        y: 33
+        y: 1
         width: 44
         height: 40
-      spriteId: b7d5db58b5da2e34681a716c9c062c72
+      spriteId: 4c2c0faa42a0c5e4b8505ad432966df0
     - name: Fwend_Frame_16
       frameIndex: 16
       additiveSortOrder: 0
       cellRect:
         x: 42
-        y: 32
+        y: 0
         width: 46
         height: 39
-      spriteId: 4c2c0faa42a0c5e4b8505ad432966df0
-    - name: Fwend_Frame_17
-      frameIndex: 17
-      additiveSortOrder: 0
-      cellRect:
-        x: 43
-        y: 32
-        width: 44
-        height: 40
       spriteId: 3be2b58858474e2428366657c98bd7f7
     - name: Fwend_Frame_18
       frameIndex: 18
       additiveSortOrder: 0
       cellRect:
         x: 43
-        y: 32
+        y: 0
         width: 44
         height: 38
       spriteId: 961f56095cb5c994ca7eb022a48438d4
@@ -1106,7 +1106,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 42
-        y: 32
+        y: 0
         width: 44
         height: 37
       spriteId: 0b35af7611f81b24eab1ff0387e37ecb
@@ -1115,7 +1115,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 41
-        y: 32
+        y: 0
         width: 46
         height: 34
       spriteId: 881afb2185475e74abfce3710256859c
@@ -1124,7 +1124,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 43
-        y: 36
+        y: 4
         width: 41
         height: 43
       spriteId: 110416ac3a5cdef4bb005c7bddd129a3
@@ -1133,7 +1133,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 43
-        y: 41
+        y: 9
         width: 42
         height: 42
       spriteId: 6f43f2060ff2be743806f4f3ad556c69
@@ -1142,7 +1142,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 43
-        y: 37
+        y: 5
         width: 42
         height: 42
       spriteId: 28203e80f20b5874388c0ffa23e1ca58
@@ -1151,7 +1151,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 43
-        y: 33
+        y: 1
         width: 44
         height: 40
       spriteId: 2828587dbb418cb4bb26c9bf997fd203
@@ -1160,7 +1160,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 42
-        y: 32
+        y: 0
         width: 46
         height: 40
       spriteId: a3cb211ef2f73cf47bdc8a331536f671
@@ -1169,7 +1169,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 41
-        y: 32
+        y: 0
         width: 48
         height: 38
       spriteId: 60affe3894f083c45ae5cddd75fa7457
@@ -1178,7 +1178,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 43
-        y: 32
+        y: 0
         width: 44
         height: 40
       spriteId: 999eddccc0c999346b74c68d024049d1
@@ -1187,7 +1187,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 43
-        y: 32
+        y: 0
         width: 44
         height: 40
       spriteId: d30f3875b0e78274d922ed5210d6c41b
@@ -1196,7 +1196,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 41
-        y: 32
+        y: 0
         width: 48
         height: 35
       spriteId: 1a56f9c213b61784980b204cc3014e84
@@ -1205,7 +1205,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 37
-        y: 32
+        y: 0
         width: 53
         height: 32
       spriteId: 6daf88ae95714ed429288ebf5adc50f9
@@ -1214,7 +1214,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 37
-        y: 32
+        y: 0
         width: 53
         height: 31
       spriteId: 9f5252a6ee148d347afac013df313df7
@@ -1223,7 +1223,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 44
-        y: 33
+        y: 1
         width: 44
         height: 32
       spriteId: ad4d6204c3260164bb3354fd933c057a
@@ -1232,7 +1232,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 36
-        y: 32
+        y: 0
         width: 49
         height: 34
       spriteId: 0e890b763f9d53f4fbecc78ed7414684
@@ -1241,7 +1241,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 30
-        y: 43
+        y: 11
         width: 56
         height: 41
       spriteId: 836be5287bbb32b448001e4ca6526c57
@@ -1250,7 +1250,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 29
-        y: 50
+        y: 18
         width: 64
         height: 30
       spriteId: 552bfa162af250043a1b0166734741da
@@ -1259,7 +1259,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 29
-        y: 53
+        y: 21
         width: 63
         height: 42
       spriteId: 6081de390477efe408d263a05698d0cb
@@ -1268,7 +1268,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 27
-        y: 42
+        y: 10
         width: 65
         height: 37
       spriteId: 3fa203f0ad7326d42bf75614f52b9e8c
@@ -1277,7 +1277,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 18
-        y: 34
+        y: 2
         width: 71
         height: 27
       spriteId: f47b536f3f4db9d4882184b3497aae22
@@ -1286,7 +1286,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 12
-        y: 34
+        y: 2
         width: 86
         height: 14
       spriteId: cd364a94c5a765c40a6ea5c393f4f4ab

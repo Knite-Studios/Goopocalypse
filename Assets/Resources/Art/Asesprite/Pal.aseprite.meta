@@ -123,7 +123,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Pal
     originalName: 
-    pivot: {x: 0.53125, y: -1.3913044}
+    pivot: {x: 0.53125, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -155,7 +155,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 47
-        y: 32
+        y: 0
         width: 32
         height: 23
       spriteId: 7828904c26c467442a7b5f91c69a384e

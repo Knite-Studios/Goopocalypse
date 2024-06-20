@@ -123,7 +123,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Fwend
     originalName: 
-    pivot: {x: 0.46428573, y: 0}
+    pivot: {x: 0.47727275, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -143,7 +143,7 @@ ScriptedImporter:
     uvTransform: {x: 148, y: 4}
   - name: Fwend_Frame_1
     originalName: 
-    pivot: {x: 0.46428573, y: 0}
+    pivot: {x: 0.47727275, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -183,7 +183,7 @@ ScriptedImporter:
     uvTransform: {x: 208, y: 102}
   - name: Fwend_Frame_3
     originalName: 
-    pivot: {x: 0.47727275, y: 0}
+    pivot: {x: 0.47826087, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -203,7 +203,7 @@ ScriptedImporter:
     uvTransform: {x: 209, y: 152}
   - name: Fwend_Frame_4
     originalName: 
-    pivot: {x: 0.47826087, y: 0}
+    pivot: {x: 0.4634146, y: -0.025}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -223,7 +223,7 @@ ScriptedImporter:
     uvTransform: {x: 312, y: 102}
   - name: Fwend_Frame_5
     originalName: 
-    pivot: {x: 0.4634146, y: -0.025}
+    pivot: {x: 0.47619048, y: -0.05}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -243,7 +243,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 203}
   - name: Fwend_Frame_6
     originalName: 
-    pivot: {x: 0.47619048, y: -0.05}
+    pivot: {x: 0.47727275, y: -0.025}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -263,7 +263,7 @@ ScriptedImporter:
     uvTransform: {x: 53, y: 152}
   - name: Fwend_Frame_7
     originalName: 
-    pivot: {x: 0.47727275, y: -0.025}
+    pivot: {x: 0.47826087, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -283,7 +283,7 @@ ScriptedImporter:
     uvTransform: {x: 277, y: 54}
   - name: Fwend_Frame_8
     originalName: 
-    pivot: {x: 0.47826087, y: 0}
+    pivot: {x: 0.48936167, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -303,7 +303,7 @@ ScriptedImporter:
     uvTransform: {x: 114, y: 54}
   - name: Fwend_Frame_9
     originalName: 
-    pivot: {x: 0.48936167, y: 0}
+    pivot: {x: 0.47727275, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -363,7 +363,7 @@ ScriptedImporter:
     uvTransform: {x: 260, y: 102}
   - name: Fwend_Frame_12
     originalName: 
-    pivot: {x: 0.47727275, y: 0}
+    pivot: {x: 0.47826087, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -383,7 +383,7 @@ ScriptedImporter:
     uvTransform: {x: 261, y: 152}
   - name: Fwend_Frame_13
     originalName: 
-    pivot: {x: 0.47826087, y: 0}
+    pivot: {x: 0.4634146, y: -0.025}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -403,7 +403,7 @@ ScriptedImporter:
     uvTransform: {x: 366, y: 102}
   - name: Fwend_Frame_14
     originalName: 
-    pivot: {x: 0.4634146, y: -0.025}
+    pivot: {x: 0.47619048, y: -0.05}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -423,7 +423,7 @@ ScriptedImporter:
     uvTransform: {x: 53, y: 203}
   - name: Fwend_Frame_15
     originalName: 
-    pivot: {x: 0.47619048, y: -0.05}
+    pivot: {x: 0.47727275, y: -0.025}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -443,7 +443,7 @@ ScriptedImporter:
     uvTransform: {x: 103, y: 152}
   - name: Fwend_Frame_16
     originalName: 
-    pivot: {x: 0.47727275, y: -0.025}
+    pivot: {x: 0.47826087, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -463,7 +463,7 @@ ScriptedImporter:
     uvTransform: {x: 381, y: 54}
   - name: Fwend_Frame_17
     originalName: 
-    pivot: {x: 0.47826087, y: 0}
+    pivot: {x: 0.47727275, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -934,10 +934,10 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 38
+        x: 43
         y: 0
-        width: 56
-        height: 41
+        width: 44
+        height: 40
       spriteId: 05d44ad1690b4bd4c9c55fdc4ae39c2f
     - name: Fwend_Frame_17
       frameIndex: 17
@@ -1091,6 +1091,15 @@ ScriptedImporter:
         y: 0
         width: 46
         height: 39
+      spriteId: 4c2c0faa42a0c5e4b8505ad432966df0
+    - name: Fwend_Frame_17
+      frameIndex: 17
+      additiveSortOrder: 0
+      cellRect:
+        x: 43
+        y: 0
+        width: 44
+        height: 40
       spriteId: 3be2b58858474e2428366657c98bd7f7
     - name: Fwend_Frame_18
       frameIndex: 18

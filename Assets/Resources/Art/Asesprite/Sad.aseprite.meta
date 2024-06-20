@@ -123,7 +123,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Sad
     originalName: 
-    pivot: {x: 0.5, y: -0.84210527}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -155,7 +155,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 33
-        y: 32
+        y: 0
         width: 62
         height: 38
       spriteId: 70051d1cd4329bf4ca961c920e8d0245

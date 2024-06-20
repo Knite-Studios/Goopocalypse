@@ -5,7 +5,8 @@ import * as resources from "@ui/resources";
 
 export enum Size {
     Normal = 64,
-    Large = 96
+    Large = 96,
+    ExtraLarge = 128
 }
 
 interface IProps {
@@ -27,7 +28,7 @@ function Text(props: IProps) {
                 fontSize: props.size || Size.Normal,
                 unityFontStyleAndWeight: props.bold && props.italic ? "BoldAndItalic" :
                     props.bold ? "Bold" : props.italic ? "Italic" : "Normal",
-                unityFontDefinition: resources.ThaleahFat
+                unityFontDefinition: resources.ThaleahFat,
             }}
         >
             {props.children}

@@ -1,70 +1,50 @@
-using Attributes;
-using Cinemachine;
+using Entity.StateMachines;
 using Managers;
-using Runtime.World;
 using UnityEngine;
 
 namespace Entity.Player
 {
     public class PlayerController : Player
     {
-        [TitleHeader("PlayerController Settings")]
-        [SerializeField] private CinemachineVirtualCamera virtualCameraPrefab;
+        [HideInInspector] public IdleState IdleState;
+        [HideInInspector] public MovingState MovingState;
 
-        public bool IsMoving { get; private set; }
+        public bool IsMoving => InputManager.Movement.ReadValue<Vector2>() != Vector2.zero;
 
-        private Vector2 _direction;
-        private float _attackTimer;
-        private CinemachineVirtualCamera _virtualCamera;
-
-        private static readonly int Moving = Animator.StringToHash("IsMoving");
-
-        protected override void Awake()
-        {
-            base.Awake();
-
-            GameManager.OnWorldGenerated += OnWorldGenerated;
-        }
+        private BaseState<BaseEntity> _currentState;
 
         protected override void Start()
         {
             base.Start();
 
-            if (!isLocalPlayer) return;
+            // Initialize the player states.
+            InitializeStates();
+            ChangeState(IdleState);
+        }
 
-            // Create the player's virtual camera.
-            var playerTransform = transform;
-
-            _virtualCamera = Instantiate(virtualCameraPrefab, playerTransform);
-            _virtualCamera.Follow = playerTransform;
-            _virtualCamera.LookAt = playerTransform;
-            _virtualCamera.Priority = 100;
+        private void Update()
+        {
+            _currentState?.UpdateState();
         }
 
         private void FixedUpdate()
         {
             if (!isLocalPlayer) return;
 
-            HandleMovement();
+            _currentState?.FixedUpdateState();
         }
 
-        private void OnWorldGenerated(World world)
+        private void InitializeStates()
         {
-            transform.SetPositionAndRotation(world.spawnPoint, Quaternion.identity);
+            IdleState = new IdleState("Idle", this);
+            MovingState = new MovingState("Moving", this);
         }
 
-        private void HandleMovement()
+        public void ChangeState(PlayerBaseState state)
         {
-            var move = InputManager.Movement.ReadValue<Vector2>();
-            IsMoving = move != Vector2.zero;
-            Animator.SetBool(Moving, IsMoving);
-            if (move != Vector2.zero) _direction = move.normalized;
-
-            // Flip the sprite based on the direction it's facing.
-            SpriteRenderer.flipX = _direction.x < 0;
-
-            var movement = move * (Speed * Time.fixedDeltaTime);
-            Rb.MovePosition(Rb.position + movement);
+            _currentState?.ExitState();
+            _currentState = state;
+            _currentState.EnterState();
         }
     }
 }

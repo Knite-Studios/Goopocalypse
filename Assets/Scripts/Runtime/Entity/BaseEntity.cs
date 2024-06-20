@@ -4,9 +4,9 @@ using Common.Extensions;
 using Managers;
 using Mirror;
 using Systems.Attributes;
-using UnityEditor.Animations;
 using GameAttribute = Systems.Attributes.Attribute;
 using UnityEngine;
+using UnityEngine.Events;
 using XLua;
 
 namespace Entity
@@ -22,6 +22,7 @@ namespace Entity
         /// </summary>
         [TitleHeader("Entity Settings")]
         public string luaScript;
+        public UnityEvent onDeathEvent;
 
         /// <summary>
         /// Attribute holder map.
@@ -43,8 +44,8 @@ namespace Entity
         #endregion
 
         protected SpriteRenderer SpriteRenderer;
-        protected Rigidbody2D Rb;
-        protected Animator Animator;
+        protected internal Rigidbody2D Rb;
+        protected internal Animator Animator;
 
         protected virtual void Awake()
         {

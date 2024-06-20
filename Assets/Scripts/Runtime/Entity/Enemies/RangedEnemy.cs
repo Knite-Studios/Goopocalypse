@@ -67,7 +67,7 @@ namespace Entity.Enemies
             if (CurrentPath == null || CurrentPathIndex >= CurrentPath.Count) return;
 
             var node = CurrentPath[CurrentPathIndex];
-            var targetPosition = node.worldPosition;
+            var targetPosition = node.WorldPosition;
 
             if (Vector2.Distance(transform.position, targetPosition) > 0.1f)
             {

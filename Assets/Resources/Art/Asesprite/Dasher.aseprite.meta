@@ -123,7 +123,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Dasher
     originalName: 
-    pivot: {x: 0.52380955, y: -0.7804878}
+    pivot: {x: 0.52380955, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -155,7 +155,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 42
-        y: 32
+        y: 0
         width: 42
         height: 41
       spriteId: 7b97ef84ec1a48643a744730b668f105

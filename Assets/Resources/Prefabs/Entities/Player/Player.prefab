@@ -107,8 +107,11 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   luaScript: players/fwend
+  onDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
   <CurrentHealth>k__BackingField: 0
-  playerRole: 1
+  playerRole: 2
   virtualCameraPrefab: {fileID: 1226844540982855168, guid: d6f7a0a033e7219448a21c91a464652a, type: 3}
 --- !u!95 &9078601559106015657
 Animator:
@@ -120,7 +123,7 @@ Animator:
   m_GameObject: {fileID: 8490824003797150612}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e0dbc8b2f2711a54f9b7ed1358a4c6af, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -149,7 +152,7 @@ MonoBehaviour:
   target: {fileID: 4204596159336267425}
   syncPosition: 1
   syncRotation: 1
-  syncScale: 0
+  syncScale: 1
   onlySyncOnChange: 1
   compressRotation: 1
   interpolatePosition: 1

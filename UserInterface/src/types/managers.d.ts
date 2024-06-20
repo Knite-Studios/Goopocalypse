@@ -25,11 +25,13 @@ declare module "game" {
         static ScriptEngine: ScriptEngine
         static OnGameStart: () => void
         static OnGameEvent: UnityAction<GameEvent>
-        static OnWorldGenerated: UnityAction<World>
         static OnWaveSpawn: UnityAction<number>
         ProfilePicture: Texture2D
         Username: string
         State: GameState
+        add_OnRouteUpdate(handler: (a: string) => void): void
+        remove_OnRouteUpdate(handler: (a: string) => void): void
+        OnRouteUpdate: OneJS.Event<(a: string) => void>
         add_OnProfilePictureChanged(handler: (a: Texture2D) => void): void
         remove_OnProfilePictureChanged(handler: (a: Texture2D) => void): void
         OnProfilePictureChanged: OneJS.Event<(a: Texture2D) => void>
@@ -39,11 +41,13 @@ declare module "game" {
         add_OnStateChanged(handler: (a: GameState) => void): void
         remove_OnStateChanged(handler: (a: GameState) => void): void
         OnStateChanged: OneJS.Event<(a: GameState) => void>
+        gameScene: number
         constructor()
         StartDebugServer(): void
         JoinDebugServer(address: string, port: number): void
         StartGame(): void
         ChangeRole(role: PlayerRole): void
+        Navigate(path: string): void
     }
 
     export class LobbyManager extends MonoSingleton<LobbyManager> {

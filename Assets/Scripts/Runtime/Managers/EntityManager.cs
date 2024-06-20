@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Entity.Enemies;
 using Entity.Player;
+using Scriptable;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace Managers
 {
     public class EntityManager : NetworkSingleton<EntityManager>
     {
-        public List<PlayerController> players = new();
-        public List<Enemy> enemies = new();
-
         /// <summary>
         /// Special singleton initializer method.
         /// </summary>
@@ -24,6 +25,8 @@ namespace Managers
 
             instance.name = "Managers.EntityManager (Singleton)";
         }
+
+        #region Static Management
 
         public static void RegisterPlayer(PlayerController player)
         {
@@ -47,6 +50,38 @@ namespace Managers
         {
             if (!Instance.enemies.Contains(enemy)) return;
             Instance.enemies.Remove(enemy);
+        }
+
+        #endregion
+
+        public List<PlayerController> players = new();
+        public List<Enemy> enemies = new();
+
+        [FormerlySerializedAs("_spawnPoints")] [SerializeField]
+        private SpawnData spawnData;
+
+        /// <summary>
+        /// Spawns a random enemy from the list of enemies.
+        /// </summary>
+        public (Enemy, Vector2) SpawnRandom(Vector2? spawnPoint)
+        {
+            var allEnemies = spawnData.enemies;
+            var enemy = allEnemies[Random.Range(0, allEnemies.Count)];
+
+            var spawn = spawnData.type == SpawnType.Random ?
+                GetRandomSpawn() : spawnPoint ?? GetRandomSpawn();
+
+            return (PrefabManager.Create<Enemy>(enemy), spawn);
+        }
+
+        /// <summary>
+        /// Determines a random spawn point for entities.
+        /// </summary>
+        private Vector2 GetRandomSpawn()
+        {
+            return spawnData.points.Count == 0 ?
+                Vector2.zero :
+                spawnData.points[Random.Range(0, spawnData.points.Count)];
         }
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Root
   - Enemy
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX

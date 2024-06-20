@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Attributes;
 using Cinemachine;
 using Effects;
@@ -100,7 +100,7 @@ namespace Entity.Player
             // TODO: Call PrefabManager.Create for death particle effect and Network.Spawn.
             // TODO: Play death sound one shot with proximity and ensure other clients can hear it.
             CameraShake.TriggerShake(_virtualCamera);
-
+            Animator.SetTrigger("IsDead");
             base.OnDeath();
         }
     }

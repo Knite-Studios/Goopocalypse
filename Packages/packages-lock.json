@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.elringus.spriteglow": {
+      "version": "https://github.com/elringus/sprite-glow.git#package",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "05442994ffb7f6c679f648d702cdf888bd8c01dc"
+    },
     "com.unity.2d.animation": {
       "version": "9.1.0",
       "depth": 1,

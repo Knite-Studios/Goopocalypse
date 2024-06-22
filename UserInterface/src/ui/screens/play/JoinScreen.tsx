@@ -48,9 +48,10 @@ function PlayerCard(props: PlayerCardProps) {
 }
 
 function JoinScreen(props: ScreenProps) {
-    const { menuState, navigate, game: { LobbyManager } } = props;
-    const title = `${menuState == MenuState.Local ? "Local" : "Online"} Co-Op`;
+    const { menuState, navigate, game: { GameManager } } = props;
 
+    const isLocal = menuState == MenuState.Local;
+    const title = `${isLocal ? "Local" : "Online"} Co-Op`;
 
     return (
         <div class={"w-full h-full flex-col justify-between bg-boxgrad"}>
@@ -61,9 +62,26 @@ function JoinScreen(props: ScreenProps) {
                 {title}
             </Label>
 
-            <div class={"w-full flex-row justify-center"}>
+            <div class={"w-full flex-row justify-center mb-24"}>
                 <PlayerCard index={0} class={"mr-[25%]"} />
                 <PlayerCard index={1} />
+            </div>
+
+            <div class={"absolute w-full bottom-16"}>
+                <div class={"self-center"}>
+                    <TextBox
+                        labelSize={Size.ExtraLarge}
+                        label={"Start Game"}
+                        onPress={() => {
+                            if (isLocal) {
+                                GameManager.StartLocalGame();
+                            } else {
+                                GameManager.StartRemoteGame();
+                            }
+                        }}
+                        invert
+                    />
+                </div>
             </div>
 
             <div class={"flex-row self-end mr-16 pb-6"}>

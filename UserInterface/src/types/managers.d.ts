@@ -46,7 +46,8 @@ declare module "game" {
         constructor()
         StartDebugServer(): void
         JoinDebugServer(address: string, port: number): void
-        StartGame(): void
+        StartRemoteGame(): void
+        StartLocalGame(): void
         ChangeRole(role: PlayerRole): void
         Navigate(path: string): void
     }

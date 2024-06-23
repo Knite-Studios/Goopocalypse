@@ -26,7 +26,7 @@ export type ScreenProps = {
 function App() {
     const { GameManager } = game;
 
-    const [currentRoute, navigate] = useState("/");
+    const [currentRoute, navigate] = useState(GameManager.DefaultRoute);
     const [gameState, setGameState] = useEventfulState(GameManager, "State");
 
     // Register the router event listener.

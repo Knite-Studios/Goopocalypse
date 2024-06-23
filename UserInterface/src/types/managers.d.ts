@@ -42,6 +42,7 @@ declare module "game" {
         remove_OnStateChanged(handler: (a: GameState) => void): void
         OnStateChanged: OneJS.Event<(a: GameState) => void>
         gameScene: number
+        DefaultRoute: string
         constructor()
         StartDebugServer(): void
         JoinDebugServer(address: string, port: number): void

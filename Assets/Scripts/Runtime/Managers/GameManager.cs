@@ -40,6 +40,7 @@ namespace Managers
 
         [EventfulProperty] private GameState _state = GameState.Menu;
 
+        public string DefaultRoute = "/";
         public event Action<string> OnRouteUpdate;
 
         #endregion
@@ -135,7 +136,9 @@ namespace Managers
                 var playerObject = Instantiate(_networkManager.playerPrefab);
                 var playerController = playerObject.GetComponent<PlayerController>();
                 playerController.playerRole = LobbyManager.Instance.GetPlayerRole(player);
+
                 NetworkServer.AddPlayerForConnection(player, playerObject);
+
                 playerControllers.Add(playerController);
                 EntityManager.RegisterPlayer(playerController);
             }

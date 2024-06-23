@@ -123,15 +123,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Ghost_Frame_0
     originalName: 
-    pivot: {x: 0.50877196, y: 0}
+    pivot: {x: 0.5254237, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 62
-      width: 57
-      height: 39
+      y: 4
+      width: 59
+      height: 100
     spriteID: 3ca61d9a8a779824c82268c04e4c76d4
     spriteBone: []
     spriteOutline: []
@@ -140,7 +140,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 62}
+    uvTransform: {x: 4, y: 4}
   - name: Ghost_Frame_1
     originalName: 
     pivot: {x: 0.50877196, y: 0}
@@ -149,9 +149,9 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
+      y: 112
       width: 57
-      height: 50
+      height: 97
     spriteID: d4826e365fca7d54f80742497f5c09c6
     spriteBone: []
     spriteOutline: []
@@ -160,7 +160,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 4, y: 112}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -174,10 +174,10 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 35
+        x: 33
         y: 0
-        width: 57
-        height: 39
+        width: 59
+        height: 100
       spriteId: 3ca61d9a8a779824c82268c04e4c76d4
     - name: Ghost_Frame_1
       frameIndex: 1
@@ -186,7 +186,7 @@ ScriptedImporter:
         x: 35
         y: 0
         width: 57
-        height: 50
+        height: 97
       spriteId: d4826e365fca7d54f80742497f5c09c6
     linkedCells: []
     parentIndex: -1

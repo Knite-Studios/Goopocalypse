@@ -1,6 +1,7 @@
 using Entity.StateMachines;
 using Managers;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Entity.Player
 {
@@ -9,9 +10,21 @@ namespace Entity.Player
         [HideInInspector] public IdleState IdleState;
         [HideInInspector] public MovingState MovingState;
 
-        public bool IsMoving => InputManager.Movement.ReadValue<Vector2>() != Vector2.zero;
+        /// <summary>
+        /// This is configurable by the game.
+        /// </summary>
+        public InputAction input;
+
+        public bool IsMoving => input.ReadValue<Vector2>() != Vector2.zero;
 
         private BaseState<BaseEntity> _currentState;
+
+        protected override void Awake()
+        {
+            input = InputManager.Movement;
+
+            base.Awake();
+        }
 
         protected override void Start()
         {
@@ -29,7 +42,8 @@ namespace Entity.Player
 
         private void FixedUpdate()
         {
-            if (!isLocalPlayer) return;
+            if (!isLocalPlayer &&
+                !GameManager.Instance.LocalMultiplayer) return;
 
             _currentState?.FixedUpdateState();
         }

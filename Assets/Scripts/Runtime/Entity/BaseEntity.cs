@@ -136,10 +136,10 @@ namespace Entity
         {
             // TODO: Play a client-side death animation.
             Debug.Log($"{gameObject.name} has died.");
-
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
         #endregion
     }
 }
+

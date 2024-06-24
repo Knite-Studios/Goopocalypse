@@ -1,7 +1,7 @@
 -- These are loaded when the instance is created.
 base_stats = {
     max_health = 20,
-    speed = 4.2,
+    speed = 2,
     armor = 1,
 }
 

@@ -38,11 +38,15 @@ namespace Managers
         [EventfulProperty] private Texture2D _profilePicture;
         [EventfulProperty] private string _username;
 
+        [EventfulProperty] private bool _localMultiplayer = false;
         [EventfulProperty] private GameState _state = GameState.Menu;
 
+        public string DefaultRoute = "/";
         public event Action<string> OnRouteUpdate;
 
         #endregion
+
+        #region Unity Events
 
         protected override void OnAwake()
         {
@@ -79,6 +83,10 @@ namespace Managers
             }
         }
 
+        #endregion
+
+        #region Game Management
+
         /// <summary>
         /// Starts the KCP debugging server.
         /// </summary>
@@ -104,7 +112,7 @@ namespace Managers
         /// Method for JavaScript use.
         /// Starts the game by invoking the event.
         /// </summary>
-        public async void StartGame()
+        public async void StartRemoteGame()
         {
             if (!NetworkServer.active) return;
             if (!NetworkServer.activeHost)
@@ -127,26 +135,16 @@ namespace Managers
             Debug.Log("Waiting for players to load scene...");
             await _loadTask.Task;
 
-            var playerControllers = new List<PlayerController>();
-
-            // Spawn all player prefabs.
-            foreach (var player in _loadedPlayers)
-            {
-                var playerObject = Instantiate(_networkManager.playerPrefab);
-                var playerController = playerObject.GetComponent<PlayerController>();
-                playerController.playerRole = LobbyManager.Instance.GetPlayerRole(player);
-                NetworkServer.AddPlayerForConnection(player, playerObject);
-                playerControllers.Add(playerController);
-                EntityManager.RegisterPlayer(playerController);
-            }
+            var playerControllers = (from player in _loadedPlayers
+                let role = LobbyManager.Instance.GetPlayerRole(player)
+                select CreatePlayer(role, player)).ToList();
 
             // Connect the players with the link.
             if (playerControllers.Count == 2)
             {
-                var link = PrefabManager.Create<Link>(PrefabType.Link);
-                link.fwend = playerControllers.First(player => player.playerRole == PlayerRole.Fwend).transform;
-                link.buddie = playerControllers.First(player => player.playerRole == PlayerRole.Buddie).transform;
-                NetworkServer.Spawn(link.gameObject);
+                LinkPlayers(
+                    playerControllers.First(player => player.playerRole == PlayerRole.Fwend),
+                    playerControllers.First(player => player.playerRole == PlayerRole.Buddie));
             }
 
             // Dismiss loading screen.
@@ -158,10 +156,84 @@ namespace Managers
         }
 
         /// <summary>
+        /// Method for JavaScript use.
+        /// Starts the game by invoking the event.
+        /// </summary>
+        public async void StartLocalGame()
+        {
+            // Transfer to the game scene.
+            var task = new TaskCompletionSource<object>();
+            var operation = SceneManager.LoadSceneAsync(gameScene);
+            if (operation == null)
+            {
+                throw new Exception("Failed to load scene.");
+            }
+            operation.completed += _ => task.SetResult(null);
+
+            // Wait for the scene to load.
+            await task.Task;
+
+            // Spawn local players.
+            var player1 = CreatePlayer(PlayerRole.Fwend);
+            var player2 = CreatePlayer(PlayerRole.Buddie);
+
+            // Configure the second player to use the second input.
+            player2.input = InputManager.Movement2;
+            // Disable the second player's camera.
+            player2.DisableCamera();
+
+            // Create link between players.
+            LinkPlayers(player1, player2, false);
+
+            // Set the local multiplayer flag.
+            LocalMultiplayer = true;
+
+            // Invoke the game start event.
+            Debug.Log("Finished! Starting game...");
+            OnGameStart?.Invoke();
+        }
+
+        /// <summary>
         /// Requests to change the role on the server.
         /// </summary>
         public void ChangeRole(PlayerRole role) =>
             NetworkClient.Send(new ChangeRoleC2SReq { role = role });
+
+        #endregion
+
+        /// <summary>
+        /// Links two players together.
+        /// </summary>
+        private void LinkPlayers(PlayerController player1, PlayerController player2, bool remote = true)
+        {
+            var link = PrefabManager.Create<Link>(PrefabType.Link);
+            link.fwend = player1.transform;
+            link.buddie = player2.transform;
+
+            if (remote)
+            {
+                NetworkServer.Spawn(link.gameObject);
+            }
+        }
+
+        /// <summary>
+        /// Creates a player instance.
+        /// This should only run on the server.
+        /// </summary>
+        private PlayerController CreatePlayer(PlayerRole role, NetworkConnectionToClient conn = null)
+        {
+            var playerObj = Instantiate(_networkManager.playerPrefab);
+            var controller = playerObj.GetComponent<PlayerController>();
+            controller.playerRole = role;
+
+            if (conn != null)
+            {
+                NetworkServer.AddPlayerForConnection(conn, playerObj);
+            }
+
+            EntityManager.RegisterPlayer(controller);
+            return controller;
+        }
 
         /// <summary>
         /// Navigate the user interface to a specific path.

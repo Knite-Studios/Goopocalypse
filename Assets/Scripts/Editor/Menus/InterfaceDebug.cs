@@ -16,6 +16,9 @@ namespace Editor
             GameManager.Instance.State = (GameState) EditorGUILayout.EnumPopup(
                 "UI State", GameManager.Instance.State);
 
+            GameManager.Instance.DefaultRoute = EditorGUILayout.TextField(
+                "Default Route", GameManager.Instance.DefaultRoute);
+
             _proposedState = EditorGUILayout.TextField("Proposed State", _proposedState);
 
             if (GUILayout.Button("Submit State"))

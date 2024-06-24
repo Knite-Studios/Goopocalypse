@@ -110,7 +110,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   <CurrentHealth>k__BackingField: 0
-  projectileType: 2
+  projectileType: 7
   attackRange: 5
   attackInterval: 1.5
 --- !u!114 &7679964397663766623

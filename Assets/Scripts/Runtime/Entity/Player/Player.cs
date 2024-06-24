@@ -102,7 +102,7 @@ namespace Entity.Player
             CameraShake.TriggerShake(_virtualCamera);
             Animator.SetTrigger("IsDead");
             base.OnDeath();
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 

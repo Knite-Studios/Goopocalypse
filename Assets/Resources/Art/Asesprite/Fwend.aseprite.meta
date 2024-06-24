@@ -2,7 +2,27 @@ fileFormatVersion: 2
 guid: 5f257f7485939ff46b9cd3c2a5ba06a1
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Death
+    second: {fileID: 7400000, guid: b4e258b010875ac49a8cc54c89fb595f, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: Idle
+    second: {fileID: 7400000, guid: 3f1cbe594b451454c94e0c0030e69525, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: WalkLoop
+    second: {fileID: 7400000, guid: ac22dce2791bff74bbf59c61641b04c3, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: WalkTransition
+    second: {fileID: 7400000, guid: fd4e2ce651dad1042bfc9c632e5d7ef7, type: 2}
   serializedVersion: 2
   userData: 
   assetBundleName: 
@@ -97,7 +117,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638536374093852714
+  platformSettingsDirtyTick: 638548248021118574
   textureAssetName: 
   singleSpriteImportData:
   - name: 

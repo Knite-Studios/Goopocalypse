@@ -616,6 +616,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -2513610387572724556, guid: 5f257f7485939ff46b9cd3c2a5ba06a1, type: 3}
     - target: {fileID: 5440166943112242298, guid: b1eabbfa56489e04f9d9e7a7068aade3, type: 3}
+      propertyPath: input.m_Name
+      value: Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440166943112242298, guid: b1eabbfa56489e04f9d9e7a7068aade3, type: 3}
       propertyPath: onDeathEvent.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -633,7 +637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8490824003797150612, guid: b1eabbfa56489e04f9d9e7a7068aade3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9078601559106015657, guid: b1eabbfa56489e04f9d9e7a7068aade3, type: 3}
       propertyPath: m_Controller

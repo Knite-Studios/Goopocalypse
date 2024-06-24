@@ -1,8 +1,8 @@
 import { h } from "preact";
 
-import { ScreenProps } from "@ui/App";
+import type { ScriptManager } from "game";
 
-function Screen({ game }: ScreenProps) {
+function Screen({ game }: { game: ScriptManager }) {
     return (
         <div>
 

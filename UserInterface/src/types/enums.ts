@@ -10,8 +10,3 @@ export enum PlayerRole {
     Buddie,
     Fwend,
 }
-
-export enum MenuState {
-    Local,
-    Online
-}

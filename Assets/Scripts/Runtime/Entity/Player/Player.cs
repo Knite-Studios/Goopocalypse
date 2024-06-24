@@ -48,12 +48,6 @@ namespace Entity.Player
         }
 
         /// <summary>
-        /// Used by local multiplayer to disable the second player's camera.
-        /// </summary>
-        public void DisableCamera() =>
-            _virtualCamera.enabled = false;
-
-        /// <summary>
         /// Loads the player's configuration from the scriptable object.
         /// </summary>
         /// <exception cref="Exception">Thrown when the player role is not found in the map.</exception>

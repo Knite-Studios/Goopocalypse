@@ -13,24 +13,20 @@ import GameScreen from "@screens/GameScreen";
 import CoopScreen from "@screens/play/CoopScreen";
 
 import { ScriptManager } from "game";
-import { GameState, MenuState } from "@type/enums";
+import { GameState } from "@type/enums";
 import SoloScreen from "@screens/play/SoloScreen";
-import JoinScreen from "@screens/play/JoinScreen";
 
 const game = require("game") as ScriptManager;
 
 export type ScreenProps = {
-    game: ScriptManager;
-    menuState: MenuState;
-
-    setMenuState: (state: MenuState) => void;
+    game: ScriptManager,
     navigate: (r: string) => void;
 };
 
 function App() {
     const { GameManager } = game;
 
-    const [currentRoute, navigate] = useState(GameManager.DefaultRoute);
+    const [currentRoute, navigate] = useState("/");
     const [gameState, setGameState] = useEventfulState(GameManager, "State");
 
     // Register the router event listener.
@@ -46,12 +42,11 @@ function App() {
     switch (gameState) {
         case GameState.Menu:
             return (
-                <Router game={game} setRoute={navigate} route={currentRoute}>
-                    <Route path={"/"} element={MenuScreen} />
-                    <Route path={"/play/solo"} element={SoloScreen} />
-                    <Route path={"/play/coop"} element={CoopScreen} />
-                    <Route path={"/play/join"} element={JoinScreen} />
-                    <Route path={"/debug"} element={DebugScreen} />
+                <Router setRoute={navigate} route={currentRoute}>
+                    <Route path={"/"} element={<DebugScreen game={game} />} />
+                    <Route path={"/play/solo"} element={<SoloScreen game={game} />} />
+                    <Route path={"/play/coop"} element={<CoopScreen game={game} />} />
+                    <Route path={"/debug"} element={<DebugScreen game={game} />} />
                 </Router>
             );
         case GameState.Lobby:

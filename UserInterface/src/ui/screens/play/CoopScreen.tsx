@@ -8,9 +8,8 @@ import { ScreenProps } from "@ui/App";
 import * as resources from "@ui/resources";
 
 import { parseColor } from "onejs/utils/color-parser";
-import { MenuState } from "@type/enums";
 
-function CoopScreen({ navigate, setMenuState }: ScreenProps) {
+function CoopScreen({ navigate }: ScreenProps) {
     return (
         <div class={"w-full h-full bg-boxgrad"}>
             <gradientrect
@@ -35,24 +34,10 @@ function CoopScreen({ navigate, setMenuState }: ScreenProps) {
 
                 <div class={"ml-[128px] w-full flex-row justify-between items-center"}>
                     <div>
-                        <TextBox
-                            labelSize={Size.ExtraLarge} label={"Local Co-Op"}
-                            onPress={() => {
-                                setMenuState(MenuState.Local);
-                                navigate("/play/join");
-                            }}
-                        />
-
+                        <TextBox labelSize={Size.ExtraLarge} label={"Local Co-Op"} />
                         <div class={"mb-14"} />
-
                         <div class={"flex-row"}>
-                            <TextBox
-                                labelSize={Size.Large} label={"Online Co-Op"} invert
-                                onPress={() => {
-                                    setMenuState(MenuState.Online);
-                                    navigate("/play/join");
-                                }}
-                            />
+                            <TextBox labelSize={Size.Large} label={"Online Co-Op"} invert />
                         </div>
                     </div>
 

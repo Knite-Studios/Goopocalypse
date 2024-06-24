@@ -42,12 +42,10 @@ declare module "game" {
         remove_OnStateChanged(handler: (a: GameState) => void): void
         OnStateChanged: OneJS.Event<(a: GameState) => void>
         gameScene: number
-        DefaultRoute: string
         constructor()
         StartDebugServer(): void
         JoinDebugServer(address: string, port: number): void
-        StartRemoteGame(): void
-        StartLocalGame(): void
+        StartGame(): void
         ChangeRole(role: PlayerRole): void
         Navigate(path: string): void
     }
@@ -66,8 +64,6 @@ declare module "game" {
         OnRolesChanged: OneJS.Event<(a: Dictionary<string, PlayerRole>) => void>
         transport: TransportType
         constructor()
-        FindPlayer(conn: NetworkConnectionToClient): PlayerSession
-        GetPlayerRole(conn: NetworkConnectionToClient): PlayerRole
         MakeLobby(): void
         CloseLobby(): void
         InvitePlayer(): void

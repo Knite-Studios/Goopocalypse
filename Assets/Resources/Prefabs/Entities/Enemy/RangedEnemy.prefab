@@ -105,7 +105,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  luaScript: enemies/melee_enemy.lua
+  luaScript: enemies/rangedenemy.lua
   onDeathEvent:
     m_PersistentCalls:
       m_Calls: []

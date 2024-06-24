@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 110551003
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3dfa2c06ce877f74193af024b5df3371, type: 3}
+  m_Sprite: {fileID: 5101318459114392693, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  luaScript: enemies/melee_enemy.lua
+  luaScript: enemies/randomenemy.lua
   onDeathEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -213,8 +213,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5084746, y: 0}
+    oldSize: {x: 0.921875, y: 0.796875}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

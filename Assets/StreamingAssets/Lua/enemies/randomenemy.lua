@@ -8,5 +8,5 @@ base_stats = {
 -- Event handler for when a player casts a special ability.
 -- context: The 'Hero' object instance which cast the ability.
 function On_SpecialAbility(context)
-    print("Melee enemy " .. context.Name .. " used a special ability.")
+    print("Random enemy " .. context.Name .. " used a special ability.")
 end

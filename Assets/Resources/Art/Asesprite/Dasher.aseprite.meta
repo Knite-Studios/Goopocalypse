@@ -123,14 +123,14 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Dasher
     originalName: 
-    pivot: {x: 0.52, y: 0}
+    pivot: {x: 0.53488374, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 55
+      x: 111
       y: 4
-      width: 50
+      width: 43
       height: 34
     spriteID: 7b97ef84ec1a48643a744730b668f105
     spriteBone: []
@@ -140,17 +140,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 55, y: 4}
+    uvTransform: {x: 111, y: 4}
   - name: Dasher_Frame_1
     originalName: 
-    pivot: {x: 0.5192308, y: 0}
+    pivot: {x: 0.53333336, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 113
-      y: 157
-      width: 52
+      x: 57
+      y: 122
+      width: 45
       height: 31
     spriteID: a96da4139f993874cabe2629d163e530
     spriteBone: []
@@ -160,17 +160,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 113, y: 157}
+    uvTransform: {x: 57, y: 122}
   - name: Dasher_Frame_2
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.52, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 113
-      y: 4
-      width: 58
+      x: 4
+      y: 48
+      width: 50
       height: 29
     spriteID: 107100bf90a04ba4fbb3d85727a69ec2
     spriteBone: []
@@ -180,18 +180,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 113, y: 4}
+    uvTransform: {x: 4, y: 48}
   - name: Dasher_Frame_3
     originalName: 
-    pivot: {x: 0.5714286, y: 0}
+    pivot: {x: 0.5666667, y: -0.0952381}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 55
-      y: 88
-      width: 35
-      height: 46
+      x: 4
+      y: 206
+      width: 30
+      height: 42
     spriteID: b1e409cd3c1ae5742b655246c5428241
     spriteBone: []
     spriteOutline: []
@@ -200,18 +200,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 55, y: 88}
+    uvTransform: {x: 4, y: 206}
   - name: Dasher_Frame_4
     originalName: 
-    pivot: {x: 0.55263156, y: 0}
+    pivot: {x: 0.55263156, y: -0.47222224}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 79
+      x: 213
+      y: 4
       width: 38
-      height: 53
+      height: 36
     spriteID: 55d93531a400dcb42b5435dd60953827
     spriteBone: []
     spriteOutline: []
@@ -220,10 +220,10 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 79}
+    uvTransform: {x: 213, y: 4}
   - name: Dasher_Frame_5
     originalName: 
-    pivot: {x: 0.55813956, y: 0}
+    pivot: {x: 0.55813956, y: -0.8611111}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -231,7 +231,7 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 43
-      height: 67
+      height: 36
     spriteID: bdc8b2c65baabc44fa5cc0df44a42f3e
     spriteBone: []
     spriteOutline: []
@@ -243,15 +243,15 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: Dasher_Frame_6
     originalName: 
-    pivot: {x: 0.55263156, y: 0}
+    pivot: {x: 0.55263156, y: -0.47222224}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 140
+      y: 162
       width: 38
-      height: 53
+      height: 36
     spriteID: 5e545924c77462f499a81263010ac29b
     spriteBone: []
     spriteOutline: []
@@ -260,18 +260,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 140}
+    uvTransform: {x: 4, y: 162}
   - name: Dasher_Frame_7
     originalName: 
-    pivot: {x: 0.55263156, y: 0}
+    pivot: {x: 0.55263156, y: -0.22222222}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 201
+      x: 50
+      y: 162
       width: 38
-      height: 44
+      height: 36
     spriteID: 9cd55f88e9ae21644af699d73f078948
     spriteBone: []
     spriteOutline: []
@@ -280,17 +280,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 201}
+    uvTransform: {x: 50, y: 162}
   - name: Dasher_Frame_8
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.52, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 113
-      y: 41
-      width: 58
+      x: 62
+      y: 48
+      width: 50
       height: 29
     spriteID: 96f216d705099d94c8f2eb28df75358f
     spriteBone: []
@@ -300,17 +300,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 113, y: 41}
+    uvTransform: {x: 62, y: 48}
   - name: Dasher_Frame_9
     originalName: 
-    pivot: {x: 0.5192308, y: 0}
+    pivot: {x: 0.53333336, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 113
-      y: 196
-      width: 52
+      x: 110
+      y: 122
+      width: 45
       height: 31
     spriteID: 7777b2d07e1761240b22faa640ea4327
     spriteBone: []
@@ -320,17 +320,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 113, y: 196}
+    uvTransform: {x: 110, y: 122}
   - name: Dasher_Frame_10
     originalName: 
-    pivot: {x: 0.52, y: 0}
+    pivot: {x: 0.53488374, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 55
-      y: 46
-      width: 50
+      x: 162
+      y: 4
+      width: 43
       height: 34
     spriteID: a81369fa010e1f342ac9d705de905332
     spriteBone: []
@@ -340,17 +340,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 55, y: 46}
+    uvTransform: {x: 162, y: 4}
   - name: Dasher_Frame_11
     originalName: 
-    pivot: {x: 0.5769231, y: 0}
+    pivot: {x: 0.5555556, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 113
-      y: 78
-      width: 52
+      x: 4
+      y: 122
+      width: 45
       height: 32
     spriteID: 2280a9367bdcc42489412c74c610f56e
     spriteBone: []
@@ -360,17 +360,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 113, y: 78}
+    uvTransform: {x: 4, y: 122}
   - name: Dasher_Frame_12
     originalName: 
-    pivot: {x: 0.6037736, y: 0}
+    pivot: {x: 0.6041667, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 113
-      y: 118
-      width: 53
+      x: 55
+      y: 4
+      width: 48
       height: 31
     spriteID: def49be30adf62b428f2106c3c63e73c
     spriteBone: []
@@ -380,17 +380,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 113, y: 118}
+    uvTransform: {x: 55, y: 4}
   - name: Dasher_Frame_13
     originalName: 
-    pivot: {x: 0.6181818, y: 0}
+    pivot: {x: 0.59999996, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 179
-      y: 4
-      width: 55
+      x: 120
+      y: 48
+      width: 50
       height: 29
     spriteID: a91334f475567564baee8c398a01a6bf
     spriteBone: []
@@ -400,17 +400,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 179, y: 4}
+    uvTransform: {x: 120, y: 48}
   - name: Dasher_Frame_14
     originalName: 
-    pivot: {x: 0.6181818, y: 0}
+    pivot: {x: 0.59999996, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 179
-      y: 41
-      width: 55
+      x: 178
+      y: 48
+      width: 50
       height: 29
     spriteID: fbc18bdc1e400cb4d963b4a09e853b73
     spriteBone: []
@@ -420,17 +420,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 179, y: 41}
+    uvTransform: {x: 178, y: 48}
   - name: Dasher_Frame_15
     originalName: 
-    pivot: {x: 0.6181818, y: 0}
+    pivot: {x: 0.59999996, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 179
-      y: 78
-      width: 55
+      x: 4
+      y: 85
+      width: 50
       height: 29
     spriteID: 594616cda83e7d34e821d8d9a4e6b8eb
     spriteBone: []
@@ -440,17 +440,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 179, y: 78}
+    uvTransform: {x: 4, y: 85}
   - name: Dasher_Frame_16
     originalName: 
-    pivot: {x: 0.6181818, y: 0}
+    pivot: {x: 0.59999996, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 179
-      y: 115
-      width: 55
+      x: 62
+      y: 85
+      width: 50
       height: 28
     spriteID: 84811f72dd05f3b4bbffbe26cff2c77e
     spriteBone: []
@@ -460,17 +460,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 179, y: 115}
+    uvTransform: {x: 62, y: 85}
   - name: Dasher_Frame_17
     originalName: 
-    pivot: {x: 0.6181818, y: 0}
+    pivot: {x: 0.59999996, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 179
-      y: 151
-      width: 55
+      x: 120
+      y: 85
+      width: 50
       height: 28
     spriteID: b2b69b19e65c5694fb865e3e3d2e49a0
     spriteBone: []
@@ -480,7 +480,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 179, y: 151}
+    uvTransform: {x: 120, y: 85}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -494,162 +494,162 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 38
+        x: 41
         y: 0
-        width: 50
+        width: 43
         height: 34
       spriteId: 7b97ef84ec1a48643a744730b668f105
     - name: Dasher_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
-        x: 37
+        x: 40
         y: 0
-        width: 52
+        width: 45
         height: 31
       spriteId: a96da4139f993874cabe2629d163e530
     - name: Dasher_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
-        x: 35
+        x: 38
         y: 0
-        width: 58
+        width: 50
         height: 29
       spriteId: 107100bf90a04ba4fbb3d85727a69ec2
     - name: Dasher_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
-        x: 44
-        y: 0
-        width: 35
-        height: 46
+        x: 47
+        y: 4
+        width: 30
+        height: 42
       spriteId: b1e409cd3c1ae5742b655246c5428241
     - name: Dasher_Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
         x: 43
-        y: 0
+        y: 17
         width: 38
-        height: 53
+        height: 36
       spriteId: 55d93531a400dcb42b5435dd60953827
     - name: Dasher_Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
         x: 40
-        y: 0
+        y: 31
         width: 43
-        height: 67
+        height: 36
       spriteId: bdc8b2c65baabc44fa5cc0df44a42f3e
     - name: Dasher_Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
         x: 43
-        y: 0
+        y: 17
         width: 38
-        height: 53
+        height: 36
       spriteId: 5e545924c77462f499a81263010ac29b
     - name: Dasher_Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
         x: 43
-        y: 0
+        y: 8
         width: 38
-        height: 44
+        height: 36
       spriteId: 9cd55f88e9ae21644af699d73f078948
     - name: Dasher_Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
-        x: 35
+        x: 38
         y: 0
-        width: 58
+        width: 50
         height: 29
       spriteId: 96f216d705099d94c8f2eb28df75358f
     - name: Dasher_Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
-        x: 37
+        x: 40
         y: 0
-        width: 52
+        width: 45
         height: 31
       spriteId: 7777b2d07e1761240b22faa640ea4327
     - name: Dasher_Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
-        x: 38
+        x: 41
         y: 0
-        width: 50
+        width: 43
         height: 34
       spriteId: a81369fa010e1f342ac9d705de905332
     - name: Dasher_Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
-        x: 34
+        x: 39
         y: 0
-        width: 52
+        width: 45
         height: 32
       spriteId: 2280a9367bdcc42489412c74c610f56e
     - name: Dasher_Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
-        x: 32
+        x: 35
         y: 0
-        width: 53
+        width: 48
         height: 31
       spriteId: def49be30adf62b428f2106c3c63e73c
     - name: Dasher_Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
-        x: 30
+        x: 34
         y: 0
-        width: 55
+        width: 50
         height: 29
       spriteId: a91334f475567564baee8c398a01a6bf
     - name: Dasher_Frame_14
       frameIndex: 14
       additiveSortOrder: 0
       cellRect:
-        x: 30
+        x: 34
         y: 0
-        width: 55
+        width: 50
         height: 29
       spriteId: fbc18bdc1e400cb4d963b4a09e853b73
     - name: Dasher_Frame_15
       frameIndex: 15
       additiveSortOrder: 0
       cellRect:
-        x: 30
+        x: 34
         y: 0
-        width: 55
+        width: 50
         height: 29
       spriteId: 594616cda83e7d34e821d8d9a4e6b8eb
     - name: Dasher_Frame_16
       frameIndex: 16
       additiveSortOrder: 0
       cellRect:
-        x: 30
+        x: 34
         y: 0
-        width: 55
+        width: 50
         height: 28
       spriteId: 84811f72dd05f3b4bbffbe26cff2c77e
     - name: Dasher_Frame_17
       frameIndex: 17
       additiveSortOrder: 0
       cellRect:
-        x: 30
+        x: 34
         y: 0
-        width: 55
+        width: 50
         height: 28
       spriteId: b2b69b19e65c5694fb865e3e3d2e49a0
     linkedCells: []

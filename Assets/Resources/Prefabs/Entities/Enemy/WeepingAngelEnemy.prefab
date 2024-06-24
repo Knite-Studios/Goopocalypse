@@ -211,8 +211,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5166667, y: 0}
-    oldSize: {x: 0.9375, y: 0.609375}
+    pivot: {x: 0.50877196, y: 0}
+    oldSize: {x: 0.890625, y: 0.609375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   glowColor: {r: 0.92549026, g: 0.14901961, b: 0.24313727, a: 1}
-  glowBrightness: 2
+  glowBrightness: 1.5
   outlineWidth: 1
   alphaThreshold: 0.01
   drawOutside: 0

@@ -375,8 +375,8 @@ BoxCollider2D:
   m_Offset: {x: 0.015625, y: 0.3125}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.45454547, y: -0.14285715}
-    oldSize: {x: 1.375, y: 0.21875}
+    pivot: {x: 0.46296296, y: 0}
+    oldSize: {x: 0.84375, y: 0.640625}
     newSize: {x: 0.84375, y: 0.640625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -19628,8 +19628,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d2b460122b84c41bf770e96b0a4e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileGrid: {fileID: 1601616009}
-  groundTilemap: {fileID: 2063303938}
+  tileGrid: {fileID: 2106021247}
+  groundTilemap: {fileID: 1575755531}
   unwalkableTilemaps:
   - {fileID: 390106978}
   - {fileID: 1248436722}

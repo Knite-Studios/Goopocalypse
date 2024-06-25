@@ -261,6 +261,18 @@ namespace Managers
         /// </summary>
         public void Navigate(string path) => OnRouteUpdate?.Invoke(path);
 
+        /// <summary>
+        /// Global method to quit the game.
+        /// </summary>
+        public void QuitGame()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_STANDALONE
+            Application.Quit();
+#endif
+        }
+
         #region Packet Handlers
 
         /// <summary>

@@ -3,6 +3,7 @@ using Attributes;
 using Cinemachine;
 using Effects;
 using JetBrains.Annotations;
+using Managers;
 using Mirror;
 using Systems.Attributes;
 using UnityEngine;
@@ -75,7 +76,7 @@ namespace Entity.Player
         /// </summary>
         private void InitializePlayerCamera()
         {
-            if (!isLocalPlayer) return;
+            if (!isLocalPlayer && !GameManager.Instance.LocalMultiplayer) return;
 
             var playerTransform = transform;
             _virtualCamera = Instantiate(virtualCameraPrefab, playerTransform);

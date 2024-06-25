@@ -180,7 +180,7 @@ namespace Managers
             // Configure the second player to use the second input.
             player2.input = InputManager.Movement2;
             // Disable the second player's camera.
-            player2.DisableCamera();
+            // player2.DisableCamera();
 
             // Create link between players.
             LinkPlayers(player1, player2, false);

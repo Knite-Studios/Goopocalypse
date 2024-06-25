@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cinemachine;
 using Common;
 using Entity;
 using Entity.Player;
@@ -188,6 +189,9 @@ namespace Managers
             // Set the local multiplayer flag.
             LocalMultiplayer = true;
 
+            // Set the target group of the camera to both players.
+            CreateTargetGroup(player1.transform, player2.transform);
+
             // Invoke the game start event.
             Debug.Log("Finished! Starting game...");
             OnGameStart?.Invoke();
@@ -233,6 +237,23 @@ namespace Managers
 
             EntityManager.RegisterPlayer(controller);
             return controller;
+        }
+
+        /// <summary>
+        /// Creates a Cinemachine Target Group for the players.
+        /// </summary>
+        private void CreateTargetGroup(Transform player1, Transform player2)
+        {
+            // Create a new target group.
+            var targetGroupGameObject = new GameObject("TargetGroup");
+            var targetGroup = targetGroupGameObject.AddComponent<CinemachineTargetGroup>();
+
+            // Add all players to the target group.
+            targetGroup.m_Targets = new[]
+            {
+                new CinemachineTargetGroup.Target { target = player1, weight = 1, radius = 1 },
+                new CinemachineTargetGroup.Target { target = player2, weight = 1, radius = 1 }
+            };
         }
 
         /// <summary>

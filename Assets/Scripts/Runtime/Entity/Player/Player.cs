@@ -76,14 +76,31 @@ namespace Entity.Player
         /// </summary>
         private void InitializePlayerCamera()
         {
-            if (!isLocalPlayer && !GameManager.Instance.LocalMultiplayer) return;
+            if (isLocalPlayer)
+            {
+                var playerTransform = transform;
+                _virtualCamera = Instantiate(virtualCameraPrefab, playerTransform);
+                _virtualCamera.m_Lens.OrthographicSize = this.GetAttributeValue<float>(Attribute.CameraDistance);
+                _virtualCamera.Follow = playerTransform;
+                _virtualCamera.LookAt = playerTransform;
+                _virtualCamera.Priority = 100;
+            }
+            else if (GameManager.Instance.LocalMultiplayer)
+            {
+                // We only need 1 camera for local multiplayer.
+                if (playerRole is PlayerRole.Buddie) return;
 
-            var playerTransform = transform;
-            _virtualCamera = Instantiate(virtualCameraPrefab, playerTransform);
-            _virtualCamera.m_Lens.OrthographicSize = this.GetAttributeValue<float>(Attribute.CameraDistance);
-            _virtualCamera.Follow = playerTransform;
-            _virtualCamera.LookAt = playerTransform;
-            _virtualCamera.Priority = 100;
+                _virtualCamera = Instantiate(virtualCameraPrefab, transform);
+                var targetGroup = FindObjectOfType<CinemachineTargetGroup>();
+                if (targetGroup)
+                {
+                    _virtualCamera.Follow = targetGroup.transform;
+                    _virtualCamera.LookAt = targetGroup.transform;
+
+                    var composer = _virtualCamera.AddCinemachineComponent<CinemachineFramingTransposer>();
+                    composer.m_MinimumOrthoSize = this.GetAttributeValue<float>(Attribute.CameraDistance);
+                }
+            }
         }
 
         /// <summary>

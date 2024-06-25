@@ -21,7 +21,7 @@ function DebugScreen({ game }: { game: ScriptManager }) {
                 class={"mb-4 bg-blue-500 "}
                 onClick={() => {
                     game.GameManager.StartDebugServer();
-                    game.GameManager.StartGame();
+                    game.GameManager.StartRemoteGame();
                 }}
             >
                 Start Game (host + server)
@@ -45,7 +45,7 @@ function DebugScreen({ game }: { game: ScriptManager }) {
                 class={"mb-4 bg-blue-500"}
                 onClick={() => {
                     game.GameManager.JoinDebugServer(address, port);
-                    game.GameManager.StartGame();
+                    game.GameManager.StartRemoteGame();
                 }}
             >
                 Join Game (client)
@@ -63,10 +63,10 @@ function DebugScreen({ game }: { game: ScriptManager }) {
             <Button
                 class={"mb-4 bg-blue-500"}
                 onClick={() => {
-                    game.GameManager.StartGame();
+                    game.GameManager.StartLocalGame();
                 }}
             >
-                Start Game
+                Start Local Game
             </Button>
         </div>
     );

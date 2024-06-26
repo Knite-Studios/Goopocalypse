@@ -16,7 +16,7 @@ namespace Editor.Inspectors
 
             if (GUILayout.Button("Restore From Asset"))
             {
-                var root = new GameObject("Spawn Points");
+                var root = new GameObject("- Spawn Points");
 
                 // Create a GameObject for each point.
                 foreach (var point in _target.points)

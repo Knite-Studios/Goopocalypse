@@ -49,22 +49,43 @@ namespace Runtime.World
         /// <param name="count">The amount of enemies to spawn.</param>
         private void SpawnWave(int count)
         {
-            for (var i = 0; i < count; i++)
+            var spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+
+            if (spawnPoints.Length > 0)
             {
-                // Determine where to spawn the enemy.
-                var radius = _camera.orthographicSize * 2;
-                var spawn = MathUtilities.FindValidSpawn(
-                    _camera.transform.position.ToVector2(),
-                    radius, IsValidSpawn);
+                // If we find objects of tag "SpawnPoint", we will spawn enemies there.
+                for (var i = 0; i < count; i++)
+                {
+                    var spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
+                    var (enemy, _) = EntityManager.Instance.SpawnRandom(spawnPoint);
 
-                // Spawn an enemy.
-                var (enemy, spawnPoint) = EntityManager.Instance.SpawnRandom(spawn);
+                    GameObject enemyObject;
+                    (enemyObject = enemy.gameObject).transform.SetPositionAndRotation(
+                        spawnPoint, Quaternion.identity);
 
-                GameObject enemyObject;
-                (enemyObject = enemy.gameObject).transform.SetPositionAndRotation(
-                    spawnPoint, Quaternion.identity);
+                    NetworkServer.Spawn(enemyObject);
+                }
+            }
+            else
+            {
+                // If we don't find any spawn points, we will spawn enemies at the camera's position.
+                for (var i = 0; i < count; i++)
+                {
+                    // Determine where to spawn the enemy.
+                    var radius = _camera.orthographicSize * 2;
+                    var spawn = MathUtilities.FindValidSpawn(
+                        _camera.transform.position.ToVector2(),
+                        radius, IsValidSpawn);
 
-                NetworkServer.Spawn(enemyObject);
+                    // Spawn an enemy.
+                    var (enemy, spawnPoint) = EntityManager.Instance.SpawnRandom(spawn);
+
+                    GameObject enemyObject;
+                    (enemyObject = enemy.gameObject).transform.SetPositionAndRotation(
+                        spawnPoint, Quaternion.identity);
+
+                    NetworkServer.Spawn(enemyObject);
+                }
             }
         }
     }

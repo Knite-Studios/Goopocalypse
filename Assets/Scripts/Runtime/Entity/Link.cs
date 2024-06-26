@@ -1,4 +1,5 @@
 ﻿using Entity.Player;
+using JetBrains.Annotations;
 using Mirror;
 using UnityEngine;
 
@@ -8,6 +9,9 @@ namespace Entity
     {
         public Transform fwend;
         public Transform buddie;
+        [SerializeField, CanBeNull] Material lineMaterial;
+        [SerializeField] Color startColor = Color.magenta;
+        [SerializeField] Color endColor = Color.yellow;
         [SerializeField] public float maxDistance = 5.0f;
 
         private LineRenderer _lineRenderer;
@@ -19,10 +23,12 @@ namespace Entity
             _lineRenderer.positionCount = 2;
             _lineRenderer.startWidth = 0.1f;
             _lineRenderer.endWidth = 0.1f;
-            _lineRenderer.sortingOrder = 100;
-            _lineRenderer.material = new Material(Shader.Find("Sprites/Default")); // TODO: Replace later.
-            _lineRenderer.startColor = Color.magenta; // TODO: Replace later.
-            _lineRenderer.endColor = Color.yellow; // TODO: Replace later.
+            _lineRenderer.sortingOrder = 0;
+            _lineRenderer.material = lineMaterial == null
+                ? new Material(Shader.Find("Sprites/Default"))
+                : lineMaterial;
+            _lineRenderer.startColor = startColor;
+            _lineRenderer.endColor = endColor;
 
             _collider = gameObject.GetOrAddComponent<BoxCollider2D>();
             _collider.isTrigger = true;

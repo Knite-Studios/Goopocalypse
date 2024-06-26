@@ -1,5 +1,4 @@
 ﻿using Entity.Player;
-using Managers;
 using UnityEngine;
 
 namespace Entity.StateMachines
@@ -26,7 +25,7 @@ namespace Entity.StateMachines
 
         protected void HandleMovement()
         {
-            var move = InputManager.Movement.ReadValue<Vector2>();
+            var move = player.input.ReadValue<Vector2>();
             if (move != Vector2.zero) Direction = move.normalized;
 
             // Flip the sprite based on the direction it's facing.

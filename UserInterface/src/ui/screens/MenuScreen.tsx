@@ -60,7 +60,7 @@ function MenuScreen({ game, navigate }: ScreenProps) {
     const [pfp, __] = useEventfulState(GameManager, "ProfilePicture");
 
     return (
-        <div class={"w-full h-full flex-row justify-between p-7 bg-white"}>
+        <div class={"w-full h-full flex-row justify-between p-7"}>
             <div>
                 <image
                     class={"mb-16"}
@@ -102,11 +102,6 @@ function MenuScreen({ game, navigate }: ScreenProps) {
                     containerClass={"flex-row-reverse"}
                     icon={pfp}
                     label={username}
-                />
-
-                <image
-                    class={"mr-[15%]"}
-                    image={resources.Placeholder}
                 />
 
                 <div class={"self-end flex-row mr-[5%]"}>

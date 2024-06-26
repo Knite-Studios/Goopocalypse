@@ -106,10 +106,10 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1.14
-    functionName: OnDeath
+  - time: 1.15
+    functionName: 
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 8490824003797150612, guid: b1eabbfa56489e04f9d9e7a7068aade3, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

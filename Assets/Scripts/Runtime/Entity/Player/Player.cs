@@ -127,6 +127,12 @@ namespace Entity.Player
             Animator.SetTrigger("IsDead");
             base.OnDeath();
         }
+
+        public void DestroyPlayer()
+        {
+            Destroy(gameObject);
+        }
+
     }
 
     [Serializable]

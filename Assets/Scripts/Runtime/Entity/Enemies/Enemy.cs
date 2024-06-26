@@ -80,7 +80,7 @@ namespace Entity.Enemies
             while (!Target)
             {
                 var player = GetNearestPlayer();
-                if (player) Target = player.transform;
+                Target = player ? player.transform : null;
                 yield return new WaitForSeconds(1.0f);
             }
         }
@@ -115,7 +115,7 @@ namespace Entity.Enemies
                 .OrderBy(player => Vector2.Distance(transform.position, player.transform.position))
                 .FirstOrDefault();
 
-            return nearestPlayer;
+            return !nearestPlayer ? null : nearestPlayer;
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace Entity.Enemies
                 .OrderByDescending(player => Vector2.Distance(transform.position, player.transform.position))
                 .FirstOrDefault();
 
-            return furthestPlayer;
+            return !furthestPlayer ? null : furthestPlayer;
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace Entity.Enemies
             if (players.Count == 0) players = GameObject.FindGameObjectsWithTag("Player").ToList().ConvertAll(player
                 => player.GetComponent<PlayerController>());
 
-            return players[Random.Range(0, players.Count)];
+            return players.Count == 0 ? null : players[Random.Range(0, players.Count)];
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace Entity.Enemies
                 .OrderBy(player => Vector2.Distance(transform.position, player.transform.position))
                 .FirstOrDefault();
 
-            return closestMovingPlayer;
+            return !closestMovingPlayer ? null : closestMovingPlayer;
         }
 
         /// <summary>

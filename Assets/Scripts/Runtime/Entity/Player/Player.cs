@@ -128,9 +128,11 @@ namespace Entity.Player
             base.OnDeath();
         }
 
-        public void DestroyPlayer()
+        public void OnDeathAnimation()
         {
             Destroy(gameObject);
+            // TODO: Add check if the player is the local player.
+            NetworkServer.UnSpawn(gameObject);
         }
 
     }

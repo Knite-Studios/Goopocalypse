@@ -14,6 +14,12 @@ namespace Entity.Enemies
 
         protected override void FixedUpdate()
         {
+            if (!Target)
+            {
+                StopAllCoroutines();
+                return;
+            }
+
             if (_isDashing) return;
 
             if (CurrentPath == null || CurrentPathIndex >= CurrentPath.Count) return;

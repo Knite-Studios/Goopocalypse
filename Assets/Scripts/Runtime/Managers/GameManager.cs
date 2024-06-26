@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cinemachine;
 using Common;
 using Entity;
 using Entity.Player;
@@ -158,15 +159,85 @@ namespace Managers
         }
 
         /// <summary>
+        /// Method for JavaScript use.
+        /// Starts the game by invoking the event.
+        /// </summary>
+        public async void StartLocalGame()
+        {
+            // Transfer to the game scene.
+            var task = new TaskCompletionSource<object>();
+            var operation = SceneManager.LoadSceneAsync(gameScene);
+            if (operation == null)
+            {
+                throw new Exception("Failed to load scene.");
+            }
+            operation.completed += _ => task.SetResult(null);
+
+            // Wait for the scene to load.
+            await task.Task;
+
+            // Spawn local players.
+            var player1 = CreatePlayer(PlayerRole.Fwend);
+            var player2 = CreatePlayer(PlayerRole.Buddie);
+
+            // Configure the second player to use the second input.
+            player2.input = InputManager.Movement2;
+            // Disable the second player's camera.
+            // player2.DisableCamera();
+
+            // Create link between players.
+            LinkPlayers(player1, player2, false);
+
+            // Set the local multiplayer flag.
+            LocalMultiplayer = true;
+
+            // Set the target group of the camera to both players.
+            CreateTargetGroup(player1.transform, player2.transform);
+
+            // Invoke the game start event.
+            Debug.Log("Finished! Starting game...");
+            OnGameStart?.Invoke();
+        }
+
+        /// <summary>
         /// Requests to change the role on the server.
         /// </summary>
         public void ChangeRole(PlayerRole role) =>
             NetworkClient.Send(new ChangeRoleC2SReq { role = role });
 
         /// <summary>
+        /// Creates a Cinemachine Target Group for the players.
+        /// </summary>
+        private void CreateTargetGroup(Transform player1, Transform player2)
+        {
+            // Create a new target group.
+            var targetGroupGameObject = new GameObject("TargetGroup");
+            var targetGroup = targetGroupGameObject.AddComponent<CinemachineTargetGroup>();
+
+            // Add all players to the target group.
+            targetGroup.m_Targets = new[]
+            {
+                new CinemachineTargetGroup.Target { target = player1, weight = 1, radius = 1 },
+                new CinemachineTargetGroup.Target { target = player2, weight = 1, radius = 1 }
+            };
+        }
+
+        /// <summary>
         /// Navigate the user interface to a specific path.
         /// </summary>
         public void Navigate(string path) => OnRouteUpdate?.Invoke(path);
+
+        /// <summary>
+        /// Global method to quit the game.
+        /// </summary>
+        public void QuitGame()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_STANDALONE
+            Application.Quit();
+#endif
+        }
 
         #region Packet Handlers
 

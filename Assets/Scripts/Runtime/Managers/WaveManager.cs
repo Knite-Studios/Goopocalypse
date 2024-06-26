@@ -44,7 +44,8 @@ namespace Managers
 
         private void OnGameStart()
         {
-            if (!NetworkServer.activeHost) return;
+            // Do not run if we are a client.
+            if (!NetworkServer.activeHost && !GameManager.Instance.LocalMultiplayer) return;
 
             _gameRunning = true;
             WaveCount = 1;

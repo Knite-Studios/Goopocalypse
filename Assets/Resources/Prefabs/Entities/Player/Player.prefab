@@ -113,6 +113,15 @@ MonoBehaviour:
   <CurrentHealth>k__BackingField: 0
   playerRole: 2
   virtualCameraPrefab: {fileID: 1226844540982855168, guid: d6f7a0a033e7219448a21c91a464652a, type: 3}
+  input:
+    m_Name: Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 87873b6f-5e23-4ea8-b4c8-3e0abfa5a2f9
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!95 &9078601559106015657
 Animator:
   serializedVersion: 5
@@ -269,7 +278,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1

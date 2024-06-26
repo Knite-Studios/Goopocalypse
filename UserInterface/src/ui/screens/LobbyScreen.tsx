@@ -54,7 +54,7 @@ function LobbyScreen({ game }: { game: ScriptManager }) {
                 <Button
                     class={"w-80 mr-8 bg-blue-500"}
                     onClick={() => {
-                        GameManager.StartGame();
+                        GameManager.StartRemoteGame();
                     }}
                 >
                     Start Game

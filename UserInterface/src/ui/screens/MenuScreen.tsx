@@ -90,7 +90,7 @@ function MenuScreen({ game, navigate }: ScreenProps) {
 
                     <MenuButton
                         bottom
-                        onClick={() => null}
+                        onClick={() => GameManager.QuitGame()}
                     >
                         Quit Game
                     </MenuButton>

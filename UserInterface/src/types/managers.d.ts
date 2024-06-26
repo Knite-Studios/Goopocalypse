@@ -48,6 +48,7 @@ declare module "game" {
         StartGame(): void
         ChangeRole(role: PlayerRole): void
         Navigate(path: string): void
+        QuitGame(): void
     }
 
     export class LobbyManager extends MonoSingleton<LobbyManager> {

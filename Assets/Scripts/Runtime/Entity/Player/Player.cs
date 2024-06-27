@@ -1,6 +1,7 @@
 using System;
 using Attributes;
 using Cinemachine;
+using Discord;
 using Effects;
 using JetBrains.Annotations;
 using Managers;
@@ -70,6 +71,8 @@ namespace Entity.Player
             Rb.mass = config.mass;
             _collider.offset = config.colliderOffset;
             _collider.GetComponent<BoxCollider2D>().size = config.colliderSize;
+
+            DiscordController.Instance.SetSmallImage(playerRole);
         }
 
         /// <summary>
@@ -140,7 +143,6 @@ namespace Entity.Player
             // TODO: Add check if the player is the local player.
             NetworkServer.UnSpawn(gameObject);
         }
-
     }
 
     [Serializable]

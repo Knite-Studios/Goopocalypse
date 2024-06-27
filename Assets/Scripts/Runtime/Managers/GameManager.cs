@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cinemachine;
 using Common;
+using Discord;
 using Entity;
 using Entity.Player;
 using Mirror;
@@ -58,6 +59,7 @@ namespace Managers
             WaveManager.Initialize();
             PrefabManager.Initialize();
             EntityManager.Initialize();
+            DiscordController.Initialize();
 
             // Find references.
             _networkManager = FindObjectOfType<NetworkManager>();

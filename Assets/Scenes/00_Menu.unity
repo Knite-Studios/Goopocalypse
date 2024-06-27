@@ -6316,7 +6316,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1401318708}
   - component: {fileID: 1401318707}
-  - component: {fileID: 1401318706}
   m_Layer: 0
   m_Name: '- Grid Manager'
   m_TagString: Untagged
@@ -6324,24 +6323,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1401318706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1401318705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27adc3324ee90554ea7c7a3f51042d3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tilesetTransform: {fileID: 1930665722}
-  minMovementBounds: {x: 0, y: 1}
-  maxMovementBounds: {x: 0, y: -5}
-  damping: 3
-  transitionDuration: 3
-  minDistanceBetweenPoints: 3
 --- !u!156049354 &1401318707
 Grid:
   m_ObjectHideFlags: 0

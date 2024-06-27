@@ -33,6 +33,7 @@ namespace Entity.Player
 
         private Collider2D _collider;
         private CinemachineVirtualCamera _virtualCamera;
+        private bool _isDead;
 
         protected override void Awake()
         {
@@ -120,12 +121,17 @@ namespace Entity.Player
         [ClientRpc]
         public override void OnDeath()
         {
+            if (_isDead) return;
+
             onDeathEvent?.Invoke();
             // TODO: Call PrefabManager.Create for death particle effect and Network.Spawn.
             // TODO: Play death sound one shot with proximity and ensure other clients can hear it.
+            Rb.constraints = RigidbodyConstraints2D.FreezeAll;
             CameraShake.TriggerShake(_virtualCamera);
             Animator.SetTrigger("IsDead");
             base.OnDeath();
+
+            _isDead = true;
         }
 
         public void OnDeathAnimation()

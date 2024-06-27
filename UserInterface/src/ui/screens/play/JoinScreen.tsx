@@ -1,13 +1,15 @@
 import { h, JSX } from "preact";
 
 import Label from "@components/Label";
+import { Size } from "@components/Text";
 import TextBox from "@components/TextBox";
 
 import { MenuState } from "@type/enums";
 
 import type { ScreenProps } from "@ui/App";
 import * as resources from "@ui/resources";
-import { Size } from "@components/Text";
+
+import { parseColor } from "onejs/utils/color-parser";
 
 interface PlayerCardProps {
     index: number;
@@ -54,42 +56,56 @@ function JoinScreen(props: ScreenProps) {
     const title = `${isLocal ? "Local" : "Online"} Co-Op`;
 
     return (
-        <div class={"w-full h-full flex-col justify-between bg-boxgrad"}>
-            <Label
-                class={"py-8"}
-                icon={resources.IconPlaceholder}
-            >
-                {title}
-            </Label>
+        <div class={"flex-col w-full h-full bg-boxgrad"}>
+            <gradientrect
+                class={"absolute w-full h-full"}
+                style={{
+                    left: "25%",
+                    rotate: 90
+                }}
+                colors={[
+                    parseColor("rgba(204, 204, 255, 1)"),
+                    parseColor("rgba(204, 204, 255, 0)")
+                ]}
+            />
 
-            <div class={"w-full flex-row justify-center mb-24"}>
-                <PlayerCard index={0} class={"mr-[25%]"} />
-                <PlayerCard index={1} />
-            </div>
+            <div class={"w-full h-full flex-col justify-between"}>
+                <Label
+                    class={"py-8"}
+                    icon={resources.IconPlaceholder}
+                >
+                    {title}
+                </Label>
 
-            <div class={"absolute w-full bottom-16"}>
-                <div class={"self-center"}>
+                <div class={"w-full flex-row justify-center mb-24"}>
+                    <PlayerCard index={0} class={"mr-[25%]"} />
+                    <PlayerCard index={1} />
+                </div>
+
+                <div class={"absolute w-full bottom-16"}>
+                    <div class={"self-center"}>
+                        <TextBox
+                            labelSize={Size.ExtraLarge}
+                            label={"Start Game"}
+                            onPress={() => {
+                                if (isLocal) {
+                                    GameManager.StartLocalGame();
+                                } else {
+                                    GameManager.StartRemoteGame();
+                                }
+                            }}
+                            invert
+                        />
+                    </div>
+                </div>
+
+                <div class={"flex-row self-end mr-16 pb-6"}>
                     <TextBox
-                        labelSize={Size.ExtraLarge}
-                        label={"Start Game"}
-                        onPress={() => {
-                            if (isLocal) {
-                                GameManager.StartLocalGame();
-                            } else {
-                                GameManager.StartRemoteGame();
-                            }
-                        }}
+                        label={"Back"}
+                        onPress={() => navigate("/play/coop")}
                         invert
                     />
                 </div>
-            </div>
-
-            <div class={"flex-row self-end mr-16 pb-6"}>
-                <TextBox
-                    label={"Back"}
-                    onPress={() => navigate("/play/coop")}
-                    invert
-                />
             </div>
         </div>
     );

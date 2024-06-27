@@ -58,7 +58,7 @@ function MenuScreen({ game, navigate }: ScreenProps) {
     const [pfp, __] = useEventfulState(GameManager, "ProfilePicture");
 
     return (
-        <div class={"bg-white w-full h-full flex-row justify-between p-7"}>
+        <div class={"w-full h-full flex-row justify-between p-7"}>
             <div>
                 <image
                     class={"mb-16"}

@@ -1203,7 +1203,7 @@ PrefabInstance:
     - target: {fileID: -7210667014852890819, guid: 171073f8a323d004f82984c58ed3049a, type: 3}
       propertyPath: _baseStyleSheet
       value: 
-      objectReference: {fileID: 7433441132597879392, guid: 644684a706b07384b8ec6a1ea65f2d93, type: 3}
+      objectReference: {fileID: 7433441132597879392, guid: 93eaf7578dd5982468f17ef72e8d3995, type: 3}
     - target: {fileID: -7210667014852890819, guid: 171073f8a323d004f82984c58ed3049a, type: 3}
       propertyPath: _pollStandaloneScreen
       value: 1

@@ -109,19 +109,7 @@ MonoBehaviour:
   luaScript: players/fwend
   onDeathEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5440166943112242298}
-        m_TargetAssemblyTypeName: Entity.Player.Player, Goopocalypse.Runtime
-        m_MethodName: DestroyPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   <CurrentHealth>k__BackingField: 0
   playerRole: 2
   virtualCameraPrefab: {fileID: 1226844540982855168, guid: d6f7a0a033e7219448a21c91a464652a, type: 3}

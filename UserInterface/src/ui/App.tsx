@@ -11,11 +11,13 @@ import LobbyScreen from "@screens/LobbyScreen";
 import GameScreen from "@screens/GameScreen";
 
 import CoopScreen from "@screens/play/CoopScreen";
+import SoloScreen from "@screens/play/SoloScreen";
+import JoinScreen from "@screens/play/JoinScreen";
+
+import PauseScreen from "@screens/PauseScreen";
 
 import { ScriptManager } from "game";
 import { GameState, MenuState } from "@type/enums";
-import SoloScreen from "@screens/play/SoloScreen";
-import JoinScreen from "@screens/play/JoinScreen";
 
 const game = require("game") as ScriptManager;
 
@@ -51,6 +53,7 @@ function App() {
                     <Route path={"/play/solo"} element={SoloScreen} />
                     <Route path={"/play/coop"} element={CoopScreen} />
                     <Route path={"/play/join"} element={JoinScreen} />
+                    <Route path={"/game/pause"} element={PauseScreen} />
                     <Route path={"/debug"} element={DebugScreen} />
                 </Router>
             );

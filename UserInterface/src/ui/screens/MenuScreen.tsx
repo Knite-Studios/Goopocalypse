@@ -7,8 +7,6 @@ import TextBox from "@components/TextBox";
 import type { ScreenProps } from "@ui/App";
 import * as resources from "@ui/resources";
 
-import type { ScriptManager } from "game";
-
 import { useEventfulState } from "onejs";
 
 interface IMenuButtonProps {
@@ -60,7 +58,7 @@ function MenuScreen({ game, navigate }: ScreenProps) {
     const [pfp, __] = useEventfulState(GameManager, "ProfilePicture");
 
     return (
-        <div class={"w-full h-full flex-row justify-between p-7"}>
+        <div class={"bg-white w-full h-full flex-row justify-between p-7"}>
             <div>
                 <image
                     class={"mb-16"}

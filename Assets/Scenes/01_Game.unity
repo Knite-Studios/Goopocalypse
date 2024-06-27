@@ -29206,8 +29206,8 @@ MonoBehaviour:
   tileGrid: {fileID: 2106021247}
   groundTilemap: {fileID: 183899032}
   unwalkableTilemaps:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 183899032}
+  - {fileID: 1018252116}
   width: 71
   height: 53
   unwalkableLayer:

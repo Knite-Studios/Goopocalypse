@@ -17,4 +17,4 @@ MonoBehaviour:
   sprite: {fileID: -2462791434944921275, guid: da5b48a1fad954b4faca14934f63b35f, type: 3}
   mass: 1
   colliderOffset: {x: 0, y: 0.5}
-  colliderSize: {x: 1, y: 1}
+  colliderSize: {x: 0.9, y: 0.9}

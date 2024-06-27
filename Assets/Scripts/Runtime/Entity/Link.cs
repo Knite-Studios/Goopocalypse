@@ -24,7 +24,7 @@ namespace Entity
             _lineRenderer.startWidth = 0.1f;
             _lineRenderer.endWidth = 0.1f;
             _lineRenderer.sortingOrder = 0;
-            _lineRenderer.material = lineMaterial == null
+            _lineRenderer.material = !lineMaterial
                 ? new Material(Shader.Find("Sprites/Default"))
                 : lineMaterial;
             _lineRenderer.startColor = startColor;
@@ -61,8 +61,8 @@ namespace Entity
                 if (!_collider.enabled) _collider.enabled = true;
 
                 // Connect the players with a line.
-                _lineRenderer.SetPosition(0, fwend.position);
-                _lineRenderer.SetPosition(1, buddie.position);
+                _lineRenderer.SetPosition(0, GetSpriteMiddlePoint(fwend));
+                _lineRenderer.SetPosition(1, GetSpriteMiddlePoint(buddie));
 
                 // Get the midpoint between the players and adjust the collider size dynamically.
                 var midpoint = (fwend.position + buddie.position) / 2;
@@ -86,6 +86,15 @@ namespace Entity
 
             // Apply full damage to the entity.
             entity.CmdDamage(entity.CurrentHealth, true);
+        }
+
+        private Vector2 GetSpriteMiddlePoint(Transform playerTransform)
+        {
+            var spriteRenderer = playerTransform.GetComponent<SpriteRenderer>();
+            if (!spriteRenderer) return playerTransform.position;
+
+            var bounds = spriteRenderer.sprite.bounds;
+            return playerTransform.position + bounds.center;
         }
     }
 }

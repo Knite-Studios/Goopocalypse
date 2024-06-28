@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Priority_Queue;
@@ -150,6 +149,7 @@ namespace Entity.Pathfinding
             return finalPath;
         }
 
+#if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             if (_currentPath == null) return;
@@ -160,5 +160,6 @@ namespace Entity.Pathfinding
                 Gizmos.DrawSphere(new Vector3(node.X, node.Y, 0), 0.3f);
             }
         }
+#endif
     }
 }

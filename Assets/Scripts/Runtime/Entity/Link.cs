@@ -34,28 +34,13 @@ namespace Entity
             _collider = gameObject.GetOrAddComponent<BoxCollider2D>();
             _collider.isTrigger = true;
             _collider.enabled = false;
+
+            FindPlayers();
         }
 
         private void Update()
         {
-            if (!fwend || !buddie)
-            {
-                var findPlayers = FindObjectsOfType<PlayerController>();
-                foreach (var player in findPlayers)
-                {
-                    switch (player.playerRole)
-                    {
-                        case PlayerRole.Fwend:
-                            fwend = player.transform;
-                            break;
-                        case PlayerRole.Buddie:
-                            buddie = player.transform;
-                            break;
-                    }
-                }
-
-                return;
-            }
+            if (!fwend || !buddie) return;
 
             if (Vector2.Distance(fwend.position, buddie.position) <= maxDistance)
             {
@@ -90,6 +75,41 @@ namespace Entity
                 entity.OnDeath();
             else
                 entity.Damage(entity.CurrentHealth, true);
+        }
+
+        private void FindPlayers()
+        {
+            var players = EntityManager.Instance.players;
+            foreach (var player in players)
+            {
+                switch (player.playerRole)
+                {
+                    case PlayerRole.Fwend:
+                        fwend = player.transform;
+                        player.onDeathEvent.AddListener(OnPlayerDeath);
+                        break;
+                    case PlayerRole.Buddie:
+                        buddie = player.transform;
+                        player.onDeathEvent.AddListener(OnPlayerDeath);
+                        break;
+                }
+            }
+        }
+
+        private void OnPlayerDeath()
+        {
+            DestroyLink();
+        }
+
+        private void DestroyLink()
+        {
+            if (fwend) fwend.GetComponent<PlayerController>().onDeathEvent.RemoveListener(OnPlayerDeath);
+            if (buddie) buddie.GetComponent<PlayerController>().onDeathEvent.RemoveListener(OnPlayerDeath);
+
+            if (isServer)
+                NetworkServer.Destroy(gameObject);
+            else
+                Destroy(gameObject);
         }
 
         private Vector2 GetSpriteMiddlePoint(Transform playerTransform)

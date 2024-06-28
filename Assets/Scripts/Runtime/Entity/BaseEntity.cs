@@ -141,8 +141,7 @@ namespace Entity
         public void OnDeathAnimation()
         {
             Destroy(gameObject);
-            if (GameManager.Instance.LocalMultiplayer)
-                NetworkServer.UnSpawn(gameObject);
+            if (NetworkServer.active) NetworkServer.UnSpawn(gameObject);
         }
     }
 }

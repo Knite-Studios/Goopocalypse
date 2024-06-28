@@ -41,15 +41,19 @@ namespace Projectiles
 
         protected virtual void OnTriggerEnter2D(Collider2D other)
         {
-            if (!isServer) return;
             if (!other.TryGetComponent(out BaseEntity entity)) return;
 
             // Check if the projectile should do damage.
             if (entity == owner) return;
             if (entity.GetType() == owner.GetType()) return;
+            if (entity.GetType().BaseType == owner.GetType().BaseType) return;
 
             // Apply damage.
-            entity.CmdDamage(damage);
+            if (isServer)
+                entity.Damage(entity.MaxHealth, true);
+            else
+                entity.OnDeath();
+
         }
 
         protected virtual void OnAnimationEnd()

@@ -89,7 +89,7 @@ namespace Entity
             if (GameManager.Instance.LocalMultiplayer)
                 entity.OnDeath();
             else
-                entity.CmdDamage(entity.CurrentHealth, true);
+                entity.Damage(entity.CurrentHealth, true);
         }
 
         private Vector2 GetSpriteMiddlePoint(Transform playerTransform)

@@ -124,9 +124,6 @@ namespace Entity.Enemies
         protected PlayerController GetNearestPlayer()
         {
             var players = EntityManager.Instance.players;
-            // TODO: Temporary. REMOVE LATER.
-            if (players.Count == 0) players = GameObject.FindGameObjectsWithTag("Player").ToList().ConvertAll(player
-                => player.GetComponent<PlayerController>());
 
             var nearestPlayer = players
                 .Where(player => player)
@@ -142,9 +139,6 @@ namespace Entity.Enemies
         protected PlayerController GetFurthestPlayer()
         {
             var players = EntityManager.Instance.players;
-            // TODO: Temporary. REMOVE LATER.
-            if (players.Count == 0) players = GameObject.FindGameObjectsWithTag("Player").ToList().ConvertAll(player
-                => player.GetComponent<PlayerController>());
 
             var furthestPlayer = players
                 .Where(player => player)
@@ -159,12 +153,8 @@ namespace Entity.Enemies
         /// </summary>
         protected PlayerController GetRandomPlayer()
         {
-            var players = EntityManager.Instance.players;
-            // TODO: Temporary. REMOVE LATER.
-            if (players.Count == 0) players = GameObject.FindGameObjectsWithTag("Player").ToList().ConvertAll(player
-                => player.GetComponent<PlayerController>());
-
-            players = players.Where(player => player).ToList();
+            var players = EntityManager.Instance.players
+                .Where(player => player).ToList();
 
             return players.Count == 0 ? null : players[Random.Range(0, players.Count)];
         }
@@ -175,11 +165,6 @@ namespace Entity.Enemies
         protected PlayerController GetNearestMovingPlayer()
         {
             var players = EntityManager.Instance.players;
-            // TODO: Temporary. REMOVE LATER.
-            if (players.Count == 0)
-                players = GameObject.FindGameObjectsWithTag("Player")
-                    .Select(player => player.GetComponent<PlayerController>())
-                    .ToList();
 
             var movingPlayers = players
                 .Where(player => player && player.IsMoving)

@@ -14,7 +14,7 @@ import CoopScreen from "@screens/play/CoopScreen";
 import SoloScreen from "@screens/play/SoloScreen";
 import JoinScreen from "@screens/play/JoinScreen";
 
-import PauseScreen from "@screens/PauseScreen";
+import PauseScreen from "@screens/overlays/PauseScreen";
 
 import { ScriptManager } from "game";
 import { GameState, MenuState } from "@type/enums";

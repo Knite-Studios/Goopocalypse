@@ -1,118 +1,69 @@
 import { h } from "preact";
-import { useState } from "preact/hooks";
 
 import Text from "@components/Text";
-import TextBox from "@components/TextBox";
+import Image from "@components/Image";
+import Button from "@components/ButtonV2";
 
-import type { ScreenProps } from "@ui/App";
-import * as resources from "@ui/resources";
-
+import resources from "@ui/resources";
+import { ScreenProps } from "@ui/App";
 import { useEventfulState } from "onejs";
 
-interface IMenuButtonProps {
-    bottom?: boolean;
-    onClick: () => void;
-
-    children: string;
-}
-
-function MenuButton(props: IMenuButtonProps) {
-    const { children, onClick } = props;
-
-    const [highlighted, setHighlighted] = useState(false);
-
-    return (
-        <div class={"flex-col"}>
-            { highlighted ? (
-                <div class={"flex-row"}>
-                    <TextBox
-                        onMouseOver={() => setHighlighted(true)}
-                        onMouseOut={() => setHighlighted(false)}
-                        label={children}
-                        onPress={onClick}
-                    />
-
-                    <div />
-                </div>
-            ) : (
-                <div
-                    onClick={onClick}
-                    onMouseOver={() => setHighlighted(true)}
-                    onMouseOut={() => setHighlighted(false)}
-                >
-                    <Text class={"text-boxtext"}>
-                        {children}
-                    </Text>
-                </div>
-            ) }
-
-            { !props.bottom && <div class={"mb-7 invisible"} /> }
-        </div>
-    );
-}
-
-function MenuScreen({ game, navigate }: ScreenProps) {
+function MenuScreen({ game }: ScreenProps) {
     const { GameManager } = game;
 
     const [username, _] = useEventfulState(GameManager, "Username");
     const [pfp, __] = useEventfulState(GameManager, "ProfilePicture");
 
     return (
-        <div class={"w-full h-full flex-row justify-between p-7"}>
-            <div>
-                <image
-                    class={"mb-16"}
-                    image={resources.Logo}
+        <div class={"w-full h-full flex-row"}>
+            <div class={"w-[40%] h-full flex-col items-center justify-between bg-dark-blue"}>
+                <Image
+                    src={resources.Logo}
+                    class={"self-center mt-12"}
+                    style={{ maxWidth: 318, maxHeight: 253 }}
                 />
 
-                <div class={"flex-col ml-16"}>
-                    <MenuButton onClick={() => navigate("/play/solo")}>
-                        Play Solo
-                    </MenuButton>
+                <div class={"flex-col justify-between"}>
+                    <Button class={"mb-8"}>
+                        Play Local
+                    </Button>
 
-                    <MenuButton onClick={() => navigate("/play/coop")}>
-                        Play Co-Op
-                    </MenuButton>
+                    <Button class={"mb-8"}>
+                        Play Online
+                    </Button>
 
-                    <MenuButton onClick={() => null}>
-                        Store
-                    </MenuButton>
-
-                    <MenuButton onClick={() => null}>
-                        How to Play
-                    </MenuButton>
-
-                    <MenuButton onClick={() => null}>
+                    <Button class={"mb-8"}>
                         Settings
-                    </MenuButton>
+                    </Button>
 
-                    <MenuButton
-                        bottom
-                        onClick={() => GameManager.QuitGame()}
+                    <Button
+                        class={"mb-16"}
                     >
                         Quit Game
-                    </MenuButton>
+                    </Button>
                 </div>
             </div>
 
-            <div class={"flex-col justify-between"}>
-                <TextBox
-                    containerClass={"flex-row-reverse"}
-                    icon={pfp}
-                    label={username}
-                />
-
-                <div class={"self-end flex-row mr-[5%]"}>
-                    <TextBox
-                        label={"Credits"}
+            <div class={"px-14 py-6 w-full flex-col justify-between items-end"}>
+                <div
+                    class={"flex-row items-center px-8 py-2"}
+                    style={{
+                        backgroundImage: resources.ProfileFrame
+                    }}
+                >
+                    <Image
+                        class={"mr-5"}
+                        style={{ width: 42, height: 42 }}
+                        src={pfp}
                     />
+                    <Text class={"text-green"}>{username}</Text>
+                </div>
 
-                    {/* This is used as padding to ensure shadows work. */}
-                    <div class={"mr-7 invisible"} />
-
-                    <TextBox
-                        label={"Select"}
-                    />
+                <div
+                    class={"text-white hover:text-green"}
+                    onClick={() => log("go to credits")}
+                >
+                    <Text>Credits</Text>
                 </div>
             </div>
         </div>

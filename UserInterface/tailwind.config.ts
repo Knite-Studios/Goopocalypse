@@ -10,7 +10,10 @@ export default {
         extend: {
             colors: {
                 boxgrad: "#ececff",
-                boxtext: "#b8b7ce"
+                boxtext: "#b8b7ce",
+
+                green: "#72e8e6",
+                "dark-blue": "#08091b"
             }
         }
     },

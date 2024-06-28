@@ -1,1 +1,16 @@
 @tailwind utilities;
+
+.text {
+    @apply text-white;
+    @apply border-none border-0;
+
+    background: none;
+
+    transition: all 0.3s ease;
+}
+
+.text:hover {
+    @apply text-green;
+
+    translate: 36px 0;
+}

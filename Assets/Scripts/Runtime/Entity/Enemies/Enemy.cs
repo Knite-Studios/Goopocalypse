@@ -112,6 +112,8 @@ namespace Entity.Enemies
 
             base.OnDeath();
 
+            EntityManager.UnregisterEnemy(this);
+
             // TODO: Remove this line if we have enemy death animation.
             OnDeathAnimation();
         }
@@ -127,6 +129,7 @@ namespace Entity.Enemies
                 => player.GetComponent<PlayerController>());
 
             var nearestPlayer = players
+                .Where(player => player)
                 .OrderBy(player => Vector2.Distance(transform.position, player.transform.position))
                 .FirstOrDefault();
 
@@ -144,6 +147,7 @@ namespace Entity.Enemies
                 => player.GetComponent<PlayerController>());
 
             var furthestPlayer = players
+                .Where(player => player)
                 .OrderByDescending(player => Vector2.Distance(transform.position, player.transform.position))
                 .FirstOrDefault();
 
@@ -159,6 +163,8 @@ namespace Entity.Enemies
             // TODO: Temporary. REMOVE LATER.
             if (players.Count == 0) players = GameObject.FindGameObjectsWithTag("Player").ToList().ConvertAll(player
                 => player.GetComponent<PlayerController>());
+
+            players = players.Where(player => player).ToList();
 
             return players.Count == 0 ? null : players[Random.Range(0, players.Count)];
         }
@@ -176,7 +182,7 @@ namespace Entity.Enemies
                     .ToList();
 
             var movingPlayers = players
-                .Where(player => player.IsMoving)
+                .Where(player => player && player.IsMoving)
                 .ToList();
 
             var closestMovingPlayer = movingPlayers

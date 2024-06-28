@@ -133,6 +133,8 @@ namespace Entity.Player
             Animator.SetTrigger("IsDead");
             base.OnDeath();
 
+            EntityManager.UnregisterPlayer(this as PlayerController);
+
             _isDead = true;
         }
     }

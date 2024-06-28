@@ -1,5 +1,6 @@
 ﻿using Entity.Player;
 using JetBrains.Annotations;
+using Managers;
 using Mirror;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ namespace Entity
             _lineRenderer.startWidth = 0.1f;
             _lineRenderer.endWidth = 0.1f;
             _lineRenderer.sortingOrder = 0;
-            _lineRenderer.material = lineMaterial == null
+            _lineRenderer.material = !lineMaterial
                 ? new Material(Shader.Find("Sprites/Default"))
                 : lineMaterial;
             _lineRenderer.startColor = startColor;
@@ -33,36 +34,21 @@ namespace Entity
             _collider = gameObject.GetOrAddComponent<BoxCollider2D>();
             _collider.isTrigger = true;
             _collider.enabled = false;
+
+            FindPlayers();
         }
 
         private void Update()
         {
-            if (!fwend || !buddie)
-            {
-                var findPlayers = FindObjectsOfType<PlayerController>();
-                foreach (var player in findPlayers)
-                {
-                    switch (player.playerRole)
-                    {
-                        case PlayerRole.Fwend:
-                            fwend = player.transform;
-                            break;
-                        case PlayerRole.Buddie:
-                            buddie = player.transform;
-                            break;
-                    }
-                }
-
-                return;
-            }
+            if (!fwend || !buddie) return;
 
             if (Vector2.Distance(fwend.position, buddie.position) <= maxDistance)
             {
                 if (!_collider.enabled) _collider.enabled = true;
 
                 // Connect the players with a line.
-                _lineRenderer.SetPosition(0, fwend.position);
-                _lineRenderer.SetPosition(1, buddie.position);
+                _lineRenderer.SetPosition(0, GetSpriteMiddlePoint(fwend));
+                _lineRenderer.SetPosition(1, GetSpriteMiddlePoint(buddie));
 
                 // Get the midpoint between the players and adjust the collider size dynamically.
                 var midpoint = (fwend.position + buddie.position) / 2;
@@ -85,7 +71,54 @@ namespace Entity
             if (!other.TryGetComponent(out BaseEntity entity)) return;
 
             // Apply full damage to the entity.
-            entity.CmdDamage(entity.CurrentHealth, true);
+            if (GameManager.Instance.LocalMultiplayer)
+                entity.OnDeath();
+            else
+                entity.Damage(entity.CurrentHealth, true);
+        }
+
+        private void FindPlayers()
+        {
+            var players = EntityManager.Instance.players;
+            foreach (var player in players)
+            {
+                switch (player.playerRole)
+                {
+                    case PlayerRole.Fwend:
+                        fwend = player.transform;
+                        player.onDeathEvent.AddListener(OnPlayerDeath);
+                        break;
+                    case PlayerRole.Buddie:
+                        buddie = player.transform;
+                        player.onDeathEvent.AddListener(OnPlayerDeath);
+                        break;
+                }
+            }
+        }
+
+        private void OnPlayerDeath()
+        {
+            DestroyLink();
+        }
+
+        private void DestroyLink()
+        {
+            if (fwend) fwend.GetComponent<PlayerController>().onDeathEvent.RemoveListener(OnPlayerDeath);
+            if (buddie) buddie.GetComponent<PlayerController>().onDeathEvent.RemoveListener(OnPlayerDeath);
+
+            if (isServer)
+                NetworkServer.Destroy(gameObject);
+            else
+                Destroy(gameObject);
+        }
+
+        private Vector2 GetSpriteMiddlePoint(Transform playerTransform)
+        {
+            var spriteRenderer = playerTransform.GetComponent<SpriteRenderer>();
+            if (!spriteRenderer) return playerTransform.position;
+
+            var bounds = spriteRenderer.sprite.bounds;
+            return playerTransform.position + bounds.center;
         }
     }
 }

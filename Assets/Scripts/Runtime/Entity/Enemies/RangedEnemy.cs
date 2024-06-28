@@ -87,7 +87,7 @@ namespace Entity.Enemies
             projectile.owner = this;
             projectile.transform.SetPositionAndRotation(position, rotation);
 
-            NetworkServer.Spawn(projectile.gameObject);
+            if (NetworkServer.active) NetworkServer.Spawn(projectile.gameObject);
         }
     }
 }

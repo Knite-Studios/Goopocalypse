@@ -52,9 +52,9 @@ MonoBehaviour:
   syncInterval: 0
   fwend: {fileID: 0}
   buddie: {fileID: 0}
-  lineMaterial: {fileID: 0}
-  startColor: {r: 1, g: 0, b: 1, a: 1}
-  endColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  lineMaterial: {fileID: 2100000, guid: 78fb95482e1ee3f4e97811e80ce0bde0, type: 2}
+  startColor: {r: 1, g: 1, b: 1, a: 1}
+  endColor: {r: 1, g: 1, b: 1, a: 1}
   maxDistance: 6
 --- !u!120 &2957496096868646278
 LineRenderer:

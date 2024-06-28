@@ -1,6 +1,7 @@
 using System;
 using Attributes;
 using Cinemachine;
+using Discord;
 using Effects;
 using JetBrains.Annotations;
 using Managers;
@@ -34,6 +35,7 @@ namespace Entity.Player
         private Collider2D _collider;
         private CinemachineVirtualCamera _virtualCamera;
         private bool _isDead;
+        private static readonly int IsDead = Animator.StringToHash("IsDead");
 
         protected override void Awake()
         {
@@ -70,6 +72,8 @@ namespace Entity.Player
             Rb.mass = config.mass;
             _collider.offset = config.colliderOffset;
             _collider.GetComponent<BoxCollider2D>().size = config.colliderSize;
+
+            DiscordController.Instance.SetSmallImage(playerRole);
         }
 
         /// <summary>
@@ -118,7 +122,6 @@ namespace Entity.Player
             this.GetOrCreateAttribute(Attribute.CameraDistance, stats.Get<float>("camera_distance"));
         }
 
-        [ClientRpc]
         public override void OnDeath()
         {
             if (_isDead) return;
@@ -127,20 +130,14 @@ namespace Entity.Player
             // TODO: Call PrefabManager.Create for death particle effect and Network.Spawn.
             // TODO: Play death sound one shot with proximity and ensure other clients can hear it.
             Rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            CameraShake.TriggerShake(_virtualCamera);
-            Animator.SetTrigger("IsDead");
+            if (_virtualCamera) CameraShake.TriggerShake(_virtualCamera);
+            Animator.SetTrigger(IsDead);
             base.OnDeath();
+
+            EntityManager.UnregisterPlayer(this as PlayerController);
 
             _isDead = true;
         }
-
-        public void OnDeathAnimation()
-        {
-            Destroy(gameObject);
-            // TODO: Add check if the player is the local player.
-            NetworkServer.UnSpawn(gameObject);
-        }
-
     }
 
     [Serializable]

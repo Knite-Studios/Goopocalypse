@@ -4,6 +4,7 @@ using System.Linq;
 using Entity.Pathfinding;
 using Entity.Player;
 using Managers;
+using Mirror;
 using UnityEngine;
 using XLua;
 using Random = UnityEngine.Random;
@@ -58,7 +59,10 @@ namespace Entity.Enemies
             if (!other.IsPlayer()) return;
             if (!other.gameObject.TryGetComponent(out BaseEntity entity)) return;
 
-            entity.Damage(entity.MaxHealth, true);
+            if (GameManager.Instance.LocalMultiplayer)
+                entity.OnDeath();
+            else
+                entity.Damage(entity.MaxHealth, true);
         }
 
         /// <summary>
@@ -80,7 +84,7 @@ namespace Entity.Enemies
             while (!Target)
             {
                 var player = GetNearestPlayer();
-                Target = player ? player.transform : null;
+                if (player) Target = player.transform;
                 yield return new WaitForSeconds(1.0f);
             }
         }
@@ -101,17 +105,28 @@ namespace Entity.Enemies
             // ReSharper disable once IteratorNeverReturns
         }
 
+        public override void OnDeath()
+        {
+            onDeathEvent?.Invoke();
+            Rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+            base.OnDeath();
+
+            EntityManager.UnregisterEnemy(this);
+
+            // TODO: Remove this line if we have enemy death animation.
+            OnDeathAnimation();
+        }
+
         /// <summary>
         /// Finds the nearest player.
         /// </summary>
         protected PlayerController GetNearestPlayer()
         {
             var players = EntityManager.Instance.players;
-            // TODO: Temporary. REMOVE LATER.
-            if (players.Count == 0) players = GameObject.FindGameObjectsWithTag("Player").ToList().ConvertAll(player
-                => player.GetComponent<PlayerController>());
 
             var nearestPlayer = players
+                .Where(player => player)
                 .OrderBy(player => Vector2.Distance(transform.position, player.transform.position))
                 .FirstOrDefault();
 
@@ -124,11 +139,9 @@ namespace Entity.Enemies
         protected PlayerController GetFurthestPlayer()
         {
             var players = EntityManager.Instance.players;
-            // TODO: Temporary. REMOVE LATER.
-            if (players.Count == 0) players = GameObject.FindGameObjectsWithTag("Player").ToList().ConvertAll(player
-                => player.GetComponent<PlayerController>());
 
             var furthestPlayer = players
+                .Where(player => player)
                 .OrderByDescending(player => Vector2.Distance(transform.position, player.transform.position))
                 .FirstOrDefault();
 
@@ -140,10 +153,8 @@ namespace Entity.Enemies
         /// </summary>
         protected PlayerController GetRandomPlayer()
         {
-            var players = EntityManager.Instance.players;
-            // TODO: Temporary. REMOVE LATER.
-            if (players.Count == 0) players = GameObject.FindGameObjectsWithTag("Player").ToList().ConvertAll(player
-                => player.GetComponent<PlayerController>());
+            var players = EntityManager.Instance.players
+                .Where(player => player).ToList();
 
             return players.Count == 0 ? null : players[Random.Range(0, players.Count)];
         }
@@ -154,14 +165,9 @@ namespace Entity.Enemies
         protected PlayerController GetNearestMovingPlayer()
         {
             var players = EntityManager.Instance.players;
-            // TODO: Temporary. REMOVE LATER.
-            if (players.Count == 0)
-                players = GameObject.FindGameObjectsWithTag("Player")
-                    .Select(player => player.GetComponent<PlayerController>())
-                    .ToList();
 
             var movingPlayers = players
-                .Where(player => player.IsMoving)
+                .Where(player => player && player.IsMoving)
                 .ToList();
 
             var closestMovingPlayer = movingPlayers

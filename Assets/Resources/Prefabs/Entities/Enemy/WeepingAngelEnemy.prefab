@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 10764379558505506}
   - component: {fileID: 878301711026872938}
   - component: {fileID: 3971832686524867631}
+  - component: {fileID: -6099594883791870137}
+  - component: {fileID: -2969419010167252453}
   m_Layer: 9
   m_Name: WeepingAngelEnemy
   m_TagString: Enemy
@@ -256,3 +258,41 @@ CircleCollider2D:
   m_Offset: {x: -0.0078125, y: 0.3046875}
   serializedVersion: 2
   m_Radius: 0.4453125
+--- !u!95 &-6099594883791870137
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7837837132373050533}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-2969419010167252453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7837837132373050533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  clientAuthority: 0
+  animator: {fileID: -6099594883791870137}

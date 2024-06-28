@@ -4,6 +4,7 @@ using System.Linq;
 using Entity.Pathfinding;
 using Entity.Player;
 using Managers;
+using Mirror;
 using UnityEngine;
 using XLua;
 using Random = UnityEngine.Random;
@@ -58,7 +59,10 @@ namespace Entity.Enemies
             if (!other.IsPlayer()) return;
             if (!other.gameObject.TryGetComponent(out BaseEntity entity)) return;
 
-            entity.Damage(entity.MaxHealth, true);
+            if (GameManager.Instance.LocalMultiplayer)
+                entity.OnDeath();
+            else
+                entity.Damage(entity.MaxHealth, true);
         }
 
         /// <summary>
@@ -80,7 +84,7 @@ namespace Entity.Enemies
             while (!Target)
             {
                 var player = GetNearestPlayer();
-                Target = player ? player.transform : null;
+                if (player) Target = player.transform;
                 yield return new WaitForSeconds(1.0f);
             }
         }
@@ -99,6 +103,17 @@ namespace Entity.Enemies
             }
 
             // ReSharper disable once IteratorNeverReturns
+        }
+
+        public override void OnDeath()
+        {
+            onDeathEvent?.Invoke();
+            Rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+            base.OnDeath();
+
+            // TODO: Remove this line if we have enemy death animation.
+            OnDeathAnimation();
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using Entity.Player;
 using JetBrains.Annotations;
+using Managers;
 using Mirror;
 using UnityEngine;
 
@@ -85,7 +86,10 @@ namespace Entity
             if (!other.TryGetComponent(out BaseEntity entity)) return;
 
             // Apply full damage to the entity.
-            entity.CmdDamage(entity.CurrentHealth, true);
+            if (GameManager.Instance.LocalMultiplayer)
+                entity.OnDeath();
+            else
+                entity.CmdDamage(entity.CurrentHealth, true);
         }
 
         private Vector2 GetSpriteMiddlePoint(Transform playerTransform)

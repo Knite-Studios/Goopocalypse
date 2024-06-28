@@ -131,15 +131,19 @@ namespace Entity
             Debug.Log($"{gameObject.name}'s health changed by {amount}.");
         }
 
-        [ClientRpc]
         public virtual void OnDeath()
         {
-            // TODO: Play a client-side death animation.
             Debug.Log($"{gameObject.name} has died.");
-            // Destroy(gameObject);
         }
 
         #endregion
+
+        public void OnDeathAnimation()
+        {
+            Destroy(gameObject);
+            if (GameManager.Instance.LocalMultiplayer)
+                NetworkServer.UnSpawn(gameObject);
+        }
     }
 }
 

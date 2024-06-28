@@ -121,7 +121,6 @@ namespace Entity.Player
             this.GetOrCreateAttribute(Attribute.CameraDistance, stats.Get<float>("camera_distance"));
         }
 
-        [ClientRpc]
         public override void OnDeath()
         {
             if (_isDead) return;
@@ -135,13 +134,6 @@ namespace Entity.Player
             base.OnDeath();
 
             _isDead = true;
-        }
-
-        public void OnDeathAnimation()
-        {
-            Destroy(gameObject);
-            // TODO: Add check if the player is the local player.
-            NetworkServer.UnSpawn(gameObject);
         }
     }
 

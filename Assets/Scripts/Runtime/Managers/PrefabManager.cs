@@ -165,7 +165,7 @@ namespace Managers
             if (obj.TryGetComponent<NetworkBehaviour>(out var netObj))
             {
                 if (netObj.isServer)
-                    NetworkServer.UnSpawn(obj);
+                    NetworkServer.Destroy(obj);
             }
         }
     }

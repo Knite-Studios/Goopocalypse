@@ -141,7 +141,7 @@ namespace Entity
         public void OnDeathAnimation()
         {
             Destroy(gameObject);
-            if (NetworkServer.active) NetworkServer.UnSpawn(gameObject);
+            if (NetworkServer.active) NetworkServer.Destroy(gameObject);
         }
     }
 }

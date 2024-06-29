@@ -24,8 +24,6 @@ namespace Entity.Enemies
 
         protected override void FixedUpdate()
         {
-            if (!isServer) return;
-
             if (!Target) return;
 
             var distance = Vector2.Distance(transform.position, Target.transform.position);
@@ -53,7 +51,10 @@ namespace Entity.Enemies
                 var spawnRotation = Quaternion.Euler(0, 0, angle);
 
                 // Spawn the projectile.
-                SpawnProjectile(spawnPosition, spawnRotation);
+                if (!GameManager.Instance.LocalMultiplayer)
+                    SpawnServerProjectile(spawnPosition, spawnRotation);
+                else
+                    SpawnProjectile(spawnPosition, spawnRotation);
             }
             else
             {
@@ -73,6 +74,7 @@ namespace Entity.Enemies
             {
                 var direction = (targetPosition - (Vector2)transform.position).normalized;
                 Rb.MovePosition(Rb.position + direction * (Speed * Time.fixedDeltaTime));
+                Rb.AddForce(direction * Speed, ForceMode2D.Force);
             }
             else
             {
@@ -81,13 +83,18 @@ namespace Entity.Enemies
         }
 
         [Server]
-        private void SpawnProjectile(Vector3 position, Quaternion rotation)
+        private void SpawnServerProjectile(Vector3 position, Quaternion rotation)
+        {
+            SpawnProjectile(position, rotation, true);
+        }
+
+        private void SpawnProjectile(Vector3 position, Quaternion rotation, bool server = false)
         {
             var projectile = PrefabManager.Create<ProjectileBase>(projectileType);
             projectile.owner = this;
             projectile.transform.SetPositionAndRotation(position, rotation);
 
-            if (NetworkServer.active) NetworkServer.Spawn(projectile.gameObject);
+            if (server) NetworkServer.Spawn(projectile.gameObject);
         }
     }
 }

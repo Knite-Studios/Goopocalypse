@@ -350,7 +350,6 @@ namespace Managers
                     SteamFriends.ActivateGameOverlayInviteDialog(_lobbyId);
                     break;
             }
-            // TODO: Show IP and port to connect.
         }
 
         #endregion

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6613239989138841382}
   - component: {fileID: 1500119112657738352}
   - component: {fileID: 7098361541477138223}
+  - component: {fileID: -2923440803924756465}
   m_Layer: 0
   m_Name: Orb
   m_TagString: Untagged
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: -1347817081
   m_SortingLayer: 4
   m_SortingOrder: 10
-  m_Sprite: {fileID: -2413806693520163455, guid: 1e386e7c9cac6e547b871bc493feb473, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: fb3e3c8cff52bd048bb69126c69cd3c4, type: 3}
   m_Color: {r: 1, g: 0.28045598, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -139,3 +140,30 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!50 &-2923440803924756465
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6531676077893993366}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 6200000, guid: 64c6f4188debafc4db690b0eca2e5d4c, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

@@ -13,17 +13,20 @@ interface IProps {
     class?: string;
 
     // Text properties.
+    textClass?: string;
     size?: Size;
     children: string;
     defaultColor?: string;
 
     // Button properties.
     bounce?: boolean;
+    disabled?: boolean;
 
     onClick?: () => void;
 }
 
 function Button(props: IProps) {
+    const disabled = props.disabled;
     const bounce = props.bounce ?? true;
 
     const [hover, setHover] = useState(false);
@@ -37,9 +40,9 @@ function Button(props: IProps) {
                 ...props.style,
                 backgroundImage: hover && resources.ButtonBackground
             }}
-            onMouseOver={() => setHover(true)}
+            onMouseOver={() => !disabled && setHover(true)}
             onMouseOut={() => setHover(false)}
-            onClick={props.onClick}
+            onClick={() => !disabled && props.onClick?.()}
         >
             {bounce && hover && (
                 <GifRenderer
@@ -57,7 +60,7 @@ function Button(props: IProps) {
             )}
 
             <Text
-                class={"text"}
+                class={`text ${props.textClass || ""}`}
                 style={{
                     translate: [bounce && hover ? 42 : 0, 0],
                     color: hover ? "#72e8e6" : props.defaultColor || "white"

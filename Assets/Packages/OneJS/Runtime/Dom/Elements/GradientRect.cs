@@ -46,6 +46,11 @@ namespace OneJS.Dom {
 
             if (Vertical)
             {
+                // 0, 1, 2, 3 -> right to left
+                // 1, 2, 3, 0 -> top to bottom
+                // 2, 3, 1, 0 -> left to right
+                // 3, 0, 2, 1 -> bottom to top
+
                 vertices[1].position = new Vector3(left, bottom, Vertex.nearZ); // 0
                 vertices[2].position = new Vector3(left, top, Vertex.nearZ); // 1
                 vertices[3].position = new Vector3(right, top, Vertex.nearZ); // 2

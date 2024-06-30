@@ -12,6 +12,7 @@ export default {
                 boxtext: "#b8b7ce",
 
                 green: "#72e8e6",
+                gray: "#555a82",
                 "dark-blue": "#08091b"
             }
         }

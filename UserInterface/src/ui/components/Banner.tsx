@@ -9,6 +9,7 @@ import { Texture2D } from "UnityEngine";
 interface IProps {
     class?: string;
     textClass?: string;
+    flagClass?: string;
 
     minWidth?: number;
     background?: Texture2D;
@@ -19,12 +20,12 @@ interface IProps {
     children: string;
 }
 
-export function MiniFlag({ rotate }: { rotate?: boolean }) {
+export function MiniFlag({ rotate, class: flagClass }: { class?: string, rotate?: boolean }) {
     const invert = rotate ? 1 : -1;
 
     return (
         <image
-            class={"self-end mb-5"}
+            class={`self-end mb-5 ${flagClass || ""}`}
             image={resources.MiniFlag}
             style={{
                 rotate: rotate ? 180 : 0,
@@ -45,9 +46,8 @@ function Banner(props: IProps) {
             style={props.style}
         >
             <div class={"flex-row justify-between w-full h-full absolute"}>
-                <MiniFlag rotate />
-
-                <MiniFlag />
+                <MiniFlag class={props.flagClass} rotate />
+                <MiniFlag class={props.flagClass} />
             </div>
 
             <div

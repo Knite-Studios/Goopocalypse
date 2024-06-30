@@ -9,8 +9,10 @@ import TutorialScreen from "@screens/TutorialScreen";
 import DebugScreen from "@screens/legacy/DebugScreen";
 import LobbyScreen from "@screens/legacy/LobbyScreen";
 import GameScreen from "@screens/overlays/GameScreen";
-import PauseScreen from "@screens/overlays/PauseScreenV2";
+import PauseScreen from "@screens/overlays/PauseScreen";
 import QuitScreen from "@screens/overlays/QuitScreen";
+import WaveScreen from "@screens/overlays/WaveScreen";
+import FinishScreen from "@screens/overlays/FinishScreen";
 
 import Router, { Route } from "@ui/Router";
 
@@ -62,6 +64,8 @@ function App() {
                     <Route path={"/settings"} element={PauseScreen} />
 
                     <Route path={"/game"} element={PauseScreen} />
+                    <Route path={"/game/over"} element={FinishScreen} />
+                    <Route path={"/game/wave"} element={WaveScreen} />
                     <Route path={"/game/pause"} element={PauseScreen} />
                 </Router>
             );

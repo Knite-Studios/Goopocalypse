@@ -16,10 +16,15 @@ interface IProps {
     size?: Size;
     children: string;
 
+    // Button properties.
+    bounce?: boolean;
+
     onClick?: () => void;
 }
 
 function Button(props: IProps) {
+    const bounce = props.bounce ?? true;
+
     const [hover, setHover] = useState(false);
 
     return (
@@ -35,7 +40,7 @@ function Button(props: IProps) {
             onMouseOut={() => setHover(false)}
             onClick={props.onClick}
         >
-            {hover && (
+            {bounce && hover && (
                 <GifRenderer
                     start={1}
                     end={12}
@@ -53,7 +58,7 @@ function Button(props: IProps) {
             <Text
                 class={"text"}
                 style={{
-                    translate: [hover ? 42 : 0, 0],
+                    translate: [bounce && hover ? 42 : 0, 0],
                     color: hover ? "#72e8e6" : "white"
                 }}
                 size={props.size ?? Size.Normal}

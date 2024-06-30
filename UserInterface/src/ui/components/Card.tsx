@@ -14,13 +14,11 @@ interface IProps {
     content: string; // This is displayed in the lower box.
     picture: Texture2D; // This is displayed in the upper box.
 
-    icon?: Texture2D; // This is displayed below the card.
-
     class?: string;
 }
 
 function Card(props: IProps) {
-    const { title, icon } = props;
+    const { title } = props;
 
     return (
         <div class={`flex-col items-center ${props.class ?? ""}`}>

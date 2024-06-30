@@ -22,9 +22,22 @@ export const CardBackground = resource.loadImage(
 export const ProfileFrame = resource.loadImage(
     `${__dirname}/resources/profile_frame.png`
 );
+export const NameFrame = resource.loadImage(
+    `${__dirname}/resources/name_frame.png`
+);
 
 export const Tutorial = resource.loadImage(
     `${__dirname}/resources/tutorial.png`
+);
+
+export const LinkedIn = resource.loadImage(
+    `${__dirname}/resources/linkedin.png`
+);
+export const ActiveLinkedIn = resource.loadImage(
+    `${__dirname}/resources/active_linkedin.png`
+);
+export const Placeholder = resource.loadImage(
+    `${__dirname}/resources/people/placeholder.png`
 );
 
 export const gradient = [
@@ -39,9 +52,13 @@ export default {
     Flag,
     MiniFlag,
     ProfileFrame,
+    NameFrame,
     ButtonBackground,
     LabelBackground,
     CardBackground,
     gradient,
-    Tutorial
+    Tutorial,
+    Placeholder,
+    LinkedIn,
+    ActiveLinkedIn
 };

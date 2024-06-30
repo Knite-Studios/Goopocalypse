@@ -74,7 +74,7 @@ function MenuScreen({ game, navigate, setMenuState }: ScreenProps) {
 
                 <div
                     class={"text-white hover:text-green"}
-                    onClick={() => log("go to credits")}
+                    onClick={() => navigate("/credits")}
                 >
                     <Text>Credits</Text>
                 </div>

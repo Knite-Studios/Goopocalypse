@@ -4,19 +4,22 @@ import { Style } from "preact/jsx";
 import Text, { Size } from "@components/Text";
 
 import resources from "@ui/resources";
+import { Texture2D } from "UnityEngine";
 
 interface IProps {
     class?: string;
     textClass?: string;
 
-    style?: Style;
+    minWidth?: number;
+    background?: Texture2D;
 
+    style?: Style;
     size?: Size;
 
     children: string;
 }
 
-function MiniFlag({ rotate }: { rotate?: boolean }) {
+export function MiniFlag({ rotate }: { rotate?: boolean }) {
     const invert = rotate ? 1 : -1;
 
     return (
@@ -50,9 +53,9 @@ function Banner(props: IProps) {
             <div
                 class={"w-full flex-col items-center justify-center"}
                 style={{
-                    minWidth: 360,
+                    minWidth: props.minWidth ?? 360,
                     minHeight: 70,
-                    backgroundImage: resources.ButtonBackground
+                    backgroundImage: props.background ?? resources.ButtonBackground
                 }}
             >
                 <Text

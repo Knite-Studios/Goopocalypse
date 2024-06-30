@@ -1,4 +1,5 @@
 import { h } from "preact";
+import usePrevious from "@app/hooks/usePrevious";
 import { useEffect, useState } from "preact/hooks";
 
 import CreditsScreen from "@screens/CreditsScreen";
@@ -7,7 +8,7 @@ import MenuScreen from "@screens/MenuScreen";
 import TutorialScreen from "@screens/TutorialScreen";
 // TODO: Remove legacy code.
 import DebugScreen from "@screens/legacy/DebugScreen";
-import LobbyScreen from "@screens/legacy/LobbyScreen";
+import LocalScreen from "@screens/LocalScreen";
 import GameScreen from "@screens/overlays/GameScreen";
 import PauseScreen from "@screens/overlays/PauseScreen";
 import QuitScreen from "@screens/overlays/QuitScreen";
@@ -17,12 +18,11 @@ import SettingsScreen from "@screens/overlays/SettingsScreen";
 
 import Router, { Route } from "@ui/Router";
 
-import { GameState, MenuState } from "@type/enums";
+import { MenuState } from "@type/enums";
 
 import { ScriptManager } from "game";
 
 import { useEventfulState } from "onejs";
-import usePrevious from "@app/hooks/usePrevious";
 
 const game = require("game") as ScriptManager;
 
@@ -64,6 +64,7 @@ function App() {
             <Route path={"/debug"} element={DebugScreen} />
 
             <Route path={"/join"} element={JoinScreen} />
+            <Route path={"/join/local"} element={LocalScreen} />
             <Route path={"/credits"} element={CreditsScreen} />
             <Route path={"/tutorial"} element={TutorialScreen} />
 

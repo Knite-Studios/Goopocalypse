@@ -37,7 +37,10 @@ function MenuScreen({ game, navigate, setMenuState }: ScreenProps) {
                 <div class={"flex-col justify-between"}>
                     <Button
                         class={"mb-8"}
-                        onClick={() => GameManager.StartLocalGame()}
+                        onClick={() => {
+                            setMenuState(MenuState.Local);
+                            navigate("/join/local");
+                        }}
                     >
                         Play Local
                     </Button>

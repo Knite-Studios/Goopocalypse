@@ -12,6 +12,9 @@ import { MenuState } from "@type/enums";
 
 import { useEventfulState } from "onejs";
 import GifRenderer from "@components/GifRenderer";
+import { ScriptManager } from "game";
+
+const { AudioManager } = require("game") as ScriptManager;
 
 function MenuScreen({ game, navigate, setMenuState }: ScreenProps) {
     const { GameManager } = game;
@@ -88,8 +91,14 @@ function MenuScreen({ game, navigate, setMenuState }: ScreenProps) {
 
                 <div
                     class={"items-center text-white hover:text-green"}
-                    onClick={() => navigate("/credits")}
-                    onMouseOver={() => setHovered(true)}
+                    onClick={() => {
+                        navigate("/credits");
+                        AudioManager.PlayUIClickSound();
+                    }}
+                    onMouseOver={() => {
+                        setHovered(true);
+                        AudioManager.PlayUIHoverSound();
+                    }}
                     onMouseOut={() => setHovered(false)}
                 >
                     { hovered && <GifRenderer start={1} end={12} frames={"fwendgif"}

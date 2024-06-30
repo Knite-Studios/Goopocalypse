@@ -26,6 +26,7 @@ declare module "game" {
         GameManager: GameManager;
         LobbyManager: LobbyManager;
         SettingsManager: SettingsManager;
+        AudioManager: AudioManager;
         constructor();
     }
 
@@ -124,6 +125,11 @@ declare module "game" {
         PlayUIHoverSound(): void
         PlayUIClickSound(): void
         SetDisplayMode(mode: DisplayMode): void
+    }
+
+    export class AudioManager extends MonoSingleton<AudioManager> {
+        PlayUIHoverSound(): void
+        PlayUIClickSound(): void
     }
 
     export const game: ScriptManager;

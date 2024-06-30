@@ -6,6 +6,9 @@ import GifRenderer from "@components/GifRenderer";
 import Text, { Size } from "@components/Text";
 
 import resources from "@ui/resources";
+import { ScriptManager } from "game";
+
+const { AudioManager } = require("game") as ScriptManager;
 
 interface IProps {
     // Container properties.
@@ -40,9 +43,19 @@ function Button(props: IProps) {
                 ...props.style,
                 backgroundImage: hover && resources.ButtonBackground
             }}
-            onMouseOver={() => !disabled && setHover(true)}
+            onMouseOver={() => {
+                if (disabled) return;
+
+                setHover(true);
+                AudioManager.PlayUIHoverSound();
+            }}
             onMouseOut={() => setHover(false)}
-            onClick={() => !disabled && props.onClick?.()}
+            onClick={() => {
+                if (disabled) return;
+
+                props.onClick?.();
+                AudioManager.PlayUIClickSound();
+            }}
         >
             {bounce && hover && (
                 <GifRenderer

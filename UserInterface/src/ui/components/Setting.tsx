@@ -6,6 +6,10 @@ import Image from "@components/Image";
 
 import resources from "@ui/resources";
 
+import { ScriptManager } from "game";
+
+const { AudioManager } = require("game") as ScriptManager;
+
 /**
  * Creates an array of numbers from 0 to size - 1.
  *
@@ -53,7 +57,10 @@ function Setting(props: IProps) {
                                 currentIndex - 1;
 
                             props.onChange(props.values[newIndex]);
+
+                            AudioManager.PlayUIClickSound();
                         }}
+                        onMouseOver={() => AudioManager.PlayUIHoverSound()}
                         src={resources.Arrow}
                     />
 
@@ -67,7 +74,10 @@ function Setting(props: IProps) {
                                 currentIndex + 1;
 
                             props.onChange(props.values[newIndex]);
+
+                            AudioManager.PlayUIClickSound();
                         }}
+                        onMouseOver={() => AudioManager.PlayUIHoverSound()}
                         src={resources.Arrow}
                         style={{ rotate: 180 }}
                     />
@@ -86,7 +96,10 @@ function Setting(props: IProps) {
                                 9 :
                                 currentIndex - 1;
                             props.onChange(props.values[newIndex]);
+
+                            AudioManager.PlayUIClickSound();
                         }}
+                        onMouseOver={() => AudioManager.PlayUIHoverSound()}
                         src={resources.Arrow}
                     />
 
@@ -94,7 +107,12 @@ function Setting(props: IProps) {
                         { array(10).map((_, key) => (
                             <Image
                                 class={key == 10 ? "" : "mr-3"}
-                                onClick={() => props.onChange(props.values[key])}
+                                onClick={() => {
+                                    props.onChange(props.values[key]);
+
+                                    AudioManager.PlayUIClickSound();
+                                }}
+                                onMouseOver={() => AudioManager.PlayUIHoverSound()}
                                 src={key <= currentIndex ? resources.Set : resources.Unset}
                             />
                         )) }
@@ -106,7 +124,10 @@ function Setting(props: IProps) {
                                 0 :
                                 currentIndex + 1;
                             props.onChange(props.values[newIndex]);
+
+                            AudioManager.PlayUIClickSound();
                         }}
+                        onMouseOver={() => AudioManager.PlayUIHoverSound()}
                         src={resources.Arrow}
                         style={{ rotate: 180 }}
                     />

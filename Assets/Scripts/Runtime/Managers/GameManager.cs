@@ -46,7 +46,6 @@ namespace Managers
         [EventfulProperty] private GameState _state = GameState.Menu;
 
         [EventfulProperty] private float _loadingProgress;
-        [EventfulProperty] private DisplayMode _displayMode = DisplayMode.FullScreen;
 
         public string DefaultRoute = "/";
         public event Action<string> OnRouteUpdate;
@@ -66,6 +65,7 @@ namespace Managers
             EntityManager.Initialize();
             DiscordController.Initialize();
             AudioManager.Initialize();
+            SettingsManager.Initialize();
 
             // Find references.
             _networkManager = FindObjectOfType<NetworkManager>();
@@ -213,28 +213,6 @@ namespace Managers
         /// </summary>
         public void ChangeRole(PlayerRole role) =>
             NetworkClient.Send(new ChangeRoleC2SReq { role = role });
-
-        /// <summary>
-        /// Sets the display mode of the game.
-        /// </summary>
-        public void SetDisplayMode(DisplayMode mode)
-        {
-            DisplayMode = mode;
-            switch (mode)
-            {
-                case DisplayMode.FullScreen:
-#if UNITY_STANDALONE_WIN
-                    Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
-                    break;
-#endif
-                case DisplayMode.Borderless:
-                    Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
-                    break;
-                case DisplayMode.Windowed:
-                    Screen.fullScreenMode = FullScreenMode.Windowed;
-                    break;
-            }
-        }
 
         #endregion
 
@@ -432,12 +410,5 @@ namespace Managers
         Playing,
         Paused,
         GameOver
-    }
-
-    public enum DisplayMode
-    {
-        FullScreen,
-        Borderless,
-        Windowed
     }
 }

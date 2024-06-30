@@ -18,6 +18,7 @@ type _IRouteProps = IRouteProps & {
     game: ScriptManager;
     menuState: MenuState;
 
+    lastPage: string;
     setMenuState: (state: MenuState) => void;
     navigate: (route: string) => void;
 };
@@ -28,6 +29,7 @@ export function Route(_props: IRouteProps) {
 
     return props.isActive ? (
         <Instance
+            lastPage={props.lastPage}
             navigate={props.navigate}
             game={props.game}
             menuState={props.menuState}
@@ -40,6 +42,7 @@ export function Route(_props: IRouteProps) {
 
 interface IProps {
     route: string;
+    previous: string;
     setRoute: (route: string) => void;
 
     game: ScriptManager;
@@ -56,7 +59,8 @@ function Router(props: IProps) {
                     navigate: props.setRoute,
                     game: props.game,
                     menuState,
-                    setMenuState
+                    setMenuState,
+                    lastPage: props.previous
                 };
                 addons.isActive =
                     (child as JSX.Element).props.path == props.route;

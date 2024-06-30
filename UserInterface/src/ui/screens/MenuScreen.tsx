@@ -51,7 +51,12 @@ function MenuScreen({ game, navigate, setMenuState }: ScreenProps) {
                         Play Online
                     </Button>
 
-                    <Button class={"mb-8"}>Settings</Button>
+                    <Button
+                        class={"mb-8"}
+                        onClick={() => navigate("/settings")}
+                    >
+                        Settings
+                    </Button>
 
                     <Button
                         class={"mb-16"}

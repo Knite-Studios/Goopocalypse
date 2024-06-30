@@ -33,6 +33,15 @@ export const ScoreCard = resource.loadImage(
 export const Tutorial = resource.loadImage(
     `${__dirname}/resources/tutorial.png`
 );
+export const Arrow = resource.loadImage(
+    `${__dirname}/resources/arrow.png`
+);
+export const Set = resource.loadImage(
+    `${__dirname}/resources/set.png`
+);
+export const Unset = resource.loadImage(
+    `${__dirname}/resources/unset.png`
+);
 
 export const LinkedIn = resource.loadImage(
     `${__dirname}/resources/linkedin.png`
@@ -90,5 +99,8 @@ export default {
     Perz,
     RetroSensei,
     Taiga74164,
-    ScoreCard
+    ScoreCard,
+    Arrow,
+    Set,
+    Unset
 };

@@ -13,6 +13,7 @@ import PauseScreen from "@screens/overlays/PauseScreen";
 import QuitScreen from "@screens/overlays/QuitScreen";
 import WaveScreen from "@screens/overlays/WaveScreen";
 import FinishScreen from "@screens/overlays/FinishScreen";
+import SettingsScreen from "@screens/overlays/SettingsScreen";
 
 import Router, { Route } from "@ui/Router";
 
@@ -21,6 +22,7 @@ import { GameState, MenuState } from "@type/enums";
 import { ScriptManager } from "game";
 
 import { useEventfulState } from "onejs";
+import usePrevious from "@app/hooks/usePrevious";
 
 const game = require("game") as ScriptManager;
 
@@ -28,6 +30,7 @@ export type ScreenProps = {
     game: ScriptManager;
     menuState: MenuState;
 
+    lastPage: string;
     setMenuState: (state: MenuState) => void;
     navigate: (r: string) => void;
 };
@@ -36,6 +39,8 @@ function App() {
     const { GameManager } = game;
 
     const [currentRoute, navigate] = useState(GameManager.DefaultRoute);
+    const previousPage = usePrevious(currentRoute);
+
     const [gameState, _] = useEventfulState(GameManager, "State");
 
     // Register the router event listener.
@@ -51,7 +56,12 @@ function App() {
     switch (gameState) {
         case GameState.Menu:
             return (
-                <Router game={game} setRoute={navigate} route={currentRoute}>
+                <Router
+                    game={game}
+                    setRoute={navigate}
+                    route={currentRoute}
+                    previous={previousPage}
+                >
                     <Route path={"/"} element={MenuScreen} />
                     <Route path={"/debug"} element={DebugScreen} />
 
@@ -61,7 +71,7 @@ function App() {
 
                     {/* This can also be an overlay. */}
                     <Route path={"/quit"} element={QuitScreen} />
-                    <Route path={"/settings"} element={PauseScreen} />
+                    <Route path={"/settings"} element={SettingsScreen} />
 
                     <Route path={"/game"} element={PauseScreen} />
                     <Route path={"/game/over"} element={FinishScreen} />

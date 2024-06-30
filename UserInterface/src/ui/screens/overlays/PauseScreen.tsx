@@ -7,7 +7,9 @@ import { ScreenProps } from "@ui/App";
 import { gradient } from "@ui/resources";
 import { Size } from "@components/Text";
 
-function PauseScreen({ navigate }: ScreenProps) {
+function PauseScreen({ navigate, game }: ScreenProps) {
+    const { GameManager } = game;
+
     return (
         <div class={"w-full h-full"}>
             <gradientrect
@@ -32,6 +34,7 @@ function PauseScreen({ navigate }: ScreenProps) {
                     <Button
                         class={"mb-10"}
                         bounce={false}
+                        onClick={() => GameManager.ResumeGame()}
                     >
                         Resume
                     </Button>

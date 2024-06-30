@@ -5,8 +5,25 @@ import resources, { gradient } from "@ui/resources";
 import Banner from "@components/Banner";
 import Text, { Size } from "@components/Text";
 import Button from "@components/ButtonV2";
+import { useEventfulState } from "onejs";
+
+/**
+ * Format the score to a string.
+ *
+ * @param score The score to format.
+ */
+function formatScore(score: number): string {
+    return score.toString().padStart(4, "0");
+}
 
 function FinishScreen({ game, navigate }: ScreenProps) {
+    const { GameManager, WaveManager } = game;
+
+    const [score, _]: [number, any] = useEventfulState(
+        WaveManager,
+        "Score"
+    );
+
     return (
         <div class={"flex-row justify-between w-full h-full"}>
             <gradientrect
@@ -31,6 +48,7 @@ function FinishScreen({ game, navigate }: ScreenProps) {
                     <Button
                         class={"mb-10"}
                         bounce={false}
+                        onClick={() => GameManager.RestartGame()}
                     >
                         Restart
                     </Button>
@@ -46,6 +64,7 @@ function FinishScreen({ game, navigate }: ScreenProps) {
                     <Button
                         class={"mb-10"}
                         bounce={false}
+                        onClick={() => navigate("/quit")}
                     >
                         Quit
                     </Button>
@@ -72,7 +91,7 @@ function FinishScreen({ game, navigate }: ScreenProps) {
                         maxWidth: 824, maxHeight: 241
                     }}
                 >
-                    <Text size={Size.ExtraLarge} class={"text-gray"}>xxxx</Text>
+                    <Text size={Size.ExtraLarge} class={"text-gray"}>{formatScore(score)}</Text>
                 </div>
             </div>
         </div>

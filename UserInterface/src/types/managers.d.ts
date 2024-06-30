@@ -30,35 +30,49 @@ declare module "game" {
     }
 
     export class GameManager extends MonoSingleton<GameManager> {
-        static ScriptEngine: ScriptEngine;
-        static OnGameStart: () => void;
-        static OnGameEvent: UnityAction<GameEvent>;
-        static OnWaveSpawn: UnityAction<number>;
-        ProfilePicture: Texture2D;
-        Username: string;
-        State: GameState;
-        add_OnRouteUpdate(handler: (a: string) => void): void;
-        remove_OnRouteUpdate(handler: (a: string) => void): void;
-        OnRouteUpdate: OneJS.Event<(a: string) => void>;
-        add_OnProfilePictureChanged(handler: (a: Texture2D) => void): void;
-        remove_OnProfilePictureChanged(handler: (a: Texture2D) => void): void;
-        OnProfilePictureChanged: OneJS.Event<(a: Texture2D) => void>;
-        add_OnUsernameChanged(handler: (a: string) => void): void;
-        remove_OnUsernameChanged(handler: (a: string) => void): void;
-        OnUsernameChanged: OneJS.Event<(a: string) => void>;
-        add_OnStateChanged(handler: (a: GameState) => void): void;
-        remove_OnStateChanged(handler: (a: GameState) => void): void;
-        OnStateChanged: OneJS.Event<(a: GameState) => void>;
-        gameScene: number;
-        DefaultRoute: string;
-        constructor();
-        StartDebugServer(): void;
-        JoinDebugServer(address: string, port: number): void;
-        StartRemoteGame(): void;
-        StartLocalGame(): void;
-        ChangeRole(role: PlayerRole): void;
-        Navigate(path: string): void;
-        QuitGame(): void;
+        static ScriptEngine: ScriptEngine
+        static OnGameStart: () => void
+        static OnGameEvent: UnityAction<GameEvent>
+        static OnWaveSpawn: UnityAction<number>
+        static OnGameOver: () => void
+        ProfilePicture: Texture2D
+        Username: string
+        LocalMultiplayer: boolean
+        State: GameState
+        LoadingProgress: number
+        add_OnRouteUpdate(handler: (a: string) => void): void
+        remove_OnRouteUpdate(handler: (a: string) => void): void
+        OnRouteUpdate: OneJS.Event<(a: string) => void>
+        add_OnProfilePictureChanged(handler: (a: Texture2D) => void): void
+        remove_OnProfilePictureChanged(handler: (a: Texture2D) => void): void
+        OnProfilePictureChanged: OneJS.Event<(a: Texture2D) => void>
+        add_OnUsernameChanged(handler: (a: string) => void): void
+        remove_OnUsernameChanged(handler: (a: string) => void): void
+        OnUsernameChanged: OneJS.Event<(a: string) => void>
+        add_OnLocalMultiplayerChanged(handler: (a: boolean) => void): void
+        remove_OnLocalMultiplayerChanged(handler: (a: boolean) => void): void
+        OnLocalMultiplayerChanged: OneJS.Event<(a: boolean) => void>
+        add_OnStateChanged(handler: (a: GameState) => void): void
+        remove_OnStateChanged(handler: (a: GameState) => void): void
+        OnStateChanged: OneJS.Event<(a: GameState) => void>
+        add_OnLoadingProgressChanged(handler: (a: number) => void): void
+        remove_OnLoadingProgressChanged(handler: (a: number) => void): void
+        OnLoadingProgressChanged: OneJS.Event<(a: number) => void>
+        menuScene: number
+        gameScene: number
+        DefaultRoute: string
+        constructor()
+        StartDebugServer(): void
+        JoinDebugServer(address: string, port: number): void
+        StartRemoteGame(): void
+        StartLocalGame(): void
+        ChangeRole(role: PlayerRole): void
+        ResumeGame(): void
+        RestartGame(): void
+        StopGame(): void
+        Navigate(path: string): void
+        QuitGame(): void
+        LoadScene(sceneId: number): Task<AsyncOperation>
     }
 
     export class LobbyManager extends MonoSingleton<LobbyManager> {

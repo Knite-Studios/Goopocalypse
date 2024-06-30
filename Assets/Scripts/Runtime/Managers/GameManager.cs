@@ -214,6 +214,32 @@ namespace Managers
         public void ChangeRole(PlayerRole role) =>
             NetworkClient.Send(new ChangeRoleC2SReq { role = role });
 
+        /// <summary>
+        /// Resumes game playback if paused.
+        /// </summary>
+        public void ResumeGame()
+        {
+            // TODO: Implement resume functionality.
+
+            Navigate("/game"); // Change the UI back to the game.
+        }
+
+        /// <summary>
+        /// Restarts the game.
+        /// </summary>
+        public void RestartGame()
+        {
+            // TODO: Implement restart functionality.
+        }
+
+        /// <summary>
+        /// Stops the game.
+        /// </summary>
+        public void StopGame()
+        {
+            // TODO: Implement stop functionality.
+        }
+
         #endregion
 
         /// <summary>

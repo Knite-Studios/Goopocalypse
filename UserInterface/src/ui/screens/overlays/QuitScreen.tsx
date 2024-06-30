@@ -36,7 +36,7 @@ function QuitScreen({ game, navigate, lastPage }: ScreenProps) {
                             Application.Quit();
                         } else {
                             navigate("/");
-                            // TODO: Call the game's stop method.
+                            GameManager.StopGame();
                         }
                     }}
                 >

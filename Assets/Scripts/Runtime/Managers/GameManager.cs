@@ -60,6 +60,7 @@ namespace Managers
             PrefabManager.Initialize();
             EntityManager.Initialize();
             DiscordController.Initialize();
+            AudioManager.Initialize();
 
             // Find references.
             _networkManager = FindObjectOfType<NetworkManager>();

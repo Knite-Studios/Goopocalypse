@@ -53,7 +53,12 @@ function MenuScreen({ game, navigate, setMenuState }: ScreenProps) {
 
                     <Button class={"mb-8"}>Settings</Button>
 
-                    <Button class={"mb-16"}>Quit Game</Button>
+                    <Button
+                        class={"mb-16"}
+                        onClick={() => navigate("/quit")}
+                    >
+                        Quit Game
+                    </Button>
                 </div>
             </div>
 

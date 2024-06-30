@@ -47,6 +47,7 @@ function PauseScreen({ navigate }: ScreenProps) {
                     <Button
                         class={"mb-10"}
                         bounce={false}
+                        onClick={() => navigate("/quit")}
                     >
                         Quit
                     </Button>

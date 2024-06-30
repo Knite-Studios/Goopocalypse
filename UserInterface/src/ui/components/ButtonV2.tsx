@@ -15,6 +15,7 @@ interface IProps {
     // Text properties.
     size?: Size;
     children: string;
+    defaultColor?: string;
 
     // Button properties.
     bounce?: boolean;
@@ -59,7 +60,7 @@ function Button(props: IProps) {
                 class={"text"}
                 style={{
                     translate: [bounce && hover ? 42 : 0, 0],
-                    color: hover ? "#72e8e6" : "white"
+                    color: hover ? "#72e8e6" : props.defaultColor || "white"
                 }}
                 size={props.size ?? Size.Normal}
             >

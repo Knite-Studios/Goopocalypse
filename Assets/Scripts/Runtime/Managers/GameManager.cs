@@ -80,7 +80,11 @@ namespace Managers
         private void Start()
         {
             // Add event listener for game events.
-            OnGameStart += () => State = GameState.Playing;
+            OnGameStart += () =>
+            {
+                State = GameState.Playing;
+                Navigate("/game");
+            };
             OnGameOver += HandleGameOver;
 
             // Check if Steam is active.

@@ -44,6 +44,7 @@ namespace Managers
         public WaveManager WaveManager => WaveManager.Instance;
         public GameManager GameManager => GameManager.Instance;
         public LobbyManager LobbyManager => LobbyManager.Instance;
+        public SettingsManager SettingsManager => SettingsManager.Instance;
 
         #endregion
     }

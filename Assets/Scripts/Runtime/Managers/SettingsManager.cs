@@ -36,6 +36,13 @@ namespace Managers
 
         #endregion
 
+        protected override void OnAwake()
+        {
+            OnDisplayChanged += SetDisplayMode;
+            OnMusicVolumeChanged += _ => SetMusicVolume();
+            OnSoundFxVolumeChanged += _ => SetSoundFxVolume();
+        }
+
         private void Start()
         {
             MusicVolume = PlayerPrefsUtil.MusicVolume;
@@ -52,10 +59,20 @@ namespace Managers
 
         #region Methods for Javascript use
 
-        public void SetMusicVolume()
+        /// <summary>
+        /// Convert a volume to a 0-9 index.
+        /// This is done so JavaScript float imprecision doesn't matter.
+        /// #BlameJavaScript
+        /// </summary>
+        public int VolumeToIndex(float volume)
+        {
+            return Mathf.CeilToInt(volume * 10) - 1;
+        }
+
+        private void SetMusicVolume()
             => audioMixer.SetFloat("Music", Mathf.Log10(MusicVolume) * 20);
 
-        public void SetSoundFxVolume()
+        private void SetSoundFxVolume()
             => audioMixer.SetFloat("SoundFx", Mathf.Log10(SoundFxVolume) * 20);
 
         public void PlayUIHoverSound()

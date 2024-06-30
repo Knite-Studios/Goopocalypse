@@ -25,6 +25,7 @@ declare module "game" {
         WaveManager: WaveManager;
         GameManager: GameManager;
         LobbyManager: LobbyManager;
+        SettingsManager: SettingsManager;
         constructor();
     }
 
@@ -87,6 +88,28 @@ declare module "game" {
         MakeLobby(): void;
         CloseLobby(): void;
         InvitePlayer(): void;
+    }
+
+    export class SettingsManager extends MonoSingleton<SettingsManager> {
+        static Initialize(): void
+        MusicVolume: number
+        SoundFxVolume: number
+        Display: DisplayMode
+        add_OnMusicVolumeChanged(handler: (a: number) => void): void
+        remove_OnMusicVolumeChanged(handler: (a: number) => void): void
+        OnMusicVolumeChanged: OneJS.Event<(a: number) => void>
+        add_OnSoundFxVolumeChanged(handler: (a: number) => void): void
+        remove_OnSoundFxVolumeChanged(handler: (a: number) => void): void
+        OnSoundFxVolumeChanged: OneJS.Event<(a: number) => void>
+        add_OnDisplayChanged(handler: (a: DisplayMode) => void): void
+        remove_OnDisplayChanged(handler: (a: DisplayMode) => void): void
+        OnDisplayChanged: OneJS.Event<(a: DisplayMode) => void>
+        audioMixer: AudioMixer
+        constructor()
+        VolumeToIndex(volume: number): number
+        PlayUIHoverSound(): void
+        PlayUIClickSound(): void
+        SetDisplayMode(mode: DisplayMode): void
     }
 
     export const game: ScriptManager;

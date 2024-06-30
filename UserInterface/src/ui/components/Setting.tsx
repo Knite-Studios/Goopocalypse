@@ -85,17 +85,17 @@ function Setting(props: IProps) {
                             const newIndex = currentIndex == 0 ?
                                 9 :
                                 currentIndex - 1;
-                            props.onChange(newIndex);
+                            props.onChange(props.values[newIndex]);
                         }}
                         src={resources.Arrow}
                     />
 
                     <div class={"w-full flex-row"}>
-                        { array(9).map((_, key) => (
+                        { array(10).map((_, key) => (
                             <Image
-                                class={key == 9 ? "" : "mr-3"}
-                                onClick={() => props.onChange(key)}
-                                src={key < currentIndex ? resources.Set : resources.Unset}
+                                class={key == 10 ? "" : "mr-3"}
+                                onClick={() => props.onChange(props.values[key])}
+                                src={key <= currentIndex ? resources.Set : resources.Unset}
                             />
                         )) }
                     </div>
@@ -105,7 +105,7 @@ function Setting(props: IProps) {
                             const newIndex = currentIndex == 9 ?
                                 0 :
                                 currentIndex + 1;
-                            props.onChange(newIndex);
+                            props.onChange(props.values[newIndex]);
                         }}
                         src={resources.Arrow}
                         style={{ rotate: 180 }}

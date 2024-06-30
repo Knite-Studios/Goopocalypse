@@ -69,6 +69,7 @@ namespace Entity.Player
             luaScript = config.luaScript;
             Animator.runtimeAnimatorController = config.animatorController;
             SpriteRenderer.sprite = config.sprite;
+            SpriteRenderer.sortingOrder = config.sortingOrder;
             Rb.mass = config.mass;
             _collider.offset = config.colliderOffset;
             _collider.GetComponent<BoxCollider2D>().size = config.colliderSize;

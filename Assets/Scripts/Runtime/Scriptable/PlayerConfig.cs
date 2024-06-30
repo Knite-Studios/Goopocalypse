@@ -11,5 +11,6 @@ namespace Scriptable
         public float mass;
         public Vector2 colliderOffset;
         public Vector2 colliderSize;
+        public int sortingOrder = 10;
     }
 }

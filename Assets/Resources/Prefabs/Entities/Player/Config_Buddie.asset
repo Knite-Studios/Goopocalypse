@@ -18,3 +18,4 @@ MonoBehaviour:
   mass: 1
   colliderOffset: {x: 0, y: 0.5}
   colliderSize: {x: 0.9, y: 0.9}
+  sortingOrder: 11

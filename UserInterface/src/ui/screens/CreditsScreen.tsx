@@ -139,14 +139,14 @@ function CreditsScreen({ navigate }: ScreenProps) {
                         </Name>
 
                         <Name picture={resources.KingRainbow44}
-                              urls={["https://github.com/KingRainbow44"]}
-                              icons={[Icons.GitHub, Icons.ActiveGitHub]}
+                              urls={["https://github.com/KingRainbow44", "https://www.linkedin.com/in/kobe-do-62700a229/"]}
+                              icons={[Icons.GitHub, Icons.ActiveGitHub, Icons.LinkedIn, Icons.ActiveLinkedIn]}
                         >
                             KingRainbow44
                         </Name>
 
                         <Name picture={resources.Artmanoil}
-                              urls={["https://x.com/"]}
+                              urls={["https://x.com/art_man_oil"]}
                               icons={[Icons.Twitter, Icons.ActiveTwitter]}
                         >
                             Artmanoil

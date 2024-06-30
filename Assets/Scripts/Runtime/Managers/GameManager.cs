@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -167,7 +168,7 @@ namespace Managers
         {
             // Transfer to the game scene.
             var task = new TaskCompletionSource<object>();
-            var operation = SceneManager.LoadSceneAsync(gameScene);
+            var operation = await LoadScene(gameScene);
             if (operation == null)
             {
                 throw new Exception("Failed to load scene.");
@@ -324,6 +325,37 @@ namespace Managers
         /// </summary>
         private static void OnNetworkGameStart(GameStartS2CNotify notify)
             => OnGameStart?.Invoke();
+
+        #endregion
+
+        #region Scene Management
+
+        public async Task<AsyncOperation> LoadScene(int sceneId)
+        {
+            var currentScene = SceneManager.GetActiveScene();
+
+            if (!string.IsNullOrEmpty(currentScene.name))
+            {
+                var unloadOperation = SceneManager.UnloadSceneAsync(currentScene);
+                if (unloadOperation != null)
+                {
+                    while (!unloadOperation.isDone)
+                        await Task.Yield();
+                }
+                else
+                {
+                    Debug.LogWarning($"Failed to unload scene {currentScene.name}.");
+                }
+            }
+
+            var loadOperation = SceneManager.LoadSceneAsync(sceneId, LoadSceneMode.Single);
+            if (loadOperation == null) throw new Exception("Failed to load scene.");
+
+            while (!loadOperation.isDone)
+                await Task.Yield();
+
+            return loadOperation;
+        }
 
         #endregion
     }

@@ -46,7 +46,7 @@ function Name(props: INameProps) {
 
             <Banner background={resources.NameFrame}
                     minWidth={300}
-                    class={"bottom-3 mb-4"}
+                    class={"bottom-3 mb-2"}
             >
                 {props.children}
             </Banner>
@@ -77,48 +77,50 @@ function CreditsScreen({ navigate }: ScreenProps) {
 
                 <div class={"flex-col mb-16"}>
                     <div class={"flex-row justify-between px-24 mb-12"}>
-                        <Name picture={resources.Placeholder}
-                              url={"https://linkedin.com/"}
+                        <Name picture={resources.Aeonamuse}
+                              url={"https://www.linkedin.com/in/walter-wong-8641b325a/"}
                         >
-                            Jay
+                            Aeonamuse
                         </Name>
 
-                        <Name picture={resources.Placeholder}
-                              url={"https://linkedin.com/"}
+                        <Name picture={resources.Taiga74164}
+                              url={"https://www.linkedin.com/in/joaquin74164/"}
                         >
-                            Joaquin
+                            Taiga74164
                         </Name>
 
-                        <Name picture={resources.Placeholder}
-                              url={"https://linkedin.com/"}
+                        <Name picture={resources.RetroSensei}
+                              url={"https://www.linkedin.com/in/leonardobaldicera/"}
                         >
-                            Leonardo
+                            RetroSensei
                         </Name>
 
-                        <Name picture={resources.Placeholder}
-                              url={"https://linkedin.com/"}
+                        <Name picture={resources.Perz}
+                              url={"https://www.linkedin.com/in/perzeus/"}
                         >
-                            Percy
+                            Perz
                         </Name>
                     </div>
 
                     <div class={"flex-row justify-between px-24"}>
-                        <Name picture={resources.Placeholder}
-                              url={"https://linkedin.com/"}
+                        <Name picture={resources.KingRainbow44}
+                              url={"https://www.linkedin.com/in/kobe-do-62700a229/"}
                         >
-                            Name
+                            KingRainbow44
                         </Name>
 
-                        <Name picture={resources.Placeholder}
+                        <Name picture={resources.Artmanoil}
                               url={"https://linkedin.com/"}
                         >
-                            Name
+                            Artmanoil
                         </Name>
 
-                        <Name picture={resources.Placeholder}
-                              url={"https://linkedin.com/"}
+                        <Name
+                            hidden
+                            picture={resources.Placeholder}
+                            url={"https://youtube.com/@KingRainbow44"}
                         >
-                            Name
+                            Why are you here?
                         </Name>
 
                         <Name

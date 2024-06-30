@@ -39,6 +39,24 @@ export const ActiveLinkedIn = resource.loadImage(
 export const Placeholder = resource.loadImage(
     `${__dirname}/resources/people/placeholder.png`
 );
+export const Aeonamuse = resource.loadImage(
+    `${__dirname}/resources/people/aeonamuse.png`
+);
+export const Artmanoil = resource.loadImage(
+    `${__dirname}/resources/people/artmanoil.png`
+);
+export const KingRainbow44 = resource.loadImage(
+    `${__dirname}/resources/people/kingrainbow44.png`
+);
+export const Perz = resource.loadImage(
+    `${__dirname}/resources/people/perz.png`
+);
+export const RetroSensei = resource.loadImage(
+    `${__dirname}/resources/people/retrosensei.png`
+);
+export const Taiga74164 = resource.loadImage(
+    `${__dirname}/resources/people/taiga74164.png`
+);
 
 export const gradient = [
     parseColor("rgba(81, 213, 152, 0.6)"),
@@ -60,5 +78,11 @@ export default {
     Tutorial,
     Placeholder,
     LinkedIn,
-    ActiveLinkedIn
+    ActiveLinkedIn,
+    Aeonamuse,
+    Artmanoil,
+    KingRainbow44,
+    Perz,
+    RetroSensei,
+    Taiga74164
 };

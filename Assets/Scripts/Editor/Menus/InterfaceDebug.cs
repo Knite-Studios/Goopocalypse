@@ -1,6 +1,5 @@
 ﻿using Managers;
 using UnityEditor;
-using UnityEngine;
 
 namespace Editor
 {
@@ -9,22 +8,13 @@ namespace Editor
         [MenuItem("Goopocalypse/User Interface Debug")]
         private static void OpenMenu() => GetWindow<InterfaceDebug>().Show();
 
-        private string _proposedState = "/";
-
         private void OnGUI()
         {
             GameManager.Instance.State = (GameState) EditorGUILayout.EnumPopup(
                 "UI State", GameManager.Instance.State);
 
-            GameManager.Instance.DefaultRoute = EditorGUILayout.TextField(
-                "Default Route", GameManager.Instance.DefaultRoute);
-
-            _proposedState = EditorGUILayout.TextField("Proposed State", _proposedState);
-
-            if (GUILayout.Button("Submit State"))
-            {
-                GameManager.Instance.Navigate(_proposedState);
-            }
+            GameManager.Instance.Route = EditorGUILayout.TextField(
+                "Route", GameManager.Instance.Route);
         }
     }
 }

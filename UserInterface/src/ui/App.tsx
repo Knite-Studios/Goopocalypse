@@ -4,6 +4,7 @@ import { useEffect, useState } from "preact/hooks";
 import CreditsScreen from "@screens/CreditsScreen";
 import JoinScreen from "@screens/JoinScreen";
 import MenuScreen from "@screens/MenuScreen";
+import TutorialScreen from "@screens/TutorialScreen";
 // TODO: Remove legacy code.
 import DebugScreen from "@screens/legacy/DebugScreen";
 import LobbyScreen from "@screens/legacy/LobbyScreen";
@@ -54,6 +55,7 @@ function App() {
 
                     <Route path={"/join"} element={JoinScreen} />
                     <Route path={"/credits"} element={CreditsScreen} />
+                    <Route path={"/tutorial"} element={TutorialScreen} />
 
                     {/* This can also be an overlay. */}
                     <Route path={"/quit"} element={QuitScreen} />

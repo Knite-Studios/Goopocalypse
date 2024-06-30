@@ -1,8 +1,11 @@
+import { parseColor } from "onejs/utils/color-parser";
+
 export const ThaleahFat = resource.loadFont(
     `${__dirname}/resources/ThaleahFat.ttf`
 );
 
 export const Logo = resource.loadImage(`${__dirname}/resources/logo.png`);
+export const KeyCap = resource.loadImage(`${__dirname}/resources/keycap.png`);
 export const Flag = resource.loadImage(`${__dirname}/resources/flag.png`);
 export const MiniFlag = resource.loadImage(
     `${__dirname}/resources/mini_flag.png`
@@ -20,13 +23,25 @@ export const ProfileFrame = resource.loadImage(
     `${__dirname}/resources/profile_frame.png`
 );
 
+export const Tutorial = resource.loadImage(
+    `${__dirname}/resources/tutorial.png`
+);
+
+export const gradient = [
+    parseColor("rgba(81, 213, 152, 0.6)"),
+    parseColor("rgba(14, 34, 41, 0)")
+];
+
 export default {
     ThaleahFat,
     Logo,
+    KeyCap,
     Flag,
     MiniFlag,
     ProfileFrame,
     ButtonBackground,
     LabelBackground,
-    CardBackground
+    CardBackground,
+    gradient,
+    Tutorial
 };

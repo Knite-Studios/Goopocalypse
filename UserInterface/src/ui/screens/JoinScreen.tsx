@@ -8,7 +8,7 @@ import { ScreenProps } from "@ui/App";
 
 import { MenuState } from "@type/enums";
 
-import { parseColor } from "onejs/utils/color-parser";
+import { gradient } from "@ui/resources";
 
 function GradientBackground(props: { ready: boolean }) {
     return (
@@ -16,10 +16,7 @@ function GradientBackground(props: { ready: boolean }) {
             vertical
             class={"w-full"}
             style={{ height: props.ready ? "100%" : "5%" }}
-            colors={[
-                parseColor("rgba(81, 213, 152, 0.6)"),
-                parseColor("rgba(14, 34, 41, 0)")
-            ]}
+            colors={gradient}
         />
     );
 }

@@ -1,4 +1,5 @@
 import { h } from "preact";
+import { Style } from "preact/jsx";
 
 import Text, { Size } from "@components/Text";
 
@@ -6,6 +7,11 @@ import resources from "@ui/resources";
 
 interface IProps {
     class?: string;
+    textClass?: string;
+
+    style?: Style;
+
+    size?: Size;
 
     children: string;
 }
@@ -31,7 +37,10 @@ function MiniFlag({ rotate }: { rotate?: boolean }) {
 
 function Banner(props: IProps) {
     return (
-        <div class={`flex-row ${props.class || ""}`}>
+        <div
+            class={`flex-row ${props.class || ""}`}
+            style={props.style}
+        >
             <div class={"flex-row justify-between w-full h-full absolute"}>
                 <MiniFlag rotate />
 
@@ -39,14 +48,17 @@ function Banner(props: IProps) {
             </div>
 
             <div
-                class={"flex-col items-center justify-center"}
+                class={"w-full flex-col items-center justify-center"}
                 style={{
                     minWidth: 360,
                     minHeight: 70,
                     backgroundImage: resources.ButtonBackground
                 }}
             >
-                <Text size={Size.Small} class={"text-white"}>
+                <Text
+                    size={props.size || Size.Small}
+                    class={`text-white ${props.textClass || ""}`}
+                >
                     {props.children}
                 </Text>
             </div>

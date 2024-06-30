@@ -5,6 +5,7 @@ using Entity.Enemies;
 using Entity.Player;
 using Scriptable;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
@@ -57,8 +58,13 @@ namespace Managers
         public List<PlayerController> players = new();
         public List<Enemy> enemies = new();
 
-        [FormerlySerializedAs("_spawnPoints")] [SerializeField]
-        private SpawnData spawnData;
+        [SerializeField] private SpawnData spawnData;
+
+        protected override void OnSceneUnloaded(Scene scene)
+        {
+            players.Clear();
+            enemies.Clear();
+        }
 
         /// <summary>
         /// Spawns a random enemy from the list of enemies.

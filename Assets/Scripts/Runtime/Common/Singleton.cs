@@ -100,6 +100,8 @@ public class NetworkSingleton<T> : NetworkBehaviour where T : NetworkBehaviour
 {
     private static T _instance;
 
+    protected NetworkIdentity NetworkIdentity;
+
     public static T Instance
     {
         get
@@ -136,7 +138,7 @@ public class NetworkSingleton<T> : NetworkBehaviour where T : NetworkBehaviour
         }
 
         // Add network identity to the object.
-        gameObject.GetOrAddComponent<NetworkIdentity>();
+        NetworkIdentity = gameObject.GetOrAddComponent<NetworkIdentity>();
 
         OnAwake();
     }

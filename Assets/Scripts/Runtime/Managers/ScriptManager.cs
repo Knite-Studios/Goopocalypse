@@ -45,6 +45,7 @@ namespace Managers
         public GameManager GameManager => GameManager.Instance;
         public LobbyManager LobbyManager => LobbyManager.Instance;
         public SettingsManager SettingsManager => SettingsManager.Instance;
+        public AudioManager AudioManager => AudioManager.Instance;
 
         #endregion
     }

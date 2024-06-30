@@ -138,6 +138,7 @@ namespace Entity.Player
             EntityManager.UnregisterPlayer(this as PlayerController);
 
             _isDead = true;
+            GameManager.OnGameOver?.Invoke();
         }
     }
 

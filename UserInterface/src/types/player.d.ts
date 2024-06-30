@@ -4,5 +4,6 @@ declare module "game" {
         address: string;
         userId: string;
         profileIcon: Texture2D;
+        isReady: boolean;
     }
 }

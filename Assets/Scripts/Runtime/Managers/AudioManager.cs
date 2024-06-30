@@ -23,9 +23,22 @@ namespace Managers
         }
 
         public AudioMixer audioMixer;
+        [SerializeField] private AudioClip onHoverSound;
+        [SerializeField] private AudioClip onClickSound;
+
+        #region JavaScript Accessible
 
         [EventfulProperty] private float _musicVolume;
         [EventfulProperty] private float _soundFxVolume;
+
+        #endregion
+
+        private AudioSource _audioSource;
+
+        protected override void OnAwake()
+        {
+            _audioSource = gameObject.GetOrAddComponent<AudioSource>();
+        }
 
         private void Start()
         {
@@ -41,10 +54,81 @@ namespace Managers
             SetSoundFxVolume();
         }
 
+        #region Methods for Javascript use
+
         public void SetMusicVolume()
             => audioMixer.SetFloat("Music", Mathf.Log10(MusicVolume) * 20);
 
         public void SetSoundFxVolume()
             => audioMixer.SetFloat("SoundFx", Mathf.Log10(SoundFxVolume) * 20);
+
+        public void PlayUIHoverSound()
+        {
+            if (_audioSource.isPlaying) _audioSource.Stop();
+            if (onHoverSound) _audioSource.PlayOneShot(onHoverSound);
+        }
+
+        public void PlayUIClickSound()
+        {
+            if (_audioSource.isPlaying) _audioSource.Stop();
+            if (onClickSound) _audioSource.PlayOneShot(onClickSound);
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Plays a sound effect at the specified position.
+        /// </summary>
+        /// <param name="clip">The audio clip to play.</param>
+        /// <param name="position">The position to play the audio at.</param>
+        /// <param name="proximity">Whether the audio should play based on proximity.</param>
+        /// <param name="maxDistance">The maximum distance the audio can be heard from.</param>
+        /// <param name="type">The type of audio to play (SoundFx or Music).</param>
+        public void PlayOneShot(
+            AudioClip clip,
+            Vector3 position,
+            bool proximity = true,
+            float maxDistance = 10.0f,
+            AudioType type = AudioType.SoundFx)
+        {
+            if (!clip) return;
+
+            // Create a temporary game object to play the audio.
+            var temp = new GameObject("TempAudio")
+            {
+                transform =
+                {
+                    position = position,
+                    parent = transform
+                }
+            };
+
+            // Add and configure the audio source.
+            var tempAudioSource = temp.AddComponent<AudioSource>();
+            tempAudioSource.clip = clip;
+            tempAudioSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups(
+                type is AudioType.SoundFx ? "SoundFx" : "Music")[0];
+
+            // If the audio should play based on proximity, adjust the volume accordingly.
+            if (proximity)
+            {
+                var player = EntityManager.Instance.GetLocalPlayer();
+                var distance = Vector3.Distance(position, player.transform.position);
+                var volume = Mathf.Clamp01(1 - distance / maxDistance);
+                tempAudioSource.volume = volume;
+            }
+
+            // Play the audio.
+            tempAudioSource.Play();
+
+            // Destroy after the clip has finished playing.
+            Destroy(temp, clip.length);
+        }
+
+        public enum AudioType
+        {
+            Music,
+            SoundFx
+        }
     }
 }

@@ -13,6 +13,9 @@ namespace Entity.Enemies
         [SerializeField] private float attackRange = 5.0f;
         [SerializeField] private float attackInterval = 1.5f;
 
+        [TitleHeader("Range Enemy Audio Settings")]
+        [SerializeField] private AudioClip shootSound;
+
         private float _attackTimer;
 
         protected override void Start()
@@ -90,6 +93,9 @@ namespace Entity.Enemies
 
         private void SpawnProjectile(Vector3 position, Quaternion rotation, bool server = false)
         {
+            if (AudioSource.isPlaying) AudioSource.Stop();
+            if (shootSound) AudioSource.PlayOneShot(shootSound);
+
             var projectile = PrefabManager.Create<ProjectileBase>(projectileType);
             projectile.owner = this;
             projectile.transform.SetPositionAndRotation(position, rotation);

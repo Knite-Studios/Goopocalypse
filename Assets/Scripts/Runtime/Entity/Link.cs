@@ -1,13 +1,17 @@
-﻿using Entity.Player;
+﻿using System;
+using Attributes;
+using Entity.Player;
 using JetBrains.Annotations;
 using Managers;
 using Mirror;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Entity
 {
     public class Link : NetworkBehaviour
     {
+        [TitleHeader("Link Settings")]
         public Transform fwend;
         public Transform buddie;
         [SerializeField, CanBeNull] Material lineMaterial;
@@ -15,12 +19,29 @@ namespace Entity
         [SerializeField] Color endColor = Color.yellow;
         [SerializeField] public float maxDistance = 5.0f;
 
+        [TitleHeader("Audio Settings")]
+        [SerializeField] AudioClip linkConnected;
+        [SerializeField] AudioClip linkBreak;
+        [SerializeField] AudioClip linkHit;
+
+        [TitleHeader("Events")]
+        public UnityEvent onLinkConnected;
+        public UnityEvent onLinkBreak;
+
         private LineRenderer _lineRenderer;
         private BoxCollider2D _collider;
+        private AudioSource _audioSource;
+        private bool _isConnected;
+
+        private void Awake()
+        {
+            _audioSource = gameObject.GetOrAddComponent<AudioSource>();
+            _lineRenderer = gameObject.GetOrAddComponent<LineRenderer>();
+            _collider = gameObject.GetOrAddComponent<BoxCollider2D>();
+        }
 
         private void Start()
         {
-            _lineRenderer = gameObject.GetOrAddComponent<LineRenderer>();
             _lineRenderer.positionCount = 2;
             _lineRenderer.startWidth = 0.1f;
             _lineRenderer.endWidth = 0.1f;
@@ -31,7 +52,6 @@ namespace Entity
             _lineRenderer.startColor = startColor;
             _lineRenderer.endColor = endColor;
 
-            _collider = gameObject.GetOrAddComponent<BoxCollider2D>();
             _collider.isTrigger = true;
             _collider.enabled = false;
 
@@ -44,6 +64,12 @@ namespace Entity
 
             if (Vector2.Distance(fwend.position, buddie.position) <= maxDistance)
             {
+                if (!_isConnected)
+                {
+                    _isConnected = true;
+                    onLinkConnected?.Invoke();
+                }
+
                 if (!_collider.enabled) _collider.enabled = true;
 
                 // Connect the players with a line.
@@ -59,6 +85,12 @@ namespace Entity
             }
             else
             {
+                if (_isConnected)
+                {
+                    _isConnected = false;
+                    onLinkBreak?.Invoke();
+                }
+
                 _lineRenderer.SetPosition(0, Vector2.zero);
                 _lineRenderer.SetPosition(1, Vector2.zero);
                 if (_collider.enabled) _collider.enabled = false;
@@ -69,6 +101,8 @@ namespace Entity
         {
             if (other.IsPlayer()) return;
             if (!other.TryGetComponent(out BaseEntity entity)) return;
+
+            AudioManager.Instance.PlayOneShot(linkHit, entity.transform.position);
 
             // Apply full damage to the entity.
             if (GameManager.Instance.LocalMultiplayer)
@@ -119,6 +153,22 @@ namespace Entity
 
             var bounds = spriteRenderer.sprite.bounds;
             return playerTransform.position + bounds.center;
+        }
+
+        public void OnConnect()
+        {
+            if (_audioSource.isPlaying) _audioSource.Stop();
+
+            if (linkConnected) _audioSource.PlayOneShot(linkConnected);
+            // Spawn VFX at line renderer position 0 and 1 or GetSpriteMiddlePoint of players
+        }
+
+        public void OnBreak()
+        {
+            if (_audioSource.isPlaying) _audioSource.Stop();
+
+            if (linkConnected) _audioSource.PlayOneShot(linkBreak);
+            // Spawn VFX at line renderer position 0 and 1 or GetSpriteMiddlePoint of players
         }
     }
 }

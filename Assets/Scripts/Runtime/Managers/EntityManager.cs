@@ -83,5 +83,15 @@ namespace Managers
                 Vector2.zero :
                 spawnData.points[Random.Range(0, spawnData.points.Count)];
         }
+
+        /// <summary>
+        /// Returns the local player.
+        /// </summary>
+        public PlayerController GetLocalPlayer()
+        {
+            return GameManager.Instance.LocalMultiplayer
+                ? players.FirstOrDefault(player => player.playerRole == PlayerRole.Fwend)
+                : players.FirstOrDefault(player => player.isLocalPlayer);
+        }
     }
 }

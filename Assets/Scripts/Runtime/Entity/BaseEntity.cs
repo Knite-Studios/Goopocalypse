@@ -24,6 +24,9 @@ namespace Entity
         public string luaScript;
         public UnityEvent onDeathEvent;
 
+        [TitleHeader("Audio Settings")]
+        [SerializeField] protected AudioClip deathSound;
+
         /// <summary>
         /// Attribute holder map.
         /// </summary>
@@ -46,12 +49,14 @@ namespace Entity
         protected SpriteRenderer SpriteRenderer;
         protected internal Rigidbody2D Rb;
         protected internal Animator Animator;
+        protected AudioSource AudioSource;
 
         protected virtual void Awake()
         {
             SpriteRenderer = GetComponent<SpriteRenderer>();
             Rb = GetComponent<Rigidbody2D>();
             Animator = GetComponent<Animator>();
+            AudioSource = GetComponent<AudioSource>();
         }
 
         /// <summary>
@@ -138,10 +143,22 @@ namespace Entity
 
         #endregion
 
+        /// <summary>
+        /// Method called for death animations.
+        /// </summary>
         public void OnDeathAnimation()
         {
             Destroy(gameObject);
             if (NetworkServer.active) NetworkServer.Destroy(gameObject);
+        }
+
+        /// <summary>
+        /// Method called for death sounds.
+        /// </summary>
+        public void OnDeathSound()
+        {
+            if (AudioSource.isPlaying) AudioSource.Stop();
+            AudioManager.Instance.PlayOneShot(deathSound, transform.position);
         }
     }
 }

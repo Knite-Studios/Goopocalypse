@@ -111,7 +111,7 @@ MonoBehaviour:
   onDeathEvent:
     m_PersistentCalls:
       m_Calls: []
-  attackSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 498a5b2cf801bc843997b4505732d00a, type: 3}
   <CurrentHealth>k__BackingField: 0
   playerRole: 2
   virtualCameraPrefab: {fileID: 1226844540982855168, guid: d6f7a0a033e7219448a21c91a464652a, type: 3}

@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 0f2ac1d209f35484e834d80a67f1dac3, type: 2}
-  onHoverSound: {fileID: 0}
-  onClickSound: {fileID: 0}
+  onHoverSound: {fileID: 8300000, guid: 16fee1d0d571f054fbcc615c012c211b, type: 3}
+  onClickSound: {fileID: 8300000, guid: 040bdcac9b7dcae4ea51a788f58a428a, type: 3}
 --- !u!82 &6213131744897620951
 AudioSource:
   m_ObjectHideFlags: 0
@@ -58,11 +58,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0b07c6a6d7d670e4eb1dbcaca6939447, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

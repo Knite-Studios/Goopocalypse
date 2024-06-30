@@ -57,8 +57,9 @@ MonoBehaviour:
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 1, g: 1, b: 1, a: 1}
   maxDistance: 6
-  linkConnected: {fileID: 0}
-  linkBreak: {fileID: 0}
+  linkConnected: {fileID: 8300000, guid: ad7916920f7219a4eaaa3c7d3a681055, type: 3}
+  linkBreak: {fileID: 8300000, guid: 05e03461d057bdf448654c389309584c, type: 3}
+  linkHit: {fileID: 8300000, guid: 5c0aa8087814f6a40a6b46a5f953e0ac, type: 3}
   onLinkConnected:
     m_PersistentCalls:
       m_Calls:

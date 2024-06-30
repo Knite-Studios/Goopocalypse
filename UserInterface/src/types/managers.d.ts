@@ -56,6 +56,7 @@ declare module "game" {
         StartRemoteGame(): void;
         StartLocalGame(): void;
         ChangeRole(role: PlayerRole): void;
+        SetDisplayMode(mode: DisplayMode): void;
         Navigate(path: string): void;
         QuitGame(): void;
     }

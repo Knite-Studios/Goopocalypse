@@ -1,4 +1,5 @@
 ﻿using Entity.Player;
+using Managers;
 using UnityEngine;
 
 namespace Entity.StateMachines
@@ -11,9 +12,13 @@ namespace Entity.StateMachines
         protected static readonly int Moving = Animator.StringToHash("IsMoving");
         protected static readonly int Idle = Animator.StringToHash("IsIdle");
 
+        private readonly Camera _camera;
+        private ArrowIndicator _arrowIndicator;
+
         public PlayerBaseState(string name, BaseEntity owner) : base(name, owner)
         {
             player = owner as PlayerController;
+            _camera = Camera.main;
         }
 
         public override void UpdateState()
@@ -21,6 +26,8 @@ namespace Entity.StateMachines
             player.ChangeState(player.IsMoving
                 ? player.MovingState
                 : player.IdleState);
+
+            HandleArrowIndicator();
         }
 
         protected void HandleMovement()
@@ -34,6 +41,32 @@ namespace Entity.StateMachines
 
             var movement = move * (player.Speed * Time.fixedDeltaTime);
             player.Rb.MovePosition(player.Rb.position + movement);
+        }
+
+        private void HandleArrowIndicator()
+        {
+            if (GameManager.Instance.LocalMultiplayer) return;
+
+            var otherPlayer = EntityManager.Instance.players
+                .Find(other => other != player);
+
+            if (!otherPlayer) return;
+
+            var viewPortPosition = _camera.WorldToViewportPoint(otherPlayer.transform.position);
+            var isOffScreen = viewPortPosition.x < 0 || viewPortPosition.x > 1 ||
+                              viewPortPosition.y < 0 || viewPortPosition.y > 1;
+
+            if (isOffScreen)
+            {
+                if (!_arrowIndicator)
+                    _arrowIndicator = PrefabManager.Create<ArrowIndicator>(PrefabType.ArrowIndicator);
+
+                _arrowIndicator?.SetTarget(player.transform, otherPlayer.transform);
+            }
+            else
+            {
+                _arrowIndicator?.DisableArrow();
+            }
         }
     }
 }

@@ -184,6 +184,7 @@ namespace Managers
         WeepingAngelEnemy = 6,
         PlaceholderProjectile = 7,
         Link = 8,
+        ArrowIndicator = 9,
     }
 
     [Serializable]

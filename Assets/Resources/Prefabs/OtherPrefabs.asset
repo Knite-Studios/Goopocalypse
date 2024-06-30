@@ -10,11 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99538faf612d56f4986fcc45843b166a, type: 3}
-  m_Name: LinkPrefab
+  m_Name: OtherPrefabs
   m_EditorClassIdentifier: 
   prefabs:
   - type: 8
     prefab: {fileID: 3292102036650932474, guid: d8626b9150f895e43aa851a3786425de, type: 3}
+    root: 
+    shouldPool: 0
+    initialPoolSize: 0
+  - type: 9
+    prefab: {fileID: 2260393722320972894, guid: 980b61a4c8c2161489230639009bf293, type: 3}
     root: 
     shouldPool: 0
     initialPoolSize: 0

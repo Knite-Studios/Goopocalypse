@@ -47,12 +47,6 @@ export const Unset = resource.loadImage(
     `${__dirname}/resources/unset.png`
 );
 
-export const LinkedIn = resource.loadImage(
-    `${__dirname}/resources/linkedin.png`
-);
-export const ActiveLinkedIn = resource.loadImage(
-    `${__dirname}/resources/active_linkedin.png`
-);
 export const Placeholder = resource.loadImage(
     `${__dirname}/resources/people/placeholder.png`
 );
@@ -75,6 +69,21 @@ export const Taiga74164 = resource.loadImage(
     `${__dirname}/resources/people/taiga74164.png`
 );
 
+export const Icons = {
+    LinkedIn: resource.loadImage(`${__dirname}/resources/icons/linkedin.png`),
+    ActiveLinkedIn: resource.loadImage(
+        `${__dirname}/resources/icons/a_linkedin.png`
+    ),
+    GitHub: resource.loadImage(`${__dirname}/resources/icons/github.png`),
+    ActiveGitHub: resource.loadImage(
+        `${__dirname}/resources/icons/a_github.png`
+    ),
+    Twitter: resource.loadImage(`${__dirname}/resources/icons/x.png`),
+    ActiveTwitter: resource.loadImage(
+        `${__dirname}/resources/icons/a_x.png`
+    )
+};
+
 export const gradient = [
     parseColor("rgba(81, 213, 152, 0.6)"),
     parseColor("rgba(14, 34, 41, 0)")
@@ -95,8 +104,7 @@ export default {
     gradient,
     Tutorial,
     Placeholder,
-    LinkedIn,
-    ActiveLinkedIn,
+    Icons,
     Aeonamuse,
     Artmanoil,
     KingRainbow44,

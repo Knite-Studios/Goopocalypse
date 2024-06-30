@@ -2,7 +2,7 @@ import { h } from "preact";
 import { useState } from "preact/hooks";
 
 import { ScreenProps } from "@ui/App";
-import resources, { gradient } from "@ui/resources";
+import resources, { gradient, Icons } from "@ui/resources";
 
 import Label from "@components/LabelV2";
 import Button from "@components/ButtonV2";
@@ -11,9 +11,30 @@ import Image from "@components/Image";
 
 import { Application, Texture2D } from "UnityEngine";
 
+interface IIconProps {
+    url: string;
+    icon: Texture2D[];
+}
+
+function Icon({ url, icon }: IIconProps) {
+    const [hovered, setHovered] = useState(false);
+
+    return (
+        <Image
+            class={"self-center"}
+            src={hovered ? icon[1] : icon[0]}
+            style={{ width: 39, height: 36 }}
+            onMouseOver={() => setHovered(true)}
+            onMouseOut={() => setHovered(false)}
+            onClick={() => Application.OpenURL(url)}
+        />
+    );
+}
+
 interface INameProps {
     children: string;
-    url: string;
+    urls: string[];
+    icons: Texture2D[]; // This contains both the active and inactive states.
     picture: Texture2D;
 
     hidden?: boolean;
@@ -21,8 +42,6 @@ interface INameProps {
 }
 
 function Name(props: INameProps) {
-    const [hovered, setHovered] = useState(false);
-
     return (
         <div
             class={props.class}
@@ -51,14 +70,17 @@ function Name(props: INameProps) {
                 {props.children}
             </Banner>
 
-            <Image
-                class={"self-center"}
-                src={hovered ? resources.ActiveLinkedIn : resources.LinkedIn}
-                style={{ width: 39, height: 36 }}
-                onMouseOver={() => setHovered(true)}
-                onMouseOut={() => setHovered(false)}
-                onClick={() => Application.OpenURL(props.url)}
-            />
+            <div class={"self-center flex-row"}>
+                <Icon url={props.urls[0]} icon={[
+                    props.icons[0], props.icons[1]
+                ]} />
+
+                { props.urls.length == 2 && <div class={"ml-5"}>
+                    <Icon url={props.urls[1]} icon={[
+                        props.icons[2], props.icons[3]
+                    ]} />
+                </div> }
+            </div>
         </div>
     );
 }
@@ -78,39 +100,54 @@ function CreditsScreen({ navigate }: ScreenProps) {
                 <div class={"flex-col mb-16"}>
                     <div class={"flex-row justify-between px-24 mb-12"}>
                         <Name picture={resources.Aeonamuse}
-                              url={"https://www.linkedin.com/in/walter-wong-8641b325a/"}
+                              urls={["https://www.linkedin.com/in/walter-wong-8641b325a/"]}
+                              icons={[Icons.LinkedIn, Icons.ActiveLinkedIn]}
                         >
                             Aeonamuse
                         </Name>
 
                         <Name picture={resources.Taiga74164}
-                              url={"https://www.linkedin.com/in/joaquin74164/"}
+                              urls={["https://www.linkedin.com/in/joaquin74164/", "https://github.com/Taiga74164"]}
+                              icons={[Icons.LinkedIn, Icons.ActiveLinkedIn, Icons.GitHub, Icons.ActiveGitHub]}
                         >
                             Taiga74164
                         </Name>
 
                         <Name picture={resources.RetroSensei}
-                              url={"https://www.linkedin.com/in/leonardobaldicera/"}
+                              urls={["https://www.linkedin.com/in/leonardobaldicera/"]}
+                              icons={[Icons.LinkedIn, Icons.ActiveLinkedIn]}
                         >
                             RetroSensei
                         </Name>
 
                         <Name picture={resources.Perz}
-                              url={"https://www.linkedin.com/in/perzeus/"}
+                              urls={["https://www.linkedin.com/in/perzeus/", "https://github.com/PerzVT"]}
+                              icons={[Icons.LinkedIn, Icons.ActiveLinkedIn, Icons.GitHub, Icons.ActiveGitHub]}
                         >
                             Perz
                         </Name>
                     </div>
 
                     <div class={"flex-row justify-between px-24"}>
+                        <Name
+                            hidden
+                            picture={resources.Placeholder}
+                            urls={["https://youtube.com/@KingRainbow44"]}
+                            icons={[Icons.GitHub, Icons.ActiveGitHub]}
+                        >
+                            Why are you here?
+                        </Name>
+
                         <Name picture={resources.KingRainbow44}
-                              url={"https://www.linkedin.com/in/kobe-do-62700a229/"}
+                              urls={["https://github.com/KingRainbow44"]}
+                              icons={[Icons.GitHub, Icons.ActiveGitHub]}
                         >
                             KingRainbow44
                         </Name>
 
                         <Name picture={resources.Artmanoil}
-                              url={"https://linkedin.com/"}
+                              urls={["https://x.com/"]}
+                              icons={[Icons.Twitter, Icons.ActiveTwitter]}
                         >
                             Artmanoil
                         </Name>
@@ -118,15 +155,8 @@ function CreditsScreen({ navigate }: ScreenProps) {
                         <Name
                             hidden
                             picture={resources.Placeholder}
-                            url={"https://youtube.com/@KingRainbow44"}
-                        >
-                            Why are you here?
-                        </Name>
-
-                        <Name
-                            hidden
-                            picture={resources.Placeholder}
-                            url={"https://seikimo.moe"}
+                            urls={["https://seikimo.moe"]}
+                            icons={[Icons.GitHub, Icons.ActiveGitHub]}
                         >
                             Hello World!
                         </Name>

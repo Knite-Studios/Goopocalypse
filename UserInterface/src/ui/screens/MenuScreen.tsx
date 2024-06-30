@@ -7,8 +7,9 @@ import Button from "@components/ButtonV2";
 import resources from "@ui/resources";
 import { ScreenProps } from "@ui/App";
 import { useEventfulState } from "onejs";
+import { MenuState } from "@type/enums";
 
-function MenuScreen({ game }: ScreenProps) {
+function MenuScreen({ game, navigate, setMenuState }: ScreenProps) {
     const { GameManager } = game;
 
     const [username, _] = useEventfulState(GameManager, "Username");
@@ -24,11 +25,23 @@ function MenuScreen({ game }: ScreenProps) {
                 />
 
                 <div class={"flex-col justify-between"}>
-                    <Button class={"mb-8"}>
+                    <Button
+                        class={"mb-8"}
+                        onClick={() => {
+                            setMenuState(MenuState.Local);
+                            navigate("/join");
+                        }}
+                    >
                         Play Local
                     </Button>
 
-                    <Button class={"mb-8"}>
+                    <Button
+                        class={"mb-8"}
+                        onClick={() => {
+                            setMenuState(MenuState.Online);
+                            navigate("/join");
+                        }}
+                    >
                         Play Online
                     </Button>
 

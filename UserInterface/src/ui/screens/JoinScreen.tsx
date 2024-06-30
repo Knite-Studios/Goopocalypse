@@ -1,4 +1,4 @@
-import { h, JSX } from "preact";
+import { h } from "preact";
 
 import Label from "@components/Label";
 import { Size } from "@components/Text";
@@ -30,14 +30,14 @@ function PlayerCard(props: PlayerCardProps) {
 
                 <image
                     class={"mb-4"}
-                    image={resources.PlayerPlaceholder}
+                    image={resources.Flag}
                 />
 
                 <div class={"justify-center self-center flex-row"}>
                     <image
                         class={"mr-4"}
                         style={{ width: 68, height: 68 }}
-                        image={resources.IconPlaceholder}
+                        image={resources.Flag}
                     />
                     <TextBox
                         class={"px-18"}
@@ -72,7 +72,7 @@ function JoinScreen(props: ScreenProps) {
             <div class={"w-full h-full flex-col justify-between"}>
                 <Label
                     class={"py-8"}
-                    icon={resources.IconPlaceholder}
+                    icon={resources.ProfileFrame}
                 >
                     {title}
                 </Label>

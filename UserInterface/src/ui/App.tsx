@@ -10,9 +10,7 @@ import MenuScreen from "@screens/MenuScreen";
 import LobbyScreen from "@screens/LobbyScreen";
 import GameScreen from "@screens/GameScreen";
 
-import CoopScreen from "@screens/play/CoopScreen";
-import SoloScreen from "@screens/play/SoloScreen";
-import JoinScreen from "@screens/play/JoinScreen";
+import JoinScreen from "@screens/JoinScreenV2";
 
 import PauseScreen from "@screens/overlays/PauseScreen";
 
@@ -50,9 +48,7 @@ function App() {
             return (
                 <Router game={game} setRoute={navigate} route={currentRoute}>
                     <Route path={"/"} element={MenuScreen} />
-                    <Route path={"/play/solo"} element={SoloScreen} />
-                    <Route path={"/play/coop"} element={CoopScreen} />
-                    <Route path={"/play/join"} element={JoinScreen} />
+                    <Route path={"/join"} element={JoinScreen} />
                     <Route path={"/game/pause"} element={PauseScreen} />
                     <Route path={"/debug"} element={DebugScreen} />
                 </Router>

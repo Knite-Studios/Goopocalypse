@@ -15,6 +15,8 @@ interface IProps {
     // Text properties.
     size?: Size;
     children: string;
+
+    onClick?: () => void;
 }
 
 function Button(props: IProps) {
@@ -29,6 +31,7 @@ function Button(props: IProps) {
             }}
             onMouseOver={() => setHover(true)}
             onMouseOut={() => setHover(false)}
+            onClick={props.onClick}
         >
             { hover && (
                 <GifRenderer

@@ -4,6 +4,7 @@ import { Style } from "preact/jsx";
 import * as resources from "@ui/resources";
 
 export enum Size {
+    Small = 40,
     Normal = 64,
     Large = 96,
     ExtraLarge = 128

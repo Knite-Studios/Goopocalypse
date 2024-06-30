@@ -2,7 +2,9 @@ export enum GameState {
     Menu,
     Lobby,
     Loading,
-    Playing
+    Playing,
+    Paused,
+    GameOver
 }
 
 export enum PlayerRole {
@@ -14,4 +16,10 @@ export enum PlayerRole {
 export enum MenuState {
     Local,
     Online
+}
+
+export enum DisplayMode {
+    Fullscreen,
+    Borderless,
+    Windowed
 }

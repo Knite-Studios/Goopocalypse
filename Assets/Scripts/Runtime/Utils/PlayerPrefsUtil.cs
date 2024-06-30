@@ -23,5 +23,25 @@ namespace Utils
                 PlayerPrefs.Save();
             }
         }
+
+        public static bool FirstLocal
+        {
+            get => PlayerPrefs.GetInt("FirstLocal", 1) == 1;
+            set
+            {
+                PlayerPrefs.SetInt("FirstLocal", value ? 1 : 0);
+                PlayerPrefs.Save();
+            }
+        }
+
+        public static bool FirstCoop
+        {
+            get => PlayerPrefs.GetInt("FirstCoop", 1) == 1;
+            set
+            {
+                PlayerPrefs.SetInt("FirstCoop", value ? 1 : 0);
+                PlayerPrefs.Save();
+            }
+        }
     }
 }

@@ -6,7 +6,7 @@ import Label from "@components/LabelV2";
 import Button from "@components/ButtonV2";
 import { Size } from "@components/Text";
 import Setting from "@components/Setting";
-import { GameState } from "@type/enums";
+import { GameState, DisplayMode } from "@type/enums";
 
 function SettingsScreen(props: ScreenProps) {
     const { game: { GameManager }, navigate } = props;
@@ -39,7 +39,7 @@ function SettingsScreen(props: ScreenProps) {
                 />
 
                 <Setting name={"Display"} current={"Borderless"} type={"options"}
-                         values={["Fullscreen", "Windowed", "Borderless"]}
+                         values={["Fullscreen", "Borderless", "Windowed"]}
                          onChange={(value) => log(`new value: ${value}`)}
                 />
             </div>

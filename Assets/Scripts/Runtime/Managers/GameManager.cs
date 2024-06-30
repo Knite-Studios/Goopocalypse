@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,6 +19,7 @@ namespace Managers
 {
     public partial class GameManager : MonoSingleton<GameManager>
     {
+        [NaughtyAttributes.Scene] public int menuScene;
         [NaughtyAttributes.Scene] public int gameScene;
 
         public static Action OnGameStart;
@@ -46,6 +46,7 @@ namespace Managers
         [EventfulProperty] private GameState _state = GameState.Menu;
 
         [EventfulProperty] private float _loadingProgress;
+        [EventfulProperty] private DisplayMode _displayMode = DisplayMode.FullScreen;
 
         public string DefaultRoute = "/";
         public event Action<string> OnRouteUpdate;
@@ -213,6 +214,28 @@ namespace Managers
         public void ChangeRole(PlayerRole role) =>
             NetworkClient.Send(new ChangeRoleC2SReq { role = role });
 
+        /// <summary>
+        /// Sets the display mode of the game.
+        /// </summary>
+        public void SetDisplayMode(DisplayMode mode)
+        {
+            DisplayMode = mode;
+            switch (mode)
+            {
+                case DisplayMode.FullScreen:
+#if UNITY_STANDALONE_WIN
+                    Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+                    break;
+#endif
+                case DisplayMode.Borderless:
+                    Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+                    break;
+                case DisplayMode.Windowed:
+                    Screen.fullScreenMode = FullScreenMode.Windowed;
+                    break;
+            }
+        }
+
         #endregion
 
         /// <summary>
@@ -291,7 +314,7 @@ namespace Managers
             // We could also add a sound effect here and a delay before transitioning.
             // Or instead of loading scene, we could let the players decide to restart or quit.
             if (!LocalMultiplayer)
-                NetworkServer.SendToAll(new TransferSceneS2CNotify { sceneId = gameScene });
+                NetworkServer.SendToAll(new TransferSceneS2CNotify { sceneId = menuScene });
             else
                 LoadScene(0);
         }
@@ -409,5 +432,12 @@ namespace Managers
         Playing,
         Paused,
         GameOver
+    }
+
+    public enum DisplayMode
+    {
+        FullScreen,
+        Borderless,
+        Windowed
     }
 }

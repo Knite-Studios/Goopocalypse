@@ -1,16 +1,22 @@
 import { h } from "preact";
 
-import { useEventfulState } from "onejs";
-
 import Text, { Size } from "@components/Text";
 
 import type { ScriptManager } from "game";
 
+import { useEventfulState } from "onejs";
+
 function GameScreen({ game }: { game: ScriptManager }) {
     const { WaveManager } = game;
 
-    const [waveCount, _]: [number, any] = useEventfulState(WaveManager, "WaveCount");
-    const [matchTimer, __]: [number, any] = useEventfulState(WaveManager, "MatchTimer");
+    const [waveCount, _]: [number, any] = useEventfulState(
+        WaveManager,
+        "WaveCount"
+    );
+    const [matchTimer, __]: [number, any] = useEventfulState(
+        WaveManager,
+        "MatchTimer"
+    );
 
     return (
         <div class={"p-16 flex-col w-full h-full text-blue-400"}>

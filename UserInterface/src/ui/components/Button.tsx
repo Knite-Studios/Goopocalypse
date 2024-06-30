@@ -13,10 +13,7 @@ interface IProps {
 
 function Button(props: IProps) {
     return (
-        <button
-            class={props.class}
-            onClick={props.onClick}
-        >
+        <button class={props.class} onClick={props.onClick}>
             <Text size={props.textSize}>{props.children}</Text>
         </button>
     );

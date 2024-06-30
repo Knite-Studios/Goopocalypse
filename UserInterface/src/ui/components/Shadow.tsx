@@ -11,13 +11,12 @@ function Shadow(props: IProps) {
     const { color, radius } = props;
 
     return (
-        <div
-            class={"flex-col"}
-        >
+        <div class={"flex-col"}>
             <div
                 class={"absolute w-full h-full"}
                 style={{
-                    top: radius, left: radius,
+                    top: radius,
+                    left: radius,
                     backgroundColor: color
                 }}
             />

@@ -2,13 +2,13 @@ export enum GameState {
     Menu,
     Lobby,
     Loading,
-    Playing,
+    Playing
 }
 
 export enum PlayerRole {
     None,
     Buddie,
-    Fwend,
+    Fwend
 }
 
 export enum MenuState {

@@ -19,9 +19,11 @@ function MiniFlag({ rotate }: { rotate?: boolean }) {
             image={resources.MiniFlag}
             style={{
                 rotate: rotate ? 180 : 0,
-                width: 54, height: 45,
+                width: 54,
+                height: 45,
 
-                right: 35 * invert, top: 30
+                right: 35 * invert,
+                top: 30
             }}
         />
     );
@@ -39,14 +41,12 @@ function Banner(props: IProps) {
             <div
                 class={"flex-col items-center justify-center"}
                 style={{
-                    minWidth: 360, minHeight: 70,
+                    minWidth: 360,
+                    minHeight: 70,
                     backgroundImage: resources.ButtonBackground
                 }}
             >
-                <Text
-                    size={Size.Small}
-                    class={"text-white"}
-                >
+                <Text size={Size.Small} class={"text-white"}>
                     {props.children}
                 </Text>
             </div>

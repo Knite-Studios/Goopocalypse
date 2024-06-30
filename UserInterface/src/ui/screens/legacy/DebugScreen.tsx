@@ -11,11 +11,10 @@ function DebugScreen({ game }: { game: ScriptManager }) {
     const [port, setPort] = useState(7777);
 
     return (
-        <div
-            style={{ width: "50%" }}
-            class={"p-5 text-white"}
-        >
-            <Text size={Size.Normal} class={"mb-4"}>Hello World!</Text>
+        <div style={{ width: "50%" }} class={"p-5 text-white"}>
+            <Text size={Size.Normal} class={"mb-4"}>
+                Hello World!
+            </Text>
 
             <Button
                 class={"mb-4 bg-blue-500 "}

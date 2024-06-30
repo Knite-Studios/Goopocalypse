@@ -17,14 +17,13 @@ function Label(props: IProps) {
                 <image
                     class={"self-end"}
                     style={{
-                        top: 20, right: 120
+                        top: 20,
+                        right: 120
                     }}
                     image={resources.Flag}
                 />
 
-                <TextBox>
-                    {props.children}
-                </TextBox>
+                <TextBox>{props.children}</TextBox>
             </div>
 
             <div class={"w-auto"} />

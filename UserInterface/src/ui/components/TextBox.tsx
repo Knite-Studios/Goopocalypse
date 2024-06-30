@@ -34,19 +34,22 @@ function TextBox(props: IProps) {
             onMouseOut={props.onMouseOut}
         >
             <Shadow color={"#bfbfbf"} radius={5}>
-                <div class={"grow-0 w-auto flex-row p-1 px-[20px] " +
-                    `${bgClass} text-boxtext items-center ` +
-                    props.class}
-                     style={{ minWidth: "auto", maxWidth: "none" }}
-                     onMouseOver={props.onMouseOver}
-                     onMouseOut={props.onMouseOut}
+                <div
+                    class={
+                        "grow-0 w-auto flex-row p-1 px-[20px] " +
+                        `${bgClass} text-boxtext items-center ` +
+                        props.class
+                    }
+                    style={{ minWidth: "auto", maxWidth: "none" }}
+                    onMouseOver={props.onMouseOver}
+                    onMouseOut={props.onMouseOut}
                 >
-                    { props.icon && (
+                    {props.icon && (
                         <image
                             class={"w-11 h-11 mr-[20px]"}
                             image={props.icon}
                         />
-                    ) }
+                    )}
 
                     <Text
                         class={labelClass}

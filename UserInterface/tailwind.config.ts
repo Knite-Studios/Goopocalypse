@@ -1,7 +1,6 @@
+import * as onejs from "./ScriptLib/onejs-tw-config";
 import plugin from "tailwindcss/plugin";
 import { Config } from "tailwindcss/types/config";
-
-import * as onejs from "./ScriptLib/onejs-tw-config";
 
 export default {
     content: [...onejs.paths, "./src/**/*.{tsx,ts}"],

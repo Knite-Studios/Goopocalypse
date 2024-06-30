@@ -1,24 +1,23 @@
 import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 
-import { useEventfulState } from "onejs";
-
-import Router, { Route } from "@ui/Router";
-
+import CreditsScreen from "@screens/CreditsScreen";
+import JoinScreen from "@screens/JoinScreen";
+import MenuScreen from "@screens/MenuScreen";
 // TODO: Remove legacy code.
 import DebugScreen from "@screens/legacy/DebugScreen";
 import LobbyScreen from "@screens/legacy/LobbyScreen";
-
-import MenuScreen from "@screens/MenuScreen";
-import JoinScreen from "@screens/JoinScreen";
-import CreditsScreen from "@screens/CreditsScreen";
-
 import GameScreen from "@screens/overlays/GameScreen";
-import QuitScreen from "@screens/overlays/QuitScreen";
 import PauseScreen from "@screens/overlays/PauseScreenV2";
+import QuitScreen from "@screens/overlays/QuitScreen";
+
+import Router, { Route } from "@ui/Router";
+
+import { GameState, MenuState } from "@type/enums";
 
 import { ScriptManager } from "game";
-import { GameState, MenuState } from "@type/enums";
+
+import { useEventfulState } from "onejs";
 
 const game = require("game") as ScriptManager;
 

@@ -27,8 +27,14 @@ function Text(props: IProps) {
             class={props.class}
             style={{
                 fontSize: props.size || Size.Normal,
-                unityFontStyleAndWeight: props.bold && props.italic ? "BoldAndItalic" :
-                    props.bold ? "Bold" : props.italic ? "Italic" : "Normal",
+                unityFontStyleAndWeight:
+                    props.bold && props.italic
+                        ? "BoldAndItalic"
+                        : props.bold
+                        ? "Bold"
+                        : props.italic
+                        ? "Italic"
+                        : "Normal",
                 unityFontDefinition: resources.ThaleahFat,
                 ...props.style
             }}

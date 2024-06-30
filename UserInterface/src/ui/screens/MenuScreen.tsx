@@ -1,13 +1,15 @@
 import { h } from "preact";
 
-import Text from "@components/Text";
-import Image from "@components/Image";
 import Button from "@components/ButtonV2";
+import Image from "@components/Image";
+import Text from "@components/Text";
 
-import resources from "@ui/resources";
 import { ScreenProps } from "@ui/App";
-import { useEventfulState } from "onejs";
+import resources from "@ui/resources";
+
 import { MenuState } from "@type/enums";
+
+import { useEventfulState } from "onejs";
 
 function MenuScreen({ game, navigate, setMenuState }: ScreenProps) {
     const { GameManager } = game;
@@ -17,7 +19,11 @@ function MenuScreen({ game, navigate, setMenuState }: ScreenProps) {
 
     return (
         <div class={"w-full h-full flex-row"}>
-            <div class={"w-[40%] h-full flex-col items-center justify-between bg-dark-blue"}>
+            <div
+                class={
+                    "w-[40%] h-full flex-col items-center justify-between bg-dark-blue"
+                }
+            >
                 <Image
                     src={resources.Logo}
                     class={"self-center mt-12"}
@@ -45,15 +51,9 @@ function MenuScreen({ game, navigate, setMenuState }: ScreenProps) {
                         Play Online
                     </Button>
 
-                    <Button class={"mb-8"}>
-                        Settings
-                    </Button>
+                    <Button class={"mb-8"}>Settings</Button>
 
-                    <Button
-                        class={"mb-16"}
-                    >
-                        Quit Game
-                    </Button>
+                    <Button class={"mb-16"}>Quit Game</Button>
                 </div>
             </div>
 

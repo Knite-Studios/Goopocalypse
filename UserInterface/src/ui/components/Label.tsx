@@ -20,8 +20,10 @@ function Label(props: IProps) {
                 <image
                     class={"self-end"}
                     style={{
-                        width: 129, height: 66,
-                        top: 15, right: 20
+                        width: 129,
+                        height: 66,
+                        top: 15,
+                        right: 20
                     }}
                     image={resources.Flag}
                 />

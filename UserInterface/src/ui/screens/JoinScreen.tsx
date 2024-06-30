@@ -1,8 +1,8 @@
 import { h } from "preact";
 
 import Card from "@components/Card";
-import Text from "@components/Text";
 import Label from "@components/LabelV2";
+import Text from "@components/Text";
 
 import { ScreenProps } from "@ui/App";
 
@@ -25,7 +25,11 @@ function GradientBackground(props: { ready: boolean }) {
 }
 
 function JoinScreen(props: ScreenProps) {
-    const { menuState, navigate, game: { GameManager } } = props;
+    const {
+        menuState,
+        navigate,
+        game: { GameManager }
+    } = props;
 
     const isLocal = menuState == MenuState.Local;
     const title = `${isLocal ? "Local" : "Online"} Co-Op`;
@@ -35,7 +39,9 @@ function JoinScreen(props: ScreenProps) {
     return (
         <div class={"w-full h-full bg-dark-blue"}>
             <div
-                class={"absolute flex-row w-full h-full items-end justify-start"}
+                class={
+                    "absolute flex-row w-full h-full items-end justify-start"
+                }
             >
                 <GradientBackground ready={false} />
                 <GradientBackground ready={true} />
@@ -47,7 +53,6 @@ function JoinScreen(props: ScreenProps) {
                 <div class={"flex-row justify-center mb-[8%]"}>
                     <Card
                         class={"mr-[25%]"}
-
                         title={"Player 1"}
                         content={"Not Ready"}
                         picture={GameManager.ProfilePicture}
@@ -61,17 +66,11 @@ function JoinScreen(props: ScreenProps) {
                 </div>
 
                 <div class={"self-center w-[75%] flex-row justify-between"}>
-                    <Text
-                        class={`text-white ${allReady ? "" : "opacity-50"}`}
-                    >
+                    <Text class={`text-white ${allReady ? "" : "opacity-50"}`}>
                         Start
                     </Text>
 
-                    <Text
-                        class={"text-white"}
-                    >
-                        Back
-                    </Text>
+                    <Text class={"text-white"}>Back</Text>
                 </div>
             </div>
         </div>

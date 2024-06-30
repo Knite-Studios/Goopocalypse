@@ -13,13 +13,12 @@ function TextBox(props: IProps) {
         <div
             class={"flex-col items-center justify-center"}
             style={{
-                minWidth: 469, minHeight: 110,
+                minWidth: 469,
+                minHeight: 110,
                 backgroundImage: resources.LabelBackground
             }}
         >
-            <Text class={"text-white"}>
-                {props.children}
-            </Text>
+            <Text class={"text-white"}>{props.children}</Text>
         </div>
     );
 }

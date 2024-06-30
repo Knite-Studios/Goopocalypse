@@ -10,19 +10,20 @@
     "trailingComma": "none",
     "useTabs": false,
 
+    "importOrderSeparation": true,
     "importOrder": [
+        "^preact",
+        "^preact/(.*)$",
         "^@components/(.*)$",
         "^@screens/(.*)$",
         "^@ui/(.*)$",
         "^@type/(.*)$",
         "^@app/(.*)$",
-        "^game/(.*)$",
+        "^game",
         "^UnityEngine/(.*)$",
-        "^onejs/(.*)$",
-        "^[./]"
+        "^onejs",
+        "<THIRD_PARTY_MODULES>"
     ],
 
-    "plugins": [
-        "@trivago/prettier-plugin-sort-imports"
-    ]
+    "plugins": ["@trivago/prettier-plugin-sort-imports"]
 }

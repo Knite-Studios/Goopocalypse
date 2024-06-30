@@ -1,10 +1,12 @@
 import { h } from "preact";
 
-import { Texture2D } from "UnityEngine";
-import Text from "@components/Text";
-import resources from "@ui/resources";
-import Image from "@components/Image";
 import Banner from "@components/Banner";
+import Image from "@components/Image";
+import Text from "@components/Text";
+
+import resources from "@ui/resources";
+
+import { Texture2D } from "UnityEngine";
 
 interface IProps {
     title?: string; // This is displayed above the card.
@@ -22,7 +24,7 @@ function Card(props: IProps) {
 
     return (
         <div class={`flex-col items-center ${props.class ?? ""}`}>
-            { title && <Text class={"text-white mb-8"}>{title}</Text> }
+            {title && <Text class={"text-white mb-8"}>{title}</Text>}
 
             <div
                 class={"p-8 mb-8"}

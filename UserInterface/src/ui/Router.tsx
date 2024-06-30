@@ -1,11 +1,12 @@
 import { h, cloneElement, JSX } from "preact";
 import { Children } from "preact/compat";
+import { useState } from "preact/hooks";
 
 import { ScreenProps } from "@ui/App";
 
-import { ScriptManager } from "game";
 import { MenuState } from "@type/enums";
-import { useState } from "preact/hooks";
+
+import { ScriptManager } from "game";
 
 interface IRouteProps {
     path: string;
@@ -25,10 +26,16 @@ export function Route(_props: IRouteProps) {
     const props = _props as _IRouteProps;
     const { element: Instance } = props;
 
-    return props.isActive ? <Instance
-        navigate={props.navigate} game={props.game}
-        menuState={props.menuState} setMenuState={props.setMenuState}
-    /> : <div />;
+    return props.isActive ? (
+        <Instance
+            navigate={props.navigate}
+            game={props.game}
+            menuState={props.menuState}
+            setMenuState={props.setMenuState}
+        />
+    ) : (
+        <div />
+    );
 }
 
 interface IProps {
@@ -44,16 +51,18 @@ function Router(props: IProps) {
 
     return (
         <div class={"w-full h-full"}>
-            { Children.map(props.children, (child: any) => {
+            {Children.map(props.children, (child: any) => {
                 const addons: any = {
                     navigate: props.setRoute,
                     game: props.game,
-                    menuState, setMenuState
+                    menuState,
+                    setMenuState
                 };
-                addons.isActive = (child as JSX.Element).props.path == props.route;
+                addons.isActive =
+                    (child as JSX.Element).props.path == props.route;
 
                 return cloneElement(child, addons);
-            }) }
+            })}
         </div>
     );
 }

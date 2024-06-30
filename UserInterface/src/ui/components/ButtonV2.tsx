@@ -1,9 +1,9 @@
 import { h } from "preact";
-import { Style } from "preact/jsx";
 import { useState } from "preact/hooks";
+import { Style } from "preact/jsx";
 
-import Text, { Size } from "@components/Text";
 import GifRenderer from "@components/GifRenderer";
+import Text, { Size } from "@components/Text";
 
 import resources from "@ui/resources";
 
@@ -24,7 +24,9 @@ function Button(props: IProps) {
 
     return (
         <button
-            class={`${props.class ?? ""} px-16 py-6 border-none border-0 bg-transparent`}
+            class={`${
+                props.class ?? ""
+            } px-16 py-6 border-none border-0 bg-transparent`}
             style={{
                 ...props.style,
                 backgroundImage: hover && resources.ButtonBackground
@@ -33,16 +35,20 @@ function Button(props: IProps) {
             onMouseOut={() => setHover(false)}
             onClick={props.onClick}
         >
-            { hover && (
+            {hover && (
                 <GifRenderer
-                    start={1} end={12} fps={12}
-                    frames={"fwendgif"} prefix={"Fwend"}
+                    start={1}
+                    end={12}
+                    fps={12}
+                    frames={"fwendgif"}
+                    prefix={"Fwend"}
                     style={{
                         position: "Absolute",
-                        left: 0, bottom: 36
+                        left: 0,
+                        bottom: 36
                     }}
                 />
-            ) }
+            )}
 
             <Text
                 class={"text"}

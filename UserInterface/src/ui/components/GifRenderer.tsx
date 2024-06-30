@@ -1,6 +1,6 @@
 import { h } from "preact";
-import { Style } from "preact/jsx";
 import { useEffect, useRef, useState } from "preact/hooks";
+import { Style } from "preact/jsx";
 
 import Image from "@components/Image";
 
@@ -40,13 +40,11 @@ function GifRenderer(props: IProps) {
     }, [frame]);
 
     const image = resource.loadImage(
-        `${__dirname}/resources/${props.frames}/${props.prefix}${frame}.png`)
+        `${__dirname}/resources/${props.frames}/${props.prefix}${frame}.png`
+    );
 
     return (
-        <Image
-            style={props.style}
-            class={props.class}
-        >
+        <Image style={props.style} class={props.class}>
             {image}
         </Image>
     );

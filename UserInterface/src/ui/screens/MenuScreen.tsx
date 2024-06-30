@@ -1,4 +1,5 @@
 import { h } from "preact";
+import { useState } from "preact/hooks";
 
 import Button from "@components/ButtonV2";
 import Image from "@components/Image";
@@ -10,12 +11,15 @@ import resources from "@ui/resources";
 import { MenuState } from "@type/enums";
 
 import { useEventfulState } from "onejs";
+import GifRenderer from "@components/GifRenderer";
 
 function MenuScreen({ game, navigate, setMenuState }: ScreenProps) {
     const { GameManager } = game;
 
     const [username, _] = useEventfulState(GameManager, "Username");
     const [pfp, __] = useEventfulState(GameManager, "ProfilePicture");
+
+    const [hovered, setHovered] = useState(false);
 
     return (
         <div class={"w-full h-full flex-row"}>
@@ -83,9 +87,14 @@ function MenuScreen({ game, navigate, setMenuState }: ScreenProps) {
                 </div>
 
                 <div
-                    class={"text-white hover:text-green"}
+                    class={"items-center text-white hover:text-green"}
                     onClick={() => navigate("/credits")}
+                    onMouseOver={() => setHovered(true)}
+                    onMouseOut={() => setHovered(false)}
                 >
+                    { hovered && <GifRenderer start={1} end={12} frames={"fwendgif"}
+                                              prefix={"Fwend"} fps={12} style={{ right: 12 }} /> }
+
                     <Text>Credits</Text>
                 </div>
             </div>

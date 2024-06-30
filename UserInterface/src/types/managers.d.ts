@@ -1,13 +1,20 @@
 declare module "game" {
-    export class WaveManager extends NetworkSingleton<WaveManager> {
-        NetworkwaveCount: number;
-        NetworkmatchTimer: number;
-        waveCount: number;
-        matchTimer: number;
-        constructor();
-        Weaved(): boolean;
-        SerializeSyncVars(writer: NetworkWriter, forceAll: boolean): void;
-        DeserializeSyncVars(reader: NetworkReader, initialState: boolean): void;
+    export class WaveManager extends MonoSingleton<WaveManager> {
+        WaveCount: number
+        MatchTimer: number
+        Score: number
+        add_OnWaveCountChanged(handler: (a: number) => void): void
+        remove_OnWaveCountChanged(handler: (a: number) => void): void
+        OnWaveCountChanged: OneJS.Event<(a: number) => void>
+        add_OnMatchTimerChanged(handler: (a: number) => void): void
+        remove_OnMatchTimerChanged(handler: (a: number) => void): void
+        OnMatchTimerChanged: OneJS.Event<(a: number) => void>
+        add_OnScoreChanged(handler: (a: number) => void): void
+        remove_OnScoreChanged(handler: (a: number) => void): void
+        OnScoreChanged: OneJS.Event<(a: number) => void>
+        spawnThreshold: number
+        constructor()
+        SpawnWave(): void
     }
 
     export class ScriptManager extends MonoSingleton<ScriptManager> {

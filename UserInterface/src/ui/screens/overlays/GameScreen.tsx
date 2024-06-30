@@ -5,15 +5,36 @@ import Text, { Size } from "@components/Text";
 import type { ScriptManager } from "game";
 
 import { useEventfulState } from "onejs";
-import resources, { BackwardsScoreCard } from "@ui/resources";
-import Image from "@components/Image";
+import resources from "@ui/resources";
+
+/**
+ * Format the score to a string.
+ *
+ * @param score The score to format.
+ */
+function formatScore(score: number): string {
+    return score.toString().padStart(4, "0");
+}
+
+/**
+ * Format the time to a string.
+ * Time format: MM:SS
+ *
+ * @param time The time to format.
+ */
+function formatTime(time: number): string {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+
+    return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+}
 
 function GameScreen({ game }: { game: ScriptManager }) {
     const { WaveManager } = game;
 
-    const [waveCount, _]: [number, any] = useEventfulState(
+    const [score, _]: [number, any] = useEventfulState(
         WaveManager,
-        "WaveCount"
+        "Score"
     );
     const [matchTimer, __]: [number, any] = useEventfulState(
         WaveManager,
@@ -42,7 +63,9 @@ function GameScreen({ game }: { game: ScriptManager }) {
                         width: 382, height: 111
                     }}
                 >
-                    <Text size={Size.Large} class={"text-gray"}>00:00</Text>
+                    <Text size={Size.Large} class={"text-gray"}>
+                        {formatTime(matchTimer)}
+                    </Text>
                 </div>
             </div>
 
@@ -66,7 +89,7 @@ function GameScreen({ game }: { game: ScriptManager }) {
                         width: 382, height: 111
                     }}
                 >
-                    <Text size={Size.Large} class={"text-gray"}>xxxx</Text>
+                    <Text size={Size.Large} class={"text-gray"}>{formatScore(score)}</Text>
                 </div>
             </div>
         </div>

@@ -11,6 +11,8 @@ namespace Managers
         [EventfulProperty] private int _waveCount = 1;
         [EventfulProperty] private long _matchTimer;
 
+        [EventfulProperty] private long _score;
+
         [Tooltip("The amount of seconds it takes to spawn a wave.")]
         public int spawnThreshold = 10;
 

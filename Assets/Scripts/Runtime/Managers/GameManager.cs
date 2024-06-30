@@ -224,7 +224,7 @@ namespace Managers
             {
                 case DisplayMode.FullScreen:
 #if UNITY_STANDALONE_WIN
-                    Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+                    Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
                     break;
 #endif
                 case DisplayMode.Borderless:

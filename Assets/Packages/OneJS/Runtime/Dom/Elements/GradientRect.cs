@@ -7,6 +7,7 @@ namespace OneJS.Dom {
         static readonly ushort[] indices = { 0, 1, 2, 2, 3, 0 };
 
         public Color[] Colors { get; set; }
+        public bool Vertical { get; set; }
 
         public GradientRect() {
             generateVisualContent = GenerateVisualContent;
@@ -43,10 +44,20 @@ namespace OneJS.Dom {
             var top = 0f;
             var bottom = rect.height;
 
-            vertices[0].position = new Vector3(left, bottom, Vertex.nearZ);
-            vertices[1].position = new Vector3(left, top, Vertex.nearZ);
-            vertices[2].position = new Vector3(right, top, Vertex.nearZ);
-            vertices[3].position = new Vector3(right, bottom, Vertex.nearZ);
+            if (Vertical)
+            {
+                vertices[1].position = new Vector3(left, bottom, Vertex.nearZ); // 0
+                vertices[2].position = new Vector3(left, top, Vertex.nearZ); // 1
+                vertices[3].position = new Vector3(right, top, Vertex.nearZ); // 2
+                vertices[0].position = new Vector3(right, bottom, Vertex.nearZ); // 3
+            }
+            else
+            {
+                vertices[0].position = new Vector3(left, bottom, Vertex.nearZ);
+                vertices[1].position = new Vector3(left, top, Vertex.nearZ);
+                vertices[2].position = new Vector3(right, top, Vertex.nearZ);
+                vertices[3].position = new Vector3(right, bottom, Vertex.nearZ);
+            }
 
             MeshWriteData mwd = mgc.Allocate(vertices.Length, indices.Length);
             mwd.SetAllVertices(vertices);

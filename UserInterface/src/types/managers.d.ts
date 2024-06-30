@@ -39,10 +39,8 @@ declare module "game" {
         Username: string
         LocalMultiplayer: boolean
         State: GameState
+        Route: string
         LoadingProgress: number
-        add_OnRouteUpdate(handler: (a: string) => void): void
-        remove_OnRouteUpdate(handler: (a: string) => void): void
-        OnRouteUpdate: OneJS.Event<(a: string) => void>
         add_OnProfilePictureChanged(handler: (a: Texture2D) => void): void
         remove_OnProfilePictureChanged(handler: (a: Texture2D) => void): void
         OnProfilePictureChanged: OneJS.Event<(a: Texture2D) => void>
@@ -55,12 +53,14 @@ declare module "game" {
         add_OnStateChanged(handler: (a: GameState) => void): void
         remove_OnStateChanged(handler: (a: GameState) => void): void
         OnStateChanged: OneJS.Event<(a: GameState) => void>
+        add_OnRouteChanged(handler: (a: string) => void): void
+        remove_OnRouteChanged(handler: (a: string) => void): void
+        OnRouteChanged: OneJS.Event<(a: string) => void>
         add_OnLoadingProgressChanged(handler: (a: number) => void): void
         remove_OnLoadingProgressChanged(handler: (a: number) => void): void
         OnLoadingProgressChanged: OneJS.Event<(a: number) => void>
         menuScene: number
         gameScene: number
-        DefaultRoute: string
         constructor()
         StartDebugServer(): void
         JoinDebugServer(address: string, port: number): void

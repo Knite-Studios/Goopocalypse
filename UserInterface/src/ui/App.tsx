@@ -1,6 +1,5 @@
 import { h } from "preact";
 import usePrevious from "@app/hooks/usePrevious";
-import { useEffect, useState } from "preact/hooks";
 
 import CreditsScreen from "@screens/CreditsScreen";
 import JoinScreen from "@screens/JoinScreen";
@@ -38,20 +37,10 @@ export type ScreenProps = {
 function App() {
     const { GameManager } = game;
 
-    const [currentRoute, navigate] = useState(GameManager.DefaultRoute);
+    const [currentRoute, navigate] = useEventfulState(GameManager, "Route");
     const previousPage = usePrevious(currentRoute);
 
     const [gameState, _] = useEventfulState(GameManager, "State");
-
-    // Register the router event listener.
-    useEffect(() => {
-        GameManager.remove_OnRouteUpdate(navigate);
-        GameManager.add_OnRouteUpdate(navigate);
-
-        onEngineReload(() => {
-            GameManager.remove_OnRouteUpdate(navigate);
-        });
-    }, []);
 
     return (
         <Router

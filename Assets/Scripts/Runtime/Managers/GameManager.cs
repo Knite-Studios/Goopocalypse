@@ -45,10 +45,8 @@ namespace Managers
         [EventfulProperty] private bool _localMultiplayer = false;
         [EventfulProperty] private GameState _state = GameState.Menu;
 
+        [EventfulProperty] private string _route = "/";
         [EventfulProperty] private float _loadingProgress;
-
-        public string DefaultRoute = "/";
-        public event Action<string> OnRouteUpdate;
 
         #endregion
 
@@ -296,7 +294,7 @@ namespace Managers
         /// <summary>
         /// Navigate the user interface to a specific path.
         /// </summary>
-        public void Navigate(string path) => OnRouteUpdate?.Invoke(path);
+        public void Navigate(string path) => Route = path;
 
         /// <summary>
         /// Global method to quit the game.

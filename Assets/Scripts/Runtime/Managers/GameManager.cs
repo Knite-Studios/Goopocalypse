@@ -25,6 +25,7 @@ namespace Managers
         public static Action OnGameStart;
         public static UnityAction<GameEvent> OnGameEvent;
         public static UnityAction<int> OnWaveSpawn;
+        public static Action OnGameOver;
 
         /// <summary>
         /// Reference to the JavaScript ScriptEngine.
@@ -43,6 +44,8 @@ namespace Managers
 
         [EventfulProperty] private bool _localMultiplayer = false;
         [EventfulProperty] private GameState _state = GameState.Menu;
+
+        [EventfulProperty] private float _loadingProgress;
 
         public string DefaultRoute = "/";
         public event Action<string> OnRouteUpdate;
@@ -78,6 +81,7 @@ namespace Managers
         {
             // Add event listener for game events.
             OnGameStart += () => State = GameState.Playing;
+            OnGameOver += HandleGameOver;
 
             // Check if Steam is active.
             if (SteamAPI.IsSteamRunning())
@@ -275,6 +279,19 @@ namespace Managers
 #endif
         }
 
+        private void HandleGameOver()
+        {
+            State = GameState.GameOver;
+
+            // TODO: Route to game over screen.
+            // We could also add a sound effect here and a delay before transitioning.
+            // Or instead of loading scene, we could let the players decide to restart or quit.
+            if (!LocalMultiplayer)
+                NetworkServer.SendToAll(new TransferSceneS2CNotify { sceneId = gameScene });
+            else
+                LoadScene(0);
+        }
+
         #region Packet Handlers
 
         /// <summary>
@@ -352,7 +369,14 @@ namespace Managers
             if (loadOperation == null) throw new Exception("Failed to load scene.");
 
             while (!loadOperation.isDone)
+            {
+                // TODO: Use this value for loading screen.
+                State = GameState.Loading;
+                LoadingProgress = loadOperation.progress * 100;
                 await Task.Yield();
+            }
+
+            LoadingProgress = 0;
 
             return loadOperation;
         }
@@ -378,6 +402,8 @@ namespace Managers
         Menu,
         Lobby,
         Loading,
-        Playing
+        Playing,
+        Paused,
+        GameOver
     }
 }

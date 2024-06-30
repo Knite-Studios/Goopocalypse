@@ -23,8 +23,6 @@ namespace Managers
         }
 
         public AudioMixer audioMixer;
-        [SerializeField] private AudioClip onHoverSound;
-        [SerializeField] private AudioClip onClickSound;
 
         private AudioSource _audioSource;
 
@@ -74,18 +72,6 @@ namespace Managers
 
         private void SetSoundFxVolume()
             => audioMixer.SetFloat("SoundFx", Mathf.Log10(SoundFxVolume) * 20);
-
-        public void PlayUIHoverSound()
-        {
-            if (_audioSource.isPlaying) _audioSource.Stop();
-            if (onHoverSound) _audioSource.PlayOneShot(onHoverSound);
-        }
-
-        public void PlayUIClickSound()
-        {
-            if (_audioSource.isPlaying) _audioSource.Stop();
-            if (onClickSound) _audioSource.PlayOneShot(onClickSound);
-        }
 
         /// <summary>
         /// Sets the display mode of the game.

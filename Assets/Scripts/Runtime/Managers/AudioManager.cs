@@ -21,6 +21,27 @@ namespace Managers
         }
 
         public AudioMixer audioMixer;
+        [SerializeField] private AudioClip onHoverSound;
+        [SerializeField] private AudioClip onClickSound;
+
+        private AudioSource _audioSource;
+
+        protected override void OnAwake()
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
+
+        public void PlayUIHoverSound()
+        {
+            if (_audioSource.isPlaying) _audioSource.Stop();
+            if (onHoverSound) _audioSource.PlayOneShot(onHoverSound);
+        }
+
+        public void PlayUIClickSound()
+        {
+            if (_audioSource.isPlaying) _audioSource.Stop();
+            if (onClickSound) _audioSource.PlayOneShot(onClickSound);
+        }
 
         /// <summary>
         /// Plays a sound effect at the specified position.

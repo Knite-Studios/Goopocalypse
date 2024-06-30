@@ -1,12 +1,10 @@
 ﻿using System;
-using OneJS;
 using UnityEngine;
 using UnityEngine.Audio;
-using Utils;
 
 namespace Managers
 {
-    public partial class AudioManager : MonoSingleton<AudioManager>
+    public class AudioManager : MonoSingleton<AudioManager>
     {
         /// <summary>
         /// Special singleton initializer method.
@@ -23,58 +21,6 @@ namespace Managers
         }
 
         public AudioMixer audioMixer;
-        [SerializeField] private AudioClip onHoverSound;
-        [SerializeField] private AudioClip onClickSound;
-
-        #region JavaScript Accessible
-
-        [EventfulProperty] private float _musicVolume;
-        [EventfulProperty] private float _soundFxVolume;
-
-        #endregion
-
-        private AudioSource _audioSource;
-
-        protected override void OnAwake()
-        {
-            _audioSource = gameObject.GetOrAddComponent<AudioSource>();
-        }
-
-        private void Start()
-        {
-            MusicVolume = PlayerPrefsUtil.MusicVolume;
-            SoundFxVolume = PlayerPrefsUtil.SoundFxVolume;
-
-            LoadVolumeSettings();
-        }
-
-        private void LoadVolumeSettings()
-        {
-            SetMusicVolume();
-            SetSoundFxVolume();
-        }
-
-        #region Methods for Javascript use
-
-        public void SetMusicVolume()
-            => audioMixer.SetFloat("Music", Mathf.Log10(MusicVolume) * 20);
-
-        public void SetSoundFxVolume()
-            => audioMixer.SetFloat("SoundFx", Mathf.Log10(SoundFxVolume) * 20);
-
-        public void PlayUIHoverSound()
-        {
-            if (_audioSource.isPlaying) _audioSource.Stop();
-            if (onHoverSound) _audioSource.PlayOneShot(onHoverSound);
-        }
-
-        public void PlayUIClickSound()
-        {
-            if (_audioSource.isPlaying) _audioSource.Stop();
-            if (onClickSound) _audioSource.PlayOneShot(onClickSound);
-        }
-
-        #endregion
 
         /// <summary>
         /// Plays a sound effect at the specified position.

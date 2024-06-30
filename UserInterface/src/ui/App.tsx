@@ -72,7 +72,6 @@ function App() {
             <Route path={"/settings"} element={SettingsScreen} />
 
             <Route path={"/game"} element={GameScreen} />
-            <Route path={"/game/pause"} element={PauseScreen} />
             <Route path={"/game/over"} element={FinishScreen} />
             <Route path={"/game/wave"} element={WaveScreen} />
             <Route path={"/game/pause"} element={PauseScreen} />

@@ -8,7 +8,7 @@ import Text, { Size } from "@components/Text";
 import Button from "@components/ButtonV2";
 import { Application } from "UnityEngine";
 
-function QuitScreen({ game, navigate }: ScreenProps) {
+function QuitScreen({ game, navigate, lastPage }: ScreenProps) {
     const { GameManager } = game;
 
     const isLobby = GameManager.State == GameState.Lobby;
@@ -49,7 +49,7 @@ function QuitScreen({ game, navigate }: ScreenProps) {
                     bounce={false}
                     class={"w-[49%]"}
                     defaultColor={"#51d598"}
-                    onClick={() => navigate(isLobby ? "/" : "/game/pause")}
+                    onClick={() => navigate(lastPage)}
                 >
                     Back
                 </Button>

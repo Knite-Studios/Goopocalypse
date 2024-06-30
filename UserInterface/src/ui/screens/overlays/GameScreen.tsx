@@ -5,6 +5,8 @@ import Text, { Size } from "@components/Text";
 import type { ScriptManager } from "game";
 
 import { useEventfulState } from "onejs";
+import resources, { BackwardsScoreCard } from "@ui/resources";
+import Image from "@components/Image";
 
 function GameScreen({ game }: { game: ScriptManager }) {
     const { WaveManager } = game;
@@ -19,10 +21,53 @@ function GameScreen({ game }: { game: ScriptManager }) {
     );
 
     return (
-        <div class={"p-16 flex-col w-full h-full text-blue-400"}>
-            <div class={"flex-col self-center text-center"}>
-                <Text size={Size.Normal}>{`Wave ${waveCount.toString()}`}</Text>
-                <Text size={Size.Large}>{matchTimer.toString()}</Text>
+        <div class={"flex-row w-full justify-between mt-4"}>
+            <div class={"flex-col"}>
+                <div
+                    class={"mb-6 items-center justify-center"}
+                    style={{
+                        backgroundImage: resources.FullFlag,
+                        width: 277, height: 94
+                    }}
+                >
+                    <Text class={"text-white mr-8"}>
+                        Time
+                    </Text>
+                </div>
+
+                <div
+                    class={"w-full h-full justify-center items-center"}
+                    style={{
+                        backgroundImage: resources.BackwardsScoreCard,
+                        width: 382, height: 111
+                    }}
+                >
+                    <Text size={Size.Large} class={"text-gray"}>00:00</Text>
+                </div>
+            </div>
+
+            <div class={"flex-col items-end"}>
+                <div
+                    class={"mb-6 items-end justify-center"}
+                    style={{
+                        backgroundImage: resources.BackwardsFlag,
+                        width: 277, height: 94
+                    }}
+                >
+                    <Text class={"text-white mr-8"}>
+                        Score
+                    </Text>
+                </div>
+
+                <div
+                    class={"w-full h-full justify-center items-center"}
+                    style={{
+                        backgroundImage: resources.ScoreCard,
+                        width: 382, height: 111
+                    }}
+                >
+                    <Text size={Size.Large} class={"text-gray"}>xxxx</Text>
+                </div>
             </div>
         </div>
     );

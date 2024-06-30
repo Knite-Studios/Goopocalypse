@@ -53,40 +53,31 @@ function App() {
         });
     }, []);
 
-    switch (gameState) {
-        case GameState.Menu:
-            return (
-                <Router
-                    game={game}
-                    setRoute={navigate}
-                    route={currentRoute}
-                    previous={previousPage}
-                >
-                    <Route path={"/"} element={MenuScreen} />
-                    <Route path={"/debug"} element={DebugScreen} />
+    return (
+        <Router
+            game={game}
+            setRoute={navigate}
+            route={currentRoute}
+            previous={previousPage}
+        >
+            <Route path={"/"} element={MenuScreen} />
+            <Route path={"/debug"} element={DebugScreen} />
 
-                    <Route path={"/join"} element={JoinScreen} />
-                    <Route path={"/credits"} element={CreditsScreen} />
-                    <Route path={"/tutorial"} element={TutorialScreen} />
+            <Route path={"/join"} element={JoinScreen} />
+            <Route path={"/credits"} element={CreditsScreen} />
+            <Route path={"/tutorial"} element={TutorialScreen} />
 
-                    {/* This can also be an overlay. */}
-                    <Route path={"/quit"} element={QuitScreen} />
-                    <Route path={"/settings"} element={SettingsScreen} />
+            {/* This can also be an overlay. */}
+            <Route path={"/quit"} element={QuitScreen} />
+            <Route path={"/settings"} element={SettingsScreen} />
 
-                    <Route path={"/game"} element={PauseScreen} />
-                    <Route path={"/game/over"} element={FinishScreen} />
-                    <Route path={"/game/wave"} element={WaveScreen} />
-                    <Route path={"/game/pause"} element={PauseScreen} />
-                </Router>
-            );
-        case GameState.Lobby:
-            // TODO: Remove legacy code.
-            return <LobbyScreen game={game} />;
-        case GameState.Playing:
-            return <GameScreen game={game} />;
-        default:
-            return <div></div>;
-    }
+            <Route path={"/game"} element={GameScreen} />
+            <Route path={"/game/pause"} element={PauseScreen} />
+            <Route path={"/game/over"} element={FinishScreen} />
+            <Route path={"/game/wave"} element={WaveScreen} />
+            <Route path={"/game/pause"} element={PauseScreen} />
+        </Router>
+    );
 }
 
 export default App;

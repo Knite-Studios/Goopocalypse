@@ -7,6 +7,7 @@ export const ThaleahFat = resource.loadFont(
 export const Logo = resource.loadImage(`${__dirname}/resources/logo.png`);
 export const KeyCap = resource.loadImage(`${__dirname}/resources/keycap.png`);
 export const Flag = resource.loadImage(`${__dirname}/resources/flag.png`);
+export const FullFlag = resource.loadImage(`${__dirname}/resources/full_flag.png`);
 export const BackwardsFlag = resource.loadImage(`${__dirname}/resources/back_flag.png`);
 export const MiniFlag = resource.loadImage(
     `${__dirname}/resources/mini_flag.png`
@@ -28,6 +29,9 @@ export const NameFrame = resource.loadImage(
 );
 export const ScoreCard = resource.loadImage(
     `${__dirname}/resources/score_card.png`
+);
+export const BackwardsScoreCard = resource.loadImage(
+    `${__dirname}/resources/backwards_score.png`
 );
 
 export const Tutorial = resource.loadImage(
@@ -102,5 +106,7 @@ export default {
     ScoreCard,
     Arrow,
     Set,
-    Unset
+    Unset,
+    FullFlag,
+    BackwardsScoreCard
 };

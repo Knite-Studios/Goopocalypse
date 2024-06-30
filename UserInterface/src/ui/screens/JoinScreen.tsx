@@ -48,8 +48,8 @@ function JoinScreen(props: ScreenProps) {
                     "absolute flex-row w-full h-full items-end justify-start"
                 }
             >
-                <GradientBackground ready={false} />
-                <GradientBackground ready={true} />
+                <GradientBackground ready={player1?.isReady ?? false} />
+                <GradientBackground ready={player2?.isReady ?? false} />
             </div>
 
             <div class={"w-full h-full"}>

@@ -33,7 +33,7 @@ function QuitScreen({ game, navigate, lastPage }: ScreenProps) {
                     class={"w-[49%]"}
                     onClick={() => {
                         if (isMenu) {
-                            Application.Quit();
+                            GameManager.QuitGame();
                         } else {
                             navigate("/");
                             GameManager.StopGame();

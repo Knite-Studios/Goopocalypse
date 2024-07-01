@@ -26,6 +26,7 @@ namespace Managers
         public static UnityAction<GameEvent> OnGameEvent;
         public static UnityAction<int> OnWaveSpawn;
         public static Action OnGameOver;
+        public static UnityAction<int> OnAfterSceneLoad;
 
         /// <summary>
         /// Reference to the JavaScript ScriptEngine.
@@ -36,6 +37,8 @@ namespace Managers
         private readonly List<NetworkConnectionToClient> _loadedPlayers = new();
 
         private TaskCompletionSource<object> _loadTask;
+
+        private int _currentScene;
 
         #region JavaScript Accessible
 
@@ -84,7 +87,8 @@ namespace Managers
                 State = GameState.Playing;
                 Navigate("/game");
             };
-            OnGameOver += HandleGameOver;
+            OnGameOver += GameOver;
+            OnAfterSceneLoad += AfterSceneLoad;
 
             // Check if Steam is active.
             if (SteamAPI.IsSteamRunning())
@@ -247,10 +251,23 @@ namespace Managers
                 LoadScene(0);
         }
 
-        private void HandleGameOver()
+        /// <summary>
+        /// Invoked whenever a player dies.
+        /// </summary>
+        private void GameOver()
         {
             State = GameState.GameOver;
             Navigate("/game/over");
+        }
+
+        /// <summary>
+        /// Invoked after the scene has finished loading.
+        /// </summary>
+        /// <param name="sceneId">The scene that was loaded.</param>
+        private void AfterSceneLoad(int sceneId)
+        {
+            _currentScene = sceneId;
+            State = sceneId == menuScene ? GameState.Menu : GameState.Playing;
         }
 
         #endregion
@@ -406,6 +423,8 @@ namespace Managers
             }
 
             LoadingProgress = 0;
+
+            OnAfterSceneLoad?.Invoke(sceneId);
 
             return loadOperation;
         }

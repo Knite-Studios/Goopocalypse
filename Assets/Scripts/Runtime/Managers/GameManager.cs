@@ -377,7 +377,18 @@ namespace Managers
             var currentScene = SceneManager.GetActiveScene();
             if (string.IsNullOrEmpty(currentScene.name)) return null;
 
-            var loadOperation = SceneManager.LoadSceneAsync(sceneId, LoadSceneMode.Additive);
+            var unloadOperation = SceneManager.UnloadSceneAsync(currentScene);
+            if (unloadOperation != null)
+            {
+                while (!unloadOperation.isDone)
+                    await Task.Yield();
+            }
+            else
+            {
+                Debug.LogWarning($"Failed to unload scene {currentScene.name}.");
+            }
+
+            var loadOperation = SceneManager.LoadSceneAsync(sceneId, LoadSceneMode.Single);
             if (loadOperation == null) throw new Exception("Failed to load scene.");
 
             while (!loadOperation.isDone)
@@ -390,18 +401,7 @@ namespace Managers
 
             LoadingProgress = 0;
 
-            var unloadOperation = SceneManager.UnloadSceneAsync(currentScene);
-            if (unloadOperation != null)
-            {
-                while (!unloadOperation.isDone)
-                    await Task.Yield();
-            }
-            else
-            {
-                Debug.LogWarning($"Failed to unload scene {currentScene.name}.");
-            }
-
-            return unloadOperation;
+            return loadOperation;
         }
 
         #endregion

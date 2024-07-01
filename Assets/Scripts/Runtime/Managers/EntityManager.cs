@@ -61,8 +61,14 @@ namespace Managers
 
         protected override void OnSceneUnloaded(Scene scene)
         {
-            players.ForEach(p => p.Dispose());
-            enemies.ForEach(e => e.Dispose());
+            players.ForEach(p =>
+            {
+                if (p) p.Dispose();
+            });
+            enemies.ForEach(e =>
+            {
+                if (e) e.Dispose();
+            });
         }
 
         /// <summary>

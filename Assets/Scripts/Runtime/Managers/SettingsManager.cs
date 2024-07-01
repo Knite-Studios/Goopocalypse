@@ -71,13 +71,13 @@ namespace Managers
 
         private void SetMusicVolume()
         {
-            audioMixer.SetFloat("Music", Mathf.Log10(MusicVolume) * 20);
+            audioMixer.SetFloat("Music", MusicVolume == 0 ? -80.0f : Mathf.Log10(MusicVolume) * 20);
             PlayerPrefsUtil.MusicVolume = MusicVolume;
         }
 
         private void SetSoundFxVolume()
         {
-            audioMixer.SetFloat("SoundFx", Mathf.Log10(SoundFxVolume) * 20);
+            audioMixer.SetFloat("SoundFx", SoundFxVolume == 0 ? -80.0f : Mathf.Log10(SoundFxVolume) * 20);
             PlayerPrefsUtil.SoundFxVolume = SoundFxVolume;
         }
 

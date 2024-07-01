@@ -157,6 +157,7 @@ namespace Entity.Player
 
         public string address, userId;
         [CanBeNull] public Texture2D profileIcon;
+        public bool isReady;
     }
 
     public static class LuaPlayer

@@ -49,7 +49,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.16
+    m_Value: 0.25
   smoothness:
     m_OverrideState: 1
     m_Value: 0.25
@@ -118,7 +118,7 @@ MonoBehaviour:
   active: 1
   lift:
     m_OverrideState: 1
-    m_Value: {x: 0.9682117, y: 0.9781796, z: 1, w: 0}
+    m_Value: {x: 1, y: 0.99644256, z: 0.97768086, w: 0}
   gamma:
     m_OverrideState: 1
     m_Value: {x: 1, y: 0.9962738, z: 0.9933133, w: 0}
@@ -166,7 +166,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 6
   dirtTexture:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {fileID: 0}
     dimension: 1
   dirtIntensity:

@@ -53,6 +53,7 @@ function MenuScreen({ game, navigate, setMenuState }: ScreenProps) {
                         onClick={() => {
                             setMenuState(MenuState.Online);
                             navigate("/join");
+                            game.LobbyManager.MakeLobby();
                         }}
                     >
                         Play Online

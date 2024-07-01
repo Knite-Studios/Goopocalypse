@@ -99,6 +99,8 @@ namespace Managers
             {
                 roles.Add(new PlayersListS2CNotify.PlayerRoleEntry
                     { userId = userId, role = role });
+
+                Debug.Log($"Player {userId} is now a {role}");
             }
 
             NetworkServer.SendToAll(new PlayersListS2CNotify
@@ -150,9 +152,11 @@ namespace Managers
                 connection = conn,
                 address = conn.address,
                 userId = userId,
-                profileIcon = profileIcon
+                profileIcon = profileIcon,
+                isReady = true
             });
-            Roles[userId] = PlayerRole.None;
+            // TODO: Replace with role selection later.
+            Roles[userId] = (PlayerRole)Players.Count;
 
             OnPlayersChanged?.Invoke(Players);
             OnRolesChanged?.Invoke(Roles);
@@ -318,7 +322,7 @@ namespace Managers
             }
 
             // Change the game state.
-            GameManager.Instance.State = GameState.Lobby;
+            // GameManager.Instance.State = GameState.Lobby;
         }
 
         /// <summary>

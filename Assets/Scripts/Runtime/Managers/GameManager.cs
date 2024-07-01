@@ -77,6 +77,7 @@ namespace Managers
             NetworkClient.RegisterHandler<TransferSceneS2CNotify>(OnTransferScene);
             NetworkClient.RegisterHandler<PlayerLoginSuccessS2CNotify>(OnLoginSuccess);
             NetworkClient.RegisterHandler<GameStartS2CNotify>(OnNetworkGameStart);
+            NetworkClient.RegisterHandler<GameOverS2CNotify>(msg => OnGameOver?.Invoke());
         }
 
         private void Start()

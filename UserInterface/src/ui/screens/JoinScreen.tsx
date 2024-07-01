@@ -80,7 +80,7 @@ function JoinScreen(props: ScreenProps) {
                         bounce={false}
                         class={"text-white"}
                         textClass={"px-24"}
-                        onClick={() => navigate(lastPage)}
+                        onClick={() => navigate("/")}
                     >
                         Back
                     </Button>

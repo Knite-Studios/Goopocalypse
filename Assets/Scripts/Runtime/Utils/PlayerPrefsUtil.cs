@@ -24,6 +24,16 @@ namespace Utils
             }
         }
 
+        public static int DisplayMode
+        {
+            get => PlayerPrefs.GetInt("DisplayMode", 0);
+            set
+            {
+                PlayerPrefs.SetInt("DisplayMode", value);
+                PlayerPrefs.Save();
+            }
+        }
+
         public static bool FirstLocal
         {
             get => PlayerPrefs.GetInt("FirstLocal", 1) == 1;

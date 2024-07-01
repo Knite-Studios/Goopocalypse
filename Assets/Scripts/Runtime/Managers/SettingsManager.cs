@@ -45,14 +45,20 @@ namespace Managers
         {
             MusicVolume = PlayerPrefsUtil.MusicVolume;
             SoundFxVolume = PlayerPrefsUtil.SoundFxVolume;
+            Display = (DisplayMode)PlayerPrefsUtil.DisplayMode;
 
-            LoadVolumeSettings();
+            Debug.Log($"Music Volume: {MusicVolume}");
+            Debug.Log($"Sound FX Volume: {SoundFxVolume}");
+            Debug.Log($"Display Mode: {Display}");
+
+            LoadSettings();
         }
 
-        private void LoadVolumeSettings()
+        private void LoadSettings()
         {
             SetMusicVolume();
             SetSoundFxVolume();
+            SetDisplayMode(Display);
         }
 
         #region Methods for Javascript use
@@ -68,10 +74,16 @@ namespace Managers
         }
 
         private void SetMusicVolume()
-            => audioMixer.SetFloat("Music", Mathf.Log10(MusicVolume) * 20);
+        {
+            audioMixer.SetFloat("Music", Mathf.Log10(MusicVolume) * 20);
+            PlayerPrefsUtil.MusicVolume = MusicVolume;
+        }
 
         private void SetSoundFxVolume()
-            => audioMixer.SetFloat("SoundFx", Mathf.Log10(SoundFxVolume) * 20);
+        {
+            audioMixer.SetFloat("SoundFx", Mathf.Log10(SoundFxVolume) * 20);
+            PlayerPrefsUtil.SoundFxVolume = SoundFxVolume;
+        }
 
         /// <summary>
         /// Sets the display mode of the game.
@@ -95,15 +107,17 @@ namespace Managers
                     Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
                     break;
             }
+
+            PlayerPrefsUtil.DisplayMode = (int)mode;
         }
 
         #endregion
 
         public enum DisplayMode
         {
-            FullScreen,
-            Borderless,
-            Windowed
+            FullScreen = 0,
+            Borderless = 1,
+            Windowed = 2,
         }
     }
 }

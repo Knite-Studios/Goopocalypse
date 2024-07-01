@@ -1,4 +1,4 @@
-﻿using Attributes;
+using Attributes;
 using Managers;
 using Mirror;
 using Projectiles;
@@ -12,6 +12,7 @@ namespace Entity.Enemies
         [SerializeField] private PrefabType projectileType;
         [SerializeField] private float attackRange = 5.0f;
         [SerializeField] private float attackInterval = 1.5f;
+        [SerializeField] public Animator animator;
 
         [TitleHeader("Range Enemy Audio Settings")]
         [SerializeField] private AudioClip shootSound;
@@ -32,7 +33,10 @@ namespace Entity.Enemies
             var distance = Vector2.Distance(transform.position, Target.transform.position);
 
             if (distance <= attackRange)
+            {
+                Animator.SetTrigger("IsAttacking");
                 HandleAttack();
+            }
             else
                 FollowTarget();
         }

@@ -2,7 +2,22 @@ fileFormatVersion: 2
 guid: 688297ab8163bb74c8ddb1be9047958c
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: LootIdle
+    second: {fileID: 7400000, guid: e5b583f971bfeeb469a59fcfa3c1321e, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: LootWalkLoop
+    second: {fileID: 7400000, guid: 13ffe5c2db0b7a643ac8d9928c0fdcbe, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: LootWalkingTransition
+    second: {fileID: 7400000, guid: 0fe036617b085e346aaf3cd032ede6f0, type: 2}
   serializedVersion: 2
   userData: 
   assetBundleName: 
@@ -97,7 +112,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638531364823518971
+  platformSettingsDirtyTick: 638554494933200417
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -129,7 +144,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
+      y: 156
       width: 62
       height: 38
     spriteID: 70051d1cd4329bf4ca961c920e8d0245
@@ -140,7 +155,307 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
+    uvTransform: {x: 4, y: 156}
+  - name: Sad_Frame_1
+    originalName: 
+    pivot: {x: 0.4923077, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 340
+      width: 65
+      height: 35
+    spriteID: 0327b030af3a6914982df01a15689a74
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 340}
+  - name: Sad_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 81
+      y: 4
+      width: 68
+      height: 33
+    spriteID: 0bbbe6e551ccc8b4ba77b58a23502d26
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 81, y: 4}
+  - name: Sad_Frame_3
+    originalName: 
+    pivot: {x: 0.4923077, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 383
+      width: 65
+      height: 35
+    spriteID: 884d7d0669cd0184587408e8e4e2d581
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 383}
+  - name: Sad_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 202
+      width: 62
+      height: 38
+    spriteID: 1d3489ce58db59c47a284854d7ae01da
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 202}
+  - name: Sad_Frame_5
+    originalName: 
+    pivot: {x: 0.4923077, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 426
+      width: 65
+      height: 35
+    spriteID: 908519255434c054489b4d38a5920978
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 426}
+  - name: Sad_Frame_6
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 81
+      y: 45
+      width: 68
+      height: 33
+    spriteID: 6becf2e8fec3bab41b3be2f097d717a1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 81, y: 45}
+  - name: Sad_Frame_7
+    originalName: 
+    pivot: {x: 0.4923077, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 469
+      width: 65
+      height: 35
+    spriteID: 3cfba3859a6c0534399678b36433ac0b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 469}
+  - name: Sad_Frame_8
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 248
+      width: 62
+      height: 38
+    spriteID: 850f71f6a52aa4e4ba791606684a7112
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 248}
+  - name: Sad_Frame_9
+    originalName: 
+    pivot: {x: 0.49206352, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 81
+      y: 168
+      width: 63
+      height: 35
+    spriteID: 92902d32800212e41b9942108e3b1b92
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 81, y: 168}
+  - name: Sad_Frame_10
+    originalName: 
+    pivot: {x: 0.5074627, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 81
+      y: 127
+      width: 67
+      height: 33
+    spriteID: 0d037487a58b9a54aba10959164f94cd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 81, y: 127}
+  - name: Sad_Frame_11
+    originalName: 
+    pivot: {x: 0.46428573, y: -0.045454547}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 52
+      width: 56
+      height: 44
+    spriteID: 731fc74329f6f434ebf2ba55e153b3b5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 52}
+  - name: Sad_Frame_12
+    originalName: 
+    pivot: {x: 0.47826087, y: -0.32500002}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 69
+      height: 40
+    spriteID: 8137607e85f979d478ffbfd6b3750afe
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: Sad_Frame_13
+    originalName: 
+    pivot: {x: 0.46428573, y: -0.045454547}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 104
+      width: 56
+      height: 44
+    spriteID: afb0391ef80aad14f8283405277b504e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 104}
+  - name: Sad_Frame_14
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 81
+      y: 86
+      width: 68
+      height: 33
+    spriteID: 4edcecf0a6903cd4d9dbde087c46528b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 81, y: 86}
+  - name: Sad_Frame_15
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 294
+      width: 62
+      height: 38
+    spriteID: 5a9f6a53a9f5085409910b68fd3ac217
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 294}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -150,7 +465,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: Sad
+    - name: Sad_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -159,6 +474,141 @@ ScriptedImporter:
         width: 62
         height: 38
       spriteId: 70051d1cd4329bf4ca961c920e8d0245
+    - name: Sad_Frame_1
+      frameIndex: 1
+      additiveSortOrder: 0
+      cellRect:
+        x: 32
+        y: 0
+        width: 65
+        height: 35
+      spriteId: 0327b030af3a6914982df01a15689a74
+    - name: Sad_Frame_2
+      frameIndex: 2
+      additiveSortOrder: 0
+      cellRect:
+        x: 30
+        y: 0
+        width: 68
+        height: 33
+      spriteId: 0bbbe6e551ccc8b4ba77b58a23502d26
+    - name: Sad_Frame_3
+      frameIndex: 3
+      additiveSortOrder: 0
+      cellRect:
+        x: 32
+        y: 0
+        width: 65
+        height: 35
+      spriteId: 884d7d0669cd0184587408e8e4e2d581
+    - name: Sad_Frame_4
+      frameIndex: 4
+      additiveSortOrder: 0
+      cellRect:
+        x: 33
+        y: 0
+        width: 62
+        height: 38
+      spriteId: 1d3489ce58db59c47a284854d7ae01da
+    - name: Sad_Frame_5
+      frameIndex: 5
+      additiveSortOrder: 0
+      cellRect:
+        x: 32
+        y: 0
+        width: 65
+        height: 35
+      spriteId: 908519255434c054489b4d38a5920978
+    - name: Sad_Frame_6
+      frameIndex: 6
+      additiveSortOrder: 0
+      cellRect:
+        x: 30
+        y: 0
+        width: 68
+        height: 33
+      spriteId: 6becf2e8fec3bab41b3be2f097d717a1
+    - name: Sad_Frame_7
+      frameIndex: 7
+      additiveSortOrder: 0
+      cellRect:
+        x: 32
+        y: 0
+        width: 65
+        height: 35
+      spriteId: 3cfba3859a6c0534399678b36433ac0b
+    - name: Sad_Frame_8
+      frameIndex: 8
+      additiveSortOrder: 0
+      cellRect:
+        x: 33
+        y: 0
+        width: 62
+        height: 38
+      spriteId: 850f71f6a52aa4e4ba791606684a7112
+    - name: Sad_Frame_9
+      frameIndex: 9
+      additiveSortOrder: 0
+      cellRect:
+        x: 33
+        y: 0
+        width: 63
+        height: 35
+      spriteId: 92902d32800212e41b9942108e3b1b92
+    - name: Sad_Frame_10
+      frameIndex: 10
+      additiveSortOrder: 0
+      cellRect:
+        x: 30
+        y: 0
+        width: 67
+        height: 33
+      spriteId: 0d037487a58b9a54aba10959164f94cd
+    - name: Sad_Frame_11
+      frameIndex: 11
+      additiveSortOrder: 0
+      cellRect:
+        x: 38
+        y: 2
+        width: 56
+        height: 44
+      spriteId: 731fc74329f6f434ebf2ba55e153b3b5
+    - name: Sad_Frame_12
+      frameIndex: 12
+      additiveSortOrder: 0
+      cellRect:
+        x: 31
+        y: 13
+        width: 69
+        height: 40
+      spriteId: 8137607e85f979d478ffbfd6b3750afe
+    - name: Sad_Frame_13
+      frameIndex: 13
+      additiveSortOrder: 0
+      cellRect:
+        x: 38
+        y: 2
+        width: 56
+        height: 44
+      spriteId: afb0391ef80aad14f8283405277b504e
+    - name: Sad_Frame_14
+      frameIndex: 14
+      additiveSortOrder: 0
+      cellRect:
+        x: 30
+        y: 0
+        width: 68
+        height: 33
+      spriteId: 4edcecf0a6903cd4d9dbde087c46528b
+    - name: Sad_Frame_15
+      frameIndex: 15
+      additiveSortOrder: 0
+      cellRect:
+        x: 33
+        y: 0
+        width: 62
+        height: 38
+      spriteId: 5a9f6a53a9f5085409910b68fd3ac217
     linkedCells: []
     parentIndex: -1
   platformSettings:

@@ -116,7 +116,7 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   <CurrentHealth>k__BackingField: 0
   detectionRadius: 5
-  chargeTime: 2
+  chargeTime: 3
   dashSpeed: 6
 --- !u!114 &5820094326497231489
 MonoBehaviour:
@@ -273,7 +273,7 @@ Animator:
   m_GameObject: {fileID: 4751257989261520612}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: -5279150257698349218, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
+  m_Controller: {fileID: 9100000, guid: 7470ed2b0fbb521499a6cc39cad21040, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

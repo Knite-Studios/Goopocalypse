@@ -117,7 +117,8 @@ MonoBehaviour:
   <CurrentHealth>k__BackingField: 0
   projectileType: 7
   attackRange: 5
-  attackInterval: 1.5
+  attackInterval: 5
+  animator: {fileID: 0}
   shootSound: {fileID: 8300000, guid: e36432e14be9cb74cb01e8748e302de9, type: 3}
 --- !u!114 &7679964397663766623
 MonoBehaviour:

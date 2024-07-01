@@ -40,11 +40,14 @@ namespace Entity.Enemies
 
             if (Vector2.Distance(transform.position, targetPosition) > 0.1f)
             {
+                Animator.SetBool("IsMoving", true);
                 var direction = (targetPosition - (Vector2)transform.position).normalized;
                 Rb.MovePosition(Rb.position + direction * (Speed * Time.fixedDeltaTime));
+
             }
             else
             {
+                Animator.SetBool("IsMoving", false);
                 CurrentPathIndex++;
             }
         }

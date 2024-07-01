@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DasherWalk
+  m_Name: DasherIdle
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,21 +21,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 3692121729146646505, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.120000035
-      value: {fileID: 5182054142968058082, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.24000004
-      value: {fileID: 5717260217885807003, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.35999998
-      value: {fileID: -8289712066499503991, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.48
-      value: {fileID: 4578743915244574016, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.6
-      value: {fileID: 2185061807061984178, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.72
-      value: {fileID: 8794056300067291033, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.84000003
-      value: {fileID: 8794056300067291033, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
+      value: {fileID: -3819758691432986606, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
+    - time: 0.12
+      value: {fileID: -3819758691432986606, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -54,7 +42,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.85
+    m_StopTime: 0.13
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

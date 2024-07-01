@@ -89,6 +89,15 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Invite"",
+                    ""type"": ""Button"",
+                    ""id"": ""e456838f-9bd9-4ea5-ae4a-2c013607db4f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -333,6 +342,17 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""action"": ""Movement2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""19c7c418-7dbf-42cc-abf0-2785a683ef9e"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Invite"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -359,6 +379,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         m_Player_Dab = m_Player.FindAction("Dab", throwIfNotFound: true);
         m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
+        m_Player_Invite = m_Player.FindAction("Invite", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -427,6 +448,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dab;
     private readonly InputAction m_Player_Inventory;
     private readonly InputAction m_Player_Menu;
+    private readonly InputAction m_Player_Invite;
     public struct PlayerActions
     {
         private @Inputs m_Wrapper;
@@ -438,6 +460,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         public InputAction @Dab => m_Wrapper.m_Player_Dab;
         public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
+        public InputAction @Invite => m_Wrapper.m_Player_Invite;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -468,6 +491,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @Menu.started += instance.OnMenu;
             @Menu.performed += instance.OnMenu;
             @Menu.canceled += instance.OnMenu;
+            @Invite.started += instance.OnInvite;
+            @Invite.performed += instance.OnInvite;
+            @Invite.canceled += instance.OnInvite;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -493,6 +519,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @Menu.started -= instance.OnMenu;
             @Menu.performed -= instance.OnMenu;
             @Menu.canceled -= instance.OnMenu;
+            @Invite.started -= instance.OnInvite;
+            @Invite.performed -= instance.OnInvite;
+            @Invite.canceled -= instance.OnInvite;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -537,5 +566,6 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         void OnDab(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
+        void OnInvite(InputAction.CallbackContext context);
     }
 }

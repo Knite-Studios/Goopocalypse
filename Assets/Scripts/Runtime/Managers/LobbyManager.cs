@@ -86,6 +86,8 @@ namespace Managers
             NetworkServer.RegisterHandler<ChangeRoleC2SReq>(OnChangeRole);
 
             NetworkClient.RegisterHandler<PlayersListS2CNotify>(OnPlayersList);
+
+            InputManager.Invite.started += _ => InvitePlayer();
         }
 
         /// <summary>
@@ -348,10 +350,16 @@ namespace Managers
         /// </summary>
         public void InvitePlayer()
         {
+            if (!NetworkServer.active || Players.Count >= 2 || GameManager.Instance.Route != "/join") return;
+
             switch (transport)
             {
                 case TransportType.Steam:
+#if UNITY_EDITOR
+                    SteamFriends.ActivateGameOverlay("Friends");
+#else
                     SteamFriends.ActivateGameOverlayInviteDialog(_lobbyId);
+#endif
                     break;
             }
         }

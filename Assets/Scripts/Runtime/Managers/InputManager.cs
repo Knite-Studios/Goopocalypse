@@ -17,7 +17,7 @@ namespace Managers
         public static InputAction Dab => Instance._inputs.Player.Dab;
         public static InputAction Inventory => Instance._inputs.Player.Inventory;
         public static InputAction Menu => Instance._inputs.Player.Menu;
-
+        public static InputAction Invite => Instance._inputs.Player.Invite;
 
         protected override void OnAwake()
         {

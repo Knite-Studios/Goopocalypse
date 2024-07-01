@@ -197,11 +197,11 @@ namespace Managers
             // Configure the second player to use the second input.
             player2.input = InputManager.Movement2;
 
-            // Create link between players.
-            LinkPlayers(player1, player2);
-
             // Set the local multiplayer flag.
             LocalMultiplayer = true;
+
+            // Create link between players.
+            LinkPlayers(player1, player2);
 
             // Set the target group of the camera to both players.
             CreateTargetGroup(player1.transform, player2.transform);

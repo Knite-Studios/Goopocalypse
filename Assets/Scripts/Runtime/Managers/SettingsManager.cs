@@ -78,7 +78,6 @@ namespace Managers
         /// </summary>
         public void SetDisplayMode(DisplayMode mode)
         {
-            Display = mode;
             switch (mode)
             {
                 case DisplayMode.FullScreen:

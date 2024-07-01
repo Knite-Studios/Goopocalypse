@@ -78,12 +78,21 @@ function MenuScreen({ game, navigate, setMenuState }: ScreenProps) {
                 <div
                     class={"flex-row items-center px-8 py-2"}
                     style={{
-                        backgroundImage: resources.ProfileFrame
+                        backgroundImage: resources.ProfileFrame,
+                        height: 72
                     }}
                 >
                     <Image
                         class={"mr-5"}
-                        style={{ width: 42, height: 42 }}
+                        style={{
+                            width: 72,
+                            height: 72,
+                            position: "Absolute",
+                            left: 0,
+                            borderColor: "#51D598",
+                            borderWidth: 3,
+                            marginLeft: -62
+                        }}
                         src={pfp}
                     />
                     <Text class={"text-green"}>{username}</Text>

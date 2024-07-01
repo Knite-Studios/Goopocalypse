@@ -84,7 +84,7 @@ namespace Managers
                 State = GameState.Playing;
                 Navigate("/game");
             };
-            OnGameOver += StopGame;
+            OnGameOver += HandleGameOver;
 
             // Check if Steam is active.
             if (SteamAPI.IsSteamRunning())
@@ -235,8 +235,8 @@ namespace Managers
         /// </summary>
         public void StopGame()
         {
-            State = GameState.GameOver;
-            Navigate("/game/over");
+            State = GameState.Menu;
+            Navigate("/");
 
             // TODO: Route to game over screen.
             // We could also add a sound effect here and a delay before transitioning.
@@ -245,6 +245,12 @@ namespace Managers
                 NetworkServer.SendToAll(new TransferSceneS2CNotify { sceneId = menuScene });
             else
                 LoadScene(0);
+        }
+
+        private void HandleGameOver()
+        {
+            State = GameState.GameOver;
+            Navigate("/game/over");
         }
 
         #endregion

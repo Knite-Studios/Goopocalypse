@@ -35,7 +35,6 @@ function QuitScreen({ game, navigate, lastPage }: ScreenProps) {
                         if (isMenu) {
                             Application.Quit();
                         } else {
-                            navigate("/");
                             GameManager.StopGame();
                         }
                     }}

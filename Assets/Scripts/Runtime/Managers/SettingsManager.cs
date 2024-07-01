@@ -47,10 +47,6 @@ namespace Managers
             SoundFxVolume = PlayerPrefsUtil.SoundFxVolume;
             Display = (DisplayMode)PlayerPrefsUtil.DisplayMode;
 
-            Debug.Log($"Music Volume: {MusicVolume}");
-            Debug.Log($"Sound FX Volume: {SoundFxVolume}");
-            Debug.Log($"Display Mode: {Display}");
-
             LoadSettings();
         }
 

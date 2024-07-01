@@ -3,6 +3,7 @@ using Mirror;
 using OneJS;
 using Runtime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Managers
 {
@@ -26,6 +27,15 @@ namespace Managers
         private void Start()
         {
             GameManager.OnGameStart += OnGameStart;
+        }
+
+        protected override void OnSceneUnloaded(Scene scene)
+        {
+            _waveCount = 1;
+            _matchTimer = 0;
+            _score = 0;
+
+            StopAllCoroutines();
         }
 
         #region Packet Handlers

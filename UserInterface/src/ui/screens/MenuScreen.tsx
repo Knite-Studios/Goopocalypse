@@ -75,27 +75,27 @@ function MenuScreen({ game, navigate, setMenuState }: ScreenProps) {
             </div>
 
             <div class={"px-14 py-6 w-full flex-col justify-between items-end"}>
-                <div
-                    class={"flex-row items-center px-8 py-2"}
-                    style={{
-                        backgroundImage: resources.ProfileFrame,
-                        height: 72
-                    }}
-                >
+                <div class={"flex-row-reverse"}>
+                    <div
+                        class={"flex-row items-center px-8 py-2"}
+                        style={{
+                            backgroundImage: resources.ProfileFrame,
+                            height: 72
+                        }}
+                    >
+                        <Text class={"text-green"}>{username}</Text>
+                    </div>
+
                     <Image
-                        class={"mr-5"}
                         style={{
                             width: 72,
                             height: 72,
-                            position: "Absolute",
-                            left: 0,
                             borderColor: "#51D598",
-                            borderWidth: 3,
-                            marginLeft: -62
+                            borderWidth: 4,
+                            left: 12
                         }}
                         src={pfp}
                     />
-                    <Text class={"text-green"}>{username}</Text>
                 </div>
 
                 <div

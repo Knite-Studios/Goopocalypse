@@ -44,14 +44,14 @@ function SettingsScreen(props: ScreenProps) {
                 <Setting current={SettingsManager.VolumeToIndex(music)}
                          name={"Music"} type={"slider"}
                          values={[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]}
-                         onChange={(value: number) => setMusicVolume(value)}
+                         onChange={(value: number) => setMusicVolume(value ?? 0)}
                          class={"mb-6"}
                 />
 
                 <Setting current={SettingsManager.VolumeToIndex(effects)}
                          name={"SFX"} type={"slider"}
                          values={[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]}
-                         onChange={(value: number) => setSfxVolume(value)}
+                         onChange={(value: number) => setSfxVolume(value ?? 0)}
                          class={"mb-6"}
                 />
 

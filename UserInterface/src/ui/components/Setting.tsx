@@ -70,7 +70,7 @@ function Setting(props: IProps) {
                         onClick={() => {
                             const currentIndex = props.values.indexOf(props.current);
                             const newIndex = currentIndex == props.values.length - 1 ?
-                                0 :
+                                -1 :
                                 currentIndex + 1;
 
                             props.onChange(props.values[newIndex]);
@@ -92,7 +92,7 @@ function Setting(props: IProps) {
                     <Image
                         class={"mr-5"}
                         onClick={() => {
-                            const newIndex = currentIndex == 0 ?
+                            const newIndex = currentIndex == -1 ?
                                 9 :
                                 currentIndex - 1;
                             props.onChange(props.values[newIndex]);
@@ -121,7 +121,7 @@ function Setting(props: IProps) {
                     <Image
                         onClick={() => {
                             const newIndex = currentIndex == 9 ?
-                                0 :
+                                -1 :
                                 currentIndex + 1;
                             props.onChange(props.values[newIndex]);
 

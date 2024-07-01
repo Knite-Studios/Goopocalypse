@@ -163,7 +163,7 @@ namespace Entity
 
         public void Dispose()
         {
-            DestroyImmediate(gameObject);
+            Destroy(gameObject);
             if (NetworkServer.active) NetworkServer.Destroy(gameObject);
         }
     }

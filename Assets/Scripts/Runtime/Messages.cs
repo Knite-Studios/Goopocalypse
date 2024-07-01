@@ -74,4 +74,13 @@ namespace Runtime
     {
         public PlayerRole role;
     }
+
+    /// <summary>
+    /// Server -> (broadcast) -> Client
+    /// Informs all clients that the game is over whenever a player dies.
+    /// </summary>
+    public struct GameOverS2CNotify : NetworkMessage
+    {
+
+    }
 }

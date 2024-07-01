@@ -6,6 +6,7 @@ using Effects;
 using JetBrains.Annotations;
 using Managers;
 using Mirror;
+using Runtime;
 using Systems.Attributes;
 using UnityEngine;
 using XLua;
@@ -32,9 +33,10 @@ namespace Entity.Player
 
         #endregion
 
+        public bool HasDied { get; private set; }
+
         private Collider2D _collider;
         private CinemachineVirtualCamera _virtualCamera;
-        private bool _isDead;
         private static readonly int IsDead = Animator.StringToHash("IsDead");
 
         protected override void Awake()
@@ -125,9 +127,12 @@ namespace Entity.Player
 
         public override void OnDeath()
         {
-            if (_isDead) return;
+            if (HasDied) return;
 
             onDeathEvent?.Invoke();
+
+            if (NetworkServer.active) NetworkServer.SendToAll(new GameOverS2CNotify());
+
             // TODO: Call PrefabManager.Create for death particle effect and Network.Spawn.
             // TODO: Play death sound one shot with proximity and ensure other clients can hear it.
             Rb.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -137,7 +142,7 @@ namespace Entity.Player
 
             EntityManager.UnregisterPlayer(this as PlayerController);
 
-            _isDead = true;
+            HasDied = true;
             GameManager.OnGameOver?.Invoke();
         }
     }

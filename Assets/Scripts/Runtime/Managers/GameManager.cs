@@ -198,7 +198,7 @@ namespace Managers
             player2.input = InputManager.Movement2;
 
             // Create link between players.
-            LinkPlayers(player1, player2, false);
+            LinkPlayers(player1, player2);
 
             // Set the local multiplayer flag.
             LocalMultiplayer = true;
@@ -276,16 +276,13 @@ namespace Managers
         /// <summary>
         /// Links two players together.
         /// </summary>
-        private void LinkPlayers(PlayerController player1, PlayerController player2, bool remote = true)
+        private void LinkPlayers(PlayerController player1, PlayerController player2)
         {
             var link = PrefabManager.Create<Link>(PrefabType.Link);
             link.fwend = player1.transform;
             link.buddie = player2.transform;
 
-            if (remote)
-            {
-                NetworkServer.Spawn(link.gameObject);
-            }
+            if (!LocalMultiplayer) NetworkServer.Spawn(link.gameObject);
         }
 
         /// <summary>

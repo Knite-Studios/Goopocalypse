@@ -25,7 +25,6 @@ function GradientBackground(props: { ready: boolean }) {
 
 function JoinScreen(props: ScreenProps) {
     const {
-        menuState,
         navigate,
         lastPage,
         game: { GameManager, LobbyManager }
@@ -35,9 +34,6 @@ function JoinScreen(props: ScreenProps) {
 
     const player1: PlayerSession | null = players[0] ?? null;
     const player2: PlayerSession | null = players[1] ?? null
-
-    const isLocal = menuState == MenuState.Local;
-    const title = `${isLocal ? "Local" : "Online"} Co-Op`;
 
     const allReady = player1?.isReady && player2?.isReady;
 
@@ -53,7 +49,7 @@ function JoinScreen(props: ScreenProps) {
             </div>
 
             <div class={"w-full h-full"}>
-                <Label class={"mt-14 mb-[5%]"}>{title}</Label>
+                <Label class={"mt-14 mb-[5%]"}>Online Co-Op</Label>
 
                 <div class={"flex-row justify-center mb-[7%]"}>
                     <Card

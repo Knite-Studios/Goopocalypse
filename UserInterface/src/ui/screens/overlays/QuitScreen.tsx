@@ -11,7 +11,7 @@ import { Application } from "UnityEngine";
 function QuitScreen({ game, navigate, lastPage }: ScreenProps) {
     const { GameManager } = game;
 
-    const isLobby = GameManager.State == GameState.Lobby;
+    const isMenu = GameManager.State == GameState.Menu;
 
     return (
         <Box
@@ -32,7 +32,7 @@ function QuitScreen({ game, navigate, lastPage }: ScreenProps) {
                 <Button
                     class={"w-[49%]"}
                     onClick={() => {
-                        if (isLobby) {
+                        if (isMenu) {
                             Application.Quit();
                         } else {
                             navigate("/");

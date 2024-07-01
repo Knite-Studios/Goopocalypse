@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Attributes;
 using Common.Extensions;
@@ -15,7 +16,7 @@ namespace Entity
     /// The base class for all entities in the game.
     /// </summary>
     [RequireComponent(typeof(NetworkIdentity))]
-    public abstract class BaseEntity : NetworkBehaviour, IAttributable, IDamageable
+    public abstract class BaseEntity : NetworkBehaviour, IAttributable, IDamageable, IDisposable
     {
         /// <summary>
         /// The Lua script responsible for the logic of the entity.
@@ -148,8 +149,7 @@ namespace Entity
         /// </summary>
         public void OnDeathAnimation()
         {
-            Destroy(gameObject);
-            if (NetworkServer.active) NetworkServer.Destroy(gameObject);
+            Dispose();
         }
 
         /// <summary>
@@ -159,6 +159,12 @@ namespace Entity
         {
             if (AudioSource.isPlaying) AudioSource.Stop();
             AudioManager.Instance.PlayOneShot(deathSound, transform.position);
+        }
+
+        public void Dispose()
+        {
+            DestroyImmediate(gameObject);
+            if (NetworkServer.active) NetworkServer.Destroy(gameObject);
         }
     }
 }

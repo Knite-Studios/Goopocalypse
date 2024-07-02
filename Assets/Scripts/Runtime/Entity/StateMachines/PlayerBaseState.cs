@@ -42,7 +42,7 @@ namespace Entity.StateMachines
 
         private void HandleArrowIndicator()
         {
-            if (GameManager.Instance.LocalMultiplayer) return;
+            if (!player.isLocalPlayer) return;
 
             var otherPlayer = EntityManager.Instance.players
                 .Find(other => other != player);

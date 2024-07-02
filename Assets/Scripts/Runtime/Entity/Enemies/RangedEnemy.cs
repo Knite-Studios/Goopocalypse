@@ -86,6 +86,9 @@ namespace Entity.Enemies
             {
                 var direction = (targetPosition - (Vector2)transform.position).normalized;
                 Rb.MovePosition(Rb.position + direction * (Speed * Time.fixedDeltaTime));
+
+                var scale = transform.localScale;
+                transform.localScale = scale.SetX(direction.x < 0 ? -1 : 1);
             }
             else
             {
@@ -124,6 +127,10 @@ namespace Entity.Enemies
             var spawnPosition = spawnPoint.position + direction;
             var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             var spawnRotation = Quaternion.Euler(0, 0, angle);
+
+            // Ensure the sprite is facing the correct direction.
+            var scale = transform.localScale;
+            transform.localScale = scale.SetX(direction.x < 0 ? -1 : 1);
 
             // Spawn the projectile.
             if (!GameManager.Instance.LocalMultiplayer)

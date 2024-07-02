@@ -43,15 +43,20 @@ namespace Entity.Enemies
 
         private IEnumerator Dash()
         {
+            var direction = (Target.position - transform.position).normalized;
+
+            // Ensure the sprite is facing the player before dashing.
+            var scale = transform.localScale;
+            transform.localScale = scale.SetX(direction.x < 0 ? -1 : 1);
+
             // Dash towards the player.
             _isDashing = true;
-            var dashDirection = (Target.position - transform.position).normalized;
             var dashDuration = dashRange / dashSpeed;
 
             var elapsedTime = 0f;
             while (elapsedTime < dashDuration)
             {
-                Rb.MovePosition(Rb.position + dashDirection.ToVector2() * (dashSpeed * Time.fixedDeltaTime));
+                Rb.MovePosition(Rb.position + direction.ToVector2() * (dashSpeed * Time.fixedDeltaTime));
                 elapsedTime += Time.fixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
@@ -81,7 +86,9 @@ namespace Entity.Enemies
             {
                 var direction = (targetPosition - (Vector2)transform.position).normalized;
                 Rb.MovePosition(Rb.position + direction * (Speed * Time.fixedDeltaTime));
-                Rb.AddForce(direction * Speed, ForceMode2D.Force);
+
+                var scale = transform.localScale;
+                transform.localScale = scale.SetX(direction.x < 0 ? -1 : 1);
             }
             else
             {

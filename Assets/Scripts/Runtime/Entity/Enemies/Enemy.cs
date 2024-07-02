@@ -66,6 +66,9 @@ namespace Entity.Enemies
             {
                 var direction = (targetPosition - (Vector2)transform.position).normalized;
                 Rb.MovePosition(Rb.position + direction * (Speed * Time.fixedDeltaTime));
+
+                var scale = transform.localScale;
+                transform.localScale = scale.SetX(direction.x < 0 ? -1 : 1);
             }
             else
             {

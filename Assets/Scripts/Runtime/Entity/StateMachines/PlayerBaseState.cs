@@ -42,17 +42,21 @@ namespace Entity.StateMachines
 
         private void HandleArrowIndicator()
         {
+            // Ensure this only runs for the local player.
             if (!player.isLocalPlayer) return;
 
+            // Find other the other player.
             var otherPlayer = EntityManager.Instance.players
                 .Find(other => other != player);
 
             if (!otherPlayer) return;
 
+            // Check if the other player is off screen.
             var viewPortPosition = _camera.WorldToViewportPoint(otherPlayer.transform.position);
             var isOffScreen = viewPortPosition.x < 0 || viewPortPosition.x > 1 ||
                               viewPortPosition.y < 0 || viewPortPosition.y > 1;
 
+            // Create and handle the arrow indicator.
             if (isOffScreen)
             {
                 if (!_arrowIndicator)

@@ -256,7 +256,10 @@ namespace Managers
         /// </summary>
         /// <param name="callback">The callback info.</param>
         private void OnJoinRequest(GameLobbyJoinRequested_t callback)
-            => SteamMatchmaking.JoinLobby(callback.m_steamIDLobby);
+        {
+            SteamMatchmaking.JoinLobby(callback.m_steamIDLobby);
+            GameManager.Instance.Navigate("/join");
+        }
 
         /// <summary>
         /// Invoked when the client connects to a Steam lobby.

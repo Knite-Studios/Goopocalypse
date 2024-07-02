@@ -9,7 +9,6 @@ namespace Entity.Enemies
         /// </summary>
         public override void OnDeathAnimation()
         {
-            base.OnDeathAnimation();
             SpawnOrb();
             Dispose();
         }

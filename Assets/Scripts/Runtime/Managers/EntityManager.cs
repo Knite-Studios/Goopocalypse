@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Entity.Enemies;
 using Entity.Player;
+using Mirror;
 using Scriptable;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -54,8 +55,8 @@ namespace Managers
 
         #endregion
 
-        public List<PlayerController> players = new();
-        public List<Enemy> enemies = new();
+        [SyncVar] public List<PlayerController> players = new();
+        [SyncVar] public List<Enemy> enemies = new();
 
         [SerializeField] private SpawnData spawnData;
 

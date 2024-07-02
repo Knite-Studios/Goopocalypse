@@ -29,7 +29,7 @@ namespace Entity
         /// <summary>
         /// The Lua script responsible for the logic of the entity.
         /// </summary>
-        [TitleHeader("Entity Settings")]
+        [TitleHeader("Base Entity Settings")]
         public string luaScript;
         public UnityEvent onDeathEvent;
 

@@ -11,5 +11,6 @@ namespace Systems.Attributes
         Armor,
         AreaOfEffect,
         CameraDistance,
+        Points,
     }
 }

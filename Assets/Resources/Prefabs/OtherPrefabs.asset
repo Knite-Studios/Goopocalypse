@@ -23,3 +23,8 @@ MonoBehaviour:
     root: 
     shouldPool: 0
     initialPoolSize: 0
+  - type: 10
+    prefab: {fileID: 6531676077893993366, guid: 44ab11e4b1369274690beb8d58108863, type: 3}
+    root: 
+    shouldPool: 0
+    initialPoolSize: 0

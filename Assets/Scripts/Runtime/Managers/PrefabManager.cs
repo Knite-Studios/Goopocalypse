@@ -185,6 +185,7 @@ namespace Managers
         PlaceholderProjectile = 7,
         Link = 8,
         ArrowIndicator = 9,
+        Orb = 10,
     }
 
     [Serializable]

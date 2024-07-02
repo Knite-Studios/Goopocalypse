@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Attributes;
 using Entity.Pathfinding;
 using Entity.Player;
 using Managers;
+using Systems.Attributes;
 using UnityEngine;
 using XLua;
 using Random = UnityEngine.Random;
@@ -29,6 +29,13 @@ namespace Entity.Enemies
             StartCoroutine(UpdatePath());
 
             GameManager.OnGameEvent += OnGameEvent;
+        }
+
+        protected override void ApplyBaseStats(LuaTable stats)
+        {
+            base.ApplyBaseStats(stats);
+
+            this.GetOrCreateAttribute(Attribute.Points, stats.Get<long>("points"));
         }
 
         protected virtual void FixedUpdate()
@@ -123,6 +130,10 @@ namespace Entity.Enemies
             base.OnDeath();
 
             EntityManager.UnregisterEnemy(this);
+
+            var orb = PrefabManager.Create<Orb>(PrefabType.Orb);
+            orb.transform.position = transform.position;
+            orb.points = this.GetAttributeValue<long>(Attribute.Points);
 
             // TODO: Remove this line if we have enemy death animation.
             OnDeathAnimation();

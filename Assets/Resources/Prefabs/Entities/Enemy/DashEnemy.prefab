@@ -115,8 +115,7 @@ MonoBehaviour:
       m_Calls: []
   deathSound: {fileID: 0}
   <CurrentHealth>k__BackingField: 0
-  detectionRadius: 5
-  chargeTime: 3
+  dashRange: 5
   dashSpeed: 6
 --- !u!114 &5820094326497231489
 MonoBehaviour:
@@ -262,7 +261,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.0234375, y: 0.2554655}
   serializedVersion: 2
-  m_Radius: 0.2892065
+  m_Radius: 0.35
 --- !u!95 &1941214046873212620
 Animator:
   serializedVersion: 5

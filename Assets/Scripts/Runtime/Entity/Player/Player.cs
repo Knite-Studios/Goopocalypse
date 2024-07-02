@@ -17,7 +17,7 @@ namespace Entity.Player
     [CSharpCallLua]
     public class Player : BaseEntity
     {
-        [TitleHeader("PlayerController Settings")]
+        [TitleHeader("Player Settings")]
         [SyncVar] public PlayerRole playerRole;
         [SerializeField] private CinemachineVirtualCamera virtualCameraPrefab;
 
@@ -33,7 +33,7 @@ namespace Entity.Player
 
         #endregion
 
-        public bool HasDied { get; private set; }
+        private bool _isDead;
         private Collider2D _collider;
         private CinemachineVirtualCamera _virtualCamera;
 
@@ -125,7 +125,7 @@ namespace Entity.Player
 
         public override void OnDeath()
         {
-            if (HasDied) return;
+            if (_isDead) return;
 
             onDeathEvent?.Invoke();
 
@@ -140,7 +140,7 @@ namespace Entity.Player
 
             EntityManager.UnregisterPlayer(this as PlayerController);
 
-            HasDied = true;
+            _isDead = true;
             GameManager.OnGameOver?.Invoke();
         }
     }

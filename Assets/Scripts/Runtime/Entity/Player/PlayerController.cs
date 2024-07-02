@@ -7,8 +7,8 @@ namespace Entity.Player
 {
     public class PlayerController : Player
     {
-        [HideInInspector] public IdleState IdleState;
-        [HideInInspector] public MovingState MovingState;
+        internal IdleState IdleState;
+        internal MovingState MovingState;
 
         /// <summary>
         /// This is configurable by the game.

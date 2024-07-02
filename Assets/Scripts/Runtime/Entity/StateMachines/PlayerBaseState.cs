@@ -34,7 +34,8 @@ namespace Entity.StateMachines
 
             // Flip the sprite based on the direction it's facing.
             var scale = player.transform.localScale;
-            player.transform.localScale = scale.SetX(Direction.x < 0 ? -1 : 1);
+            if (Mathf.Abs(Direction.x) > 0.1f)
+                player.transform.localScale = scale.SetX(Direction.x < 0 ? -1 : 1);
 
             var movement = move * (player.Speed * Time.fixedDeltaTime);
             player.Rb.MovePosition(player.Rb.position + movement);

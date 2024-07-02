@@ -115,4 +115,16 @@ public static class VectorExtensions
     /// </summary>
     public static Vector2Int ToVector2(this Vector3Int vector3) =>
         new(vector3.x, vector3.y);
+
+    /// <summary>
+    /// Sets the x value of a Vector2.
+    /// </summary>
+    public static Vector3 SetX(this Vector2 vector2, float x)
+        => new(x, vector2.y);
+
+    /// <summary>
+    /// Sets the y value of a Vector2.
+    /// </summary>
+    public static Vector3 SetY(this Vector2 vector2, float y)
+        => new(vector2.x, y);
 }

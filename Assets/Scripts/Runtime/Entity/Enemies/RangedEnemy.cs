@@ -12,15 +12,12 @@ namespace Entity.Enemies
         [SerializeField] private PrefabType projectileType;
         [SerializeField] private float attackRange = 5.0f;
         [SerializeField] private float attackInterval = 1.5f;
+        [SerializeField] private Transform spawnPoint;
 
         [TitleHeader("Range Enemy Audio Settings")]
         [SerializeField] private AudioClip shootSound;
 
         private float _attackTimer;
-
-        private Vector3 _spawnPosition;
-        private float _angle;
-        private Quaternion _spawnRotation;
 
         protected override void Start()
         {
@@ -48,8 +45,6 @@ namespace Entity.Enemies
 
         private void HandleAttack()
         {
-            // Get Target's direction.
-            var direction = (Target.position - transform.position).normalized;
             var isReadyToAttack = _attackTimer <= 0;
 
             // Remain in idle state if not ready to attack.
@@ -62,11 +57,6 @@ namespace Entity.Enemies
                 Animator.SetBool(IsAttackingHash, true);
                 // Reset the attack timer.
                 _attackTimer = attackInterval;
-
-                // Calculate the spawn position.
-                _spawnPosition = transform.position + direction;
-                _angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                _spawnRotation = Quaternion.Euler(0, 0, _angle);
             }
             else
             {
@@ -96,7 +86,6 @@ namespace Entity.Enemies
             {
                 var direction = (targetPosition - (Vector2)transform.position).normalized;
                 Rb.MovePosition(Rb.position + direction * (Speed * Time.fixedDeltaTime));
-                Rb.AddForce(direction * Speed, ForceMode2D.Force);
             }
             else
             {
@@ -127,11 +116,20 @@ namespace Entity.Enemies
         /// </summary>
         public void OnAttackAnimation()
         {
+
+            // Get Target's direction.
+            var direction = (Target.position - transform.position).normalized;
+
+            // Calculate the spawn position and rotation.
+            var spawnPosition = spawnPoint.position + direction;
+            var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            var spawnRotation = Quaternion.Euler(0, 0, angle);
+
             // Spawn the projectile.
             if (!GameManager.Instance.LocalMultiplayer)
-                SpawnServerProjectile(_spawnPosition, _spawnRotation);
+                SpawnServerProjectile(spawnPosition, spawnRotation);
             else
-                SpawnProjectile(_spawnPosition, _spawnRotation);
+                SpawnProjectile(spawnPosition, spawnRotation);
         }
     }
 }

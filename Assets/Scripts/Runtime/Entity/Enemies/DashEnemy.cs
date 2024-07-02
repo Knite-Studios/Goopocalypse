@@ -44,7 +44,7 @@ namespace Entity.Enemies
         private IEnumerator ChargeAndDash()
         {
             _isCharging = true;
-            Animator.SetBool("IsAttacking", true);
+            Animator.SetBool(IsAttackingHash, true);
 
             // Stop moving during the charge.
             CurrentPath = null;
@@ -67,7 +67,7 @@ namespace Entity.Enemies
             }
 
             _isDashing = false;
-            Animator.SetBool("IsAttacking", false);
+            Animator.SetBool(IsAttackingHash, false);
         }
     }
 }

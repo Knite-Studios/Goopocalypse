@@ -1,5 +1,5 @@
-﻿using System;
-using Attributes;
+﻿using Attributes;
+using Entity.Enemies;
 using Entity.Player;
 using JetBrains.Annotations;
 using Managers;
@@ -78,16 +78,19 @@ namespace Entity
 
                 if (!_collider.enabled) _collider.enabled = true;
 
+                var fwendPos = GetSpriteMiddlePoint(fwend);
+                var buddiePos = GetSpriteMiddlePoint(buddie);
+
                 // Connect the players with a line.
-                _lineRenderer.SetPosition(0, GetSpriteMiddlePoint(fwend));
-                _lineRenderer.SetPosition(1, GetSpriteMiddlePoint(buddie));
+                _lineRenderer.SetPosition(0, fwendPos);
+                _lineRenderer.SetPosition(1, buddiePos);
 
                 // Get the midpoint between the players and adjust the collider size dynamically.
-                var midpoint = (fwend.position + buddie.position) / 2;
+                var midpoint = (fwendPos + buddiePos) / 2;
                 transform.position = midpoint;
-                var distance = Vector2.Distance(fwend.position, buddie.position);
+                var distance = Vector2.Distance(fwendPos, buddiePos);
                 _collider.size = new Vector2(distance, 0.3f);
-                transform.right = (buddie.position - fwend.position).normalized;
+                transform.right = (fwendPos - buddiePos).normalized;
             }
             else
             {
@@ -106,7 +109,7 @@ namespace Entity
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.IsPlayer()) return;
-            if (!other.TryGetComponent(out BaseEntity entity)) return;
+            if (!other.TryGetComponent(out Enemy entity)) return;
 
             AudioManager.Instance.PlayOneShot(linkHit, entity.transform.position);
 

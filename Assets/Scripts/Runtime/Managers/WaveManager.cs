@@ -27,6 +27,7 @@ namespace Managers
         private void Start()
         {
             GameManager.OnGameStart += OnGameStart;
+            GameManager.OnGameOver += () => _gameRunning = false;
         }
 
         protected override void OnSceneUnloaded(Scene scene)

@@ -25,6 +25,16 @@ namespace Entity.StateMachines
                 : player.IdleState);
 
             HandleArrowIndicator();
+
+            // Flip the sprite based on the direction it's facing.
+            HandleSpriteFlip();
+        }
+
+        private void HandleSpriteFlip()
+        {
+            var scale = player.transform.localScale;
+            if (Mathf.Abs(Direction.x) > 0.1f)
+                player.transform.localScale = scale.SetX(Direction.x < 0 ? -1 : 1);
         }
 
         protected void HandleMovement()
@@ -32,13 +42,33 @@ namespace Entity.StateMachines
             var move = player.input.ReadValue<Vector2>();
             if (move != Vector2.zero) Direction = move.normalized;
 
-            // Flip the sprite based on the direction it's facing.
-            var scale = player.transform.localScale;
-            if (Mathf.Abs(Direction.x) > 0.1f)
-                player.transform.localScale = scale.SetX(Direction.x < 0 ? -1 : 1);
-
             var movement = move * (player.Speed * Time.fixedDeltaTime);
             player.Rb.MovePosition(player.Rb.position + movement);
+
+            // Simulate a slime movement effect by applying force in the direction of movement.
+            player.Rb.AddForce(move * (0.5f * Time.fixedDeltaTime), ForceMode2D.Impulse);
+
+            // Hacky way to ensure the player slides to the direction they're facing
+            // even after abruptly switching directions. :)
+            var velocity = player.Rb.velocity;
+            switch (Direction.x)
+            {
+                case < 0 when velocity.x > 0:
+                case > 0 when velocity.x < 0:
+                    velocity.x = -velocity.x;
+                    break;
+            }
+
+            switch (Direction.y)
+            {
+                case < 0 when velocity.y > 0:
+                case > 0 when velocity.y < 0:
+                    velocity.y = -velocity.y;
+                    break;
+            }
+
+            player.Rb.velocity = new Vector2(velocity.x, velocity.y);
+            player.Rb.drag = 1.0f;
         }
 
         private void HandleArrowIndicator()
@@ -52,7 +82,7 @@ namespace Entity.StateMachines
 
             if (!otherPlayer) return;
 
-            // Check if the other player is off screen.
+            // Check if the other player is off-screen.
             var viewPortPosition = _camera.WorldToViewportPoint(otherPlayer.transform.position);
             var isOffScreen = viewPortPosition.x < 0 || viewPortPosition.x > 1 ||
                               viewPortPosition.y < 0 || viewPortPosition.y > 1;

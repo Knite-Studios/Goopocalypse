@@ -119,6 +119,7 @@ namespace Entity.Enemies
         /// </summary>
         public void OnAttackAnimation()
         {
+            if (IsGameOver) return;
 
             // Get Target's direction.
             var direction = (Target.position - transform.position).normalized;

@@ -101,6 +101,8 @@ namespace Entity.Enemies
         /// </summary>
         public void OnAttackAnimation()
         {
+            if (IsGameOver) return;
+
             StartCoroutine(Dash());
         }
     }

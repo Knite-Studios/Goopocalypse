@@ -1,5 +1,6 @@
 using System.Collections;
 using Attributes;
+using Managers;
 using UnityEngine;
 
 namespace Entity.Enemies
@@ -104,6 +105,25 @@ namespace Entity.Enemies
             if (IsGameOver) return;
 
             StartCoroutine(Dash());
+        }
+
+        /// <summary>
+        /// Method called for death animations.
+        /// </summary>
+        public override void OnDeathAnimation()
+        {
+            base.OnDeathAnimation();
+            SpawnOrb();
+            Dispose();
+        }
+
+        /// <summary>
+        /// Method called for death sounds.
+        /// </summary>
+        public override void OnDeathSound()
+        {
+            if (AudioSource.isPlaying) AudioSource.Stop();
+            AudioManager.Instance.PlayOneShot(deathSound, transform.position);
         }
     }
 }

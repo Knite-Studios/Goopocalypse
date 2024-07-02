@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Managers;
 using UnityEngine;
 
 namespace Entity.Enemies
@@ -7,7 +8,7 @@ namespace Entity.Enemies
     {
         protected override void LateUpdate()
         {
-            Target = GetNearestMovingPlayer() == null ? null : GetNearestMovingPlayer().transform;
+            Target = !GetNearestMovingPlayer() ? null : GetNearestMovingPlayer().transform;
         }
 
         protected override IEnumerator UpdatePath()
@@ -26,6 +27,25 @@ namespace Entity.Enemies
 
                 yield return new WaitForSeconds(0.3f);
             }
+        }
+
+        /// <summary>
+        /// Method called for death animations.
+        /// </summary>
+        public override void OnDeathAnimation()
+        {
+            base.OnDeathAnimation();
+            SpawnOrb();
+            Dispose();
+        }
+
+        /// <summary>
+        /// Method called for death sounds.
+        /// </summary>
+        public override void OnDeathSound()
+        {
+            if (AudioSource.isPlaying) AudioSource.Stop();
+            AudioManager.Instance.PlayOneShot(deathSound, transform.position);
         }
     }
 }

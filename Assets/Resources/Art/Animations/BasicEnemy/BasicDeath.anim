@@ -55,14 +55,35 @@ AnimationClip:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
-    genericBindings: []
-    pptrCurveMapping: []
+    genericBindings:
+    - serializedVersion: 2
+      path: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    pptrCurveMapping:
+    - {fileID: -7523595285601915431, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - {fileID: -2285097287413170891, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - {fileID: 7137588032894502565, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - {fileID: 337166381196002017, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - {fileID: 6442509881030994844, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - {fileID: -6388622398520296449, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - {fileID: 5617115227744592309, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - {fileID: 8640032644428610063, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - {fileID: 2064428862037480319, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - {fileID: -6543261107349464468, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - {fileID: -6795488432861804202, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - {fileID: -6795488432861804202, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.1099999
+    m_StopTime: 1.11
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -81,4 +102,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.31
+    functionName: OnDeathSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.11
+    functionName: OnDeathAnimation
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

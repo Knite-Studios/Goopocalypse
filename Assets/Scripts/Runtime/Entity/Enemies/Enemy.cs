@@ -21,6 +21,8 @@ namespace Entity.Enemies
 
         protected bool IsGameOver;
 
+        #region Unity Events
+
         protected virtual void Start()
         {
             InitializeEntityFromLua();
@@ -31,13 +33,6 @@ namespace Entity.Enemies
 
             GameManager.OnGameEvent += OnGameEvent;
             GameManager.OnGameOver += () => IsGameOver = true;
-        }
-
-        protected override void ApplyBaseStats(LuaTable stats)
-        {
-            base.ApplyBaseStats(stats);
-
-            this.GetOrCreateAttribute(Attribute.Points, stats.Get<long>("points"));
         }
 
         protected virtual void FixedUpdate()
@@ -97,6 +92,15 @@ namespace Entity.Enemies
                 entity.Damage(entity.MaxHealth, true);
         }
 
+        #endregion
+
+        protected override void ApplyBaseStats(LuaTable stats)
+        {
+            base.ApplyBaseStats(stats);
+
+            this.GetOrCreateAttribute(Attribute.Points, stats.Get<long>("points"));
+        }
+
         /// <summary>
         /// Handles game events.
         /// </summary>
@@ -139,13 +143,17 @@ namespace Entity.Enemies
             // Disable the collider in case the player runs into the enemy while the animation is playing.
             Collider.enabled = false;
 
+            Animator.SetTrigger(IsDeadHash);
+        }
+
+        protected virtual void SpawnOrb()
+        {
             var orb = PrefabManager.Create<Orb>(PrefabType.Orb);
             orb.transform.position = transform.position;
             orb.points = this.GetAttributeValue<long>(Attribute.Points);
-
-            // TODO: Remove this line if we have enemy death animation.
-            OnDeathAnimation();
         }
+
+        #region Player Detection
 
         /// <summary>
         /// Finds the nearest player.
@@ -218,6 +226,8 @@ namespace Entity.Enemies
 
             return node != null && node.isWalkable ? randomPosition : null;
         }
+
+        #endregion
     }
 
     public static class LuaEnemies

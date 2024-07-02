@@ -157,20 +157,22 @@ namespace Entity
         /// <summary>
         /// Method called for death animations.
         /// </summary>
-        public void OnDeathAnimation()
+        public virtual void OnDeathAnimation()
         {
-            Dispose();
+            Debug.Log("Death animation played.");
         }
 
         /// <summary>
         /// Method called for death sounds.
         /// </summary>
-        public void OnDeathSound()
+        public virtual void OnDeathSound()
         {
-            if (AudioSource.isPlaying) AudioSource.Stop();
-            AudioManager.Instance.PlayOneShot(deathSound, transform.position);
+            Debug.Log("Death sound played.");
         }
 
+        /// <summary>
+        /// Cleans up the entity.
+        /// </summary>
         public void Dispose()
         {
             Destroy(gameObject);

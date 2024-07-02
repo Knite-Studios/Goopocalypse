@@ -113,7 +113,7 @@ MonoBehaviour:
   onDeathEvent:
     m_PersistentCalls:
       m_Calls: []
-  deathSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 7675c49545f41ee40967c7a214852f41, type: 3}
   <CurrentHealth>k__BackingField: 0
 --- !u!114 &-8317250460470295815
 MonoBehaviour:

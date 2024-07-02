@@ -19,6 +19,8 @@ namespace Entity.Enemies
         protected List<Node> CurrentPath;
         protected int CurrentPathIndex;
 
+        protected bool IsGameOver;
+
         protected virtual void Start()
         {
             InitializeEntityFromLua();
@@ -29,6 +31,7 @@ namespace Entity.Enemies
             StartCoroutine(UpdatePath());
 
             GameManager.OnGameEvent += OnGameEvent;
+            GameManager.OnGameOver += () => IsGameOver = true;
         }
 
         protected override void ApplyBaseStats(LuaTable stats)
@@ -40,9 +43,13 @@ namespace Entity.Enemies
 
         protected virtual void FixedUpdate()
         {
-            if (CurrentPath == null || CurrentPathIndex >= CurrentPath.Count)
+            if (CurrentPath == null || CurrentPathIndex >= CurrentPath.Count || IsGameOver)
             {
                 Animator.SetBool(IsMovingHash, false);
+
+                if (!IsGameOver) return;
+                StopAllCoroutines();
+
                 return;
             }
 
@@ -130,6 +137,9 @@ namespace Entity.Enemies
             base.OnDeath();
 
             EntityManager.UnregisterEnemy(this);
+
+            // Disable the collider in case the player runs into the enemy while the animation is playing.
+            Collider.enabled = false;
 
             var orb = PrefabManager.Create<Orb>(PrefabType.Orb);
             orb.transform.position = transform.position;

@@ -59,6 +59,7 @@ namespace Entity
         protected internal Rigidbody2D Rb;
         protected internal Animator Animator;
         protected AudioSource AudioSource;
+        protected Collider2D Collider;
 
         protected virtual void Awake()
         {
@@ -66,6 +67,7 @@ namespace Entity
             Rb = GetComponent<Rigidbody2D>();
             Animator = GetComponent<Animator>();
             AudioSource = GetComponent<AudioSource>();
+            Collider = GetComponent<Collider2D>();
         }
 
         /// <summary>

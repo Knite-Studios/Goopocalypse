@@ -31,6 +31,12 @@ namespace Entity.Enemies
 
         protected override void FixedUpdate()
         {
+            if (IsGameOver)
+            {
+                StopAllCoroutines();
+                return;
+            }
+
             if (!Target) return;
 
             var distance = Vector2.Distance(transform.position, Target.transform.position);

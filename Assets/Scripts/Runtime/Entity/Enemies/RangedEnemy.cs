@@ -40,7 +40,6 @@ namespace Entity.Enemies
             if (!Target) return;
 
             var distance = Vector2.Distance(transform.position, Target.transform.position);
-
             if (distance <= attackRange)
                 HandleAttack();
             else

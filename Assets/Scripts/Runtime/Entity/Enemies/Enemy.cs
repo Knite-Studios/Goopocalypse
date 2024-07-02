@@ -33,21 +33,28 @@ namespace Entity.Enemies
 
         protected virtual void FixedUpdate()
         {
-            if (CurrentPath == null || CurrentPathIndex >= CurrentPath.Count) return;
+            if (CurrentPath == null || CurrentPathIndex >= CurrentPath.Count)
+            {
+                Animator.SetBool(IsMovingHash, false);
+                return;
+            }
 
             var node = CurrentPath[CurrentPathIndex];
             var targetPosition = node.WorldPosition;
+            var distance = Vector2.Distance(transform.position, targetPosition);
+            var canMove = distance > 0.1f;
 
-            if (Vector2.Distance(transform.position, targetPosition) > 0.1f)
+            // If we can move then set the animator to moving and not idle.
+            Animator.SetBool(IsMovingHash, canMove);
+            Animator.SetBool(IsIdleHash, !canMove);
+
+            if (canMove)
             {
-                Animator.SetBool("IsMoving", true);
                 var direction = (targetPosition - (Vector2)transform.position).normalized;
                 Rb.MovePosition(Rb.position + direction * (Speed * Time.fixedDeltaTime));
-
             }
             else
             {
-                Animator.SetBool("IsMoving", false);
                 CurrentPathIndex++;
             }
         }

@@ -9,9 +9,6 @@ namespace Entity.StateMachines
         protected readonly PlayerController player;
         protected Vector2 Direction;
 
-        protected static readonly int Moving = Animator.StringToHash("IsMoving");
-        protected static readonly int Idle = Animator.StringToHash("IsIdle");
-
         private readonly Camera _camera;
         private ArrowIndicator _arrowIndicator;
 

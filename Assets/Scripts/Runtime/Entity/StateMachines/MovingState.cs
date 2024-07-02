@@ -8,7 +8,7 @@
 
         public override void EnterState()
         {
-            player.Animator.SetBool(Moving, true);
+            player.Animator.SetBool(player.IsMovingHash, true);
         }
 
         public override void FixedUpdateState()
@@ -18,7 +18,7 @@
 
         public override void ExitState()
         {
-            player.Animator.SetBool(Moving, false);
+            player.Animator.SetBool(player.IsMovingHash, false);
         }
     }
 }

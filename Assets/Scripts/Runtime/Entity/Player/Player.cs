@@ -34,10 +34,8 @@ namespace Entity.Player
         #endregion
 
         public bool HasDied { get; private set; }
-
         private Collider2D _collider;
         private CinemachineVirtualCamera _virtualCamera;
-        private static readonly int IsDead = Animator.StringToHash("IsDead");
 
         protected override void Awake()
         {
@@ -137,7 +135,7 @@ namespace Entity.Player
             // TODO: Play death sound one shot with proximity and ensure other clients can hear it.
             Rb.constraints = RigidbodyConstraints2D.FreezeAll;
             if (_virtualCamera) CameraShake.TriggerShake(_virtualCamera);
-            Animator.SetTrigger(IsDead);
+            Animator.SetTrigger(IsDeadHash);
             base.OnDeath();
 
             EntityManager.UnregisterPlayer(this as PlayerController);

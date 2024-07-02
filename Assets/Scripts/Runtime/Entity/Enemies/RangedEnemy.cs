@@ -12,12 +12,15 @@ namespace Entity.Enemies
         [SerializeField] private PrefabType projectileType;
         [SerializeField] private float attackRange = 5.0f;
         [SerializeField] private float attackInterval = 1.5f;
-        [SerializeField] public Animator animator;
 
         [TitleHeader("Range Enemy Audio Settings")]
         [SerializeField] private AudioClip shootSound;
 
         private float _attackTimer;
+
+        private Vector3 _spawnPosition;
+        private float _angle;
+        private Quaternion _spawnRotation;
 
         protected override void Start()
         {
@@ -33,10 +36,7 @@ namespace Entity.Enemies
             var distance = Vector2.Distance(transform.position, Target.transform.position);
 
             if (distance <= attackRange)
-            {
-                Animator.SetTrigger("IsAttacking");
                 HandleAttack();
-            }
             else
                 FollowTarget();
         }
@@ -45,23 +45,23 @@ namespace Entity.Enemies
         {
             // Get Target's direction.
             var direction = (Target.position - transform.position).normalized;
+            var isReadyToAttack = _attackTimer <= 0;
+
+            // Remain in idle state if not ready to attack.
+            Animator.SetBool(IsIdleHash, !isReadyToAttack);
 
             // Check if the attack timer is ready.
             if (_attackTimer <= 0)
             {
+                // Set the animator to attacking.
+                Animator.SetBool(IsAttackingHash, true);
                 // Reset the attack timer.
                 _attackTimer = attackInterval;
 
                 // Calculate the spawn position.
-                var spawnPosition = transform.position + direction;
-                var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                var spawnRotation = Quaternion.Euler(0, 0, angle);
-
-                // Spawn the projectile.
-                if (!GameManager.Instance.LocalMultiplayer)
-                    SpawnServerProjectile(spawnPosition, spawnRotation);
-                else
-                    SpawnProjectile(spawnPosition, spawnRotation);
+                _spawnPosition = transform.position + direction;
+                _angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                _spawnRotation = Quaternion.Euler(0, 0, _angle);
             }
             else
             {
@@ -72,12 +72,22 @@ namespace Entity.Enemies
 
         private void FollowTarget()
         {
-            if (CurrentPath == null || CurrentPathIndex >= CurrentPath.Count) return;
+            if (CurrentPath == null || CurrentPathIndex >= CurrentPath.Count)
+            {
+                Animator.SetBool(IsMovingHash, false);
+                return;
+            }
 
             var node = CurrentPath[CurrentPathIndex];
             var targetPosition = node.WorldPosition;
+            var distance = Vector2.Distance(transform.position, targetPosition);
+            var canMove = distance > 0.1f;
 
-            if (Vector2.Distance(transform.position, targetPosition) > 0.1f)
+            // If we can move then set the animator to moving and not idle.
+            Animator.SetBool(IsMovingHash, canMove);
+            Animator.SetBool(IsIdleHash, !canMove);
+
+            if (canMove)
             {
                 var direction = (targetPosition - (Vector2)transform.position).normalized;
                 Rb.MovePosition(Rb.position + direction * (Speed * Time.fixedDeltaTime));
@@ -105,6 +115,18 @@ namespace Entity.Enemies
             projectile.transform.SetPositionAndRotation(position, rotation);
 
             if (server) NetworkServer.Spawn(projectile.gameObject);
+        }
+
+        /// <summary>
+        /// Called from the animation event.
+        /// </summary>
+        public void OnAttackAnimation()
+        {
+            // Spawn the projectile.
+            if (!GameManager.Instance.LocalMultiplayer)
+                SpawnServerProjectile(_spawnPosition, _spawnRotation);
+            else
+                SpawnProjectile(_spawnPosition, _spawnRotation);
         }
     }
 }

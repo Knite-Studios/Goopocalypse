@@ -19,6 +19,14 @@ namespace Entity
     public abstract class BaseEntity : NetworkBehaviour, IAttributable, IDamageable, IDisposable
     {
         /// <summary>
+        /// Constants for the animator hashes.
+        /// </summary>
+        protected internal readonly int IsIdleHash = Animator.StringToHash("IsIdle");
+        protected internal readonly int IsMovingHash = Animator.StringToHash("IsMoving");
+        protected internal readonly int IsAttackingHash = Animator.StringToHash("IsAttacking");
+        protected internal readonly int IsDeadHash = Animator.StringToHash("IsDead");
+
+        /// <summary>
         /// The Lua script responsible for the logic of the entity.
         /// </summary>
         [TitleHeader("Entity Settings")]

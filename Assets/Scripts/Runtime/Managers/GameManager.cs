@@ -232,7 +232,12 @@ namespace Managers
         /// </summary>
         public void RestartGame()
         {
-            // TODO: Implement restart functionality.
+            if (LocalMultiplayer)
+            {
+                // Reload the game scene.
+                StartLocalGame();
+                Navigate("/game");
+            }
         }
 
         /// <summary>

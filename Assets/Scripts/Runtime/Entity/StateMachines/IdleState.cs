@@ -8,12 +8,12 @@
 
         public override void EnterState()
         {
-            player.Animator.SetBool(Idle, true);
+            player.Animator.SetBool(player.IsIdleHash, true);
         }
 
         public override void ExitState()
         {
-            player.Animator.SetBool(Idle, false);
+            player.Animator.SetBool(player.IsIdleHash, false);
         }
     }
 }

@@ -55,8 +55,29 @@ AnimationClip:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
-    genericBindings: []
-    pptrCurveMapping: []
+    genericBindings:
+    - serializedVersion: 2
+      path: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    pptrCurveMapping:
+    - {fileID: -4916382527214603615, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - {fileID: 5743986412455732226, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - {fileID: -5075671622892131869, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - {fileID: -1785250369563384997, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - {fileID: -7601225001430124938, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - {fileID: 6207316371826055113, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - {fileID: 5351938353216204891, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - {fileID: -5560969129181055156, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - {fileID: 5136597939032311791, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - {fileID: -8287588323438211582, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - {fileID: -4245847166678089898, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - {fileID: -4245847166678089898, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -81,4 +102,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.48
+    functionName: OnDeathSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.66
+    functionName: OnDeathAnimation
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

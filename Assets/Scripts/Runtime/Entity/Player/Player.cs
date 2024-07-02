@@ -143,6 +143,12 @@ namespace Entity.Player
             _isDead = true;
             GameManager.OnGameOver?.Invoke();
         }
+
+        public override void OnDeathAnimation()
+        {
+            Dispose();
+            OnDeathSound();
+        }
     }
 
     [Serializable]

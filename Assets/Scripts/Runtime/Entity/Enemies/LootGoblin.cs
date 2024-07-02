@@ -55,10 +55,5 @@ namespace Entity.Enemies
 
             // ReSharper disable once IteratorNeverReturns
         }
-
-        protected override IEnumerator FindTarget()
-        {
-            yield return null;
-        }
     }
 }

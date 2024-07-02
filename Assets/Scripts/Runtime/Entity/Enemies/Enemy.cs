@@ -27,7 +27,6 @@ namespace Entity.Enemies
 
             Pathfinder = GetComponent<Pathfinder>();
 
-            StartCoroutine(FindTarget());
             StartCoroutine(UpdatePath());
 
             GameManager.OnGameEvent += OnGameEvent;
@@ -76,6 +75,12 @@ namespace Entity.Enemies
             }
         }
 
+        protected virtual void LateUpdate()
+        {
+            // Continuously find the nearest player.
+            Target = GetNearestPlayer()?.transform;
+        }
+
         private void OnDestroy()
         {
             GameManager.OnGameEvent -= OnGameEvent;
@@ -103,16 +108,6 @@ namespace Entity.Enemies
                 case GameEventType.ChestSpawned:
                     Debug.Log($"Moving to {gameEvent.Target.name}");
                     break;
-            }
-        }
-
-        protected virtual IEnumerator FindTarget()
-        {
-            while (!Target)
-            {
-                var player = GetNearestPlayer();
-                if (player) Target = player.transform;
-                yield return new WaitForSeconds(1.0f);
             }
         }
 

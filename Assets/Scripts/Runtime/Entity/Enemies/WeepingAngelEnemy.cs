@@ -5,14 +5,9 @@ namespace Entity.Enemies
 {
     public class WeepingAngelEnemy : Enemy
     {
-        protected override IEnumerator FindTarget()
+        protected override void LateUpdate()
         {
-            while (true)
-            {
-                var player = GetNearestMovingPlayer();
-                Target = player ? player.transform : null;
-                yield return new WaitForSeconds(0.3f);
-            }
+            Target = GetNearestMovingPlayer() == null ? null : GetNearestMovingPlayer().transform;
         }
 
         protected override IEnumerator UpdatePath()

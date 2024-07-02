@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 namespace Entity.Enemies
@@ -44,6 +44,7 @@ namespace Entity.Enemies
         private IEnumerator ChargeAndDash()
         {
             _isCharging = true;
+            Animator.SetBool("IsAttacking", true);
 
             // Stop moving during the charge.
             CurrentPath = null;
@@ -66,6 +67,7 @@ namespace Entity.Enemies
             }
 
             _isDashing = false;
+            Animator.SetBool("IsAttacking", false);
         }
     }
 }

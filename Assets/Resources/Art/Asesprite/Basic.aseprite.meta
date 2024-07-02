@@ -2,7 +2,22 @@ fileFormatVersion: 2
 guid: e81a04c712c681b48bb758f8c40612b4
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: BasicDeath
+    second: {fileID: 7400000, guid: 3b87e0f329e1131458060a3263e961fb, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: BasicIdle
+    second: {fileID: 7400000, guid: e906f7b1eebd8ba4c9b26cf4acace8da, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: BasicWalk
+    second: {fileID: 7400000, guid: 1b53b98ed9f0462439b2a84ac8ece4e1, type: 2}
   serializedVersion: 2
   userData: 
   assetBundleName: 
@@ -97,7 +112,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638531364823518971
+  platformSettingsDirtyTick: 638554671910695841
   textureAssetName: 
   singleSpriteImportData:
   - name: 

@@ -6,6 +6,11 @@ ScriptedImporter:
   - first:
       type: UnityEngine:AnimationClip
       assembly: UnityEngine.AnimationModule
+      name: LootDeath
+    second: {fileID: 7400000, guid: bd0d2a125bc843b4698d271a6b7f70b2, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
       name: LootIdle
     second: {fileID: 7400000, guid: e5b583f971bfeeb469a59fcfa3c1321e, type: 2}
   - first:
@@ -112,7 +117,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638554494933200417
+  platformSettingsDirtyTick: 638554694760609741
   textureAssetName: 
   singleSpriteImportData:
   - name: 

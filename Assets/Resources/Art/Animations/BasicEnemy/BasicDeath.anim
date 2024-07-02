@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GhostWalkT
+  m_Name: BasicDeath
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,11 +21,29 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1876555645800810178, guid: e5856e49af88ae44e8eb5269862aa5a1, type: 3}
-    - time: 0.099999994
-      value: {fileID: -2612785807058209385, guid: e5856e49af88ae44e8eb5269862aa5a1, type: 3}
-    - time: 0.19999999
-      value: {fileID: -2612785807058209385, guid: e5856e49af88ae44e8eb5269862aa5a1, type: 3}
+      value: {fileID: -7523595285601915431, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - time: 0.100000024
+      value: {fileID: -2285097287413170891, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - time: 0.19999993
+      value: {fileID: 7137588032894502565, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - time: 0.29999995
+      value: {fileID: 337166381196002017, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - time: 0.39999998
+      value: {fileID: 6442509881030994844, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - time: 0.49999988
+      value: {fileID: -6388622398520296449, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - time: 0.6
+      value: {fileID: 5617115227744592309, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - time: 0.6999999
+      value: {fileID: 8640032644428610063, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - time: 0.8000001
+      value: {fileID: 2064428862037480319, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - time: 0.9
+      value: {fileID: -6543261107349464468, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - time: 0.9999999
+      value: {fileID: -6795488432861804202, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
+    - time: 1.0999999
+      value: {fileID: -6795488432861804202, guid: e81a04c712c681b48bb758f8c40612b4, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,7 +62,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.21
+    m_StopTime: 1.1099999
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

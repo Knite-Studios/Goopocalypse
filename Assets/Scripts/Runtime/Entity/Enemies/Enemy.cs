@@ -64,6 +64,7 @@ namespace Entity.Enemies
             {
                 CurrentPathIndex++;
             }
+
         }
 
         private void OnDestroy()

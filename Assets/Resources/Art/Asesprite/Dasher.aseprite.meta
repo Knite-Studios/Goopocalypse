@@ -11,6 +11,11 @@ ScriptedImporter:
   - first:
       type: UnityEngine:AnimationClip
       assembly: UnityEngine.AnimationModule
+      name: DasherDeath
+    second: {fileID: 7400000, guid: 12abad6081382944f84098be1f588e2e, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
       name: DasherIdle
     second: {fileID: 7400000, guid: f3e4c7faaa1dd854197c6de81d50d4ec, type: 2}
   - first:
@@ -117,7 +122,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638554520206559648
+  platformSettingsDirtyTick: 638554689706366691
   textureAssetName: 
   singleSpriteImportData:
   - name: 

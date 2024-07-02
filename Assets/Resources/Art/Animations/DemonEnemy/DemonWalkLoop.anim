@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Chasing
+  m_Name: DemonWalkLoop
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,19 +21,21 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -7593321593100577560, guid: e5856e49af88ae44e8eb5269862aa5a1, type: 3}
+      value: {fileID: -1591003862030352836, guid: e5856e49af88ae44e8eb5269862aa5a1, type: 3}
     - time: 0.100000024
-      value: {fileID: -660954350448743846, guid: e5856e49af88ae44e8eb5269862aa5a1, type: 3}
-    - time: 0.19999993
-      value: {fileID: 6804075352749239065, guid: e5856e49af88ae44e8eb5269862aa5a1, type: 3}
-    - time: 0.29999995
-      value: {fileID: -7441555231189102217, guid: e5856e49af88ae44e8eb5269862aa5a1, type: 3}
+      value: {fileID: -4562484999433017774, guid: e5856e49af88ae44e8eb5269862aa5a1, type: 3}
+    - time: 0.19999999
+      value: {fileID: -3076710837728690287, guid: e5856e49af88ae44e8eb5269862aa5a1, type: 3}
+    - time: 0.3
+      value: {fileID: 1833773927818972676, guid: e5856e49af88ae44e8eb5269862aa5a1, type: 3}
     - time: 0.39999998
-      value: {fileID: -9175494156961268107, guid: e5856e49af88ae44e8eb5269862aa5a1, type: 3}
-    - time: 0.49999988
-      value: {fileID: -692034831308596759, guid: e5856e49af88ae44e8eb5269862aa5a1, type: 3}
-    - time: 0.5999999
-      value: {fileID: -692034831308596759, guid: e5856e49af88ae44e8eb5269862aa5a1, type: 3}
+      value: {fileID: 2572395034925887852, guid: e5856e49af88ae44e8eb5269862aa5a1, type: 3}
+    - time: 0.5
+      value: {fileID: 6119116731762203116, guid: e5856e49af88ae44e8eb5269862aa5a1, type: 3}
+    - time: 0.6
+      value: {fileID: 4143333442684832965, guid: e5856e49af88ae44e8eb5269862aa5a1, type: 3}
+    - time: 0.70000005
+      value: {fileID: 4143333442684832965, guid: e5856e49af88ae44e8eb5269862aa5a1, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -52,7 +54,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.6099999
+    m_StopTime: 0.71000004
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

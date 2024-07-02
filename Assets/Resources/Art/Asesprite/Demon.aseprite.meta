@@ -2,7 +2,37 @@ fileFormatVersion: 2
 guid: e5856e49af88ae44e8eb5269862aa5a1
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: DemonChasing
+    second: {fileID: 7400000, guid: b924f5f0525462e4e948a4a59beff17c, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: DemonDeath
+    second: {fileID: 7400000, guid: a1cfbcdecb76a0440aef0978b32648a1, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: DemonIdle
+    second: {fileID: 7400000, guid: 9c4f5fe25dda9234d833e61040a218e0, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: DemonWalkLoop
+    second: {fileID: 7400000, guid: 752099d96cd8ee24196badf44ed7f5b5, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: DemontWalkTransition
+    second: {fileID: 7400000, guid: c9ea8708e4609d8419728c9cdda4db11, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: NormalToChase
+    second: {fileID: 7400000, guid: 591023db1e476a449a09b8ae544fca67, type: 2}
   serializedVersion: 2
   userData: 
   assetBundleName: 
@@ -97,7 +127,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638531364823534341
+  platformSettingsDirtyTick: 638554696474207764
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,7 +151,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Ghost_Frame_0
+  - name: Demon_Frame_0
     originalName: 
     pivot: {x: 0.50877196, y: 0}
     alignment: 9
@@ -132,7 +162,7 @@ ScriptedImporter:
       y: 145
       width: 57
       height: 39
-    spriteID: 3ca61d9a8a779824c82268c04e4c76d4
+    spriteID: abf4964bdc5d63c418565f78f53ca769
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -141,7 +171,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 238, y: 145}
-  - name: Ghost_Frame_1
+  - name: Demon_Frame_1
     originalName: 
     pivot: {x: 0.5166667, y: 0}
     alignment: 9
@@ -152,7 +182,7 @@ ScriptedImporter:
       y: 205
       width: 60
       height: 36
-    spriteID: d4826e365fca7d54f80742497f5c09c6
+    spriteID: c04393cb5d480024bb2a7d7ab5351bea
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -161,7 +191,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 205}
-  - name: Ghost_Frame_2
+  - name: Demon_Frame_2
     originalName: 
     pivot: {x: 0.5166667, y: 0}
     alignment: 9
@@ -172,7 +202,7 @@ ScriptedImporter:
       y: 205
       width: 60
       height: 36
-    spriteID: 3021b33d498cb6642a812e4b6a4ccc6d
+    spriteID: ad7d262ef59cf0b429e358ff1df3540d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -181,7 +211,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 72, y: 205}
-  - name: Ghost_Frame_3
+  - name: Demon_Frame_3
     originalName: 
     pivot: {x: 0.52380955, y: 0}
     alignment: 9
@@ -192,7 +222,7 @@ ScriptedImporter:
       y: 205
       width: 63
       height: 32
-    spriteID: 0e2673d98d17dc14dbaf4fd38152f00c
+    spriteID: 9771ec9e5b6e00b4ab7ade9ac2517cb2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -201,7 +231,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 210, y: 205}
-  - name: Ghost_Frame_4
+  - name: Demon_Frame_4
     originalName: 
     pivot: {x: 0.45652175, y: -0.14634146}
     alignment: 9
@@ -212,7 +242,7 @@ ScriptedImporter:
       y: 249
       width: 46
       height: 41
-    spriteID: bab5c6af73e2732479406932bd552cd8
+    spriteID: 97a6ee15a012eea419f12cdbeca77198
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -221,7 +251,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 249}
-  - name: Ghost_Frame_5
+  - name: Demon_Frame_5
     originalName: 
     pivot: {x: 0.50980395, y: -0.20454547}
     alignment: 9
@@ -232,7 +262,7 @@ ScriptedImporter:
       y: 145
       width: 51
       height: 44
-    spriteID: 30ec41bdab54a8741af14d5c2e65fe01
+    spriteID: 3e7229985fbae384d9a1fbbfc1a402c9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -241,7 +271,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 120, y: 145}
-  - name: Ghost_Frame_6
+  - name: Demon_Frame_6
     originalName: 
     pivot: {x: 0.50877196, y: -0.3809524}
     alignment: 9
@@ -252,7 +282,7 @@ ScriptedImporter:
       y: 87
       width: 57
       height: 42
-    spriteID: 619db4a6604ba504cac25a4496e54148
+    spriteID: 73056533c7c5be84caa2f65298aa46c7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -261,7 +291,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 337, y: 87}
-  - name: Ghost_Frame_7
+  - name: Demon_Frame_7
     originalName: 
     pivot: {x: 0.50980395, y: -0.20454547}
     alignment: 9
@@ -272,7 +302,7 @@ ScriptedImporter:
       y: 145
       width: 51
       height: 44
-    spriteID: 1954c907faf9e7a4a8de4833a154c9fd
+    spriteID: a8b311bf71d291943aa5fd9c913993fc
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -281,7 +311,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 179, y: 145}
-  - name: Ghost_Frame_8
+  - name: Demon_Frame_8
     originalName: 
     pivot: {x: 0.45652175, y: -0.14634146}
     alignment: 9
@@ -292,7 +322,7 @@ ScriptedImporter:
       y: 249
       width: 46
       height: 41
-    spriteID: 0c8e88d647d4c3d4ba008c0954a0d4bc
+    spriteID: 269a8db6aa3c7c64c81f063295294257
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -301,7 +331,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 58, y: 249}
-  - name: Ghost_Frame_9
+  - name: Demon_Frame_9
     originalName: 
     pivot: {x: 0.516129, y: 0}
     alignment: 9
@@ -312,7 +342,7 @@ ScriptedImporter:
       y: 205
       width: 62
       height: 34
-    spriteID: 311a23db87ee9ab4ca22424532700ddd
+    spriteID: 6062a4fd6e2096545ba80f0e390ecabd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -321,7 +351,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 140, y: 205}
-  - name: Ghost_Frame_10
+  - name: Demon_Frame_10
     originalName: 
     pivot: {x: 0.50877196, y: 0}
     alignment: 9
@@ -332,7 +362,7 @@ ScriptedImporter:
       y: 145
       width: 57
       height: 39
-    spriteID: 14b6bfa7e11e8b3429f2e6a8a5dea30b
+    spriteID: 47620e99be36d6d40ab30357d3ef270e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -341,7 +371,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 303, y: 145}
-  - name: Ghost_Frame_11
+  - name: Demon_Frame_11
     originalName: 
     pivot: {x: 0.50877196, y: 0}
     alignment: 9
@@ -352,7 +382,7 @@ ScriptedImporter:
       y: 145
       width: 57
       height: 39
-    spriteID: 6c8d1b46ca10736439946ff1fd355c4f
+    spriteID: c9d2a3a82685cb149ba9340a25352ce5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -361,7 +391,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 368, y: 145}
-  - name: Ghost_Frame_12
+  - name: Demon_Frame_12
     originalName: 
     pivot: {x: 0.50877196, y: 0}
     alignment: 9
@@ -372,7 +402,7 @@ ScriptedImporter:
       y: 87
       width: 57
       height: 45
-    spriteID: 7fc3fc6443e21194aa6f55d0ca8377db
+    spriteID: 278c8e679b99cd948bb9c93a2bab37e2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -381,7 +411,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 272, y: 87}
-  - name: Ghost_Frame_13
+  - name: Demon_Frame_13
     originalName: 
     pivot: {x: 0.50877196, y: 0}
     alignment: 9
@@ -392,7 +422,7 @@ ScriptedImporter:
       y: 87
       width: 57
       height: 50
-    spriteID: fd211dc1e239a064ab233048980ef2d9
+    spriteID: 0224a74927a738844b6d24776ac93f4d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -401,7 +431,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 87}
-  - name: Ghost_Frame_14
+  - name: Demon_Frame_14
     originalName: 
     pivot: {x: 0.50877196, y: 0}
     alignment: 9
@@ -412,7 +442,7 @@ ScriptedImporter:
       y: 87
       width: 57
       height: 50
-    spriteID: 52c06aa0445b8a944b942c664796c23d
+    spriteID: 555dbaa978fe80b40a7a5715bdf679c9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -421,7 +451,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 69, y: 87}
-  - name: Ghost_Frame_15
+  - name: Demon_Frame_15
     originalName: 
     pivot: {x: 0.49180326, y: 0}
     alignment: 9
@@ -432,7 +462,7 @@ ScriptedImporter:
       y: 87
       width: 61
       height: 45
-    spriteID: 6871149ee2b0da74fbbb3a7bc6ce10a1
+    spriteID: dad9ed642bd1b354191a8f5a4f43ac6a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -441,7 +471,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 134, y: 87}
-  - name: Ghost_Frame_16
+  - name: Demon_Frame_16
     originalName: 
     pivot: {x: 0.5, y: -0.11538462}
     alignment: 9
@@ -452,7 +482,7 @@ ScriptedImporter:
       y: 145
       width: 50
       height: 52
-    spriteID: 06052b704782385439ed2ce189fb76af
+    spriteID: e3975bbf37dc5ac44bce890e82cbb9c0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -461,7 +491,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 145}
-  - name: Ghost_Frame_17
+  - name: Demon_Frame_17
     originalName: 
     pivot: {x: 0.50877196, y: -0.28846154}
     alignment: 9
@@ -472,7 +502,7 @@ ScriptedImporter:
       y: 4
       width: 57
       height: 52
-    spriteID: 735ac9991208eb54ba202ac45b7c0b07
+    spriteID: 0a18280a2dfe2604787acd3e4f7d64c3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -481,7 +511,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 447, y: 4}
-  - name: Ghost_Frame_18
+  - name: Demon_Frame_18
     originalName: 
     pivot: {x: 0.5, y: -0.11538462}
     alignment: 9
@@ -492,7 +522,7 @@ ScriptedImporter:
       y: 145
       width: 50
       height: 52
-    spriteID: 4eed6c4420695324797e30fc0f6991d6
+    spriteID: b9f72dfb1a689974fbc4b494c4eb69a6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -501,7 +531,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 62, y: 145}
-  - name: Ghost_Frame_19
+  - name: Demon_Frame_19
     originalName: 
     pivot: {x: 0.49180326, y: 0}
     alignment: 9
@@ -512,7 +542,7 @@ ScriptedImporter:
       y: 87
       width: 61
       height: 45
-    spriteID: 30d931ab4c43ed44d8cbd500a52aacd4
+    spriteID: 7786e48f912eba34fb11766623fb28b8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -521,7 +551,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 203, y: 87}
-  - name: Ghost_Frame_20
+  - name: Demon_Frame_20
     originalName: 
     pivot: {x: 0.50877196, y: 0}
     alignment: 9
@@ -532,7 +562,7 @@ ScriptedImporter:
       y: 145
       width: 57
       height: 39
-    spriteID: 1e49dc34f144e8c4fa952cfa148b3a4e
+    spriteID: 6b62ea0d3c5213b4fbe81b2142ba6461
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -541,7 +571,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 433, y: 145}
-  - name: Ghost_Frame_21
+  - name: Demon_Frame_21
     originalName: 
     pivot: {x: 0.44444445, y: -0.15384616}
     alignment: 9
@@ -552,7 +582,7 @@ ScriptedImporter:
       y: 205
       width: 27
       height: 26
-    spriteID: 132c87c6d89b93a4b84f9d43ecb00093
+    spriteID: 5fa0e1105da5e15448188058e638ca0f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -561,7 +591,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 364, y: 205}
-  - name: Ghost_Frame_22
+  - name: Demon_Frame_22
     originalName: 
     pivot: {x: 0.47619048, y: -0.024390243}
     alignment: 9
@@ -572,7 +602,7 @@ ScriptedImporter:
       y: 249
       width: 42
       height: 41
-    spriteID: 8379cebac0141dd40b7315944d90cbae
+    spriteID: 682c431e87543884bb7a494a22bbfd82
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -581,7 +611,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 112, y: 249}
-  - name: Ghost_Frame_23
+  - name: Demon_Frame_23
     originalName: 
     pivot: {x: 0.51428574, y: -0.34615386}
     alignment: 9
@@ -592,7 +622,7 @@ ScriptedImporter:
       y: 4
       width: 70
       height: 52
-    spriteID: cdc79ffadbdae274a82e85dcfb008e7b
+    spriteID: 054c14df3a27b4a43a6958bbcdb8f1ba
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -601,7 +631,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 369, y: 4}
-  - name: Ghost_Frame_24
+  - name: Demon_Frame_24
     originalName: 
     pivot: {x: 0.55, y: -0.33870965}
     alignment: 9
@@ -612,7 +642,7 @@ ScriptedImporter:
       y: 4
       width: 80
       height: 62
-    spriteID: 64b563f69d03aac499fef83bf0bb63ac
+    spriteID: 598371fcf393c104a9db07033cc5914a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -621,7 +651,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 188, y: 4}
-  - name: Ghost_Frame_25
+  - name: Demon_Frame_25
     originalName: 
     pivot: {x: 0.55421686, y: -0.2}
     alignment: 9
@@ -632,7 +662,7 @@ ScriptedImporter:
       y: 4
       width: 83
       height: 75
-    spriteID: 97998abda0932b54197fef4fcab20c69
+    spriteID: a215ece735867cc46b438518a3efde5f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -641,7 +671,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Ghost_Frame_26
+  - name: Demon_Frame_26
     originalName: 
     pivot: {x: 0.5176471, y: -0.07575758}
     alignment: 9
@@ -652,7 +682,7 @@ ScriptedImporter:
       y: 4
       width: 85
       height: 66
-    spriteID: 27ca84e400f70cc43af96d1906c85989
+    spriteID: b4baca41525a42b4e88603b38c51a23c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -661,7 +691,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 95, y: 4}
-  - name: Ghost_Frame_27
+  - name: Demon_Frame_27
     originalName: 
     pivot: {x: 0.5058824, y: 0}
     alignment: 9
@@ -672,7 +702,7 @@ ScriptedImporter:
       y: 4
       width: 85
       height: 58
-    spriteID: 1e77dcc5579f2ca4d9ff2ab890a6f370
+    spriteID: a5bde78efe8e6594d9942681c6810367
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -681,7 +711,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 276, y: 4}
-  - name: Ghost_Frame_28
+  - name: Demon_Frame_28
     originalName: 
     pivot: {x: 0.46153846, y: 0}
     alignment: 9
@@ -692,7 +722,7 @@ ScriptedImporter:
       y: 87
       width: 78
       height: 29
-    spriteID: b43d10441a6b10a469088651ea087471
+    spriteID: f640195d00679cd4db7cce69848fd2ee
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -701,7 +731,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 402, y: 87}
-  - name: Ghost_Frame_29
+  - name: Demon_Frame_29
     originalName: 
     pivot: {x: 0.49333334, y: 0}
     alignment: 9
@@ -712,7 +742,7 @@ ScriptedImporter:
       y: 205
       width: 75
       height: 15
-    spriteID: 52dd35036c6c1284e81073994773c049
+    spriteID: 8ac6a74982ab54f42b60ada4cbc2eb71
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -721,7 +751,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 281, y: 205}
-  - name: Ghost_Frame_30
+  - name: Demon_Frame_30
     originalName: 
     pivot: {x: 0.4864865, y: 0}
     alignment: 9
@@ -732,7 +762,7 @@ ScriptedImporter:
       y: 228
       width: 74
       height: 7
-    spriteID: f9bd9917e45e69f46a069ad953bc432b
+    spriteID: 9776188d993527f4484216cfc9677427
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -744,13 +774,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1798907869
-    name: Ghost
+    guid: 64904361
+    name: Demon
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Ghost_Frame_0
+    - name: Demon_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -758,8 +788,8 @@ ScriptedImporter:
         y: 0
         width: 57
         height: 39
-      spriteId: 3ca61d9a8a779824c82268c04e4c76d4
-    - name: Ghost_Frame_1
+      spriteId: abf4964bdc5d63c418565f78f53ca769
+    - name: Demon_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -767,8 +797,8 @@ ScriptedImporter:
         y: 0
         width: 60
         height: 36
-      spriteId: d4826e365fca7d54f80742497f5c09c6
-    - name: Ghost_Frame_2
+      spriteId: c04393cb5d480024bb2a7d7ab5351bea
+    - name: Demon_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -776,8 +806,8 @@ ScriptedImporter:
         y: 0
         width: 60
         height: 36
-      spriteId: 3021b33d498cb6642a812e4b6a4ccc6d
-    - name: Ghost_Frame_3
+      spriteId: ad7d262ef59cf0b429e358ff1df3540d
+    - name: Demon_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -785,8 +815,8 @@ ScriptedImporter:
         y: 0
         width: 63
         height: 32
-      spriteId: 0e2673d98d17dc14dbaf4fd38152f00c
-    - name: Ghost_Frame_4
+      spriteId: 9771ec9e5b6e00b4ab7ade9ac2517cb2
+    - name: Demon_Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -794,8 +824,8 @@ ScriptedImporter:
         y: 6
         width: 46
         height: 41
-      spriteId: bab5c6af73e2732479406932bd552cd8
-    - name: Ghost_Frame_5
+      spriteId: 97a6ee15a012eea419f12cdbeca77198
+    - name: Demon_Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -803,8 +833,8 @@ ScriptedImporter:
         y: 9
         width: 51
         height: 44
-      spriteId: 30ec41bdab54a8741af14d5c2e65fe01
-    - name: Ghost_Frame_6
+      spriteId: 3e7229985fbae384d9a1fbbfc1a402c9
+    - name: Demon_Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -812,8 +842,8 @@ ScriptedImporter:
         y: 16
         width: 57
         height: 42
-      spriteId: 619db4a6604ba504cac25a4496e54148
-    - name: Ghost_Frame_7
+      spriteId: 73056533c7c5be84caa2f65298aa46c7
+    - name: Demon_Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -821,8 +851,8 @@ ScriptedImporter:
         y: 9
         width: 51
         height: 44
-      spriteId: 1954c907faf9e7a4a8de4833a154c9fd
-    - name: Ghost_Frame_8
+      spriteId: a8b311bf71d291943aa5fd9c913993fc
+    - name: Demon_Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -830,8 +860,8 @@ ScriptedImporter:
         y: 6
         width: 46
         height: 41
-      spriteId: 0c8e88d647d4c3d4ba008c0954a0d4bc
-    - name: Ghost_Frame_9
+      spriteId: 269a8db6aa3c7c64c81f063295294257
+    - name: Demon_Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -839,8 +869,8 @@ ScriptedImporter:
         y: 0
         width: 62
         height: 34
-      spriteId: 311a23db87ee9ab4ca22424532700ddd
-    - name: Ghost_Frame_10
+      spriteId: 6062a4fd6e2096545ba80f0e390ecabd
+    - name: Demon_Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -848,8 +878,8 @@ ScriptedImporter:
         y: 0
         width: 57
         height: 39
-      spriteId: 14b6bfa7e11e8b3429f2e6a8a5dea30b
-    - name: Ghost_Frame_11
+      spriteId: 47620e99be36d6d40ab30357d3ef270e
+    - name: Demon_Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -857,8 +887,8 @@ ScriptedImporter:
         y: 0
         width: 57
         height: 39
-      spriteId: 6c8d1b46ca10736439946ff1fd355c4f
-    - name: Ghost_Frame_12
+      spriteId: c9d2a3a82685cb149ba9340a25352ce5
+    - name: Demon_Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -866,8 +896,8 @@ ScriptedImporter:
         y: 0
         width: 57
         height: 45
-      spriteId: 7fc3fc6443e21194aa6f55d0ca8377db
-    - name: Ghost_Frame_13
+      spriteId: 278c8e679b99cd948bb9c93a2bab37e2
+    - name: Demon_Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
@@ -875,8 +905,8 @@ ScriptedImporter:
         y: 0
         width: 57
         height: 50
-      spriteId: fd211dc1e239a064ab233048980ef2d9
-    - name: Ghost_Frame_14
+      spriteId: 0224a74927a738844b6d24776ac93f4d
+    - name: Demon_Frame_14
       frameIndex: 14
       additiveSortOrder: 0
       cellRect:
@@ -884,8 +914,8 @@ ScriptedImporter:
         y: 0
         width: 57
         height: 50
-      spriteId: 52c06aa0445b8a944b942c664796c23d
-    - name: Ghost_Frame_15
+      spriteId: 555dbaa978fe80b40a7a5715bdf679c9
+    - name: Demon_Frame_15
       frameIndex: 15
       additiveSortOrder: 0
       cellRect:
@@ -893,8 +923,8 @@ ScriptedImporter:
         y: 0
         width: 61
         height: 45
-      spriteId: 6871149ee2b0da74fbbb3a7bc6ce10a1
-    - name: Ghost_Frame_16
+      spriteId: dad9ed642bd1b354191a8f5a4f43ac6a
+    - name: Demon_Frame_16
       frameIndex: 16
       additiveSortOrder: 0
       cellRect:
@@ -902,8 +932,8 @@ ScriptedImporter:
         y: 6
         width: 50
         height: 52
-      spriteId: 06052b704782385439ed2ce189fb76af
-    - name: Ghost_Frame_17
+      spriteId: e3975bbf37dc5ac44bce890e82cbb9c0
+    - name: Demon_Frame_17
       frameIndex: 17
       additiveSortOrder: 0
       cellRect:
@@ -911,8 +941,8 @@ ScriptedImporter:
         y: 15
         width: 57
         height: 52
-      spriteId: 735ac9991208eb54ba202ac45b7c0b07
-    - name: Ghost_Frame_18
+      spriteId: 0a18280a2dfe2604787acd3e4f7d64c3
+    - name: Demon_Frame_18
       frameIndex: 18
       additiveSortOrder: 0
       cellRect:
@@ -920,8 +950,8 @@ ScriptedImporter:
         y: 6
         width: 50
         height: 52
-      spriteId: 4eed6c4420695324797e30fc0f6991d6
-    - name: Ghost_Frame_19
+      spriteId: b9f72dfb1a689974fbc4b494c4eb69a6
+    - name: Demon_Frame_19
       frameIndex: 19
       additiveSortOrder: 0
       cellRect:
@@ -929,8 +959,8 @@ ScriptedImporter:
         y: 0
         width: 61
         height: 45
-      spriteId: 30d931ab4c43ed44d8cbd500a52aacd4
-    - name: Ghost_Frame_20
+      spriteId: 7786e48f912eba34fb11766623fb28b8
+    - name: Demon_Frame_20
       frameIndex: 20
       additiveSortOrder: 0
       cellRect:
@@ -938,8 +968,8 @@ ScriptedImporter:
         y: 0
         width: 57
         height: 39
-      spriteId: 1e49dc34f144e8c4fa952cfa148b3a4e
-    - name: Ghost_Frame_21
+      spriteId: 6b62ea0d3c5213b4fbe81b2142ba6461
+    - name: Demon_Frame_21
       frameIndex: 21
       additiveSortOrder: 0
       cellRect:
@@ -947,8 +977,8 @@ ScriptedImporter:
         y: 4
         width: 27
         height: 26
-      spriteId: 132c87c6d89b93a4b84f9d43ecb00093
-    - name: Ghost_Frame_22
+      spriteId: 5fa0e1105da5e15448188058e638ca0f
+    - name: Demon_Frame_22
       frameIndex: 22
       additiveSortOrder: 0
       cellRect:
@@ -956,8 +986,8 @@ ScriptedImporter:
         y: 1
         width: 42
         height: 41
-      spriteId: 8379cebac0141dd40b7315944d90cbae
-    - name: Ghost_Frame_23
+      spriteId: 682c431e87543884bb7a494a22bbfd82
+    - name: Demon_Frame_23
       frameIndex: 23
       additiveSortOrder: 0
       cellRect:
@@ -965,8 +995,8 @@ ScriptedImporter:
         y: 18
         width: 70
         height: 52
-      spriteId: cdc79ffadbdae274a82e85dcfb008e7b
-    - name: Ghost_Frame_24
+      spriteId: 054c14df3a27b4a43a6958bbcdb8f1ba
+    - name: Demon_Frame_24
       frameIndex: 24
       additiveSortOrder: 0
       cellRect:
@@ -974,8 +1004,8 @@ ScriptedImporter:
         y: 21
         width: 80
         height: 62
-      spriteId: 64b563f69d03aac499fef83bf0bb63ac
-    - name: Ghost_Frame_25
+      spriteId: 598371fcf393c104a9db07033cc5914a
+    - name: Demon_Frame_25
       frameIndex: 25
       additiveSortOrder: 0
       cellRect:
@@ -983,8 +1013,8 @@ ScriptedImporter:
         y: 15
         width: 83
         height: 75
-      spriteId: 97998abda0932b54197fef4fcab20c69
-    - name: Ghost_Frame_26
+      spriteId: a215ece735867cc46b438518a3efde5f
+    - name: Demon_Frame_26
       frameIndex: 26
       additiveSortOrder: 0
       cellRect:
@@ -992,8 +1022,8 @@ ScriptedImporter:
         y: 5
         width: 85
         height: 66
-      spriteId: 27ca84e400f70cc43af96d1906c85989
-    - name: Ghost_Frame_27
+      spriteId: b4baca41525a42b4e88603b38c51a23c
+    - name: Demon_Frame_27
       frameIndex: 27
       additiveSortOrder: 0
       cellRect:
@@ -1001,8 +1031,8 @@ ScriptedImporter:
         y: 0
         width: 85
         height: 58
-      spriteId: 1e77dcc5579f2ca4d9ff2ab890a6f370
-    - name: Ghost_Frame_28
+      spriteId: a5bde78efe8e6594d9942681c6810367
+    - name: Demon_Frame_28
       frameIndex: 28
       additiveSortOrder: 0
       cellRect:
@@ -1010,8 +1040,8 @@ ScriptedImporter:
         y: 0
         width: 78
         height: 29
-      spriteId: b43d10441a6b10a469088651ea087471
-    - name: Ghost_Frame_29
+      spriteId: f640195d00679cd4db7cce69848fd2ee
+    - name: Demon_Frame_29
       frameIndex: 29
       additiveSortOrder: 0
       cellRect:
@@ -1019,8 +1049,8 @@ ScriptedImporter:
         y: 0
         width: 75
         height: 15
-      spriteId: 52dd35036c6c1284e81073994773c049
-    - name: Ghost_Frame_30
+      spriteId: 8ac6a74982ab54f42b60ada4cbc2eb71
+    - name: Demon_Frame_30
       frameIndex: 30
       additiveSortOrder: 0
       cellRect:
@@ -1028,7 +1058,7 @@ ScriptedImporter:
         y: 0
         width: 74
         height: 7
-      spriteId: f9bd9917e45e69f46a069ad953bc432b
+      spriteId: 9776188d993527f4484216cfc9677427
     linkedCells: []
     parentIndex: -1
   platformSettings:

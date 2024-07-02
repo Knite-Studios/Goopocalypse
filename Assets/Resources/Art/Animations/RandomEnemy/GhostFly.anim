@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DasherIdle
+  m_Name: GhostFly
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,15 +21,15 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -3819758691432986606, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.12
-      value: {fileID: -7552806818998364115, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.24
-      value: {fileID: -6134949808777305713, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.36
-      value: {fileID: -1362300458350152808, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.48000002
-      value: {fileID: -1362300458350152808, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
+      value: {fileID: -5370855787201639848, guid: 2a62a65b9c5feff4f92303893bb6e7f4, type: 3}
+    - time: 0.15
+      value: {fileID: -477902217355707803, guid: 2a62a65b9c5feff4f92303893bb6e7f4, type: 3}
+    - time: 0.3
+      value: {fileID: 8603216192962459432, guid: 2a62a65b9c5feff4f92303893bb6e7f4, type: 3}
+    - time: 0.45
+      value: {fileID: -9221877581152780450, guid: 2a62a65b9c5feff4f92303893bb6e7f4, type: 3}
+    - time: 0.6
+      value: {fileID: -9221877581152780450, guid: 2a62a65b9c5feff4f92303893bb6e7f4, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,7 +48,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.49
+    m_StopTime: 0.61
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

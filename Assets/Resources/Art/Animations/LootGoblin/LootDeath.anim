@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DasherIdle
+  m_Name: LootDeath
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,15 +21,29 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -3819758691432986606, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.12
-      value: {fileID: -7552806818998364115, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.24
-      value: {fileID: -6134949808777305713, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.36
-      value: {fileID: -1362300458350152808, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.48000002
-      value: {fileID: -1362300458350152808, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
+      value: {fileID: -4916382527214603615, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - time: 0.14999986
+      value: {fileID: 5743986412455732226, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - time: 0.29999995
+      value: {fileID: -5075671622892131869, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - time: 0.4499998
+      value: {fileID: -1785250369563384997, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - time: 0.5999999
+      value: {fileID: -7601225001430124938, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - time: 0.75
+      value: {fileID: 6207316371826055113, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - time: 0.89999986
+      value: {fileID: 5351938353216204891, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - time: 1.05
+      value: {fileID: -5560969129181055156, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - time: 1.1999998
+      value: {fileID: 5136597939032311791, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - time: 1.3499999
+      value: {fileID: -8287588323438211582, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - time: 1.5
+      value: {fileID: -4245847166678089898, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
+    - time: 1.65
+      value: {fileID: -4245847166678089898, guid: 688297ab8163bb74c8ddb1be9047958c, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,7 +62,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.49
+    m_StopTime: 1.66
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

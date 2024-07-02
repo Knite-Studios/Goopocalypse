@@ -58,6 +58,12 @@ namespace Entity
             FindPlayers();
         }
 
+        private void OnEnable()
+            => GameManager.OnGameOver += DestroyLink;
+
+        private void OnDisable()
+            => GameManager.OnGameOver -= DestroyLink;
+
         private void Update()
         {
             if (!fwend || !buddie) return;

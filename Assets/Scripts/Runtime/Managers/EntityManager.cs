@@ -53,17 +53,28 @@ namespace Managers
 
         public static void SendSceneEntityUpdate()
         {
-            var entityData = Instance.players.Select(p => new SceneEntityUpdateS2CNotify.EntityData
+            var entityData = new List<SceneEntityUpdateS2CNotify.EntityData>();
+            foreach (var player in Instance.players)
             {
-                isPlayer = true,
-                netId = p.netId
-            }).ToList();
+                if (!player) continue;
 
-            entityData.AddRange(Instance.enemies.Select(e => new SceneEntityUpdateS2CNotify.EntityData
+                entityData.Add(new SceneEntityUpdateS2CNotify.EntityData
+                {
+                    netId = player.netId,
+                    isPlayer = true
+                });
+            }
+
+            foreach (var enemy in Instance.enemies)
             {
-                isPlayer = false,
-                netId = e.netId
-            }));
+                if (!enemy) continue;
+
+                entityData.Add(new SceneEntityUpdateS2CNotify.EntityData
+                {
+                    netId = enemy.netId,
+                    isPlayer = false
+                });
+            }
 
             var message = new SceneEntityUpdateS2CNotify { entities = entityData };
             NetworkServer.SendToAll(message);

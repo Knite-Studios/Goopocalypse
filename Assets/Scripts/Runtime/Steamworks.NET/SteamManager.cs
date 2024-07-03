@@ -97,7 +97,7 @@ public class SteamManager : MonoBehaviour {
 			// remove steam_appid.txt from the game depot. eg: "(AppId_t)480" or "new AppId_t(480)".
 			// See the Valve documentation for more information: https://partner.steamgames.com/doc/sdk/api#initialization_and_shutdown
 #if UNITY_STANDALONE || PRODUCTION_BUILD
-            var appId = (AppId_t)480;
+            var appId = (AppId_t)3084960;
 #else
             var appId = (AppId_t)480;
 #endif

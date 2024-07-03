@@ -1,0 +1,11 @@
+<linker>
+    <assembly fullname="Goopocalypse.Runtime" preserve="all"/>
+    <assembly fullname="mscorlib" preserve="all" />
+    <assembly fullname="OneJS" preserve="all" />
+    <assembly fullname="UnityEngine.CoreModule" preserve="all" />
+    <assembly fullname="UnityEngine.PhysicsModule" preserve="all" />
+    <assembly fullname="UnityEngine.TextRenderingModule" preserve="all" />
+    <assembly fullname="UnityEngine.UIElementsModule" preserve="all" />
+    <assembly fullname="UnityEngine.IMGUIModule" preserve="all" />
+    <assembly fullname="Unity.Mathematics" preserve="all" />
+</linker>

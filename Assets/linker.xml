@@ -1,4 +1,0 @@
-<linker>
-  <assembly fullname="Goopocalypse.Runtime" preserve="all"/>
-  <assembly fullname="OneJS" preserve="all"/>
-</linker>

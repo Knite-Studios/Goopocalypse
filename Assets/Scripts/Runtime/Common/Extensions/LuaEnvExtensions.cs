@@ -19,9 +19,14 @@ namespace Common.Extensions
                 filePath += ".lua";
             }
 
+#if UNITY_EDITOR
             var path = Path.Combine(
                 Application.streamingAssetsPath, ScriptManager.LuaRoot, filePath);
             env.DoString(File.ReadAllText(path));
+#else
+            var textAsset = Resources.Load<TextAsset>($"{ScriptManager.LuaRoot}{filePath}");
+            env.DoString(textAsset.text);
+#endif
         }
     }
 }

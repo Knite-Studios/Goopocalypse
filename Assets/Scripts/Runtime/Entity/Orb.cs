@@ -8,6 +8,7 @@ namespace Entity
     {
         public long points = 10;
         [SerializeField] private Vector2 force = new (1, 1);
+        [SerializeField] private AudioClip pickupSound;
 
         private Rigidbody2D _rb;
         private bool _isGameOver;
@@ -34,6 +35,11 @@ namespace Entity
                 NetworkServer.Destroy(gameObject);
             else
                 Destroy(gameObject);
+        }
+
+        public void OnPickupSound()
+        {
+            AudioManager.Instance.PlayOneShot(pickupSound, transform.position);
         }
     }
 }

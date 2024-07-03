@@ -159,7 +159,7 @@ namespace Entity.Enemies
         /// </summary>
         protected PlayerController GetNearestPlayer()
         {
-            var players = EntityManager.Instance.players;
+            var players = EntityManager.Instance.GetPlayers();
 
             var nearestPlayer = players
                 .Where(player => player)
@@ -174,7 +174,7 @@ namespace Entity.Enemies
         /// </summary>
         protected PlayerController GetFurthestPlayer()
         {
-            var players = EntityManager.Instance.players;
+            var players = EntityManager.Instance.GetPlayers();
 
             var furthestPlayer = players
                 .Where(player => player)
@@ -189,7 +189,7 @@ namespace Entity.Enemies
         /// </summary>
         protected PlayerController GetRandomPlayer()
         {
-            var players = EntityManager.Instance.players
+            var players = EntityManager.Instance.GetPlayers()
                 .Where(player => player).ToList();
 
             return players.Count == 0 ? null : players[Random.Range(0, players.Count)];
@@ -200,7 +200,7 @@ namespace Entity.Enemies
         /// </summary>
         protected PlayerController GetNearestMovingPlayer()
         {
-            var players = EntityManager.Instance.players;
+            var players = EntityManager.Instance.GetPlayers();
 
             var movingPlayers = players
                 .Where(player => player && player.IsMoving)

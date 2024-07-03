@@ -5,7 +5,6 @@ using Entity;
 using Entity.Enemies;
 using Entity.Player;
 using Mirror;
-using Runtime;
 using Scriptable;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -33,58 +32,66 @@ namespace Managers
 
         public static void RegisterEntity(BaseEntity entity)
         {
-            if (entity.IsPlayer)
-            {
-                if (Instance.players.Contains(entity as PlayerController)) return;
-                Instance.players.Add(entity as PlayerController);
-            }
-            else
-            {
-                if (Instance.enemies.Contains(entity as Enemy)) return;
-                Instance.enemies.Add(entity as Enemy);
-            }
+            // TODO: This is temporary since on the host's side, its updating both the host and client entities.
+            if (entity.isServer) return;
 
-            // if (NetworkServer.active) SendSceneEntityUpdate();
+            var entityData = new EntityData
+            {
+                entity = entity,
+                netId = entity.netId,
+            };
+
+            if (Instance.entities.Any(e => e.entity == entity && e.netId == entity.netId)) return;
+            Instance.entities.Add(entityData);
+
+            if (NetworkServer.active) SendSceneEntityUpdate();
         }
 
         public static void UnregisterEntity(BaseEntity entity)
         {
-            if (entity.IsPlayer)
-            {
-                if (!Instance.players.Contains(entity as PlayerController)) return;
-                Instance.players.Remove(entity as PlayerController);
-            }
-            else
-            {
-                if (!Instance.enemies.Contains(entity as Enemy)) return;
-                Instance.enemies.Remove(entity as Enemy);
-            }
+            var entityData = Instance.entities.FirstOrDefault(e => e.entity == entity);
+            if (entityData.entity == null) return;
 
-            // if (NetworkServer.active) SendSceneEntityUpdate();
+            Instance.entities.Remove(entityData);
+
+            if (NetworkServer.active) SendSceneEntityUpdate();
         }
+
+        // public static void RegisterPlayer(PlayerController player)
+        // {
+        //     if (Instance.players.Contains(player)) return;
+        //     Instance.players.Add(player);
+        // }
+        //
+        // public static void UnregisterPlayer(PlayerController player)
+        // {
+        //     if (!Instance.players.Contains(player)) return;
+        //     Instance.players.Remove(player);
+        // }
+        //
+        // public static void RegisterEnemy(Enemy enemy)
+        // {
+        //     if (Instance.enemies.Contains(enemy)) return;
+        //     Instance.enemies.Add(enemy);
+        // }
+        //
+        // public static void UnregisterEnemy(Enemy enemy)
+        // {
+        //     if (!Instance.enemies.Contains(enemy)) return;
+        //     Instance.enemies.Remove(enemy);
+        // }
 
         public static void SendSceneEntityUpdate()
         {
-            var entityData = new List<SceneEntityUpdateS2CNotify.EntityData>();
-            foreach (var player in Instance.players)
+            var entityData = new List<EntityData>();
+            foreach (var entity in Instance.entities)
             {
-                if (!player) continue;
+                if (!entity.entity) continue;
 
-                entityData.Add(new SceneEntityUpdateS2CNotify.EntityData
+                entityData.Add(new EntityData
                 {
-                    netId = player.netId,
-                    isPlayer = true
-                });
-            }
-
-            foreach (var enemy in Instance.enemies)
-            {
-                if (!enemy) continue;
-
-                entityData.Add(new SceneEntityUpdateS2CNotify.EntityData
-                {
-                    netId = enemy.netId,
-                    isPlayer = false
+                    entity = entity.entity,
+                    netId = entity.netId
                 });
             }
 
@@ -94,30 +101,39 @@ namespace Managers
 
         #endregion
 
-        public List<PlayerController> players = new();
-        public List<Enemy> enemies = new();
+        // public List<PlayerController> players = new();
+        // public List<Enemy> enemies = new();
+        public List<EntityData> entities = new();
 
         [SerializeField] private SpawnData spawnData;
 
         protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            players.Clear();
-            enemies.Clear();
+            // players.Clear();
+            // enemies.Clear();
+            entities.Clear();
         }
 
         protected override void OnSceneUnloaded(Scene scene)
         {
-            players.ForEach(p =>
-            {
-                if (p) p.Dispose();
-            });
-            enemies.ForEach(e =>
-            {
-                if (e) e.Dispose();
-            });
+            // players.ForEach(p =>
+            // {
+            //     if (p) p.Dispose();
+            // });
+            // enemies.ForEach(e =>
+            // {
+            //     if (e) e.Dispose();
+            // });
+            //
+            // players.Clear();
+            // enemies.Clear();
 
-            players.Clear();
-            enemies.Clear();
+            entities.ForEach(e =>
+            {
+                if (e.entity) e.entity.Dispose();
+            });
+            entities.Clear();
+
         }
 
         /// <summary>
@@ -144,11 +160,20 @@ namespace Managers
                 spawnData.points[Random.Range(0, spawnData.points.Count)];
         }
 
+        public List<PlayerController> GetPlayers()
+        {
+            return entities
+                .Select(e => e.entity)
+                .OfType<PlayerController>()
+                .ToList();
+        }
+
         /// <summary>
         /// Returns the local player.
         /// </summary>
         public PlayerController GetLocalPlayer()
         {
+            var players = GetPlayers();
             return GameManager.Instance.LocalMultiplayer
                 ? players.FirstOrDefault(player => player.playerRole == PlayerRole.Fwend)
                 : players.FirstOrDefault(player => player.isLocalPlayer);

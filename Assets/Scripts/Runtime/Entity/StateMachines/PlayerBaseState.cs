@@ -77,7 +77,7 @@ namespace Entity.StateMachines
             if (!player.isLocalPlayer) return;
 
             // Find other the other player.
-            var otherPlayer = EntityManager.Instance.players
+            var otherPlayer = EntityManager.Instance.GetPlayers()
                 .Find(other => other != player);
 
             if (!otherPlayer) return;

@@ -186,5 +186,27 @@ namespace Entity
                 Destroy(gameObject);
         }
     }
+
+    [Serializable]
+    public struct EntityData : IEquatable<EntityData>
+    {
+        public BaseEntity entity;
+        public uint netId;
+
+        public bool Equals(EntityData other)
+        {
+            return Equals(entity, other.entity) && netId == other.netId;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is EntityData other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(entity, netId);
+        }
+    }
 }
 

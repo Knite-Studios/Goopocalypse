@@ -122,7 +122,7 @@ namespace Entity
 
         private void FindPlayers()
         {
-            var players = EntityManager.Instance.players;
+            var players = EntityManager.Instance.GetPlayers();
             foreach (var player in players)
             {
                 switch (player.playerRole)

@@ -158,7 +158,7 @@ namespace Managers
                 let role = LobbyManager.Instance.GetPlayerRole(player)
                 select CreatePlayer(role, player)).ToList();
 
-            // EntityManager.SendSceneEntityUpdate();
+            EntityManager.SendSceneEntityUpdate();
 
             // Connect the players with the link.
             if (playerControllers.Count == 2)
@@ -430,19 +430,18 @@ namespace Managers
                 if (!NetworkServer.spawned.TryGetValue(entityData.netId, out var identity)) continue;
                 if (!identity.TryGetComponent(out BaseEntity entity)) continue;
 
-                if (entityData.isPlayer)
+                if (!manager.entities.Any(e => e.entity == entity && e.netId == entityData.netId))
                 {
-                    if (!manager.players.Contains(entity as PlayerController))
-                    {
-                        manager.players.Add(entity as PlayerController);
-                    }
-                }
-                else
-                {
-                    if (!manager.enemies.Contains(entity as Enemy))
-                    {
-                        manager.enemies.Add(entity as Enemy);
-                    }
+                    manager.entities.Add(entityData);
+
+                    // if (entity is PlayerController player)
+                    // {
+                    //     EntityManager.RegisterPlayer(player);
+                    // }
+                    // else if (entity is Enemy enemy)
+                    // {
+                    //     EntityManager.RegisterEnemy(enemy);
+                    // }
                 }
             }
         }

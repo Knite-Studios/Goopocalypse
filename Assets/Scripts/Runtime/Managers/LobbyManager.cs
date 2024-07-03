@@ -196,26 +196,31 @@ namespace Managers
         /// </summary>
         private void OnDisconnected(NetworkConnectionToClient conn)
         {
-            // TODO: Replace with actual game state system/check.
-            if (GameManager.Instance.State is GameState.Playing)
-            {
-                // TODO: Stop game if in progress.
-                Players.Remove(FindPlayer(conn));
-            }
+            // TODO: Stop game if in progress.
+            var player = FindPlayer(conn);
 
-            DisposeConnection();
+            Players.Remove(player);
+            Roles.Remove(player.userId);
+
+            OnPlayersChanged?.Invoke(Players);
+            Roles.Clear();
+
+            DisposeConnection(false);
         }
 
         /// <summary>
         /// Cleans up any remaining data when the connection is disposed.
         /// </summary>
-        public void DisposeConnection()
+        public void DisposeConnection(bool clearPlayers = true)
         {
-            Players.Clear();
-            Roles.Clear();
+            if (clearPlayers)
+            {
+                Players.Clear();
+                Roles.Clear();
 
-            OnPlayersChanged?.Invoke(Players);
-            OnRolesChanged?.Invoke(Roles);
+                OnPlayersChanged?.Invoke(Players);
+                OnRolesChanged?.Invoke(Roles);
+            }
 
             _lobbyId = CSteamID.Nil;
         }

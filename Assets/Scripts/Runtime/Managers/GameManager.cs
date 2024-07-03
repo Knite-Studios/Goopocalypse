@@ -271,12 +271,11 @@ namespace Managers
         {
             State = GameState.Menu;
             Navigate("/");
+            LoadScene(0);
 
             // TODO: We could return the players to the lobby scene.
             if (!LocalMultiplayer)
                 LobbyManager.Instance.LeaveLobby();
-            else
-                LoadScene(0);
         }
 
         /// <summary>

@@ -149,6 +149,14 @@ namespace Entity.Player
             Dispose();
             OnDeathSound();
         }
+        /// <summary>
+        /// Method called for death sounds.
+        /// </summary>
+        public override void OnDeathSound()
+        {
+            if (AudioSource.isPlaying) AudioSource.Stop();
+            AudioManager.Instance.PlayOneShot(deathSound, transform.position);
+        }
     }
 
     [Serializable]

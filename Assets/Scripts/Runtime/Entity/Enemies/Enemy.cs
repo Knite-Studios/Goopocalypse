@@ -138,7 +138,6 @@ namespace Entity.Enemies
 
             base.OnDeath();
 
-            // EntityManager.UnregisterEnemy(this);
 
             // Disable the collider in case the player runs into the enemy while the animation is playing.
             Collider.enabled = false;

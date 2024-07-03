@@ -229,8 +229,17 @@ namespace Managers
         {
             if (LocalMultiplayer)
             {
-                // Reload the game scene.
+                // Restart as local game.
                 StartLocalGame();
+                Navigate("/game");
+            }
+            else
+            {
+                // Only the host can restart the game.
+                if (!NetworkManager.IsHost()) return;
+
+                // Restart as remote game.
+                StartRemoteGame();
                 Navigate("/game");
             }
         }
@@ -243,11 +252,9 @@ namespace Managers
             State = GameState.Menu;
             Navigate("/");
 
-            // TODO: Route to game over screen.
-            // We could also add a sound effect here and a delay before transitioning.
-            // Or instead of loading scene, we could let the players decide to restart or quit.
+            // TODO: We could return the players to the lobby scene.
             if (!LocalMultiplayer)
-                NetworkServer.SendToAll(new TransferSceneS2CNotify { sceneId = menuScene });
+                LobbyManager.Instance.LeaveLobby();
             else
                 LoadScene(0);
         }

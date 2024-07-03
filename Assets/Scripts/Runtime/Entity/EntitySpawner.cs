@@ -64,7 +64,7 @@ namespace Runtime.World
                         spawnPoint, Quaternion.identity);
 
                     if (NetworkServer.active) NetworkServer.Spawn(enemyObject);
-                    EntityManager.RegisterEnemy(enemy);
+                    EntityManager.RegisterEntity(enemy);
                 }
             }
             else
@@ -86,7 +86,7 @@ namespace Runtime.World
                         spawnPoint, Quaternion.identity);
 
                     if (NetworkServer.active) NetworkServer.Spawn(enemyObject);
-                    EntityManager.RegisterEnemy(enemy);
+                    EntityManager.RegisterEntity(enemy);
                 }
             }
         }

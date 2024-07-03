@@ -106,8 +106,8 @@ namespace Managers
 
         #endregion
 
-        [SyncVar] public List<PlayerController> players = new();
-        [SyncVar] public List<Enemy> enemies = new();
+        public List<PlayerController> players = new();
+        public List<Enemy> enemies = new();
 
         [SerializeField] private SpawnData spawnData;
 

@@ -164,7 +164,12 @@ namespace Managers
                 var steamId = conn.address.ToSteamId();
                 userId = steamId.m_SteamID.ToString();
 
-                profileIcon = SteamUtilities.LoadAvatar(steamId);
+                // Try to load the player's profile icon.
+                for (var i = 0; i < 5; i++)
+                {
+                    profileIcon = SteamUtilities.LoadAvatar(steamId);
+                    if (profileIcon != null) break;
+                }
             }
             else
             {

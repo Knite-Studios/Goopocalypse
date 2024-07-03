@@ -159,6 +159,8 @@ namespace Managers
                 let role = LobbyManager.Instance.GetPlayerRole(player)
                 select CreatePlayer(role, player)).ToList();
 
+            EntityManager.SendSceneEntityUpdate();
+
             // Connect the players with the link.
             if (playerControllers.Count == 2)
             {
@@ -309,7 +311,7 @@ namespace Managers
             }
 
             EntityManager.RegisterEntity(controller);
-            EntityManager.SendSceneEntityUpdate();
+
             return controller;
         }
 

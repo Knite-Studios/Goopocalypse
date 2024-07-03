@@ -198,16 +198,16 @@ namespace Managers
         {
             // TODO: Stop game if in progress.
             // TODO: Replace with actual game state system/check.
-            if (GameManager.Instance.State is GameState.Playing or GameState.Paused or GameState.GameOver)
-            {
-                Players.Remove(FindPlayer(conn));
-
-                // Load the main menu.
-                GameManager.Instance.LoadScene(0);
-
-                // Ensure we are in the main menu screen.
-                GameManager.Instance.Navigate("/");
-            }
+            // if (GameManager.Instance.State is GameState.Playing or GameState.Paused or GameState.GameOver)
+            // {
+            //     Players.Remove(FindPlayer(conn));
+            //
+            //     // Load the main menu.
+            //     GameManager.Instance.LoadScene(0);
+            //
+            //     // Ensure we are in the main menu screen.
+            //     GameManager.Instance.Navigate("/");
+            // }
 
             var player = FindPlayer(conn);
 

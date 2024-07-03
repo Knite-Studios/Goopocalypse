@@ -82,11 +82,6 @@ namespace Managers
             OnPlayerConnected += OnConnected;
             OnPlayerDisconnected += OnDisconnected;
 
-            // Register packet handlers.
-            NetworkServer.RegisterHandler<ChangeRoleC2SReq>(OnChangeRole);
-
-            NetworkClient.RegisterHandler<PlayersListS2CNotify>(OnPlayersList);
-
             InputManager.Invite.started += _ => InvitePlayer();
         }
 
@@ -120,6 +115,33 @@ namespace Managers
         /// </summary>
         public PlayerRole GetPlayerRole(NetworkConnectionToClient conn)
             => Roles[FindPlayer(conn).userId];
+
+        #region JavaScript Accessible
+
+        /// <summary>
+        /// Invoked when the client leaves the lobby.
+        /// When hosting: this will close the lobby.
+        /// As a client: this will leave the lobby.
+        /// </summary>
+        public void LeaveLobby()
+        {
+            if (NetworkManager.IsHost())
+            {
+                _networkManager.StopHost();
+                SteamMatchmaking.SetLobbyJoinable(_lobbyId, false);
+            }
+            else
+            {
+                if (NetworkClient.isConnected)
+                {
+                    _networkManager.StopClient();
+                }
+            }
+
+            SteamMatchmaking.LeaveLobby(_lobbyId);
+        }
+
+        #endregion
 
         #region Mirror Callbacks
 
@@ -173,7 +195,30 @@ namespace Managers
         /// Invoked when a client disconnects from the server.
         /// </summary>
         private void OnDisconnected(NetworkConnectionToClient conn)
-            => Players.Remove(FindPlayer(conn));
+        {
+            // TODO: Replace with actual game state system/check.
+            if (GameManager.Instance.State is GameState.Playing)
+            {
+                // TODO: Stop game if in progress.
+                Players.Remove(FindPlayer(conn));
+            }
+
+            DisposeConnection();
+        }
+
+        /// <summary>
+        /// Cleans up any remaining data when the connection is disposed.
+        /// </summary>
+        public void DisposeConnection()
+        {
+            Players.Clear();
+            Roles.Clear();
+
+            OnPlayersChanged?.Invoke(Players);
+            OnRolesChanged?.Invoke(Roles);
+
+            _lobbyId = CSteamID.Nil;
+        }
 
         #endregion
 
@@ -182,7 +227,7 @@ namespace Managers
         /// <summary>
         /// Invoked when the client requests to change their role.
         /// </summary>
-        private static void OnChangeRole(NetworkConnectionToClient conn, ChangeRoleC2SReq req)
+        public static void OnChangeRole(NetworkConnectionToClient conn, ChangeRoleC2SReq req)
         {
             var roles = Instance.Roles;
 
@@ -205,7 +250,7 @@ namespace Managers
         /// Sets the list of players connected to the server.
         /// </summary>
         /// <param name="notify"></param>
-        private static void OnPlayersList(PlayersListS2CNotify notify)
+        public static void OnPlayersList(PlayersListS2CNotify notify)
         {
             Instance.Players = notify.players;
 

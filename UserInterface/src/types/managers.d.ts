@@ -77,32 +77,25 @@ declare module "game" {
     }
 
     export class LobbyManager extends MonoSingleton<LobbyManager> {
-        static OnPlayerConnected: (a: NetworkConnectionToClient) => void;
-        static OnPlayerDisconnected: (a: NetworkConnectionToClient) => void;
-        static Initialize(): void;
-        Players: List<PlayerSession>;
-        Roles: Dictionary<string, PlayerRole>;
-        add_OnPlayersChanged(handler: (a: List<PlayerSession>) => void): void;
-        remove_OnPlayersChanged(
-            handler: (a: List<PlayerSession>) => void
-        ): void;
-        OnPlayersChanged: OneJS.Event<(a: List<PlayerSession>) => void>;
-        add_OnRolesChanged(
-            handler: (a: Dictionary<string, PlayerRole>) => void
-        ): void;
-        remove_OnRolesChanged(
-            handler: (a: Dictionary<string, PlayerRole>) => void
-        ): void;
-        OnRolesChanged: OneJS.Event<
-            (a: Dictionary<string, PlayerRole>) => void
-        >;
-        transport: TransportType;
-        constructor();
-        FindPlayer(conn: NetworkConnectionToClient): PlayerSession;
-        GetPlayerRole(conn: NetworkConnectionToClient): PlayerRole;
-        MakeLobby(): void;
-        CloseLobby(): void;
-        InvitePlayer(): void;
+        static OnPlayerConnected: (a: NetworkConnectionToClient) => void
+        static OnPlayerDisconnected: (a: NetworkConnectionToClient) => void
+        static Initialize(): void
+        Players: List<PlayerSession>
+        Roles: Dictionary<string, PlayerRole>
+        add_OnPlayersChanged(handler: (a: List<PlayerSession>) => void): void
+        remove_OnPlayersChanged(handler: (a: List<PlayerSession>) => void): void
+        OnPlayersChanged: OneJS.Event<(a: List<PlayerSession>) => void>
+        add_OnRolesChanged(handler: (a: Dictionary<string, PlayerRole>) => void): void
+        remove_OnRolesChanged(handler: (a: Dictionary<string, PlayerRole>) => void): void
+        OnRolesChanged: OneJS.Event<(a: Dictionary<string, PlayerRole>) => void>
+        transport: TransportType
+        constructor()
+        FindPlayer(conn: NetworkConnectionToClient): PlayerSession
+        GetPlayerRole(conn: NetworkConnectionToClient): PlayerRole
+        LeaveLobby(): void
+        MakeLobby(): void
+        CloseLobby(): void
+        InvitePlayer(): void
     }
 
     export class SettingsManager extends MonoSingleton<SettingsManager> {

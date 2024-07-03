@@ -1,5 +1,6 @@
-﻿using Mirror;
-using UnityEngine;
+﻿using System;
+using Mirror;
+using Runtime;
 
 namespace Managers
 {
@@ -7,6 +8,38 @@ namespace Managers
     {
         public static bool IsHost()
             => NetworkServer.active && NetworkClient.isConnected;
+
+        protected override void RegisterServerMessages()
+        {
+            base.RegisterServerMessages();
+
+            NetworkServer.RegisterHandler<ChangeRoleC2SReq>(LobbyManager.OnChangeRole);
+
+            NetworkServer.RegisterHandler<EnterSceneDoneC2SNotify>(GameManager.OnEnterSceneDone);
+        }
+
+        protected override void RegisterClientMessages()
+        {
+            base.RegisterClientMessages();
+
+            NetworkClient.RegisterHandler<PlayersListS2CNotify>(LobbyManager.OnPlayersList);
+
+            NetworkClient.RegisterHandler<TransferSceneS2CNotify>(GameManager.OnTransferScene);
+            NetworkClient.RegisterHandler<PlayerLoginSuccessS2CNotify>(GameManager.OnLoginSuccess);
+            NetworkClient.RegisterHandler<GameStartS2CNotify>(GameManager.OnNetworkGameStart);
+            NetworkClient.RegisterHandler<GameOverS2CNotify>(_ => GameManager.OnGameOver?.Invoke());
+            NetworkClient.RegisterHandler<SceneEntityUpdateS2CNotify>(GameManager.OnSceneEntityUpdate);
+
+            NetworkClient.RegisterHandler<WaveInfoS2CNotify>(WaveManager.OnWaveInfo);
+        }
+
+        public override void OnClientDisconnect()
+        {
+            // If in lobby as client, navigate back.
+            // TODO: Show message stating user got disconnected.
+            GameManager.Instance.Navigate("/");
+            LobbyManager.Instance.DisposeConnection();
+        }
 
         public override void OnServerConnect(NetworkConnectionToClient conn)
         {

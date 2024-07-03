@@ -71,16 +71,6 @@ namespace Managers
 
             // Find references.
             _networkManager = FindObjectOfType<NetworkManager>();
-
-            // Register packet handlers.
-            NetworkServer.RegisterHandler<EnterSceneDoneC2SNotify>(OnEnterSceneDone);
-
-            NetworkClient.RegisterHandler<TransferSceneS2CNotify>(OnTransferScene);
-            NetworkClient.RegisterHandler<PlayerLoginSuccessS2CNotify>(OnLoginSuccess);
-            NetworkClient.RegisterHandler<GameStartS2CNotify>(OnNetworkGameStart);
-            NetworkClient.RegisterHandler<GameOverS2CNotify>(msg => OnGameOver?.Invoke());
-
-            NetworkClient.RegisterHandler<SceneEntityUpdateS2CNotify>(OnSceneEntityUpdate);
         }
 
         private void Start()
@@ -354,7 +344,7 @@ namespace Managers
         /// <summary>
         /// Invoked when the server is notified that the client has entered the scene.
         /// </summary>
-        private static void OnEnterSceneDone(
+        public static void OnEnterSceneDone(
             NetworkConnectionToClient conn,
             EnterSceneDoneC2SNotify notify)
         {
@@ -373,7 +363,7 @@ namespace Managers
         /// <summary>
         /// Invoked when the client is requested to transfer scenes.
         /// </summary>
-        private static void OnTransferScene(TransferSceneS2CNotify notify)
+        public static void OnTransferScene(TransferSceneS2CNotify notify)
         {
             var operation = SceneManager.LoadSceneAsync(notify.sceneId);
             if (operation == null)
@@ -388,7 +378,7 @@ namespace Managers
         /// <summary>
         /// Invoked when the server notifies the client that the login was successful.
         /// </summary>
-        private static void OnLoginSuccess(PlayerLoginSuccessS2CNotify notify)
+        public static void OnLoginSuccess(PlayerLoginSuccessS2CNotify notify)
         {
             // Instance.State = GameState.Lobby;
             Debug.Log("Client finished connecting to the server.");
@@ -397,14 +387,14 @@ namespace Managers
         /// <summary>
         /// Invoked when the server notifies the client that the game has started.
         /// </summary>
-        private static void OnNetworkGameStart(GameStartS2CNotify notify)
+        public static void OnNetworkGameStart(GameStartS2CNotify notify)
             => OnGameStart?.Invoke();
 
         /// <summary>
         /// Invoked when the server notifies the client that a scene entity has been updated.
         /// </summary>
         /// <param name="notify"></param>
-        private static void OnSceneEntityUpdate(SceneEntityUpdateS2CNotify notify)
+        public static void OnSceneEntityUpdate(SceneEntityUpdateS2CNotify notify)
         {
             var manager = EntityManager.Instance;
 

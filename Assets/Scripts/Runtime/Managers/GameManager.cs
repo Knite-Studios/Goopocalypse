@@ -427,7 +427,8 @@ namespace Managers
 
             foreach (var entityData in notify.entities)
             {
-                var entity = NetworkServer.spawned[entityData.netId].GetComponent<BaseEntity>();
+                if (!NetworkServer.spawned.TryGetValue(entityData.netId, out var identity)) continue;
+                if (!identity.TryGetComponent(out BaseEntity entity)) continue;
 
                 if (entityData.isPlayer)
                 {

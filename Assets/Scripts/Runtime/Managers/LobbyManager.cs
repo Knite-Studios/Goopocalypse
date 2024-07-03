@@ -353,7 +353,7 @@ namespace Managers
         /// </summary>
         public void InvitePlayer()
         {
-            if (!NetworkServer.active || Players.Count >= 2 || GameManager.Instance.Route != "/join") return;
+            if (!NetworkManager.IsHost() || Players.Count >= 2 || GameManager.Instance.Route != "/join") return;
 
             switch (transport)
             {

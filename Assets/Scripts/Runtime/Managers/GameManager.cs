@@ -6,6 +6,7 @@ using Cinemachine;
 using Common;
 using Discord;
 using Entity;
+using Entity.Enemies;
 using Entity.Player;
 using Mirror;
 using OneJS;
@@ -78,6 +79,8 @@ namespace Managers
             NetworkClient.RegisterHandler<PlayerLoginSuccessS2CNotify>(OnLoginSuccess);
             NetworkClient.RegisterHandler<GameStartS2CNotify>(OnNetworkGameStart);
             NetworkClient.RegisterHandler<GameOverS2CNotify>(msg => OnGameOver?.Invoke());
+
+            NetworkClient.RegisterHandler<SceneEntityUpdateS2CNotify>(OnSceneEntityUpdate);
         }
 
         private void Start()
@@ -305,7 +308,8 @@ namespace Managers
                 NetworkServer.AddPlayerForConnection(conn, playerObj);
             }
 
-            EntityManager.RegisterPlayer(controller);
+            EntityManager.RegisterEntity(controller);
+            EntityManager.SendSceneEntityUpdate();
             return controller;
         }
 
@@ -393,6 +397,35 @@ namespace Managers
         /// </summary>
         private static void OnNetworkGameStart(GameStartS2CNotify notify)
             => OnGameStart?.Invoke();
+
+        /// <summary>
+        /// Invoked when the server notifies the client that a scene entity has been updated.
+        /// </summary>
+        /// <param name="notify"></param>
+        private static void OnSceneEntityUpdate(SceneEntityUpdateS2CNotify notify)
+        {
+            var manager = EntityManager.Instance;
+
+            foreach (var entityData in notify.entities)
+            {
+                var entity = NetworkServer.spawned[entityData.netId].GetComponent<BaseEntity>();
+
+                if (entityData.isPlayer)
+                {
+                    if (!manager.players.Contains(entity as PlayerController))
+                    {
+                        manager.players.Add(entity as PlayerController);
+                    }
+                }
+                else
+                {
+                    if (!manager.enemies.Contains(entity as Enemy))
+                    {
+                        manager.enemies.Add(entity as Enemy);
+                    }
+                }
+            }
+        }
 
         #endregion
 

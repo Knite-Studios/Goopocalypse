@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Entity;
 using Entity.Enemies;
 using Entity.Player;
 using Mirror;
+using Runtime;
 using Scriptable;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -28,6 +30,44 @@ namespace Managers
         }
 
         #region Static Management
+
+        public static void RegisterEntity(BaseEntity entity)
+        {
+            if (entity.IsPlayer)
+                RegisterPlayer(entity as PlayerController);
+            else
+                RegisterEnemy(entity as Enemy);
+
+            if (NetworkServer.active) SendSceneEntityUpdate();
+        }
+
+        public static void UnregisterEntity(BaseEntity entity)
+        {
+            if (entity.IsPlayer)
+                UnregisterPlayer(entity as PlayerController);
+            else
+                UnregisterEnemy(entity as Enemy);
+
+            if (NetworkServer.active) SendSceneEntityUpdate();
+        }
+
+        public static void SendSceneEntityUpdate()
+        {
+            var entityData = Instance.players.Select(p => new SceneEntityUpdateS2CNotify.EntityData
+            {
+                isPlayer = true,
+                netId = p.netId
+            }).ToList();
+
+            entityData.AddRange(Instance.enemies.Select(e => new SceneEntityUpdateS2CNotify.EntityData
+            {
+                isPlayer = false,
+                netId = e.netId
+            }));
+
+            var message = new SceneEntityUpdateS2CNotify { entities = entityData };
+            NetworkServer.SendToAll(message);
+        }
 
         public static void RegisterPlayer(PlayerController player)
         {

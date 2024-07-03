@@ -46,6 +46,7 @@ namespace Entity
         /// </summary>
         [field: SerializeField, ReadOnly]
         public int CurrentHealth { get; protected set; }
+        public bool IsPlayer { get; protected set; }
 
         #region Attribute Getters
 
@@ -63,6 +64,8 @@ namespace Entity
 
         protected virtual void Awake()
         {
+            EntityManager.RegisterEntity(this);
+
             SpriteRenderer = GetComponent<SpriteRenderer>();
             Rb = GetComponent<Rigidbody2D>();
             Animator = GetComponent<Animator>();
@@ -175,8 +178,12 @@ namespace Entity
         /// </summary>
         public void Dispose()
         {
-            Destroy(gameObject);
-            if (NetworkServer.active) NetworkServer.Destroy(gameObject);
+            EntityManager.UnregisterEntity(this);
+
+            if (NetworkServer.active)
+                NetworkServer.Destroy(gameObject);
+            else
+                Destroy(gameObject);
         }
     }
 }

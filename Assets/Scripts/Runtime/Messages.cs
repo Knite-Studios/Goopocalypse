@@ -83,4 +83,19 @@ namespace Runtime
     {
 
     }
+
+    /// <summary>
+    /// Server -> (broadcast) -> Client
+    /// Informs all clients of the current entities in the scene.
+    /// </summary>
+    public struct SceneEntityUpdateS2CNotify : NetworkMessage
+    {
+        public List<EntityData> entities;
+
+        public struct EntityData
+        {
+            public bool isPlayer;
+            public uint netId;
+        }
+    }
 }

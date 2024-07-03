@@ -41,6 +41,7 @@ namespace Entity.Player
         {
             base.Awake();
 
+            IsPlayer = true;
             _collider = GetComponent<Collider2D>();
         }
 
@@ -127,6 +128,7 @@ namespace Entity.Player
         {
             if (_isDead) return;
 
+            _isDead = true;
             onDeathEvent?.Invoke();
 
             if (NetworkServer.active) NetworkServer.SendToAll(new GameOverS2CNotify());
@@ -138,9 +140,10 @@ namespace Entity.Player
             Animator.SetTrigger(IsDeadHash);
             base.OnDeath();
 
-            EntityManager.UnregisterPlayer(this as PlayerController);
+            // EntityManager.UnregisterPlayer(this as PlayerController);
 
-            _isDead = true;
+            _collider.enabled = false;
+
             GameManager.OnGameOver?.Invoke();
         }
 

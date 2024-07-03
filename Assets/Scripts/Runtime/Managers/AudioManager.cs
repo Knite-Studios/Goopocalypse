@@ -80,6 +80,8 @@ namespace Managers
             if (proximity)
             {
                 var player = EntityManager.Instance.GetLocalPlayer();
+                // Play with no volume adjustment if no player is found.
+                if (!player) return;
                 var distance = Vector3.Distance(position, player.transform.position);
                 var volume = Mathf.Clamp01(1 - distance / maxDistance);
                 tempAudioSource.volume = volume;

@@ -152,6 +152,7 @@ namespace Entity.Player
             Dispose();
             OnDeathSound();
         }
+
         /// <summary>
         /// Method called for death sounds.
         /// </summary>

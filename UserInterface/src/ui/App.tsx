@@ -22,6 +22,7 @@ import { MenuState } from "@type/enums";
 import { ScriptManager } from "game";
 
 import { useEventfulState } from "onejs";
+import LobbyScreen from "@screens/legacy/LobbyScreen";
 
 const game = require("game") as ScriptManager;
 
@@ -51,6 +52,7 @@ function App() {
         >
             <Route path={"/"} element={MenuScreen} />
             <Route path={"/debug"} element={DebugScreen} />
+            <Route path={"/debug/lobby"} element={LobbyScreen} />
 
             <Route path={"/join"} element={JoinScreen} />
             <Route path={"/join/local"} element={LocalScreen} />

@@ -5,8 +5,10 @@ import Button from "@components/Button";
 import Text, { Size } from "@components/Text";
 
 import type { ScriptManager } from "game";
+import router from "@ui/Router";
+import { ScreenProps } from "@ui/App";
 
-function DebugScreen({ game }: { game: ScriptManager }) {
+function DebugScreen({ game, navigate }: ScreenProps) {
     const [address, setAddress] = useState("127.0.0.1");
     const [port, setPort] = useState(7777);
 
@@ -53,6 +55,7 @@ function DebugScreen({ game }: { game: ScriptManager }) {
             <Button
                 class={"mb-4 bg-blue-500"}
                 onClick={() => {
+                    navigate("/debug/lobby");
                     game.LobbyManager.MakeLobby();
                 }}
             >

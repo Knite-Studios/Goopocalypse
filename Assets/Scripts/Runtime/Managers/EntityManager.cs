@@ -44,7 +44,7 @@ namespace Managers
                 Instance.enemies.Add(entity as Enemy);
             }
 
-            if (NetworkServer.active) SendSceneEntityUpdate();
+            // if (NetworkServer.active) SendSceneEntityUpdate();
         }
 
         public static void UnregisterEntity(BaseEntity entity)
@@ -60,7 +60,7 @@ namespace Managers
                 Instance.enemies.Remove(entity as Enemy);
             }
 
-            if (NetworkServer.active) SendSceneEntityUpdate();
+            // if (NetworkServer.active) SendSceneEntityUpdate();
         }
 
         public static void SendSceneEntityUpdate()
@@ -99,6 +99,12 @@ namespace Managers
 
         [SerializeField] private SpawnData spawnData;
 
+        protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            players.Clear();
+            enemies.Clear();
+        }
+
         protected override void OnSceneUnloaded(Scene scene)
         {
             players.ForEach(p =>
@@ -109,6 +115,9 @@ namespace Managers
             {
                 if (e) e.Dispose();
             });
+
+            players.Clear();
+            enemies.Clear();
         }
 
         /// <summary>

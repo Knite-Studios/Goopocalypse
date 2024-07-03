@@ -45,7 +45,7 @@ public class RedistCopy {
 			"Steam API64 DLL Size:   " + Steamworks.Version.SteamAPI64DLLSize,
 			""
 		};
-		File.WriteAllLines(Path.Combine(pluginsDir, "Steamworks.NET.txt"), DebugInfo);
+		// File.WriteAllLines(Path.Combine(pluginsDir, "Steamworks.NET.txt"), DebugInfo);
 	}
 
 	static void DeleteOldSteamApiDlls(BuildTarget target, string pathToBuiltProject) {

@@ -28,6 +28,8 @@ namespace Managers
         public static UnityAction<int> OnWaveSpawn;
         public static Action OnGameOver;
         public static UnityAction<int> OnAfterSceneLoad;
+        public static UnityAction<bool> OnGamePause;
+        public static Action OnGameResume;
 
         /// <summary>
         /// Reference to the JavaScript ScriptEngine.
@@ -83,6 +85,7 @@ namespace Managers
             };
             OnGameOver += GameOver;
             OnAfterSceneLoad += AfterSceneLoad;
+            OnGamePause += PauseGame;
 
             // Check if Steam is active.
             if (SteamAPI.IsSteamRunning())
@@ -91,6 +94,12 @@ namespace Managers
                 ProfilePicture = SteamUtilities.LoadLocalAvatar();
                 Username = SteamFriends.GetPersonaName();
             }
+        }
+
+        protected override void OnSceneUnloaded(Scene scene)
+        {
+            // TODO: Add more clean up code.
+            Time.timeScale = 1;
         }
 
         #endregion
@@ -217,9 +226,20 @@ namespace Managers
         /// </summary>
         public void ResumeGame()
         {
-            // TODO: Implement resume functionality.
+            OnGameResume?.Invoke();
+            OnGamePause?.Invoke(false);
+        }
 
-            Navigate("/game"); // Change the UI back to the game.
+        private void PauseGame(bool paused)
+        {
+            if (State is GameState.GameOver) return;
+
+            Navigate(paused ? "/game/pause" : "/game");
+
+            // Only pause when its local multiplayer
+            if (!LocalMultiplayer) return;
+            State = paused ? GameState.Paused : GameState.Playing;
+            Time.timeScale = paused ? 0 : 1;
         }
 
         /// <summary>

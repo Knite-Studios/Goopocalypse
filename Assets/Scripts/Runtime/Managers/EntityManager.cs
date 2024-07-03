@@ -34,9 +34,15 @@ namespace Managers
         public static void RegisterEntity(BaseEntity entity)
         {
             if (entity.IsPlayer)
-                RegisterPlayer(entity as PlayerController);
+            {
+                if (Instance.players.Contains(entity as PlayerController)) return;
+                Instance.players.Add(entity as PlayerController);
+            }
             else
-                RegisterEnemy(entity as Enemy);
+            {
+                if (Instance.enemies.Contains(entity as Enemy)) return;
+                Instance.enemies.Add(entity as Enemy);
+            }
 
             if (NetworkServer.active) SendSceneEntityUpdate();
         }
@@ -44,9 +50,15 @@ namespace Managers
         public static void UnregisterEntity(BaseEntity entity)
         {
             if (entity.IsPlayer)
-                UnregisterPlayer(entity as PlayerController);
+            {
+                if (!Instance.players.Contains(entity as PlayerController)) return;
+                Instance.players.Remove(entity as PlayerController);
+            }
             else
-                UnregisterEnemy(entity as Enemy);
+            {
+                if (!Instance.enemies.Contains(entity as Enemy)) return;
+                Instance.enemies.Remove(entity as Enemy);
+            }
 
             if (NetworkServer.active) SendSceneEntityUpdate();
         }
@@ -78,30 +90,6 @@ namespace Managers
 
             var message = new SceneEntityUpdateS2CNotify { entities = entityData };
             NetworkServer.SendToAll(message);
-        }
-
-        public static void RegisterPlayer(PlayerController player)
-        {
-            if (Instance.players.Contains(player)) return;
-            Instance.players.Add(player);
-        }
-
-        public static void UnregisterPlayer(PlayerController player)
-        {
-            if (!Instance.players.Contains(player)) return;
-            Instance.players.Remove(player);
-        }
-
-        public static void RegisterEnemy(Enemy enemy)
-        {
-            if (Instance.enemies.Contains(enemy)) return;
-            Instance.enemies.Add(enemy);
-        }
-
-        public static void UnregisterEnemy(Enemy enemy)
-        {
-            if (!Instance.enemies.Contains(enemy)) return;
-            Instance.enemies.Remove(enemy);
         }
 
         #endregion

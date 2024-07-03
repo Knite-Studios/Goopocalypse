@@ -18,6 +18,7 @@ namespace Entity.Player
         public bool IsMoving => input.ReadValue<Vector2>() != Vector2.zero;
 
         private BaseState<BaseEntity> _currentState;
+        private bool _isPaused;
 
         protected override void Awake()
         {
@@ -33,6 +34,15 @@ namespace Entity.Player
             // Initialize the player states.
             InitializeStates();
             ChangeState(IdleState);
+
+            InputManager.Menu.canceled += HandlePause;
+            GameManager.OnGameResume += HandleResume;
+        }
+
+        private void OnDestroy()
+        {
+            InputManager.Menu.canceled -= HandlePause;
+            GameManager.OnGameResume -= HandleResume;
         }
 
         private void Update()
@@ -60,5 +70,14 @@ namespace Entity.Player
             _currentState = state;
             _currentState.EnterState();
         }
+
+        private void HandlePause(InputAction.CallbackContext context)
+        {
+            _isPaused = !_isPaused;
+            GameManager.OnGamePause?.Invoke(_isPaused);
+        }
+
+        private void HandleResume()
+            => _isPaused = false;
     }
 }

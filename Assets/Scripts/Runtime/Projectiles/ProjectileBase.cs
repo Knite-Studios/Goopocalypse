@@ -54,6 +54,7 @@ namespace Projectiles
             else
                 entity.OnDeath();
 
+            OnAnimationEnd();
         }
 
         protected virtual void OnAnimationEnd()

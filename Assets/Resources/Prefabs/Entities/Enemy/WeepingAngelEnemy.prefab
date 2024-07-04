@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowColor: {r: 0.92549026, g: 0.14901961, b: 0.24313727, a: 1}
+  glowColor: {r: 0.87058824, g: 0.3647059, b: 0.22352941, a: 1}
   glowBrightness: 1.5
   outlineWidth: 1
   alphaThreshold: 0.01

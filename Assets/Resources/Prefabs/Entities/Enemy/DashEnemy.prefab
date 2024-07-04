@@ -115,8 +115,8 @@ MonoBehaviour:
       m_Calls: []
   deathSound: {fileID: 8300000, guid: 498a5b2cf801bc843997b4505732d00a, type: 3}
   <CurrentHealth>k__BackingField: 0
-  dashRange: 2
-  dashSpeed: 3
+  dashRange: 3.5
+  dashSpeed: 6
 --- !u!114 &5820094326497231489
 MonoBehaviour:
   m_ObjectHideFlags: 0

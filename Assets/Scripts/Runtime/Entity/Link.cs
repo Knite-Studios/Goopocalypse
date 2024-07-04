@@ -43,8 +43,8 @@ namespace Entity
         private void Start()
         {
             _lineRenderer.positionCount = 2;
-            _lineRenderer.startWidth = 0.1f;
-            _lineRenderer.endWidth = 0.1f;
+            _lineRenderer.startWidth = 0.2f;
+            _lineRenderer.endWidth = 0.125f;
             _lineRenderer.sortingOrder = 0;
             _lineRenderer.material = !lineMaterial
                 ? new Material(Shader.Find("Sprites/Default"))

@@ -35,6 +35,7 @@ namespace Entity
                 NetworkServer.Destroy(gameObject);
             else
                 Destroy(gameObject);
+                OnPickupSound();
         }
 
         public void OnPickupSound()

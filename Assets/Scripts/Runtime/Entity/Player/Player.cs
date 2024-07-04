@@ -150,7 +150,7 @@ namespace Entity.Player
         public override void OnDeathAnimation()
         {
             Dispose();
-            OnDeathSound();
+            //OnDeathSound();
         }
 
         /// <summary>

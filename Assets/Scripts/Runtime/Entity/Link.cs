@@ -91,6 +91,27 @@ namespace Entity
                 var distance = Vector2.Distance(fwendPos, buddiePos);
                 _collider.size = new Vector2(distance, 0.3f);
                 transform.right = (fwendPos - buddiePos).normalized;
+
+                //Change Color based on Distance
+                float threshold = 0.5f * maxDistance;
+                Color currentColor;
+                if (distance > threshold)
+                {
+                    float t = (distance - threshold) / (maxDistance - threshold);
+                    currentColor = Color.Lerp(Color.green, Color.red, t);
+                    //_lineRenderer.startColor = currentColor;
+                    //_lineRenderer.endColor = currentColor;
+                }
+                else
+                {
+                    //_lineRenderer.startColor = currentColor;
+                    //_lineRenderer.endColor = currentColor;
+                    //_lineRenderer.material.SetColor("_TintColor", currentColor);
+                    currentColor = Color.green;
+                }
+                _lineRenderer.startColor = currentColor;
+                _lineRenderer.endColor = currentColor;
+                _lineRenderer.material.SetColor("_TintColor", currentColor);
             }
             else
             {
@@ -103,6 +124,9 @@ namespace Entity
                 _lineRenderer.SetPosition(0, Vector2.zero);
                 _lineRenderer.SetPosition(1, Vector2.zero);
                 if (_collider.enabled) _collider.enabled = false;
+
+                //Reset Color when disconnected
+                _lineRenderer.material.SetColor("_TintColor", Color.green);
             }
         }
 

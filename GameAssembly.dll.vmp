@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Document Version="2">
+    <Protection InputFileName="GameAssembly.dll" Options="466688" VMCodeSectionName=".taiga" VMComplexity="20">
+        <Messages />
+        <Folders />
+        <Procedures>
+            <Procedure MapAddress="il2cpp_domain_get" Options="0" CompilationType="2" />
+            <Procedure MapAddress="il2cpp_init" Options="0" CompilationType="2" />
+            <Procedure MapAddress="il2cpp_get_corlib" Options="0" CompilationType="2" />
+            <Procedure MapAddress="il2cpp_image_get_class" Options="0" CompilationType="2" />
+            <Procedure MapAddress="il2cpp_domain_get_assemblies" Options="0" CompilationType="2" />
+            <Procedure MapAddress="il2cpp_class_from_name" Options="0" CompilationType="2" />
+        </Procedures>
+        <Objects />
+    </Protection>
+    <DLLBox>
+        <Folders />
+    </DLLBox>
+    <Script />
+    <LicenseManager />
+</Document>

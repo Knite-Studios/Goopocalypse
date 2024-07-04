@@ -8,4 +8,6 @@
     <assembly fullname="UnityEngine.UIElementsModule" preserve="all" />
     <assembly fullname="UnityEngine.IMGUIModule" preserve="all" />
     <assembly fullname="Unity.Mathematics" preserve="all" />
+    <assembly fullname="Elringus.SpriteGlow.Runtime" preserve="all" />
+    <assembly fullname="Xlua.Core" preserve="all" />
 </linker>

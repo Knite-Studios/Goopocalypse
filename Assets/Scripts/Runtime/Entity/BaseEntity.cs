@@ -15,7 +15,6 @@ namespace Entity
     /// <summary>
     /// The base class for all entities in the game.
     /// </summary>
-    [RequireComponent(typeof(NetworkIdentity))]
     public abstract class BaseEntity : NetworkBehaviour, IAttributable, IDamageable, IDisposable
     {
         /// <summary>
@@ -64,7 +63,7 @@ namespace Entity
 
         protected virtual void Awake()
         {
-            EntityManager.RegisterEntity(this);
+            if (netIdentity) EntityManager.RegisterEntity(this);
 
             SpriteRenderer = GetComponent<SpriteRenderer>();
             Rb = GetComponent<Rigidbody2D>();
@@ -184,6 +183,13 @@ namespace Entity
                 NetworkServer.Destroy(gameObject);
             else
                 Destroy(gameObject);
+        }
+
+        protected override void OnValidate()
+        {
+            if (!netIdentity) return;
+
+            base.OnValidate();
         }
     }
 

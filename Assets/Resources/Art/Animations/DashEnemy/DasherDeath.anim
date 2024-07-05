@@ -22,27 +22,27 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: -2269793064190787161, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.119999886
+    - time: 0.09
       value: {fileID: -5943064921271321240, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.23999977
+    - time: 0.18
       value: {fileID: -2029523452031464069, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.3599999
+    - time: 0.27
       value: {fileID: 635003247467194290, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.47999978
+    - time: 0.36
       value: {fileID: 6387668093745714048, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.5999999
+    - time: 0.45
       value: {fileID: -1463772229897468247, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.7199998
+    - time: 0.55
       value: {fileID: -6655587480483813537, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.8399999
+    - time: 0.64
       value: {fileID: 6303328440073717022, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 0.9599998
+    - time: 0.73
       value: {fileID: 1562956385113273127, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 1.0799999
+    - time: 0.82
       value: {fileID: 3504012821150462472, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 1.1999998
+    - time: 0.91
       value: {fileID: -3800650872493853669, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
-    - time: 1.3199998
+    - time: 1
       value: {fileID: -3800650872493853669, guid: df6dcba1e61a8fb41b698abf3666d12f, type: 3}
     attribute: m_Sprite
     path: 
@@ -83,7 +83,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.33
+    m_StopTime: 1.01
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -103,14 +103,14 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.37
+  - time: 0.31
     functionName: OnDeathSound
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.33
+  - time: 1
     functionName: OnDeathAnimation
     data: 
     objectReferenceParameter: {fileID: 0}

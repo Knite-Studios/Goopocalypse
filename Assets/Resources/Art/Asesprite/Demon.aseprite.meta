@@ -1,38 +1,8 @@
 fileFormatVersion: 2
-guid: e5856e49af88ae44e8eb5269862aa5a1
+guid: 36dee50e9d6123049a0f4170ce9c60ea
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:AnimationClip
-      assembly: UnityEngine.AnimationModule
-      name: DemonChasing
-    second: {fileID: 7400000, guid: b924f5f0525462e4e948a4a59beff17c, type: 2}
-  - first:
-      type: UnityEngine:AnimationClip
-      assembly: UnityEngine.AnimationModule
-      name: DemonDeath
-    second: {fileID: 7400000, guid: a1cfbcdecb76a0440aef0978b32648a1, type: 2}
-  - first:
-      type: UnityEngine:AnimationClip
-      assembly: UnityEngine.AnimationModule
-      name: DemonIdle
-    second: {fileID: 7400000, guid: 9c4f5fe25dda9234d833e61040a218e0, type: 2}
-  - first:
-      type: UnityEngine:AnimationClip
-      assembly: UnityEngine.AnimationModule
-      name: DemonWalkLoop
-    second: {fileID: 7400000, guid: 752099d96cd8ee24196badf44ed7f5b5, type: 2}
-  - first:
-      type: UnityEngine:AnimationClip
-      assembly: UnityEngine.AnimationModule
-      name: DemontWalkTransition
-    second: {fileID: 7400000, guid: c9ea8708e4609d8419728c9cdda4db11, type: 2}
-  - first:
-      type: UnityEngine:AnimationClip
-      assembly: UnityEngine.AnimationModule
-      name: NormalToChase
-    second: {fileID: 7400000, guid: 591023db1e476a449a09b8ae544fca67, type: 2}
+  externalObjects: {}
   serializedVersion: 2
   userData: 
   assetBundleName: 
@@ -65,7 +35,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 64
+    spritePixelsToUnits: 100
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -127,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638554696474207764
+  platformSettingsDirtyTick: 0
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -162,7 +132,7 @@ ScriptedImporter:
       y: 145
       width: 57
       height: 39
-    spriteID: abf4964bdc5d63c418565f78f53ca769
+    spriteID: 56173a2d4cfb092499ee71938b883c3b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,7 +152,7 @@ ScriptedImporter:
       y: 205
       width: 60
       height: 36
-    spriteID: c04393cb5d480024bb2a7d7ab5351bea
+    spriteID: d7fe53fbe35dd344ab4a29d11b5ef93a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -193,26 +163,6 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 205}
   - name: Demon_Frame_2
     originalName: 
-    pivot: {x: 0.5166667, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 72
-      y: 205
-      width: 60
-      height: 36
-    spriteID: ad7d262ef59cf0b429e358ff1df3540d
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 72, y: 205}
-  - name: Demon_Frame_3
-    originalName: 
     pivot: {x: 0.52380955, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -222,7 +172,7 @@ ScriptedImporter:
       y: 205
       width: 63
       height: 32
-    spriteID: 9771ec9e5b6e00b4ab7ade9ac2517cb2
+    spriteID: f0c90ad66f91954489e8d3f1c7801997
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -231,6 +181,26 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 210, y: 205}
+  - name: Demon_Frame_3
+    originalName: 
+    pivot: {x: 0.5166667, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 72
+      y: 205
+      width: 60
+      height: 36
+    spriteID: ce15e3b8160171547be7515fbb09a8f5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 72, y: 205}
   - name: Demon_Frame_4
     originalName: 
     pivot: {x: 0.45652175, y: -0.14634146}
@@ -242,7 +212,7 @@ ScriptedImporter:
       y: 249
       width: 46
       height: 41
-    spriteID: 97a6ee15a012eea419f12cdbeca77198
+    spriteID: b33e201d774f1404e8a01b4e161172c4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -262,7 +232,7 @@ ScriptedImporter:
       y: 145
       width: 51
       height: 44
-    spriteID: 3e7229985fbae384d9a1fbbfc1a402c9
+    spriteID: 6cb41b9be4136b9428d6cf16d48a688e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -282,7 +252,7 @@ ScriptedImporter:
       y: 87
       width: 57
       height: 42
-    spriteID: 73056533c7c5be84caa2f65298aa46c7
+    spriteID: b129f99e9023e8a43ac7593c694879a6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -302,7 +272,7 @@ ScriptedImporter:
       y: 145
       width: 51
       height: 44
-    spriteID: a8b311bf71d291943aa5fd9c913993fc
+    spriteID: 915f0d0f68e07cb4a9fa409f6d6931ed
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -322,7 +292,7 @@ ScriptedImporter:
       y: 249
       width: 46
       height: 41
-    spriteID: 269a8db6aa3c7c64c81f063295294257
+    spriteID: 10038ad8aa3d68640bb50ba752501098
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -342,7 +312,7 @@ ScriptedImporter:
       y: 205
       width: 62
       height: 34
-    spriteID: 6062a4fd6e2096545ba80f0e390ecabd
+    spriteID: 6c207dd96fcf18b4d98b5573d2e62bc6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -362,7 +332,7 @@ ScriptedImporter:
       y: 145
       width: 57
       height: 39
-    spriteID: 47620e99be36d6d40ab30357d3ef270e
+    spriteID: 86e3d59a5e0e6e242af1d0b12c06af7f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -382,7 +352,7 @@ ScriptedImporter:
       y: 145
       width: 57
       height: 39
-    spriteID: c9d2a3a82685cb149ba9340a25352ce5
+    spriteID: 81e052f79f2adca4cb50e1d5a7a0a1b8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -402,7 +372,7 @@ ScriptedImporter:
       y: 87
       width: 57
       height: 45
-    spriteID: 278c8e679b99cd948bb9c93a2bab37e2
+    spriteID: 9da985a146444ca46a20d93c9293d805
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -422,7 +392,7 @@ ScriptedImporter:
       y: 87
       width: 57
       height: 50
-    spriteID: 0224a74927a738844b6d24776ac93f4d
+    spriteID: 4729edda0fefa7d4ca2baa694f0be727
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -442,7 +412,7 @@ ScriptedImporter:
       y: 87
       width: 57
       height: 50
-    spriteID: 555dbaa978fe80b40a7a5715bdf679c9
+    spriteID: e328986fd5c076c46b86a5c2cf43c4fa
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -462,7 +432,7 @@ ScriptedImporter:
       y: 87
       width: 61
       height: 45
-    spriteID: dad9ed642bd1b354191a8f5a4f43ac6a
+    spriteID: 3439fe3e2a440474e9096049f004dfa2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -482,7 +452,7 @@ ScriptedImporter:
       y: 145
       width: 50
       height: 52
-    spriteID: e3975bbf37dc5ac44bce890e82cbb9c0
+    spriteID: 0a9130a0596824a4bb170244482df022
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -502,7 +472,7 @@ ScriptedImporter:
       y: 4
       width: 57
       height: 52
-    spriteID: 0a18280a2dfe2604787acd3e4f7d64c3
+    spriteID: cbb150d33b618b5479115027f1b518fe
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -522,7 +492,7 @@ ScriptedImporter:
       y: 145
       width: 50
       height: 52
-    spriteID: b9f72dfb1a689974fbc4b494c4eb69a6
+    spriteID: 707b6b6f00d8fa84396534aeba414bee
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -542,7 +512,7 @@ ScriptedImporter:
       y: 87
       width: 61
       height: 45
-    spriteID: 7786e48f912eba34fb11766623fb28b8
+    spriteID: d06b02b2f80b75f40b455c854cd5b18c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -562,7 +532,7 @@ ScriptedImporter:
       y: 145
       width: 57
       height: 39
-    spriteID: 6b62ea0d3c5213b4fbe81b2142ba6461
+    spriteID: fc9415c3a521aaa4e81fe851832fa746
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -582,7 +552,7 @@ ScriptedImporter:
       y: 205
       width: 27
       height: 26
-    spriteID: 5fa0e1105da5e15448188058e638ca0f
+    spriteID: 8800b8b180afb8d4eaccbb0eee9c1712
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -602,7 +572,7 @@ ScriptedImporter:
       y: 249
       width: 42
       height: 41
-    spriteID: 682c431e87543884bb7a494a22bbfd82
+    spriteID: d9fa21f6f1380184b9bd4583a9674e98
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -622,7 +592,7 @@ ScriptedImporter:
       y: 4
       width: 70
       height: 52
-    spriteID: 054c14df3a27b4a43a6958bbcdb8f1ba
+    spriteID: b7762f104cbd3f846990127a1d9c4a7a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -642,7 +612,7 @@ ScriptedImporter:
       y: 4
       width: 80
       height: 62
-    spriteID: 598371fcf393c104a9db07033cc5914a
+    spriteID: 2fcd597e5ad212c4bbfc937fec4e9a86
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -662,7 +632,7 @@ ScriptedImporter:
       y: 4
       width: 83
       height: 75
-    spriteID: a215ece735867cc46b438518a3efde5f
+    spriteID: ccd5b5a6ed86c3c4c94926b4d5761ffe
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -682,7 +652,7 @@ ScriptedImporter:
       y: 4
       width: 85
       height: 66
-    spriteID: b4baca41525a42b4e88603b38c51a23c
+    spriteID: aeef1c73b30dd8444af556f7534e1e81
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -702,7 +672,7 @@ ScriptedImporter:
       y: 4
       width: 85
       height: 58
-    spriteID: a5bde78efe8e6594d9942681c6810367
+    spriteID: 1a8554c38af969f4a9d3f8c66c3cfcd4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -722,7 +692,7 @@ ScriptedImporter:
       y: 87
       width: 78
       height: 29
-    spriteID: f640195d00679cd4db7cce69848fd2ee
+    spriteID: 4f4517f34fd359f4ca96f51e2888e32a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -742,7 +712,7 @@ ScriptedImporter:
       y: 205
       width: 75
       height: 15
-    spriteID: 8ac6a74982ab54f42b60ada4cbc2eb71
+    spriteID: cdb3dfbcdd5e96d43b179948ecf51696
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -762,7 +732,7 @@ ScriptedImporter:
       y: 228
       width: 74
       height: 7
-    spriteID: 9776188d993527f4484216cfc9677427
+    spriteID: cfae8a70147c0f543900774c9261d6ea
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -788,7 +758,7 @@ ScriptedImporter:
         y: 0
         width: 57
         height: 39
-      spriteId: abf4964bdc5d63c418565f78f53ca769
+      spriteId: 56173a2d4cfb092499ee71938b883c3b
     - name: Demon_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
@@ -797,25 +767,25 @@ ScriptedImporter:
         y: 0
         width: 60
         height: 36
-      spriteId: c04393cb5d480024bb2a7d7ab5351bea
+      spriteId: d7fe53fbe35dd344ab4a29d11b5ef93a
     - name: Demon_Frame_2
       frameIndex: 2
-      additiveSortOrder: 0
-      cellRect:
-        x: 33
-        y: 0
-        width: 60
-        height: 36
-      spriteId: ad7d262ef59cf0b429e358ff1df3540d
-    - name: Demon_Frame_3
-      frameIndex: 3
       additiveSortOrder: 0
       cellRect:
         x: 31
         y: 0
         width: 63
         height: 32
-      spriteId: 9771ec9e5b6e00b4ab7ade9ac2517cb2
+      spriteId: f0c90ad66f91954489e8d3f1c7801997
+    - name: Demon_Frame_3
+      frameIndex: 3
+      additiveSortOrder: 0
+      cellRect:
+        x: 33
+        y: 0
+        width: 60
+        height: 36
+      spriteId: ce15e3b8160171547be7515fbb09a8f5
     - name: Demon_Frame_4
       frameIndex: 4
       additiveSortOrder: 0
@@ -824,7 +794,7 @@ ScriptedImporter:
         y: 6
         width: 46
         height: 41
-      spriteId: 97a6ee15a012eea419f12cdbeca77198
+      spriteId: b33e201d774f1404e8a01b4e161172c4
     - name: Demon_Frame_5
       frameIndex: 5
       additiveSortOrder: 0
@@ -833,7 +803,7 @@ ScriptedImporter:
         y: 9
         width: 51
         height: 44
-      spriteId: 3e7229985fbae384d9a1fbbfc1a402c9
+      spriteId: 6cb41b9be4136b9428d6cf16d48a688e
     - name: Demon_Frame_6
       frameIndex: 6
       additiveSortOrder: 0
@@ -842,7 +812,7 @@ ScriptedImporter:
         y: 16
         width: 57
         height: 42
-      spriteId: 73056533c7c5be84caa2f65298aa46c7
+      spriteId: b129f99e9023e8a43ac7593c694879a6
     - name: Demon_Frame_7
       frameIndex: 7
       additiveSortOrder: 0
@@ -851,7 +821,7 @@ ScriptedImporter:
         y: 9
         width: 51
         height: 44
-      spriteId: a8b311bf71d291943aa5fd9c913993fc
+      spriteId: 915f0d0f68e07cb4a9fa409f6d6931ed
     - name: Demon_Frame_8
       frameIndex: 8
       additiveSortOrder: 0
@@ -860,7 +830,7 @@ ScriptedImporter:
         y: 6
         width: 46
         height: 41
-      spriteId: 269a8db6aa3c7c64c81f063295294257
+      spriteId: 10038ad8aa3d68640bb50ba752501098
     - name: Demon_Frame_9
       frameIndex: 9
       additiveSortOrder: 0
@@ -869,7 +839,7 @@ ScriptedImporter:
         y: 0
         width: 62
         height: 34
-      spriteId: 6062a4fd6e2096545ba80f0e390ecabd
+      spriteId: 6c207dd96fcf18b4d98b5573d2e62bc6
     - name: Demon_Frame_10
       frameIndex: 10
       additiveSortOrder: 0
@@ -878,7 +848,7 @@ ScriptedImporter:
         y: 0
         width: 57
         height: 39
-      spriteId: 47620e99be36d6d40ab30357d3ef270e
+      spriteId: 86e3d59a5e0e6e242af1d0b12c06af7f
     - name: Demon_Frame_11
       frameIndex: 11
       additiveSortOrder: 0
@@ -887,7 +857,7 @@ ScriptedImporter:
         y: 0
         width: 57
         height: 39
-      spriteId: c9d2a3a82685cb149ba9340a25352ce5
+      spriteId: 81e052f79f2adca4cb50e1d5a7a0a1b8
     - name: Demon_Frame_12
       frameIndex: 12
       additiveSortOrder: 0
@@ -896,7 +866,7 @@ ScriptedImporter:
         y: 0
         width: 57
         height: 45
-      spriteId: 278c8e679b99cd948bb9c93a2bab37e2
+      spriteId: 9da985a146444ca46a20d93c9293d805
     - name: Demon_Frame_13
       frameIndex: 13
       additiveSortOrder: 0
@@ -905,7 +875,7 @@ ScriptedImporter:
         y: 0
         width: 57
         height: 50
-      spriteId: 0224a74927a738844b6d24776ac93f4d
+      spriteId: 4729edda0fefa7d4ca2baa694f0be727
     - name: Demon_Frame_14
       frameIndex: 14
       additiveSortOrder: 0
@@ -914,7 +884,7 @@ ScriptedImporter:
         y: 0
         width: 57
         height: 50
-      spriteId: 555dbaa978fe80b40a7a5715bdf679c9
+      spriteId: e328986fd5c076c46b86a5c2cf43c4fa
     - name: Demon_Frame_15
       frameIndex: 15
       additiveSortOrder: 0
@@ -923,7 +893,7 @@ ScriptedImporter:
         y: 0
         width: 61
         height: 45
-      spriteId: dad9ed642bd1b354191a8f5a4f43ac6a
+      spriteId: 3439fe3e2a440474e9096049f004dfa2
     - name: Demon_Frame_16
       frameIndex: 16
       additiveSortOrder: 0
@@ -932,7 +902,7 @@ ScriptedImporter:
         y: 6
         width: 50
         height: 52
-      spriteId: e3975bbf37dc5ac44bce890e82cbb9c0
+      spriteId: 0a9130a0596824a4bb170244482df022
     - name: Demon_Frame_17
       frameIndex: 17
       additiveSortOrder: 0
@@ -941,7 +911,7 @@ ScriptedImporter:
         y: 15
         width: 57
         height: 52
-      spriteId: 0a18280a2dfe2604787acd3e4f7d64c3
+      spriteId: cbb150d33b618b5479115027f1b518fe
     - name: Demon_Frame_18
       frameIndex: 18
       additiveSortOrder: 0
@@ -950,7 +920,7 @@ ScriptedImporter:
         y: 6
         width: 50
         height: 52
-      spriteId: b9f72dfb1a689974fbc4b494c4eb69a6
+      spriteId: 707b6b6f00d8fa84396534aeba414bee
     - name: Demon_Frame_19
       frameIndex: 19
       additiveSortOrder: 0
@@ -959,7 +929,7 @@ ScriptedImporter:
         y: 0
         width: 61
         height: 45
-      spriteId: 7786e48f912eba34fb11766623fb28b8
+      spriteId: d06b02b2f80b75f40b455c854cd5b18c
     - name: Demon_Frame_20
       frameIndex: 20
       additiveSortOrder: 0
@@ -968,7 +938,7 @@ ScriptedImporter:
         y: 0
         width: 57
         height: 39
-      spriteId: 6b62ea0d3c5213b4fbe81b2142ba6461
+      spriteId: fc9415c3a521aaa4e81fe851832fa746
     - name: Demon_Frame_21
       frameIndex: 21
       additiveSortOrder: 0
@@ -977,7 +947,7 @@ ScriptedImporter:
         y: 4
         width: 27
         height: 26
-      spriteId: 5fa0e1105da5e15448188058e638ca0f
+      spriteId: 8800b8b180afb8d4eaccbb0eee9c1712
     - name: Demon_Frame_22
       frameIndex: 22
       additiveSortOrder: 0
@@ -986,7 +956,7 @@ ScriptedImporter:
         y: 1
         width: 42
         height: 41
-      spriteId: 682c431e87543884bb7a494a22bbfd82
+      spriteId: d9fa21f6f1380184b9bd4583a9674e98
     - name: Demon_Frame_23
       frameIndex: 23
       additiveSortOrder: 0
@@ -995,7 +965,7 @@ ScriptedImporter:
         y: 18
         width: 70
         height: 52
-      spriteId: 054c14df3a27b4a43a6958bbcdb8f1ba
+      spriteId: b7762f104cbd3f846990127a1d9c4a7a
     - name: Demon_Frame_24
       frameIndex: 24
       additiveSortOrder: 0
@@ -1004,7 +974,7 @@ ScriptedImporter:
         y: 21
         width: 80
         height: 62
-      spriteId: 598371fcf393c104a9db07033cc5914a
+      spriteId: 2fcd597e5ad212c4bbfc937fec4e9a86
     - name: Demon_Frame_25
       frameIndex: 25
       additiveSortOrder: 0
@@ -1013,7 +983,7 @@ ScriptedImporter:
         y: 15
         width: 83
         height: 75
-      spriteId: a215ece735867cc46b438518a3efde5f
+      spriteId: ccd5b5a6ed86c3c4c94926b4d5761ffe
     - name: Demon_Frame_26
       frameIndex: 26
       additiveSortOrder: 0
@@ -1022,7 +992,7 @@ ScriptedImporter:
         y: 5
         width: 85
         height: 66
-      spriteId: b4baca41525a42b4e88603b38c51a23c
+      spriteId: aeef1c73b30dd8444af556f7534e1e81
     - name: Demon_Frame_27
       frameIndex: 27
       additiveSortOrder: 0
@@ -1031,7 +1001,7 @@ ScriptedImporter:
         y: 0
         width: 85
         height: 58
-      spriteId: a5bde78efe8e6594d9942681c6810367
+      spriteId: 1a8554c38af969f4a9d3f8c66c3cfcd4
     - name: Demon_Frame_28
       frameIndex: 28
       additiveSortOrder: 0
@@ -1040,7 +1010,7 @@ ScriptedImporter:
         y: 0
         width: 78
         height: 29
-      spriteId: f640195d00679cd4db7cce69848fd2ee
+      spriteId: 4f4517f34fd359f4ca96f51e2888e32a
     - name: Demon_Frame_29
       frameIndex: 29
       additiveSortOrder: 0
@@ -1049,7 +1019,7 @@ ScriptedImporter:
         y: 0
         width: 75
         height: 15
-      spriteId: 8ac6a74982ab54f42b60ada4cbc2eb71
+      spriteId: cdb3dfbcdd5e96d43b179948ecf51696
     - name: Demon_Frame_30
       frameIndex: 30
       additiveSortOrder: 0
@@ -1058,34 +1028,10 @@ ScriptedImporter:
         y: 0
         width: 74
         height: 7
-      spriteId: 9776188d993527f4484216cfc9677427
+      spriteId: cfae8a70147c0f543900774c9261d6ea
     linkedCells: []
     parentIndex: -1
-  platformSettings:
-  - name: DefaultTexturePlatform
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Standalone
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
+  platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 

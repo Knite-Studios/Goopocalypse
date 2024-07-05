@@ -6,7 +6,7 @@ base_stats = {
     speed = 4.0,
     armor = 8,
     aoe = 3.5,
-    camera_distance = 6
+    camera_distance = 6.5
 }
 
 function On_SpecialAbility(context)

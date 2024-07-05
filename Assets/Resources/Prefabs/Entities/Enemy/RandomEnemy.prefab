@@ -222,8 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowColor: {r: 0.8705883, g: 0.3647059, b: 0.22352943, a: 1}
-  glowBrightness: 1.5
+  glowColor: {r: 0.759434, g: 0.759434, b: 0.759434, a: 1}
+  glowBrightness: 1.25
   outlineWidth: 1
   alphaThreshold: 0.01
   drawOutside: 0
@@ -260,9 +260,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.015625, y: 0.29693556}
+  m_Offset: {x: -0.024430215, y: 0.47304267}
   serializedVersion: 2
-  m_Radius: 0.28
+  m_Radius: 0.34666914
 --- !u!95 &699909069613404994
 Animator:
   serializedVersion: 5

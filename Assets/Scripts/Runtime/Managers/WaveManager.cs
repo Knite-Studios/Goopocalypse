@@ -15,7 +15,7 @@ namespace Managers
         [EventfulProperty] private long _score;
 
         [Tooltip("The amount of seconds it takes to spawn a wave.")]
-        public int spawnThreshold = 5;
+        public int spawnThreshold = 4;
 
         private bool _gameRunning;
 

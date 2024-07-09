@@ -14,8 +14,6 @@ namespace Entity.Pathfinding
         public Tilemap groundTilemap;
         public List<Tilemap> unwalkableTilemaps;
         public int width, height;
-        public LayerMask unwalkableLayer;
-        public LayerMask walkableLayer;
         public float nodeRadius = 0.5f;
         public float nodeDiameter = 1.0f;
 
@@ -84,17 +82,13 @@ namespace Entity.Pathfinding
         /// Converts the position of a tile/cell to a pathfinder grid position.
         /// </summary>
         public Vector2Int ToGridPosition(Vector2Int cellPosition)
-        {
-            return ToGridPosition(cellPosition.x, cellPosition.y);
-        }
+            => ToGridPosition(cellPosition.x, cellPosition.y);
 
         /// <summary>
         /// Converts the position of a tile/cell to a pathfinder grid position.
         /// </summary>
         public Vector2Int ToGridPosition(int x, int y)
-        {
-            return new Vector2Int(x - _origin.x, y - _origin.y);
-        }
+            => new Vector2Int(x - _origin.x, y - _origin.y);
 
         /// <summary>
         /// Initializes the nodes in the grid.
@@ -139,9 +133,7 @@ namespace Entity.Pathfinding
         public Node GetNode(int x, int y)
         {
             if (x < 0 || x >= width || y < 0 || y >= height)
-            {
                 return null;
-            }
 
             return _nodes[x, y];
         }
@@ -154,7 +146,8 @@ namespace Entity.Pathfinding
         public Node GetNode(Vector2 worldPosition)
         {
             var position = ToGridPosition(worldPosition);
-            return _nodes[position.x, position.y];
+            var isWithinBounds = position.x >= 0 && position.x < width && position.y >= 0 && position.y < height;
+            return isWithinBounds ? _nodes[position.x, position.y] : null;
         }
 
         /// <summary>

@@ -60,33 +60,25 @@ namespace Entity.Pathfinding
         /// Determines if two nodes are equal.
         /// </summary>
         public override bool Equals(object obj)
-        {
-            return obj is Node node && WorldPosition == node.WorldPosition;
-        }
+            => obj is Node node && WorldPosition == node.WorldPosition;
 
         /// <summary>
         /// Gets the hash code of the node.
         /// </summary>
         public override int GetHashCode()
-        {
-            return WorldPosition.GetHashCode();
-        }
+            => WorldPosition.GetHashCode();
 
         /// <summary>
         /// Determines if two nodes are equal.
         /// </summary>
         public static bool operator ==(Node a, Node b)
-        {
-            return a?.WorldPosition == b?.WorldPosition;
-        }
+            => a?.WorldPosition == b?.WorldPosition;
 
         /// <summary>
         /// Determines if two nodes are not equal.
         /// </summary>
         public static bool operator !=(Node a, Node b)
-        {
-            return a?.WorldPosition != b?.WorldPosition;
-        }
+            => a?.WorldPosition != b?.WorldPosition;
 
         public enum DistanceType
         {

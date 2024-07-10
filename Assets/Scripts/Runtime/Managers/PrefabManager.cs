@@ -186,6 +186,7 @@ namespace Managers
         Link = 8,
         ArrowIndicator = 9,
         Orb = 10,
+        OrbScoreText = 11,
     }
 
     [Serializable]

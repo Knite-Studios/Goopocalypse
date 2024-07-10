@@ -1,4 +1,5 @@
-﻿using Managers;
+﻿using Commands;
+using Managers;
 using Mirror;
 using UnityEngine;
 
@@ -29,19 +30,8 @@ namespace Entity
             if (!other.IsPlayer()) return;
             if (!other.TryGetComponent<BaseEntity>(out var entity)) return;
 
-            WaveManager.Instance.Score += points;
-
-            if (NetworkServer.active)
-                NetworkServer.Destroy(gameObject);
-            else
-                Destroy(gameObject);
-
-            OnPickupSound();
-        }
-
-        public void OnPickupSound()
-        {
-            AudioManager.Instance.PlayOneShot(pickupSound, transform.position);
+            var command = new OrbPickupCommand(this, transform.position, points, pickupSound);
+            command.Execute();
         }
     }
 }

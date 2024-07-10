@@ -31,6 +31,7 @@ namespace Managers
             NetworkClient.RegisterHandler<SceneEntityUpdateS2CNotify>(GameManager.OnSceneEntityUpdate);
 
             NetworkClient.RegisterHandler<WaveInfoS2CNotify>(WaveManager.OnWaveInfo);
+            NetworkClient.RegisterHandler<ScoreUpdateS2CNotify>(WaveManager.OnScoreUpdate);
         }
 
         public override void OnClientDisconnect()

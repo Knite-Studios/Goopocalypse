@@ -48,6 +48,14 @@ namespace Managers
             Instance.MatchTimer = notify.timer;
         }
 
+        public static void OnScoreUpdate(ScoreUpdateS2CNotify notify)
+        {
+            // Do not run if we are the host.
+            if (NetworkServer.activeHost) return;
+
+            Instance.Score = notify.score;
+        }
+
         #endregion
 
         /// <summary>
@@ -99,5 +107,12 @@ namespace Managers
         /// TODO: Add a correct entity count.
         /// </summary>
         public void SpawnWave() => GameManager.OnWaveSpawn?.Invoke(_waveCount);
+
+        public void AddScore(long points)
+        {
+            Score += points;
+            if (NetworkServer.active)
+                NetworkServer.SendToAll(new ScoreUpdateS2CNotify { score = Score });
+        }
     }
 }

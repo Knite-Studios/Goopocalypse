@@ -91,3 +91,12 @@ public struct SceneEntityUpdateS2CNotify : NetworkMessage
 {
     public List<EntityData> entities;
 }
+
+/// <summary>
+/// Server -> (broadcast) -> Client
+/// Informs all clients of the current score.
+/// </summary>
+public struct ScoreUpdateS2CNotify : NetworkMessage
+{
+    public long score;
+}

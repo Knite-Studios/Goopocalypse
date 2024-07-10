@@ -24,7 +24,7 @@ namespace Commands
         public void Execute()
         {
             // Update the score.
-            WaveManager.Instance.Score += _points;
+            WaveManager.Instance.AddScore(_points);
 
             // Spawn orb score feedback.
             var orbScoreText = PrefabManager.Create<OrbScoreText>(PrefabType.OrbScoreText);

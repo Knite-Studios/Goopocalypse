@@ -137,6 +137,11 @@ namespace Managers
                 }
             }
 
+            if (NetworkServer.active)
+            {
+                NetworkServer.Spawn(newObject);
+            }
+
             return newObject;
         }
 

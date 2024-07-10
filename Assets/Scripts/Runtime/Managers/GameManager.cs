@@ -307,8 +307,6 @@ namespace Managers
             var link = PrefabManager.Create<Link>(PrefabType.Link);
             link.fwend = player1.transform;
             link.buddie = player2.transform;
-
-            if (!LocalMultiplayer) NetworkServer.Spawn(link.gameObject);
         }
 
         /// <summary>
@@ -432,15 +430,6 @@ namespace Managers
                 if (!manager.entities.Any(e => e.entity == entity && e.netId == entityData.netId))
                 {
                     manager.entities.Add(entityData);
-
-                    // if (entity is PlayerController player)
-                    // {
-                    //     EntityManager.RegisterPlayer(player);
-                    // }
-                    // else if (entity is Enemy enemy)
-                    // {
-                    //     EntityManager.RegisterEnemy(enemy);
-                    // }
                 }
             }
         }

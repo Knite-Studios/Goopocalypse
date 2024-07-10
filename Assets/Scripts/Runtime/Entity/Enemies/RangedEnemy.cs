@@ -99,10 +99,10 @@ namespace Entity.Enemies
         [Server]
         private void SpawnServerProjectile(Vector3 position, Quaternion rotation)
         {
-            SpawnProjectile(position, rotation, true);
+            SpawnProjectile(position, rotation);
         }
 
-        private void SpawnProjectile(Vector3 position, Quaternion rotation, bool server = false)
+        private void SpawnProjectile(Vector3 position, Quaternion rotation)
         {
             if (AudioSource.isPlaying) AudioSource.Stop();
             if (shootSound) AudioSource.PlayOneShot(shootSound);
@@ -110,8 +110,6 @@ namespace Entity.Enemies
             var projectile = PrefabManager.Create<ProjectileBase>(projectileType);
             projectile.owner = this;
             projectile.transform.SetPositionAndRotation(position, rotation);
-
-            if (server) NetworkServer.Spawn(projectile.gameObject);
         }
 
         /// <summary>

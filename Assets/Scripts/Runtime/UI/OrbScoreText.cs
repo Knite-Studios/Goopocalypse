@@ -16,8 +16,8 @@ namespace UI
         private void Awake()
             => _text = GetComponent<TMP_Text>();
 
-        public void SetText(string text)
-            => _text.text = $"+{text}";
+        public void SetScore(long score)
+            => _text.text = $"+{score}";
 
         public void OnSpawn()
         {

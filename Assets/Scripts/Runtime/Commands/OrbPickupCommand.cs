@@ -29,7 +29,7 @@ namespace Commands
             // Spawn orb score feedback.
             var orbScoreText = PrefabManager.Create<OrbScoreText>(PrefabType.OrbScoreText);
             orbScoreText.transform.position = _position;
-            orbScoreText.SetText(_points.ToString());
+            orbScoreText.SetScore(_points);
             orbScoreText.OnSpawn();
 
             // Play the pickup sound.

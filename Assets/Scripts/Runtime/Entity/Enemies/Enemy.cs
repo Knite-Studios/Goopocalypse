@@ -148,9 +148,12 @@ namespace Entity.Enemies
 
         protected virtual void SpawnOrb()
         {
-            var orb = PrefabManager.Create<Orb>(PrefabType.Orb);
-            orb.transform.position = transform.position;
-            orb.points = this.GetAttributeValue<long>(Attribute.Points);
+            if (GameManager.Instance.LocalMultiplayer || isServer)
+            {
+                var orb = PrefabManager.Create<Orb>(PrefabType.Orb);
+                orb.transform.position = transform.position;
+                orb.points = this.GetAttributeValue<long>(Attribute.Points);
+            }
         }
 
         #region Player Detection

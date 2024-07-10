@@ -4,6 +4,7 @@ using System.Linq;
 using Entity.Pathfinding;
 using Entity.Player;
 using Managers;
+using Mirror;
 using Systems.Attributes;
 using UnityEngine;
 using XLua;
@@ -148,6 +149,7 @@ namespace Entity.Enemies
         protected virtual void SpawnOrb()
         {
             var orb = PrefabManager.Create<Orb>(PrefabType.Orb);
+            if (NetworkServer.active) NetworkServer.Spawn(orb.gameObject);
             orb.transform.position = transform.position;
             orb.points = this.GetAttributeValue<long>(Attribute.Points);
         }

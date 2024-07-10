@@ -28,6 +28,7 @@ namespace Commands
 
             // Spawn orb score feedback.
             var orbScoreText = PrefabManager.Create<OrbScoreText>(PrefabType.OrbScoreText);
+            if (NetworkServer.active) NetworkServer.Spawn(orbScoreText.gameObject);
             orbScoreText.transform.position = _position;
             orbScoreText.SetText(_points.ToString());
             orbScoreText.OnSpawn();

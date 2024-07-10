@@ -10,6 +10,7 @@ namespace Managers
         public const string LuaRoot = "Lua/";
 
         public const string SpecialAbilityFunc = "On_SpecialAbility";
+        public const string BehaviorStartFunc = "On_MonoStart";
         public const string BehaviorUpdateFunc = "On_MonoUpdate";
 
         /// <summary>

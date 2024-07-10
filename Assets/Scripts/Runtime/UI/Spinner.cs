@@ -1,9 +1,8 @@
-﻿using System;
-using Common.Extensions;
+﻿using Common.Extensions;
 using Managers;
 using UnityEngine;
 
-namespace Runtime.UI
+namespace UI
 {
     public class Spinner : MonoBehaviour
     {

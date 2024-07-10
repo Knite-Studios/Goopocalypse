@@ -199,7 +199,7 @@ namespace Managers
             var player2 = CreatePlayer(PlayerRole.Buddie);
 
             // Configure the second player to use the second input.
-            player2.input = InputManager.Movement2;
+            player2.Input = InputManager.Movement2;
 
             // Set the local multiplayer flag.
             LocalMultiplayer = true;

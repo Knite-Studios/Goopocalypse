@@ -57,30 +57,6 @@ namespace Managers
             if (NetworkServer.active) SendSceneEntityUpdate();
         }
 
-        // public static void RegisterPlayer(PlayerController player)
-        // {
-        //     if (Instance.players.Contains(player)) return;
-        //     Instance.players.Add(player);
-        // }
-        //
-        // public static void UnregisterPlayer(PlayerController player)
-        // {
-        //     if (!Instance.players.Contains(player)) return;
-        //     Instance.players.Remove(player);
-        // }
-        //
-        // public static void RegisterEnemy(Enemy enemy)
-        // {
-        //     if (Instance.enemies.Contains(enemy)) return;
-        //     Instance.enemies.Add(enemy);
-        // }
-        //
-        // public static void UnregisterEnemy(Enemy enemy)
-        // {
-        //     if (!Instance.enemies.Contains(enemy)) return;
-        //     Instance.enemies.Remove(enemy);
-        // }
-
         public static void SendSceneEntityUpdate()
         {
             var entityData = new List<EntityData>();
@@ -101,33 +77,17 @@ namespace Managers
 
         #endregion
 
-        // public List<PlayerController> players = new();
-        // public List<Enemy> enemies = new();
         public List<EntityData> entities = new();
 
         [SerializeField] private SpawnData spawnData;
 
         protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            // players.Clear();
-            // enemies.Clear();
             entities.Clear();
         }
 
         protected override void OnSceneUnloaded(Scene scene)
         {
-            // players.ForEach(p =>
-            // {
-            //     if (p) p.Dispose();
-            // });
-            // enemies.ForEach(e =>
-            // {
-            //     if (e) e.Dispose();
-            // });
-            //
-            // players.Clear();
-            // enemies.Clear();
-
             entities.ForEach(e =>
             {
                 if (e.entity) e.entity.Dispose();

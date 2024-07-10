@@ -13,16 +13,18 @@ namespace Entity.Player
         /// <summary>
         /// This is configurable by the game.
         /// </summary>
-        public InputAction input;
+        internal InputAction Input;
 
-        public bool IsMoving => input.ReadValue<Vector2>() != Vector2.zero;
+        internal ArrowIndicator Indicator;
+
+        public bool IsMoving => Input.ReadValue<Vector2>() != Vector2.zero;
 
         private BaseState<BaseEntity> _currentState;
         private bool _isPaused;
 
         protected override void Awake()
         {
-            input = InputManager.Movement;
+            Input = InputManager.Movement;
 
             base.Awake();
         }
@@ -35,6 +37,7 @@ namespace Entity.Player
             InitializeStates();
             ChangeState(IdleState);
 
+            // Pause and resume events.
             InputManager.Menu.canceled += HandlePause;
             GameManager.OnGameResume += HandleResume;
         }
@@ -47,13 +50,17 @@ namespace Entity.Player
 
         private void Update()
         {
+            if (!isLocalPlayer && !GameManager.Instance.LocalMultiplayer) return;
+
+            if (!Indicator)
+                Indicator = PrefabManager.Create<ArrowIndicator>(PrefabType.ArrowIndicator, active:false, network:false);
+
             _currentState?.UpdateState();
         }
 
         private void FixedUpdate()
         {
-            if (!isLocalPlayer &&
-                !GameManager.Instance.LocalMultiplayer) return;
+            if (!isLocalPlayer && !GameManager.Instance.LocalMultiplayer) return;
 
             _currentState?.FixedUpdateState();
         }

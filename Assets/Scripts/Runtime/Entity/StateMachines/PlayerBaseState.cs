@@ -10,7 +10,6 @@ namespace Entity.StateMachines
         protected Vector2 Direction;
 
         private readonly Camera _camera;
-        private ArrowIndicator _arrowIndicator;
 
         public PlayerBaseState(string name, BaseEntity owner) : base(name, owner)
         {
@@ -39,7 +38,7 @@ namespace Entity.StateMachines
 
         protected void HandleMovement()
         {
-            var move = player.input.ReadValue<Vector2>();
+            var move = player.Input.ReadValue<Vector2>();
             if (move != Vector2.zero) Direction = move.normalized;
 
             var movement = move * (player.Speed * Time.fixedDeltaTime);
@@ -73,8 +72,8 @@ namespace Entity.StateMachines
 
         private void HandleArrowIndicator()
         {
-            // Ensure this only runs for the local player.
-            if (!player.isLocalPlayer) return;
+            // Since we use target group for the camera on local multiplayer, we can ignore this.
+            if (GameManager.Instance.LocalMultiplayer) return;
 
             // Find other the other player.
             var otherPlayer = EntityManager.Instance.GetPlayers()
@@ -87,18 +86,10 @@ namespace Entity.StateMachines
             var isOffScreen = viewPortPosition.x < 0 || viewPortPosition.x > 1 ||
                               viewPortPosition.y < 0 || viewPortPosition.y > 1;
 
-            // Create and handle the arrow indicator.
             if (isOffScreen)
-            {
-                if (!_arrowIndicator)
-                    _arrowIndicator = PrefabManager.Create<ArrowIndicator>(PrefabType.ArrowIndicator);
-
-                _arrowIndicator?.SetTarget(player.transform, otherPlayer.transform);
-            }
+                player.Indicator.SetTarget(player.transform, otherPlayer.transform);
             else
-            {
-                _arrowIndicator?.DisableArrow();
-            }
+                player.Indicator.DisableArrow();
         }
     }
 }

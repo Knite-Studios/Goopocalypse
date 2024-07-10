@@ -23,8 +23,13 @@ namespace Managers
         /// <param name="prefab">The type of prefab to create.</param>
         /// <param name="parent">The parent transform.</param>
         /// <param name="active">The active state of the prefab.</param>
-        public static GameObject Create(PrefabType prefab, Transform parent = null, bool active = true) =>
-            Instance.Instantiate(prefab, parent, active);
+        /// <param name="network">Whether to network spawn the object.</param>
+        public static GameObject Create(
+            PrefabType prefab,
+            Transform parent = null,
+            bool active = true,
+            bool network = true)
+            => Instance.Instantiate(prefab, parent, active, network);
 
         // ReSharper disable Unity.PerformanceAnalysis
         /// <summary>
@@ -33,11 +38,16 @@ namespace Managers
         /// <param name="prefab">The type of prefab to create.</param>
         /// <param name="parent">The parent transform.</param>
         /// <param name="active">The active state of the prefab.</param>
+        /// <param name="network">Whether to network spawn the object.</param>
         /// <typeparam name="T">The type of component to return.</typeparam>
         /// <returns>The component of the prefab.</returns>
-        public static T Create<T>(PrefabType prefab, Transform parent = null, bool active = true) where T : Component
+        public static T Create<T>(
+            PrefabType prefab,
+            Transform parent = null,
+            bool active = true,
+            bool network = true) where T : Component
         {
-            var newObject = Instance.Instantiate(prefab, parent, active);
+            var newObject = Instance.Instantiate(prefab, parent, active, network);
             var component = newObject.GetComponent<T>();
             if (component == null)
                 Debug.LogError($"Prefab {prefab} does not have component {typeof(T)}");
@@ -88,8 +98,9 @@ namespace Managers
         /// <param name="prefab">The prefab type</param>
         /// <param name="parent">The parent transform.</param>
         /// <param name="active">The active state.</param>
+        /// <param name="network">Whether to network spawn the object.</param>
         /// <returns>The created object.</returns>
-        private GameObject Instantiate(PrefabType prefab, Transform parent, bool active)
+        private GameObject Instantiate(PrefabType prefab, Transform parent, bool active, bool network)
         {
             var prefabData = _prefabs[prefab];
 
@@ -137,7 +148,7 @@ namespace Managers
                 }
             }
 
-            if (NetworkServer.active)
+            if (NetworkServer.active && network)
             {
                 NetworkServer.Spawn(newObject);
             }

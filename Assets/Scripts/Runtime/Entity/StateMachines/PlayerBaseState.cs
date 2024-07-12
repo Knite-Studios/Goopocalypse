@@ -26,11 +26,15 @@ namespace Entity.StateMachines
             HandleArrowIndicator();
 
             // Flip the sprite based on the direction it's facing.
-            HandleSpriteFlip();
+            HandleSpriteChanges();
         }
 
-        private void HandleSpriteFlip()
+        private void HandleSpriteChanges()
         {
+            // Update the collider shape to match the sprite.
+            (player.Collider as PolygonCollider2D).UpdateShapeToSprite(player.SpriteRenderer.sprite);
+
+            // Flip the sprite based on the direction it's facing.
             var scale = player.transform.localScale;
             if (Mathf.Abs(Direction.x) > 0.1f)
                 player.transform.localScale = scale.SetX(Direction.x < 0 ? -1 : 1);

@@ -33,6 +33,8 @@ namespace Entity
         private AudioSource _audioSource;
         private bool _isConnected;
 
+        private BaseEntity _fwendEntity, _buddieEntity;
+
         private void Awake()
         {
             _audioSource = gameObject.GetOrAddComponent<AudioSource>();
@@ -42,6 +44,9 @@ namespace Entity
 
         private void Start()
         {
+            _fwendEntity = fwend.GetComponent<BaseEntity>();
+            _buddieEntity = buddie.GetComponent<BaseEntity>();
+
             _lineRenderer.positionCount = 2;
             _lineRenderer.startWidth = 0.2f;
             _lineRenderer.endWidth = 0.125f;
@@ -78,8 +83,8 @@ namespace Entity
 
                 if (!_collider.enabled) _collider.enabled = true;
 
-                var fwendPos = GetSpriteMiddlePoint(fwend);
-                var buddiePos = GetSpriteMiddlePoint(buddie);
+                var fwendPos = _fwendEntity.GetSpriteMiddlePoint();
+                var buddiePos = _buddieEntity.GetSpriteMiddlePoint();
 
                 // Connect the players with a line.
                 _lineRenderer.SetPosition(0, fwendPos);
@@ -177,15 +182,6 @@ namespace Entity
                 NetworkServer.Destroy(gameObject);
             else
                 Destroy(gameObject);
-        }
-
-        private Vector2 GetSpriteMiddlePoint(Transform playerTransform)
-        {
-            var spriteRenderer = playerTransform.GetComponent<SpriteRenderer>();
-            if (!spriteRenderer) return playerTransform.position;
-
-            var bounds = spriteRenderer.sprite.bounds;
-            return playerTransform.position + bounds.center;
         }
 
         public void OnConnect()

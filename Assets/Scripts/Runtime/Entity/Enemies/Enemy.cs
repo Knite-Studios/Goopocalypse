@@ -16,6 +16,7 @@ namespace Entity.Enemies
     {
         protected Pathfinder Pathfinder;
         protected Transform Target;
+        protected BaseEntity TargetEntity => Target ? Target.GetComponent<BaseEntity>() : null;
         protected List<Node> CurrentPath;
         protected int CurrentPathIndex;
 

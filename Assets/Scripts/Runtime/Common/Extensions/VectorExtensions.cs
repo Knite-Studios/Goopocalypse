@@ -105,6 +105,12 @@ public static class VectorExtensions
         new(vector3.x, vector3.y);
 
     /// <summary>
+    /// Converts a Vector2 to a Vector3.
+    /// </summary>
+    public static Vector3 ToVector3(this Vector2 vector2) =>
+        new(vector2.x, vector2.y, 0);
+
+    /// <summary>
     /// Converts a Vector3 to a Vector2.
     /// </summary>
     public static Vector2Int ToVector2Int(this Vector3 vector3) =>
@@ -115,16 +121,4 @@ public static class VectorExtensions
     /// </summary>
     public static Vector2Int ToVector2(this Vector3Int vector3) =>
         new(vector3.x, vector3.y);
-
-    /// <summary>
-    /// Sets the x value of a Vector2.
-    /// </summary>
-    public static Vector3 SetX(this Vector2 vector2, float x)
-        => new(x, vector2.y);
-
-    /// <summary>
-    /// Sets the y value of a Vector2.
-    /// </summary>
-    public static Vector3 SetY(this Vector2 vector2, float y)
-        => new(vector2.x, y);
 }

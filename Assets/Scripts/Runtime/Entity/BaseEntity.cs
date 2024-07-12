@@ -55,11 +55,11 @@ namespace Entity
 
         #endregion
 
-        protected SpriteRenderer SpriteRenderer;
+        protected internal SpriteRenderer SpriteRenderer;
         protected internal Rigidbody2D Rb;
         protected internal Animator Animator;
         protected AudioSource AudioSource;
-        protected Collider2D Collider;
+        protected internal Collider2D Collider;
 
         protected virtual void Awake()
         {
@@ -190,6 +190,14 @@ namespace Entity
             if (!netIdentity) return;
 
             base.OnValidate();
+        }
+
+        public Vector2 GetSpriteMiddlePoint()
+        {
+            if (!SpriteRenderer) return transform.position;
+
+            var bounds = SpriteRenderer.sprite.bounds;
+            return transform.position + bounds.center;
         }
     }
 

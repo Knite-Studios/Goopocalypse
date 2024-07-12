@@ -120,7 +120,7 @@ namespace Entity.Enemies
             if (IsGameOver) return;
 
             // Get Target's direction.
-            var direction = (Target.position - transform.position).normalized;
+            var direction = (TargetEntity.GetSpriteMiddlePoint().ToVector3() - transform.position).normalized;
 
             // Calculate the spawn position and rotation.
             var spawnPosition = spawnPoint.position + direction;

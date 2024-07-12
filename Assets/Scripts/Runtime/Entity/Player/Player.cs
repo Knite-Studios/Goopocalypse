@@ -6,7 +6,6 @@ using Effects;
 using JetBrains.Annotations;
 using Managers;
 using Mirror;
-using Runtime;
 using Systems.Attributes;
 using UnityEngine;
 using XLua;
@@ -34,7 +33,6 @@ namespace Entity.Player
         #endregion
 
         private bool _isDead;
-        private Collider2D _collider;
         private CinemachineVirtualCamera _virtualCamera;
         private Vector2 _spawnPosition;
 
@@ -43,7 +41,6 @@ namespace Entity.Player
             base.Awake();
 
             IsPlayer = true;
-            _collider = GetComponent<Collider2D>();
         }
 
         protected virtual void Start()
@@ -67,8 +64,6 @@ namespace Entity.Player
             SpriteRenderer.sprite = config.sprite;
             SpriteRenderer.sortingOrder = config.sortingOrder;
             Rb.mass = config.mass;
-            _collider.offset = config.colliderOffset;
-            _collider.GetComponent<BoxCollider2D>().size = config.colliderSize;
             _spawnPosition = config.spawnPoint;
             transform.position = _spawnPosition;
 
@@ -137,7 +132,7 @@ namespace Entity.Player
             Animator.SetTrigger(IsDeadHash);
             base.OnDeath();
 
-            _collider.enabled = false;
+            Collider.enabled = false;
 
             GameManager.OnGameOver?.Invoke();
         }
@@ -161,7 +156,7 @@ namespace Entity.Player
         public void RespawnPlayer()
         {
             _isDead = false;
-            _collider.enabled = true;
+            Collider.enabled = true;
             transform.Reset(true, true);
             transform.position = _spawnPosition;
             Rb.constraints = RigidbodyConstraints2D.None;

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1228417230119834834}
   - component: {fileID: -2423410751965901351}
   - component: {fileID: 2077788721967036942}
-  - component: {fileID: -7773854495348174623}
+  - component: {fileID: 4826194643357534152}
   - component: {fileID: 6894903057209637159}
   - component: {fileID: -5461214130027220470}
   m_Layer: 3
@@ -107,7 +107,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  luaScript: players/fwend
+  luaScript: players/buddie
   onDeathEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -115,15 +115,6 @@ MonoBehaviour:
   <CurrentHealth>k__BackingField: 0
   playerRole: 1
   virtualCameraPrefab: {fileID: 1226844540982855168, guid: d6f7a0a033e7219448a21c91a464652a, type: 3}
-  input:
-    m_Name: Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 87873b6f-5e23-4ea8-b4c8-3e0abfa5a2f9
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
 --- !u!95 &9078601559106015657
 Animator:
   serializedVersion: 5
@@ -213,8 +204,8 @@ MonoBehaviour:
   serverOnly: 0
   visibility: 0
   hasSpawned: 0
---- !u!61 &-7773854495348174623
-BoxCollider2D:
+--- !u!60 &4826194643357534152
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -245,7 +236,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.05, y: 0.4}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: -0.01754386}
@@ -255,9 +246,17 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.6, y: 0.7}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.21875, y: 0.90625}
+      - {x: -0.265625, y: 0.90625}
+      - {x: -0.4375, y: 0.640625}
+      - {x: -0.453125, y: 0.46875}
+      - {x: -0.453125, y: 0.015625}
+      - {x: 0.453125, y: 0.015625}
+      - {x: 0.453125, y: 0.390625}
+      - {x: 0.3125, y: 0.8125}
+  m_UseDelaunayMesh: 0
 --- !u!50 &6894903057209637159
 Rigidbody2D:
   serializedVersion: 4

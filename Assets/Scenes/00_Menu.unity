@@ -384,7 +384,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
-  dynamicPadding: 0.5
 --- !u!212 &106667042
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -671,7 +670,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
-  dynamicPadding: 0.5
 --- !u!212 &126361632
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3557,7 +3555,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
-  dynamicPadding: 0.5
 --- !u!212 &1594878621
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3871,7 +3868,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 1911415503}
-  dynamicPadding: 0.5
 --- !u!212 &1747481108
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4212,7 +4208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
-  dynamicPadding: 0.5
 --- !u!212 &1784201381
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4526,7 +4521,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
-  dynamicPadding: 0.5
 --- !u!212 &1831193662
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4614,12 +4608,6 @@ MonoBehaviour:
   - {fileID: 332896558}
   width: 71
   height: 53
-  unwalkableLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  walkableLayer:
-    serializedVersion: 2
-    m_Bits: 64
   nodeRadius: 0.25
   nodeDiameter: 1
   gridWorldSize: {x: 0, y: 0, z: 0}

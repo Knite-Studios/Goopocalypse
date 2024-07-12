@@ -15,11 +15,11 @@ GameObject:
   - component: {fileID: 1228417230119834834}
   - component: {fileID: -2423410751965901351}
   - component: {fileID: 2077788721967036942}
-  - component: {fileID: -2706791762609077599}
+  - component: {fileID: 2940317178370032081}
   - component: {fileID: 6894903057209637159}
   - component: {fileID: -5461214130027220470}
   m_Layer: 3
-  m_Name: Player
+  m_Name: Player_Fwend
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 110551003
   m_SortingLayer: 3
   m_SortingOrder: 10
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -2513610387572724556, guid: 5f257f7485939ff46b9cd3c2a5ba06a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -125,7 +125,7 @@ Animator:
   m_GameObject: {fileID: 8490824003797150612}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e0dbc8b2f2711a54f9b7ed1358a4c6af, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1bb994bbc2e1ced4f8be4574e652446f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -200,11 +200,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  _assetId: 1805958733
+  _assetId: 2509564527
   serverOnly: 0
   visibility: 0
   hasSpawned: 0
---- !u!60 &-2706791762609077599
+--- !u!60 &2940317178370032081
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -239,8 +239,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.42857143, y: -0.025}
+    oldSize: {x: 0.765625, y: 0.625}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -248,10 +248,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5, y: 0.5}
-      - {x: -0.5, y: -0.5}
-      - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: 0.5}
+    - - {x: -0.328125, y: 0.640625}
+      - {x: -0.328125, y: 0.015625}
+      - {x: 0.4375, y: 0.015625}
+      - {x: 0.4375, y: 0.484375}
+      - {x: 0.34375, y: 0.640625}
   m_UseDelaunayMesh: 0
 --- !u!50 &6894903057209637159
 Rigidbody2D:

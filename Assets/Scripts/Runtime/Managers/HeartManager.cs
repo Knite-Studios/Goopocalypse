@@ -1,4 +1,5 @@
-﻿using Mirror;
+﻿using Entity.Player;
+using Mirror;
 using OneJS;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,12 @@ namespace Managers
 
         public static void OnHeartsUpdate(HeartUpdateS2CNotify notify)
             => Instance.Hearts = notify.hearts;
+
+        public static void OnPlayerRespawn(PlayerRespawnS2CNotify notify)
+        {
+            var player = NetworkServer.spawned[uint.Parse(notify.userId)].GetComponent<PlayerController>();
+            player.RespawnPlayer();
+        }
 
         public static void OnPlayerDeath()
         {

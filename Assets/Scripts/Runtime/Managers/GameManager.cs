@@ -68,6 +68,7 @@ namespace Managers
             DiscordController.Initialize();
             AudioManager.Initialize();
             SettingsManager.Initialize();
+            HeartManager.Initialize();
 
             // Find references.
             _networkManager = FindObjectOfType<NetworkManager>();

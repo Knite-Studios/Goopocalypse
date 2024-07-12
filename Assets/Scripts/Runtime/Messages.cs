@@ -100,3 +100,12 @@ public struct ScoreUpdateS2CNotify : NetworkMessage
 {
     public long score;
 }
+
+/// <summary>
+/// Server -> (broadcast) -> Client
+/// Informs all clients of the current heart count.
+/// </summary>
+public struct HeartUpdateS2CNotify : NetworkMessage
+{
+    public int hearts;
+}

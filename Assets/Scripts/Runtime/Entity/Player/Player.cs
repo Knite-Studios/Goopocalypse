@@ -123,25 +123,19 @@ namespace Entity.Player
             _isDead = true;
             onDeathEvent?.Invoke();
 
-            if (NetworkServer.active) NetworkServer.SendToAll(new GameOverS2CNotify());
-
-            // TODO: Call PrefabManager.Create for death particle effect and Network.Spawn.
-            // TODO: Play death sound one shot with proximity and ensure other clients can hear it.
             Rb.constraints = RigidbodyConstraints2D.FreezeAll;
             if (_virtualCamera) CameraShake.TriggerShake(_virtualCamera);
             Animator.SetTrigger(IsDeadHash);
-            base.OnDeath();
-
             Collider.enabled = false;
 
-            GameManager.OnGameOver?.Invoke();
+            base.OnDeath();
+            HeartManager.OnPlayerDeath();
         }
 
         public override void OnDeathAnimation()
         {
-            Dispose();
-            // TODO: Call respawn instead of dispose when the shared health system is implemented.
-            // RespawnPlayer();
+            // Dispose();
+            RespawnPlayer();
         }
 
         /// <summary>

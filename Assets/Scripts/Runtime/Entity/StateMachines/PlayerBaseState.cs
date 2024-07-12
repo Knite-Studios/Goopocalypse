@@ -1,4 +1,5 @@
-﻿using Entity.Player;
+﻿using System.Collections.Generic;
+using Entity.Player;
 using Managers;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Entity.StateMachines
         protected Vector2 Direction;
 
         private readonly Camera _camera;
+        private Dictionary<Sprite, List<Vector2[]>> _cachedShapes = new();
 
         public PlayerBaseState(string name, BaseEntity owner) : base(name, owner)
         {
@@ -32,7 +34,7 @@ namespace Entity.StateMachines
         private void HandleSpriteChanges()
         {
             // Update the collider shape to match the sprite.
-            (player.Collider as PolygonCollider2D).UpdateShapeToSprite(player.SpriteRenderer.sprite);
+            (player.Collider as PolygonCollider2D).UpdateShapeToSprite(player.SpriteRenderer.sprite, ref _cachedShapes);
 
             // Flip the sprite based on the direction it's facing.
             var scale = player.transform.localScale;

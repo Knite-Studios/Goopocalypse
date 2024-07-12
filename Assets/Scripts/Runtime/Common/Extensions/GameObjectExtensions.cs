@@ -50,29 +50,39 @@ public static class GameObjectExtensions
     /// <summary>
     /// Updates the polygon collider shape to match the sprite's shape.
     /// </summary>
+    /// Improved version of:
     /// <see href="https://discussions.unity.com/t/refreshing-the-polygon-collider-2d-upon-sprite-change/107265/8">
     /// Unity Discussions</see>
     /// <param name="collider">The collider to update.</param>
     /// <param name="sprite">The sprite to use.</param>
-    public static void UpdateShapeToSprite(this PolygonCollider2D collider, Sprite sprite)
+    /// <param name="cachedShapes">The reference to the cached shapes dictionary.</param>
+    public static void UpdateShapeToSprite(
+        this PolygonCollider2D collider,
+        Sprite sprite,
+        ref Dictionary<Sprite, List<Vector2[]>> cachedShapes)
     {
         // Ensure both valid.
         if (!collider || !sprite) return;
-        // Update count.
-        collider.pathCount = sprite.GetPhysicsShapeCount();
 
-        // New paths variable.
-        var path = new List<Vector2>();
-
-        // Loop path count.
-        for (var i = 0; i < collider.pathCount; i++)
+        // Check if the sprite shapes are already cached.
+        if (!cachedShapes.TryGetValue(sprite, out var shapes))
         {
-            // Clear.
-            path.Clear();
-            // Get shape.
-            sprite.GetPhysicsShape(i, path);
-            // Set path.
-            collider.SetPath(i, path.ToArray());
+            // Cache the shapes.
+            shapes = new List<Vector2[]>();
+            for (var i = 0; i < sprite.GetPhysicsShapeCount(); i++)
+            {
+                var path = new List<Vector2>();
+                sprite.GetPhysicsShape(i, path);
+                shapes.Add(path.ToArray());
+            }
+
+            // Cache shapes.
+            cachedShapes[sprite] = shapes;
         }
+
+        // Update the collider with the new shape.
+        collider.pathCount = sprite.GetPhysicsShapeCount();
+        for (var i = 0; i < collider.pathCount; i++)
+            collider.SetPath(i, shapes[i]);
     }
 }

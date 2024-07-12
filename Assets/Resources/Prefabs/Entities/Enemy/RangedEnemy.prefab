@@ -165,7 +165,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
-  dynamicPadding: 0.5
 --- !u!114 &1261839644815487083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,9 +293,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0078125, y: 0.30284905}
+  m_Offset: {x: -0.0078125, y: 0.3028491}
   serializedVersion: 2
-  m_Radius: 0.33915114
+  m_Radius: 0.3391511
 --- !u!95 &8431323950259341865
 Animator:
   serializedVersion: 5

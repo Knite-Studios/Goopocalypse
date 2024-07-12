@@ -6,6 +6,8 @@ namespace Managers
 {
     public partial class HeartManager : NetworkSingleton<HeartManager>
     {
+        #region Static Management
+
         public static void OnHeartsUpdate(HeartUpdateS2CNotify notify)
             => Instance.Hearts = notify.hearts;
 
@@ -15,6 +17,8 @@ namespace Managers
             if (NetworkServer.active) NetworkServer.SendToAll(new HeartUpdateS2CNotify
                 { hearts = Instance.Hearts });
         }
+
+        #endregion
 
         [SyncVar, EventfulProperty] private int _hearts = 3;
 

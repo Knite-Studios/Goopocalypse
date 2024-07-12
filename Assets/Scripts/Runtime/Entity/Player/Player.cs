@@ -134,8 +134,10 @@ namespace Entity.Player
 
         public override void OnDeathAnimation()
         {
-            // Dispose();
-            RespawnPlayer();
+            if (HeartManager.Instance.Hearts <= 0)
+                Dispose();
+            else
+                RespawnPlayer();
         }
 
         /// <summary>

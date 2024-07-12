@@ -4,7 +4,6 @@ using System.Linq;
 using Entity.Pathfinding;
 using Entity.Player;
 using Managers;
-using Mirror;
 using Systems.Attributes;
 using UnityEngine;
 using XLua;
@@ -138,7 +137,6 @@ namespace Entity.Enemies
             Rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
             base.OnDeath();
-
 
             // Disable the collider in case the player runs into the enemy while the animation is playing.
             Collider.enabled = false;

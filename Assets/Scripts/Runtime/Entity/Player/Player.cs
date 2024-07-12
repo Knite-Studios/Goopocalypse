@@ -36,6 +36,7 @@ namespace Entity.Player
         private bool _isDead;
         private Collider2D _collider;
         private CinemachineVirtualCamera _virtualCamera;
+        private Vector2 _spawnPosition;
 
         protected override void Awake()
         {
@@ -53,12 +54,6 @@ namespace Entity.Player
         }
 
         /// <summary>
-        /// Used by local multiplayer to disable the second player's camera.
-        /// </summary>
-        public void DisableCamera() =>
-            _virtualCamera.enabled = false;
-
-        /// <summary>
         /// Loads the player's configuration from the scriptable object.
         /// </summary>
         /// <exception cref="Exception">Thrown when the player role is not found in the map.</exception>
@@ -74,6 +69,8 @@ namespace Entity.Player
             Rb.mass = config.mass;
             _collider.offset = config.colliderOffset;
             _collider.GetComponent<BoxCollider2D>().size = config.colliderSize;
+            _spawnPosition = config.spawnPoint;
+            transform.position = _spawnPosition;
 
             DiscordController.Instance.SetSmallImage(playerRole);
         }
@@ -140,8 +137,6 @@ namespace Entity.Player
             Animator.SetTrigger(IsDeadHash);
             base.OnDeath();
 
-            // EntityManager.UnregisterPlayer(this as PlayerController);
-
             _collider.enabled = false;
 
             GameManager.OnGameOver?.Invoke();
@@ -150,7 +145,8 @@ namespace Entity.Player
         public override void OnDeathAnimation()
         {
             Dispose();
-            //OnDeathSound();
+            // TODO: Call respawn instead of dispose when the shared health system is implemented.
+            // RespawnPlayer();
         }
 
         /// <summary>
@@ -160,6 +156,19 @@ namespace Entity.Player
         {
             if (AudioSource.isPlaying) AudioSource.Stop();
             AudioManager.Instance.PlayOneShot(deathSound, transform.position);
+        }
+
+        public void RespawnPlayer()
+        {
+            _isDead = false;
+            _collider.enabled = true;
+            transform.Reset(true, true);
+            transform.position = _spawnPosition;
+            Rb.constraints = RigidbodyConstraints2D.None;
+            Rb.velocity = Vector2.zero;
+            Rb.angularVelocity = 0;
+            Animator.ResetTrigger(IsDeadHash);
+            if (_virtualCamera) CameraShake.StopShake();
         }
     }
 

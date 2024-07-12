@@ -19,3 +19,4 @@ MonoBehaviour:
   colliderOffset: {x: 0.05, y: 0.4}
   colliderSize: {x: 0.6, y: 0.7}
   sortingOrder: 11
+  spawnPoint: {x: 1, y: 0}

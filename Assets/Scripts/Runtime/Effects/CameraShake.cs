@@ -52,7 +52,7 @@ namespace Effects
         /// <summary>
         /// Resets the camera shake effect.
         /// </summary>
-        private static void StopShake()
+        public static void StopShake()
         {
             if (!_virtualCameraNoise) return;
 

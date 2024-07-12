@@ -135,16 +135,9 @@ namespace Entity.Player
         public override void OnDeathAnimation()
         {
             if (HeartManager.Instance.Hearts <= 0)
-            {
                 Dispose();
-            }
             else
-            {
-                if (NetworkServer.active)
-                    NetworkServer.SendToAll(new PlayerRespawnS2CNotify { userId = netId.ToString() });
-                else
-                    RespawnPlayer();
-            }
+                RespawnPlayer();
         }
 
         /// <summary>

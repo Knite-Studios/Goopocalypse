@@ -34,7 +34,6 @@ namespace Managers
             NetworkClient.RegisterHandler<ScoreUpdateS2CNotify>(WaveManager.OnScoreUpdate);
 
             NetworkClient.RegisterHandler<HeartUpdateS2CNotify>(HeartManager.OnHeartsUpdate);
-            NetworkClient.RegisterHandler<PlayerRespawnS2CNotify>(HeartManager.OnPlayerRespawn);
         }
 
         public override void OnClientDisconnect()

@@ -109,12 +109,3 @@ public struct HeartUpdateS2CNotify : NetworkMessage
 {
     public int hearts;
 }
-
-/// <summary>
-/// Server -> (broadcast) -> Client
-/// Informs all clients that a player has respawned.
-/// </summary>
-public struct PlayerRespawnS2CNotify : NetworkMessage
-{
-    public string userId;
-}

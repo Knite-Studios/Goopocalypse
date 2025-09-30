@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Jays Masterwork
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: d4d19596db8375f4a9cdf52fab0e0d83, type: 3}
+  m_Sprite: {fileID: -1376562413, guid: 1fddde6172d0bba428325d9375ec3407, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

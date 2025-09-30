@@ -1,28 +1,8 @@
 fileFormatVersion: 2
-guid: 5f257f7485939ff46b9cd3c2a5ba06a1
+guid: d17b26dd090399946b27015bcce02582
 ScriptedImporter:
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:AnimationClip
-      assembly: UnityEngine.AnimationModule
-      name: Death
-    second: {fileID: 7400000, guid: b4e258b010875ac49a8cc54c89fb595f, type: 2}
-  - first:
-      type: UnityEngine:AnimationClip
-      assembly: UnityEngine.AnimationModule
-      name: Idle
-    second: {fileID: 7400000, guid: 3f1cbe594b451454c94e0c0030e69525, type: 2}
-  - first:
-      type: UnityEngine:AnimationClip
-      assembly: UnityEngine.AnimationModule
-      name: WalkLoop
-    second: {fileID: 7400000, guid: ac22dce2791bff74bbf59c61641b04c3, type: 2}
-  - first:
-      type: UnityEngine:AnimationClip
-      assembly: UnityEngine.AnimationModule
-      name: WalkTransition
-    second: {fileID: 7400000, guid: fd4e2ce651dad1042bfc9c632e5d7ef7, type: 2}
+  externalObjects: {}
   serializedVersion: 2
   userData: 
   assetBundleName: 
@@ -55,7 +35,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 64
+    spritePixelsToUnits: 16
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -91,7 +71,7 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
-    fileImportMode: 1
+    fileImportMode: 0
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -104,7 +84,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
-    fileImportMode: 1
+    fileImportMode: 0
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -117,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638548248021118574
+  platformSettingsDirtyTick: 638946558950937167
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -141,120 +121,44 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Fwend
+  - name: tile 16x16
     originalName: 
-    pivot: {x: 0.47368422, y: -0.019607844}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 38
-      height: 51
-    spriteID: 05d44ad1690b4bd4c9c55fdc4ae39c2f
+      width: 383
+      height: 352
+    spriteID: 9f343bdfa16faa446bd39587e613be75
     spriteBone: []
     spriteOutline: []
     vertices: []
-    spritePhysicsOutline:
-    - outline:
-      - {x: -24.5, y: 20}
-      - {x: -24.5, y: -20}
-      - {x: 24.5, y: -20}
-      - {x: 24.5, y: 10}
-      - {x: 18.5, y: 20}
+    spritePhysicsOutline: []
     indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Fwend_Frame_1
-    originalName: 
-    pivot: {x: 0.47368422, y: -0.019607844}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 50
-      y: 4
-      width: 38
-      height: 51
-    spriteID: dd96774e8dd55db44971fd17a6c2c536
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline:
-    - outline:
-      - {x: -25.5, y: 19}
-      - {x: -25.5, y: -19}
-      - {x: 25.5, y: -19}
-      - {x: 25.5, y: 10}
-      - {x: 19.5, y: 19}
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 50, y: 4}
-  - name: Fwend_Frame_2
-    originalName: 
-    pivot: {x: 0.47368422, y: -0.019607844}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 63
-      width: 38
-      height: 51
-    spriteID: 1d29de5061abbcc47b8b93875fcd7ac1
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline:
-    - outline:
-      - {x: -26.5, y: 17}
-      - {x: -26.5, y: -17}
-      - {x: 26.5, y: -17}
-      - {x: 26.5, y: 11}
-      - {x: 21.5, y: 17}
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 63}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1046124950
-    name: Fwend
+    guid: -626404344
+    name: tile 16x16
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Fwend_Frame_0
+    - name: tile 16x16
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 46
-        y: 1
-        width: 38
-        height: 51
-      spriteId: 05d44ad1690b4bd4c9c55fdc4ae39c2f
-    - name: Fwend_Frame_10
-      frameIndex: 10
-      additiveSortOrder: 0
-      cellRect:
-        x: 46
-        y: 1
-        width: 38
-        height: 51
-      spriteId: dd96774e8dd55db44971fd17a6c2c536
-    - name: Fwend_Frame_11
-      frameIndex: 11
-      additiveSortOrder: 0
-      cellRect:
-        x: 46
-        y: 1
-        width: 38
-        height: 51
-      spriteId: 1d29de5061abbcc47b8b93875fcd7ac1
+        x: 0
+        y: 0
+        width: 383
+        height: 352
+      spriteId: 9f343bdfa16faa446bd39587e613be75
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -282,7 +186,31 @@ ScriptedImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
+  - name: Android
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 128, y: 128}
+  canvasSize: {x: 383, y: 352}

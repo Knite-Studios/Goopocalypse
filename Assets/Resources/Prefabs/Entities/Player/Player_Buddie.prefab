@@ -123,7 +123,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8490824003797150612}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 8870f9daac97f2a478609ebf7ffacab5, type: 2}
   m_CullingMode: 0
@@ -239,8 +239,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: -0.01754386}
-    oldSize: {x: 0.90625, y: 0.890625}
+    pivot: {x: 0.5, y: -0.014084507}
+    oldSize: {x: 0.8125, y: 1.109375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

@@ -128,7 +128,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
-  dynamicPadding: 0.5
 --- !u!114 &1995129276296548438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,8 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowColor: {r: 0.5990566, g: 0.058234014, b: 0, a: 1}
-  glowBrightness: 1.5
+  glowColor: {r: 0.2021627, g: 0.7264151, b: 0.37691346, a: 1}
+  glowBrightness: 1.15
   outlineWidth: 1
   alphaThreshold: 0.01
   drawOutside: 0
@@ -268,7 +267,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7837837132373050533}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 2008e3b62a04af14a9f521bd72634c9f, type: 2}
   m_CullingMode: 0

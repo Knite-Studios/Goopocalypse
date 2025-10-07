@@ -8,6 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -824,13 +825,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1390484266
+    uuid:
+      value0: 1334185042
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 1334185042
     name: BuddieOld
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: BuddieOld_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -839,7 +845,7 @@ ScriptedImporter:
         width: 58
         height: 60
       spriteId: d8bccf8dc97554b4ab584fb041a68bd1
-    - name: BuddieOld_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -848,7 +854,7 @@ ScriptedImporter:
         width: 58
         height: 58
       spriteId: 5143201b272d9394ba9832d0fb300aa4
-    - name: BuddieOld_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -857,7 +863,7 @@ ScriptedImporter:
         width: 60
         height: 57
       spriteId: db17a6a1e2b052f4a80e2ee7866c7f5b
-    - name: BuddieOld_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -866,7 +872,7 @@ ScriptedImporter:
         width: 58
         height: 58
       spriteId: b82bfdaa1b388ff49a99c8a8fcc6add7
-    - name: BuddieOld_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -875,7 +881,7 @@ ScriptedImporter:
         width: 58
         height: 60
       spriteId: d49a1aafbeea80c4298f1eeb4c07d86c
-    - name: BuddieOld_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -884,7 +890,7 @@ ScriptedImporter:
         width: 58
         height: 58
       spriteId: c0d15d1081f6e8e418dfe21a662e6c77
-    - name: BuddieOld_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -893,7 +899,7 @@ ScriptedImporter:
         width: 60
         height: 57
       spriteId: f66ea526e18e5df40b185f03580e61c5
-    - name: BuddieOld_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -902,7 +908,7 @@ ScriptedImporter:
         width: 58
         height: 58
       spriteId: df5cc4d44af13f8498ceb2b66a7cf9fa
-    - name: BuddieOld_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -911,7 +917,7 @@ ScriptedImporter:
         width: 58
         height: 60
       spriteId: ef7eea9dfb030e941be7c1e940a00394
-    - name: BuddieOld_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -920,7 +926,7 @@ ScriptedImporter:
         width: 58
         height: 58
       spriteId: 0343450d2a50d43458748e94edf6f13d
-    - name: BuddieOld_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -929,7 +935,7 @@ ScriptedImporter:
         width: 60
         height: 57
       spriteId: e730a002150be0c4eb2f4a4b67099cfa
-    - name: BuddieOld_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -938,7 +944,7 @@ ScriptedImporter:
         width: 58
         height: 58
       spriteId: 5f6a4620cda54af459c79d7b222f3451
-    - name: BuddieOld_Frame_12
+    - name: Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -947,7 +953,7 @@ ScriptedImporter:
         width: 58
         height: 60
       spriteId: 321673bbe8f834c44887f059cafb7de1
-    - name: BuddieOld_Frame_13
+    - name: Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
@@ -956,7 +962,7 @@ ScriptedImporter:
         width: 60
         height: 60
       spriteId: 7615271ebc232d449aa596b12a38a3a8
-    - name: BuddieOld_Frame_14
+    - name: Frame_14
       frameIndex: 14
       additiveSortOrder: 0
       cellRect:
@@ -965,7 +971,7 @@ ScriptedImporter:
         width: 61
         height: 56
       spriteId: 286bf9b79eac3844082c15d51c9d5fb1
-    - name: BuddieOld_Frame_15
+    - name: Frame_15
       frameIndex: 15
       additiveSortOrder: 0
       cellRect:
@@ -974,7 +980,7 @@ ScriptedImporter:
         width: 59
         height: 58
       spriteId: 7495e03e982827e4ca57fe7a0b62a7c2
-    - name: BuddieOld_Frame_16
+    - name: Frame_16
       frameIndex: 16
       additiveSortOrder: 0
       cellRect:
@@ -983,7 +989,7 @@ ScriptedImporter:
         width: 54
         height: 60
       spriteId: b65b2a7a60fc0c943af3292bae7dde26
-    - name: BuddieOld_Frame_17
+    - name: Frame_17
       frameIndex: 17
       additiveSortOrder: 0
       cellRect:
@@ -992,7 +998,7 @@ ScriptedImporter:
         width: 58
         height: 60
       spriteId: 959f231081e46ac4c91fbc74b9d37753
-    - name: BuddieOld_Frame_18
+    - name: Frame_18
       frameIndex: 18
       additiveSortOrder: 0
       cellRect:
@@ -1001,7 +1007,7 @@ ScriptedImporter:
         width: 58
         height: 60
       spriteId: d1cde37850116a343904114627799681
-    - name: BuddieOld_Frame_19
+    - name: Frame_19
       frameIndex: 19
       additiveSortOrder: 0
       cellRect:
@@ -1010,7 +1016,7 @@ ScriptedImporter:
         width: 58
         height: 60
       spriteId: a1bfa4073bd611549b986a9704164765
-    - name: BuddieOld_Frame_20
+    - name: Frame_20
       frameIndex: 20
       additiveSortOrder: 0
       cellRect:
@@ -1019,7 +1025,7 @@ ScriptedImporter:
         width: 62
         height: 67
       spriteId: 9fde981932dd2f14f8bbcb7a8225f105
-    - name: BuddieOld_Frame_21
+    - name: Frame_21
       frameIndex: 21
       additiveSortOrder: 0
       cellRect:
@@ -1028,7 +1034,7 @@ ScriptedImporter:
         width: 58
         height: 60
       spriteId: a2aa96dad886b2949aabc5cadafa22fc
-    - name: BuddieOld_Frame_22
+    - name: Frame_22
       frameIndex: 22
       additiveSortOrder: 0
       cellRect:
@@ -1037,7 +1043,7 @@ ScriptedImporter:
         width: 65
         height: 80
       spriteId: b8a1c4c33b4643643bdff7b0a71ece5d
-    - name: BuddieOld_Frame_23
+    - name: Frame_23
       frameIndex: 23
       additiveSortOrder: 0
       cellRect:
@@ -1046,7 +1052,7 @@ ScriptedImporter:
         width: 65
         height: 80
       spriteId: 27179031e93516448b4b3b9d36dc21fb
-    - name: BuddieOld_Frame_24
+    - name: Frame_24
       frameIndex: 24
       additiveSortOrder: 0
       cellRect:
@@ -1055,7 +1061,7 @@ ScriptedImporter:
         width: 65
         height: 72
       spriteId: 1efe8d01eaf2bfa41ba1e84683303df0
-    - name: BuddieOld_Frame_25
+    - name: Frame_25
       frameIndex: 25
       additiveSortOrder: 0
       cellRect:
@@ -1064,7 +1070,7 @@ ScriptedImporter:
         width: 38
         height: 49
       spriteId: c7e7c391718836f4c9b97f059ec43764
-    - name: BuddieOld_Frame_26
+    - name: Frame_26
       frameIndex: 26
       additiveSortOrder: 0
       cellRect:
@@ -1073,7 +1079,7 @@ ScriptedImporter:
         width: 50
         height: 64
       spriteId: d937aa79d977a5747af1bdd7f30191d4
-    - name: BuddieOld_Frame_27
+    - name: Frame_27
       frameIndex: 27
       additiveSortOrder: 0
       cellRect:
@@ -1082,7 +1088,7 @@ ScriptedImporter:
         width: 68
         height: 63
       spriteId: 29ee640037c94474ab7945c2cc35dc09
-    - name: BuddieOld_Frame_28
+    - name: Frame_28
       frameIndex: 28
       additiveSortOrder: 0
       cellRect:
@@ -1091,7 +1097,7 @@ ScriptedImporter:
         width: 66
         height: 63
       spriteId: 9aed1843386741e48bb1ffba01ec3369
-    - name: BuddieOld_Frame_29
+    - name: Frame_29
       frameIndex: 29
       additiveSortOrder: 0
       cellRect:
@@ -1100,7 +1106,7 @@ ScriptedImporter:
         width: 63
         height: 64
       spriteId: 2f002e4ac0d33a84194b3d9678b3a1ac
-    - name: BuddieOld_Frame_30
+    - name: Frame_30
       frameIndex: 30
       additiveSortOrder: 0
       cellRect:
@@ -1109,7 +1115,7 @@ ScriptedImporter:
         width: 61
         height: 29
       spriteId: 1f7dea9e691fe3a4f8def94931519b74
-    - name: BuddieOld_Frame_31
+    - name: Frame_31
       frameIndex: 31
       additiveSortOrder: 0
       cellRect:
@@ -1118,7 +1124,7 @@ ScriptedImporter:
         width: 56
         height: 12
       spriteId: f8ee9b1327214124e9afbf69adadedb5
-    - name: BuddieOld_Frame_32
+    - name: Frame_32
       frameIndex: 32
       additiveSortOrder: 0
       cellRect:
@@ -1127,7 +1133,7 @@ ScriptedImporter:
         width: 56
         height: 7
       spriteId: d393028fdff059e4b816e869b8cb3f21
-    - name: BuddieOld_Frame_33
+    - name: Frame_33
       frameIndex: 33
       additiveSortOrder: 0
       cellRect:
@@ -1136,7 +1142,7 @@ ScriptedImporter:
         width: 56
         height: 4
       spriteId: 0a276b9f99135df4b8677b74b85b16bc
-    - name: BuddieOld_Frame_34
+    - name: Frame_34
       frameIndex: 34
       additiveSortOrder: 0
       cellRect:
@@ -1152,3 +1158,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 128, y: 128}
+  previousTextureSize: {x: 512, y: 512}

@@ -11,6 +11,26 @@ ScriptedImporter:
   - first:
       type: UnityEngine:AnimationClip
       assembly: UnityEngine.AnimationModule
+      name: FwendDeath
+    second: {fileID: 7400000, guid: 5b9f8e7d535218a4d9b1766c6d527700, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: FwendIdle
+    second: {fileID: 7400000, guid: d0fa52bb20a0cdf40910a0223c235037, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: FwendWalkLoop
+    second: {fileID: 7400000, guid: 67d6bed2ca4bcab4789708a4f7f18a85, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
+      name: FwendWalkTransition
+    second: {fileID: 7400000, guid: b9337e5ac60c8dd47bddd9a680c57645, type: 2}
+  - first:
+      type: UnityEngine:AnimationClip
+      assembly: UnityEngine.AnimationModule
       name: Idle
     second: {fileID: 7400000, guid: 3f1cbe594b451454c94e0c0030e69525, type: 2}
   - first:
@@ -28,6 +48,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -117,7 +138,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638548248021118574
+  platformSettingsDirtyTick: 638952178384668308
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -982,13 +1003,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1046124950
+    uuid:
+      value0: 1971612526
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 1971612526
     name: Fwend
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Fwend_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -997,7 +1023,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 05d44ad1690b4bd4c9c55fdc4ae39c2f
-    - name: Fwend_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -1006,7 +1032,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: dd96774e8dd55db44971fd17a6c2c536
-    - name: Fwend_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -1015,7 +1041,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 1d29de5061abbcc47b8b93875fcd7ac1
-    - name: Fwend_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -1024,7 +1050,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 13bdc8bbf32a5ca409854a7a4c456ec5
-    - name: Fwend_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -1033,7 +1059,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: c8d4b1743fb7396408d69cfd79b4079e
-    - name: Fwend_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -1042,7 +1068,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 904dd717644bf49418b4ffaacae30d93
-    - name: Fwend_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -1051,7 +1077,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: ce889218824ba2e41bc0548526204b7e
-    - name: Fwend_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -1060,7 +1086,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 2597ca9a9da2bf24abfdd6214e4ae61e
-    - name: Fwend_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -1069,7 +1095,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 4caea816c14f74342b9fcb9e69f93069
-    - name: Fwend_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -1078,7 +1104,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 9a93c5398dea21643918a312e20470da
-    - name: Fwend_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -1087,7 +1113,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: eb9f5b0ee17a83e45a5135d19941a781
-    - name: Fwend_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -1096,7 +1122,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 389058b3a249c584197eb3fbfc3f2989
-    - name: Fwend_Frame_12
+    - name: Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -1105,7 +1131,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: fd0310ebb8b783c4790d3a8aa95f7879
-    - name: Fwend_Frame_13
+    - name: Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
@@ -1114,7 +1140,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 085ca75ff3b7d134fb4cf1e831bcb6df
-    - name: Fwend_Frame_14
+    - name: Frame_14
       frameIndex: 14
       additiveSortOrder: 0
       cellRect:
@@ -1123,7 +1149,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 73163133224c78b479cbd88dac7931d8
-    - name: Fwend_Frame_15
+    - name: Frame_15
       frameIndex: 15
       additiveSortOrder: 0
       cellRect:
@@ -1132,7 +1158,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: b2cd9b6ef6190094782a70ac6141720b
-    - name: Fwend_Frame_16
+    - name: Frame_16
       frameIndex: 16
       additiveSortOrder: 0
       cellRect:
@@ -1141,7 +1167,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: cfb3f7f546cd9d047878c7497340b7ce
-    - name: Fwend_Frame_17
+    - name: Frame_17
       frameIndex: 17
       additiveSortOrder: 0
       cellRect:
@@ -1150,7 +1176,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 51529fa65479ae44a99e561933616b09
-    - name: Fwend_Frame_18
+    - name: Frame_18
       frameIndex: 18
       additiveSortOrder: 0
       cellRect:
@@ -1159,7 +1185,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 7ccfcaf7428a7f844a0f5a7924a2ea50
-    - name: Fwend_Frame_19
+    - name: Frame_19
       frameIndex: 19
       additiveSortOrder: 0
       cellRect:
@@ -1168,7 +1194,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: be3e1f3f39645484e9dbba94d1b0d795
-    - name: Fwend_Frame_20
+    - name: Frame_20
       frameIndex: 20
       additiveSortOrder: 0
       cellRect:
@@ -1177,7 +1203,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: fa93b9e3a54272e459b19ed4030ec1d6
-    - name: Fwend_Frame_21
+    - name: Frame_21
       frameIndex: 21
       additiveSortOrder: 0
       cellRect:
@@ -1186,7 +1212,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: abd0d81baf05b8440bb77c0a49b3a62e
-    - name: Fwend_Frame_22
+    - name: Frame_22
       frameIndex: 22
       additiveSortOrder: 0
       cellRect:
@@ -1195,7 +1221,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 2cb149b0d33e56e468109f96f74d5872
-    - name: Fwend_Frame_23
+    - name: Frame_23
       frameIndex: 23
       additiveSortOrder: 0
       cellRect:
@@ -1204,7 +1230,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: bc8ba3a4bd478b045ba2f2a502d206bd
-    - name: Fwend_Frame_24
+    - name: Frame_24
       frameIndex: 24
       additiveSortOrder: 0
       cellRect:
@@ -1213,7 +1239,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: f9844594900e2ab4dbc7a8b31c64d45b
-    - name: Fwend_Frame_25
+    - name: Frame_25
       frameIndex: 25
       additiveSortOrder: 0
       cellRect:
@@ -1222,7 +1248,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 1fbed6413fa4f9b49a0fa9b2cf4d76dc
-    - name: Fwend_Frame_26
+    - name: Frame_26
       frameIndex: 26
       additiveSortOrder: 0
       cellRect:
@@ -1231,7 +1257,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 0470140062dd3264f8f6283be109747a
-    - name: Fwend_Frame_27
+    - name: Frame_27
       frameIndex: 27
       additiveSortOrder: 0
       cellRect:
@@ -1240,7 +1266,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 7b654bda1ce6873489386b7eb67978d0
-    - name: Fwend_Frame_28
+    - name: Frame_28
       frameIndex: 28
       additiveSortOrder: 0
       cellRect:
@@ -1249,7 +1275,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 9bdbc834082683f4f9a2043e87aa47c9
-    - name: Fwend_Frame_29
+    - name: Frame_29
       frameIndex: 29
       additiveSortOrder: 0
       cellRect:
@@ -1258,7 +1284,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 767d3f51a8f7fc44c94ba4910b062bde
-    - name: Fwend_Frame_30
+    - name: Frame_30
       frameIndex: 30
       additiveSortOrder: 0
       cellRect:
@@ -1267,7 +1293,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 2e1ef792d06a8b448ad098f910aaa8c9
-    - name: Fwend_Frame_31
+    - name: Frame_31
       frameIndex: 31
       additiveSortOrder: 0
       cellRect:
@@ -1276,7 +1302,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 55bec48b4743fac4d9f5ab3bdb32764f
-    - name: Fwend_Frame_32
+    - name: Frame_32
       frameIndex: 32
       additiveSortOrder: 0
       cellRect:
@@ -1285,7 +1311,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: a2c953574268d954383fdd85dbb5f67b
-    - name: Fwend_Frame_33
+    - name: Frame_33
       frameIndex: 33
       additiveSortOrder: 0
       cellRect:
@@ -1294,7 +1320,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 2dbb6bc9aace4b345818f8c2d3961063
-    - name: Fwend_Frame_34
+    - name: Frame_34
       frameIndex: 34
       additiveSortOrder: 0
       cellRect:
@@ -1303,7 +1329,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: c00958b61bd93e84291b4e80c9cc678f
-    - name: Fwend_Frame_35
+    - name: Frame_35
       frameIndex: 35
       additiveSortOrder: 0
       cellRect:
@@ -1312,7 +1338,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 6fe1382a8d2b29445b19b8a9449b4f27
-    - name: Fwend_Frame_36
+    - name: Frame_36
       frameIndex: 36
       additiveSortOrder: 0
       cellRect:
@@ -1321,7 +1347,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 07879ca867fcced42a4d28b1c0f1827a
-    - name: Fwend_Frame_37
+    - name: Frame_37
       frameIndex: 37
       additiveSortOrder: 0
       cellRect:
@@ -1330,7 +1356,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 44e18baaf7281b44ab34d310f99160f7
-    - name: Fwend_Frame_38
+    - name: Frame_38
       frameIndex: 38
       additiveSortOrder: 0
       cellRect:
@@ -1339,7 +1365,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: 212d24de4d9347443b84b9ce3687d6d7
-    - name: Fwend_Frame_39
+    - name: Frame_39
       frameIndex: 39
       additiveSortOrder: 0
       cellRect:
@@ -1348,7 +1374,7 @@ ScriptedImporter:
         width: 38
         height: 51
       spriteId: ba78eb0c059f2fe40a4f636bff80991e
-    - name: Fwend_Frame_40
+    - name: Frame_40
       frameIndex: 40
       additiveSortOrder: 0
       cellRect:
@@ -1384,7 +1410,20 @@ ScriptedImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
+  - name: Android
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 128, y: 128}
+  previousTextureSize: {x: 512, y: 256}

@@ -33,6 +33,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -789,13 +790,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 64904361
+    uuid:
+      value0: 75893389
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 75893389
     name: Demon
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Demon_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -804,7 +810,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: 56173a2d4cfb092499ee71938b883c3b
-    - name: Demon_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -813,7 +819,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: d7fe53fbe35dd344ab4a29d11b5ef93a
-    - name: Demon_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -822,7 +828,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: f0c90ad66f91954489e8d3f1c7801997
-    - name: Demon_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -831,7 +837,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: ce15e3b8160171547be7515fbb09a8f5
-    - name: Demon_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -840,7 +846,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: b33e201d774f1404e8a01b4e161172c4
-    - name: Demon_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -849,7 +855,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: 6cb41b9be4136b9428d6cf16d48a688e
-    - name: Demon_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -858,7 +864,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: b129f99e9023e8a43ac7593c694879a6
-    - name: Demon_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -867,7 +873,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: 915f0d0f68e07cb4a9fa409f6d6931ed
-    - name: Demon_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -876,7 +882,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: 10038ad8aa3d68640bb50ba752501098
-    - name: Demon_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -885,7 +891,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: 6c207dd96fcf18b4d98b5573d2e62bc6
-    - name: Demon_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -894,7 +900,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: 86e3d59a5e0e6e242af1d0b12c06af7f
-    - name: Demon_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -903,7 +909,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: 81e052f79f2adca4cb50e1d5a7a0a1b8
-    - name: Demon_Frame_12
+    - name: Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -912,7 +918,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: 9da985a146444ca46a20d93c9293d805
-    - name: Demon_Frame_13
+    - name: Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
@@ -921,7 +927,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: 4729edda0fefa7d4ca2baa694f0be727
-    - name: Demon_Frame_14
+    - name: Frame_14
       frameIndex: 14
       additiveSortOrder: 0
       cellRect:
@@ -930,7 +936,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: e328986fd5c076c46b86a5c2cf43c4fa
-    - name: Demon_Frame_15
+    - name: Frame_15
       frameIndex: 15
       additiveSortOrder: 0
       cellRect:
@@ -939,7 +945,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: 3439fe3e2a440474e9096049f004dfa2
-    - name: Demon_Frame_16
+    - name: Frame_16
       frameIndex: 16
       additiveSortOrder: 0
       cellRect:
@@ -948,7 +954,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: 0a9130a0596824a4bb170244482df022
-    - name: Demon_Frame_17
+    - name: Frame_17
       frameIndex: 17
       additiveSortOrder: 0
       cellRect:
@@ -957,7 +963,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: cbb150d33b618b5479115027f1b518fe
-    - name: Demon_Frame_18
+    - name: Frame_18
       frameIndex: 18
       additiveSortOrder: 0
       cellRect:
@@ -966,7 +972,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: 707b6b6f00d8fa84396534aeba414bee
-    - name: Demon_Frame_19
+    - name: Frame_19
       frameIndex: 19
       additiveSortOrder: 0
       cellRect:
@@ -975,7 +981,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: d06b02b2f80b75f40b455c854cd5b18c
-    - name: Demon_Frame_20
+    - name: Frame_20
       frameIndex: 20
       additiveSortOrder: 0
       cellRect:
@@ -984,7 +990,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: fc9415c3a521aaa4e81fe851832fa746
-    - name: Demon_Frame_21
+    - name: Frame_21
       frameIndex: 21
       additiveSortOrder: 0
       cellRect:
@@ -993,7 +999,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: 8800b8b180afb8d4eaccbb0eee9c1712
-    - name: Demon_Frame_22
+    - name: Frame_22
       frameIndex: 22
       additiveSortOrder: 0
       cellRect:
@@ -1002,7 +1008,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: d9fa21f6f1380184b9bd4583a9674e98
-    - name: Demon_Frame_23
+    - name: Frame_23
       frameIndex: 23
       additiveSortOrder: 0
       cellRect:
@@ -1011,7 +1017,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: b7762f104cbd3f846990127a1d9c4a7a
-    - name: Demon_Frame_24
+    - name: Frame_24
       frameIndex: 24
       additiveSortOrder: 0
       cellRect:
@@ -1020,7 +1026,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: 2fcd597e5ad212c4bbfc937fec4e9a86
-    - name: Demon_Frame_25
+    - name: Frame_25
       frameIndex: 25
       additiveSortOrder: 0
       cellRect:
@@ -1029,7 +1035,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: ccd5b5a6ed86c3c4c94926b4d5761ffe
-    - name: Demon_Frame_26
+    - name: Frame_26
       frameIndex: 26
       additiveSortOrder: 0
       cellRect:
@@ -1038,7 +1044,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: aeef1c73b30dd8444af556f7534e1e81
-    - name: Demon_Frame_27
+    - name: Frame_27
       frameIndex: 27
       additiveSortOrder: 0
       cellRect:
@@ -1047,7 +1053,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: 1a8554c38af969f4a9d3f8c66c3cfcd4
-    - name: Demon_Frame_28
+    - name: Frame_28
       frameIndex: 28
       additiveSortOrder: 0
       cellRect:
@@ -1056,7 +1062,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: 4f4517f34fd359f4ca96f51e2888e32a
-    - name: Demon_Frame_29
+    - name: Frame_29
       frameIndex: 29
       additiveSortOrder: 0
       cellRect:
@@ -1065,7 +1071,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: cdb3dfbcdd5e96d43b179948ecf51696
-    - name: Demon_Frame_30
+    - name: Frame_30
       frameIndex: 30
       additiveSortOrder: 0
       cellRect:
@@ -1074,7 +1080,7 @@ ScriptedImporter:
         width: 50
         height: 35
       spriteId: cfae8a70147c0f543900774c9261d6ea
-    - name: Demon_Frame_31
+    - name: Frame_31
       frameIndex: 31
       additiveSortOrder: 0
       cellRect:
@@ -1114,3 +1120,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 128, y: 128}
+  previousTextureSize: {x: 256, y: 512}

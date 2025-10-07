@@ -33,6 +33,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -809,13 +810,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1218704905
+    uuid:
+      value0: 2069414253
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 2069414253
     name: Dasher
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Dasher_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -824,7 +830,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 7b97ef84ec1a48643a744730b668f105
-    - name: Dasher_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -833,7 +839,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: a96da4139f993874cabe2629d163e530
-    - name: Dasher_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -842,7 +848,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 107100bf90a04ba4fbb3d85727a69ec2
-    - name: Dasher_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -851,7 +857,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: b1e409cd3c1ae5742b655246c5428241
-    - name: Dasher_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -860,7 +866,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 55d93531a400dcb42b5435dd60953827
-    - name: Dasher_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -869,7 +875,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: bdc8b2c65baabc44fa5cc0df44a42f3e
-    - name: Dasher_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -878,7 +884,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 5e545924c77462f499a81263010ac29b
-    - name: Dasher_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -887,7 +893,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 9cd55f88e9ae21644af699d73f078948
-    - name: Dasher_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -896,7 +902,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 96f216d705099d94c8f2eb28df75358f
-    - name: Dasher_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -905,7 +911,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 7777b2d07e1761240b22faa640ea4327
-    - name: Dasher_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -914,7 +920,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: a81369fa010e1f342ac9d705de905332
-    - name: Dasher_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -923,7 +929,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 2280a9367bdcc42489412c74c610f56e
-    - name: Dasher_Frame_12
+    - name: Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -932,7 +938,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: def49be30adf62b428f2106c3c63e73c
-    - name: Dasher_Frame_13
+    - name: Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
@@ -941,7 +947,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: a91334f475567564baee8c398a01a6bf
-    - name: Dasher_Frame_14
+    - name: Frame_14
       frameIndex: 14
       additiveSortOrder: 0
       cellRect:
@@ -950,7 +956,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: fbc18bdc1e400cb4d963b4a09e853b73
-    - name: Dasher_Frame_15
+    - name: Frame_15
       frameIndex: 15
       additiveSortOrder: 0
       cellRect:
@@ -959,7 +965,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 594616cda83e7d34e821d8d9a4e6b8eb
-    - name: Dasher_Frame_16
+    - name: Frame_16
       frameIndex: 16
       additiveSortOrder: 0
       cellRect:
@@ -968,7 +974,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 84811f72dd05f3b4bbffbe26cff2c77e
-    - name: Dasher_Frame_17
+    - name: Frame_17
       frameIndex: 17
       additiveSortOrder: 0
       cellRect:
@@ -977,7 +983,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: b2b69b19e65c5694fb865e3e3d2e49a0
-    - name: Dasher_Frame_18
+    - name: Frame_18
       frameIndex: 18
       additiveSortOrder: 0
       cellRect:
@@ -986,7 +992,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 202ff8cc0b7af824082e4a5f48c7bd4f
-    - name: Dasher_Frame_19
+    - name: Frame_19
       frameIndex: 19
       additiveSortOrder: 0
       cellRect:
@@ -995,7 +1001,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 624a023ef7744a54c9ec8b19b48b8719
-    - name: Dasher_Frame_20
+    - name: Frame_20
       frameIndex: 20
       additiveSortOrder: 0
       cellRect:
@@ -1004,7 +1010,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 91c4eb3f925fc3847abb26fd78b54298
-    - name: Dasher_Frame_21
+    - name: Frame_21
       frameIndex: 21
       additiveSortOrder: 0
       cellRect:
@@ -1013,7 +1019,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 7c6620c34a3b05240a6686673bab127e
-    - name: Dasher_Frame_22
+    - name: Frame_22
       frameIndex: 22
       additiveSortOrder: 0
       cellRect:
@@ -1022,7 +1028,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 46942335f2504cf4b8594dd526490712
-    - name: Dasher_Frame_23
+    - name: Frame_23
       frameIndex: 23
       additiveSortOrder: 0
       cellRect:
@@ -1031,7 +1037,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: f28da80b96995c64d816d90c274ec85d
-    - name: Dasher_Frame_24
+    - name: Frame_24
       frameIndex: 24
       additiveSortOrder: 0
       cellRect:
@@ -1040,7 +1046,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 96f31f5282d272b45b21e32884dbc630
-    - name: Dasher_Frame_25
+    - name: Frame_25
       frameIndex: 25
       additiveSortOrder: 0
       cellRect:
@@ -1049,7 +1055,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 286add375258be140ba8d5ddcbc38c5f
-    - name: Dasher_Frame_26
+    - name: Frame_26
       frameIndex: 26
       additiveSortOrder: 0
       cellRect:
@@ -1058,7 +1064,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 8ac32fcf9d06aad44898757cb52baf19
-    - name: Dasher_Frame_27
+    - name: Frame_27
       frameIndex: 27
       additiveSortOrder: 0
       cellRect:
@@ -1067,7 +1073,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: e073ef9080be8274bb74c3c7ba2ff924
-    - name: Dasher_Frame_28
+    - name: Frame_28
       frameIndex: 28
       additiveSortOrder: 0
       cellRect:
@@ -1076,7 +1082,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: c7a40cdb948a64b41b87aa270996c706
-    - name: Dasher_Frame_29
+    - name: Frame_29
       frameIndex: 29
       additiveSortOrder: 0
       cellRect:
@@ -1085,7 +1091,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 6fa996c489ba6ba4d907e0b0d3e7ef9b
-    - name: Dasher_Frame_30
+    - name: Frame_30
       frameIndex: 30
       additiveSortOrder: 0
       cellRect:
@@ -1094,7 +1100,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: e92ece540bfb02c4eb70f961d4084962
-    - name: Dasher_Frame_31
+    - name: Frame_31
       frameIndex: 31
       additiveSortOrder: 0
       cellRect:
@@ -1103,7 +1109,7 @@ ScriptedImporter:
         width: 66
         height: 32
       spriteId: 7e03dc3a5fdf61a438b111ba3efff467
-    - name: Dasher_Frame_32
+    - name: Frame_32
       frameIndex: 32
       additiveSortOrder: 0
       cellRect:
@@ -1143,3 +1149,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 128, y: 128}
+  previousTextureSize: {x: 256, y: 512}

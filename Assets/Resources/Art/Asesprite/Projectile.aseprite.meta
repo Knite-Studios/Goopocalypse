@@ -13,6 +13,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -229,13 +230,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1754746317
+    uuid:
+      value0: 469617985
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 469617985
     name: Projectile
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Projectile_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -244,7 +250,7 @@ ScriptedImporter:
         width: 25
         height: 15
       spriteId: 2e77aa6f977e641438d35897b9f01b42
-    - name: Projectile_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -253,7 +259,7 @@ ScriptedImporter:
         width: 27
         height: 14
       spriteId: 098983746c9aebf4da23046d0f963bfa
-    - name: Projectile_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -262,7 +268,7 @@ ScriptedImporter:
         width: 29
         height: 12
       spriteId: a08e9ac9c0c5dcc45b48db6c39124409
-    - name: Projectile_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -271,7 +277,7 @@ ScriptedImporter:
         width: 31
         height: 13
       spriteId: 5b17605efca599b40ae39627e5433e9b
-    - name: Projectile_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -311,3 +317,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 39, y: 16}
+  previousTextureSize: {x: 64, y: 128}

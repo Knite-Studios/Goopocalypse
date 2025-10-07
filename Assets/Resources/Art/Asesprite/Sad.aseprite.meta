@@ -28,6 +28,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  importerVersion: 2
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -684,13 +685,18 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1446405614
+    uuid:
+      value0: 696031014
+      value1: 0
+      value2: 0
+      value3: 0
+    guid: 696031014
     name: Sad
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Sad_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -699,7 +705,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 70051d1cd4329bf4ca961c920e8d0245
-    - name: Sad_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -708,7 +714,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 0327b030af3a6914982df01a15689a74
-    - name: Sad_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -717,7 +723,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 0bbbe6e551ccc8b4ba77b58a23502d26
-    - name: Sad_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -726,7 +732,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 884d7d0669cd0184587408e8e4e2d581
-    - name: Sad_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -735,7 +741,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 1d3489ce58db59c47a284854d7ae01da
-    - name: Sad_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -744,7 +750,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 908519255434c054489b4d38a5920978
-    - name: Sad_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -753,7 +759,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 6becf2e8fec3bab41b3be2f097d717a1
-    - name: Sad_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -762,7 +768,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 3cfba3859a6c0534399678b36433ac0b
-    - name: Sad_Frame_8
+    - name: Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -771,7 +777,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 850f71f6a52aa4e4ba791606684a7112
-    - name: Sad_Frame_9
+    - name: Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -780,7 +786,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 92902d32800212e41b9942108e3b1b92
-    - name: Sad_Frame_10
+    - name: Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -789,7 +795,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 0d037487a58b9a54aba10959164f94cd
-    - name: Sad_Frame_11
+    - name: Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -798,7 +804,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 731fc74329f6f434ebf2ba55e153b3b5
-    - name: Sad_Frame_12
+    - name: Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -807,7 +813,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 8137607e85f979d478ffbfd6b3750afe
-    - name: Sad_Frame_13
+    - name: Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
@@ -816,7 +822,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: afb0391ef80aad14f8283405277b504e
-    - name: Sad_Frame_14
+    - name: Frame_14
       frameIndex: 14
       additiveSortOrder: 0
       cellRect:
@@ -825,7 +831,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 4edcecf0a6903cd4d9dbde087c46528b
-    - name: Sad_Frame_15
+    - name: Frame_15
       frameIndex: 15
       additiveSortOrder: 0
       cellRect:
@@ -834,7 +840,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 5a9f6a53a9f5085409910b68fd3ac217
-    - name: Sad_Frame_16
+    - name: Frame_16
       frameIndex: 16
       additiveSortOrder: 0
       cellRect:
@@ -843,7 +849,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 43a58a2f64138454590f90e4375f9a32
-    - name: Sad_Frame_17
+    - name: Frame_17
       frameIndex: 17
       additiveSortOrder: 0
       cellRect:
@@ -852,7 +858,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 1861329e865809c46a87958c6beac7a8
-    - name: Sad_Frame_18
+    - name: Frame_18
       frameIndex: 18
       additiveSortOrder: 0
       cellRect:
@@ -861,7 +867,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 1d0a25dd4b8174044afeb82c5b7ebfa9
-    - name: Sad_Frame_19
+    - name: Frame_19
       frameIndex: 19
       additiveSortOrder: 0
       cellRect:
@@ -870,7 +876,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 39f44c32830bfb94cb8a34db866a22d2
-    - name: Sad_Frame_20
+    - name: Frame_20
       frameIndex: 20
       additiveSortOrder: 0
       cellRect:
@@ -879,7 +885,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 4d6c6038a8541b34d8dba75fef63c8ca
-    - name: Sad_Frame_21
+    - name: Frame_21
       frameIndex: 21
       additiveSortOrder: 0
       cellRect:
@@ -888,7 +894,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: e39fb673f7dade845b874deee8fa96d5
-    - name: Sad_Frame_22
+    - name: Frame_22
       frameIndex: 22
       additiveSortOrder: 0
       cellRect:
@@ -897,7 +903,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 251cdcb9f0d760545b69d7cfbea1740f
-    - name: Sad_Frame_23
+    - name: Frame_23
       frameIndex: 23
       additiveSortOrder: 0
       cellRect:
@@ -906,7 +912,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 0a16b59e090b4ef439dd77fef732b89f
-    - name: Sad_Frame_24
+    - name: Frame_24
       frameIndex: 24
       additiveSortOrder: 0
       cellRect:
@@ -915,7 +921,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: 41e592a7dcd1f894c9f69e2de4e1cb4f
-    - name: Sad_Frame_25
+    - name: Frame_25
       frameIndex: 25
       additiveSortOrder: 0
       cellRect:
@@ -924,7 +930,7 @@ ScriptedImporter:
         width: 46
         height: 34
       spriteId: d50045db905336543985054daa856cc4
-    - name: Sad_Frame_26
+    - name: Frame_26
       frameIndex: 26
       additiveSortOrder: 0
       cellRect:
@@ -964,3 +970,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 128, y: 128}
+  previousTextureSize: {x: 256, y: 512}

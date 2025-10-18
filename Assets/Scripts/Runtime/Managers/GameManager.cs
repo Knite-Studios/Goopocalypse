@@ -8,7 +8,6 @@ using Discord;
 using Entity;
 using Entity.Player;
 using Mirror;
-using OneJS;
 using Steamworks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -29,11 +28,6 @@ namespace Managers
         public static UnityAction<bool> OnGamePause;
         public static Action OnGameResume;
 
-        /// <summary>
-        /// Reference to the JavaScript ScriptEngine.
-        /// </summary>
-        public static ScriptEngine ScriptEngine => FindObjectOfType<ScriptEngine>();
-
         private NetworkManager _networkManager;
         private readonly List<NetworkConnectionToClient> _loadedPlayers = new();
 
@@ -41,16 +35,84 @@ namespace Managers
 
         private int _currentScene;
 
-        #region JavaScript Accessible
+        #region JavaScript Accessible - Convert to regular properties
 
-        [EventfulProperty] private Texture2D _profilePicture;
-        [EventfulProperty] private string _username;
+        // Remove [EventfulProperty] and create proper C# properties
+        private Texture2D _profilePicture;
+        private string _username;
+        private bool _localMultiplayer = false;
+        private GameState _state = GameState.Menu;
+        private string _route = "/";
+        private float _loadingProgress;
 
-        [EventfulProperty] private bool _localMultiplayer = false;
-        [EventfulProperty] private GameState _state = GameState.Menu;
+        // Regular C# properties with events
+        public Texture2D ProfilePicture
+        {
+            get => _profilePicture;
+            set
+            {
+                _profilePicture = value;
+                OnProfilePictureChanged?.Invoke(value);
+            }
+        }
 
-        [EventfulProperty] private string _route = "/";
-        [EventfulProperty] private float _loadingProgress;
+        public string Username
+        {
+            get => _username;
+            set
+            {
+                _username = value;
+                OnUsernameChanged?.Invoke(value);
+            }
+        }
+
+        public bool LocalMultiplayer
+        {
+            get => _localMultiplayer;
+            set
+            {
+                _localMultiplayer = value;
+                OnLocalMultiplayerChanged?.Invoke(value);
+            }
+        }
+
+        public GameState State
+        {
+            get => _state;
+            set
+            {
+                _state = value;
+                OnGameStateChanged?.Invoke(value);
+            }
+        }
+
+        public string Route
+        {
+            get => _route;
+            set
+            {
+                _route = value;
+                OnRouteChanged?.Invoke(value);
+            }
+        }
+
+        public float LoadingProgress
+        {
+            get => _loadingProgress;
+            set
+            {
+                _loadingProgress = value;
+                OnLoadingProgressChanged?.Invoke(value);
+            }
+        }
+
+        // Events for property changes
+        public static event System.Action<Texture2D> OnProfilePictureChanged;
+        public static event System.Action<string> OnUsernameChanged;
+        public static event System.Action<bool> OnLocalMultiplayerChanged;
+        public static event System.Action<GameState> OnGameStateChanged;
+        public static event System.Action<string> OnRouteChanged;
+        public static event System.Action<float> OnLoadingProgressChanged;
 
         #endregion
 
@@ -473,11 +535,9 @@ namespace Managers
 
         #endregion
     }
-
     public struct GameEvent
     {
         public GameEventType Type;
-
         public Transform Target;
     }
 

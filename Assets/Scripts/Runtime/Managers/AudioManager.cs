@@ -28,19 +28,33 @@ namespace Managers
 
         protected override void OnAwake()
         {
+            // Try to get existing AudioSource, or add one if missing
             _audioSource = GetComponent<AudioSource>();
+            if (_audioSource == null)
+            {
+                _audioSource = gameObject.AddComponent<AudioSource>();
+                Debug.LogWarning("AudioSource component was missing - added automatically");
+            }
+
+            // Configure the AudioSource
+            _audioSource.playOnAwake = false;
+            _audioSource.loop = false;
         }
 
         public void PlayUIHoverSound()
         {
+            if (_audioSource == null || onHoverSound == null) return;
+
             if (_audioSource.isPlaying) _audioSource.Stop();
-            if (onHoverSound) _audioSource.PlayOneShot(onHoverSound);
+            _audioSource.PlayOneShot(onHoverSound);
         }
 
         public void PlayUIClickSound()
         {
+            if (_audioSource == null || onClickSound == null) return;
+
             if (_audioSource.isPlaying) _audioSource.Stop();
-            if (onClickSound) _audioSource.PlayOneShot(onClickSound);
+            _audioSource.PlayOneShot(onClickSound);
         }
 
         /// <summary>
@@ -73,18 +87,37 @@ namespace Managers
             // Add and configure the audio source.
             var tempAudioSource = temp.AddComponent<AudioSource>();
             tempAudioSource.clip = clip;
-            tempAudioSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups(
-                type is AudioType.SoundFx ? "SoundFx" : "Music")[0];
+
+            // Set the audio mixer group
+            if (audioMixer != null)
+            {
+                var groups = audioMixer.FindMatchingGroups(
+                    type is AudioType.SoundFx ? "SoundFx" : "Music");
+                if (groups != null && groups.Length > 0)
+                {
+                    tempAudioSource.outputAudioMixerGroup = groups[0];
+                }
+            }
 
             // If the audio should play based on proximity, adjust the volume accordingly.
             if (proximity)
             {
-                var player = EntityManager.Instance.GetLocalPlayer();
+                var player = EntityManager.Instance?.GetLocalPlayer();
                 // Play with no volume adjustment if no player is found.
-                if (!player) return;
-                var distance = Vector3.Distance(position, player.transform.position);
-                var volume = Mathf.Clamp01(1 - distance / maxDistance);
-                tempAudioSource.volume = volume;
+                if (!player)
+                {
+                    tempAudioSource.volume = 1.0f;
+                }
+                else
+                {
+                    var distance = Vector3.Distance(position, player.transform.position);
+                    var volume = Mathf.Clamp01(1 - distance / maxDistance);
+                    tempAudioSource.volume = volume;
+                }
+            }
+            else
+            {
+                tempAudioSource.volume = 1.0f;
             }
 
             // Play the audio.

@@ -1,6 +1,5 @@
 using System.Collections;
 using Mirror;
-using OneJS;
 using Runtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,15 +8,50 @@ namespace Managers
 {
     public partial class WaveManager : MonoSingleton<WaveManager>
     {
-        [EventfulProperty] private int _waveCount = 1;
-        [EventfulProperty] private long _matchTimer;
-
-        [EventfulProperty] private long _score;
+        private int _waveCount = 1;
+        private long _matchTimer;
+        private long _score;
 
         [Tooltip("The amount of seconds it takes to spawn a wave.")]
         public int spawnThreshold = 4;
 
         private bool _gameRunning;
+
+        // Regular C# properties with change events
+        public int WaveCount
+        {
+            get => _waveCount;
+            set
+            {
+                _waveCount = value;
+                OnWaveCountChanged?.Invoke(value);
+            }
+        }
+
+        public long MatchTimer
+        {
+            get => _matchTimer;
+            set
+            {
+                _matchTimer = value;
+                OnMatchTimerChanged?.Invoke(value);
+            }
+        }
+
+        public long Score
+        {
+            get => _score;
+            set
+            {
+                _score = value;
+                OnScoreChanged?.Invoke(value);
+            }
+        }
+
+        // Events for UI updates
+        public static event System.Action<int> OnWaveCountChanged;
+        public static event System.Action<long> OnMatchTimerChanged;
+        public static event System.Action<long> OnScoreChanged;
 
         private void Start()
         {

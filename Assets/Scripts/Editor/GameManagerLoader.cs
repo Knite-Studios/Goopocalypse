@@ -12,7 +12,6 @@ namespace Editor
     /// <summary>
     /// Static class that loads the game manager into the scene.
     /// </summary>
-
     [InitializeOnLoad]
     public static class GameManagerLoader
     {
@@ -35,23 +34,71 @@ namespace Editor
             // Check if a GameManager already exists in the scene.
             if (Object.FindObjectOfType<GameManager>() != null) return;
 
-            // Add the script engine to the scene.
-            var prefab = Resources.Load<GameObject>("Prefabs/ScriptEngine");
-            if (prefab == null) throw new Exception("Missing ScriptEngine prefab!");
-
-            var instance = Object.Instantiate(prefab);
-            if (instance == null) throw new Exception("Failed to instantiate ScriptEngine prefab!");
-
-            instance.name = "ScriptEngine (Singleton)";
+            // ScriptEngine has been removed - using XLua for scripting instead
+            Debug.Log("ScriptEngine removed - using XLua for scripting");
 
             // Add the game manager to the scene.
-            prefab = Resources.Load<GameObject>("Prefabs/Managers/GameManager");
+            var prefab = Resources.Load<GameObject>("Prefabs/Managers/GameManager");
             if (prefab == null) throw new Exception("Missing GameManager prefab!");
 
-            instance = Object.Instantiate(prefab);
+            var instance = Object.Instantiate(prefab);
             if (instance == null) throw new Exception("Failed to instantiate GameManager prefab!");
 
             instance.name = "Managers.GameManager (Singleton)";
+
+            // Optionally initialize other managers that should be present at startup
+            InitializeAdditionalManagers();
+        }
+
+        /// <summary>
+        /// Initializes other essential managers that should be present when entering play mode.
+        /// </summary>
+        private static void InitializeAdditionalManagers()
+        {
+            // Initialize SettingsManager if not present
+            if (Object.FindObjectOfType<SettingsManager>() == null)
+            {
+                try
+                {
+                    SettingsManager.Initialize();
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogWarning($"Failed to initialize SettingsManager: {ex.Message}");
+                }
+            }
+
+            // Initialize AudioManager if not present
+            if (Object.FindObjectOfType<AudioManager>() == null)
+            {
+                try
+                {
+                    AudioManager.Initialize();
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogWarning($"Failed to initialize AudioManager: {ex.Message}");
+                }
+            }
+
+            // Initialize ScriptManager if not present (for XLua)
+            if (Object.FindObjectOfType<ScriptManager>() == null)
+            {
+                try
+                {
+                    // Create ScriptManager manually since it doesn't have an Initialize method
+                    var scriptManagerPrefab = Resources.Load<GameObject>("Prefabs/Managers/ScriptManager");
+                    if (scriptManagerPrefab != null)
+                    {
+                        var instance = Object.Instantiate(scriptManagerPrefab);
+                        instance.name = "Managers.ScriptManager (Singleton)";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogWarning($"Failed to initialize ScriptManager: {ex.Message}");
+                }
+            }
         }
     }
 #endif

@@ -1,5 +1,4 @@
 ﻿using System;
-using OneJS;
 using UnityEngine;
 using UnityEngine.Audio;
 using Utils;
@@ -26,11 +25,55 @@ namespace Managers
 
         private AudioSource _audioSource;
 
-        #region JavaScript Accessible
+        #region Unity Native Properties with Events
 
-        [EventfulProperty] private float _musicVolume;
-        [EventfulProperty] private float _soundFxVolume;
-        [EventfulProperty] private DisplayMode _display = DisplayMode.FullScreen;
+        private float _musicVolume;
+        private float _soundFxVolume;
+        private DisplayMode _display = DisplayMode.FullScreen;
+
+        public float MusicVolume
+        {
+            get => _musicVolume;
+            set
+            {
+                if (_musicVolume != value)
+                {
+                    _musicVolume = value;
+                    OnMusicVolumeChanged?.Invoke(value);
+                }
+            }
+        }
+
+        public float SoundFxVolume
+        {
+            get => _soundFxVolume;
+            set
+            {
+                if (_soundFxVolume != value)
+                {
+                    _soundFxVolume = value;
+                    OnSoundFxVolumeChanged?.Invoke(value);
+                }
+            }
+        }
+
+        public DisplayMode Display
+        {
+            get => _display;
+            set
+            {
+                if (_display != value)
+                {
+                    _display = value;
+                    OnDisplayChanged?.Invoke(value);
+                }
+            }
+        }
+
+        // Events for property changes
+        public event Action<float> OnMusicVolumeChanged;
+        public event Action<float> OnSoundFxVolumeChanged;
+        public event Action<DisplayMode> OnDisplayChanged;
 
         #endregion
 
@@ -57,12 +100,11 @@ namespace Managers
             SetDisplayMode(Display);
         }
 
-        #region Methods for Javascript use
+        #region Methods for external use
 
         /// <summary>
         /// Convert a volume to a 0-9 index.
-        /// This is done so JavaScript float imprecision doesn't matter.
-        /// #BlameJavaScript
+        /// This is done so float imprecision doesn't matter.
         /// </summary>
         public int VolumeToIndex(float volume)
         {

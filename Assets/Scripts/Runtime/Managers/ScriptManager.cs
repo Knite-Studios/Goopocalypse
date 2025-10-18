@@ -22,25 +22,31 @@ namespace Managers
 
         private void Start()
         {
-            var scriptEngine = GameManager.ScriptEngine;
-            if (scriptEngine == null) return;
+            // TODO: Replace with Unity-native
 
-            // Initialize the script engine.
-            scriptEngine.InitEngine();
-            // Add this to the ScriptEngine.
-            scriptEngine.AddRuntimeObject("game", this);
+            // Initialize Lua environment
+            _luaEnv.AddLoader(CustomLuaLoader);
 
-            // Run the JavaScript entrypoint.
-            scriptEngine.RunScript("out/index.js");
+            InitializeNativeScripting();
+        }
+
+        private byte[] CustomLuaLoader(ref string filepath)
+        {
+            // Custom Lua loading logic here
+            return null;
+        }
+
+        private void InitializeNativeScripting()
+        {
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            _luaEnv.Dispose();
+            _luaEnv?.Dispose();
         }
 
-        #region JavaScript References
+        #region Manager References
 
         public WaveManager WaveManager => WaveManager.Instance;
         public GameManager GameManager => GameManager.Instance;

@@ -1,5 +1,4 @@
 ﻿using Mirror;
-using OneJS;
 using UnityEngine.SceneManagement;
 
 namespace Managers
@@ -20,7 +19,19 @@ namespace Managers
 
         #endregion
 
-        [SyncVar, EventfulProperty] private int _hearts = 3;
+        [SyncVar] private int _hearts = 3;
+
+        public int Hearts
+        {
+            get => _hearts;
+            set
+            {
+                _hearts = value;
+                OnHeartsChanged?.Invoke(value);
+            }
+        }
+
+        public static event System.Action<int> OnHeartsChanged;
 
         protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
@@ -37,7 +48,6 @@ namespace Managers
         {
             // TODO: Here, we can update the UI.
 
-            // Handle the game over logic.
             if (sharedHearts <= 0)
             {
                 if (NetworkServer.active)

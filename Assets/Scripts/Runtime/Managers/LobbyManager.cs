@@ -6,7 +6,6 @@ using Entity.Player;
 using kcp2k;
 using Mirror;
 using Mirror.FizzySteam;
-using OneJS;
 using Steamworks;
 using UnityEngine;
 
@@ -39,14 +38,39 @@ namespace Managers
         private NetworkManager _networkManager;
         private SteamManager _steamManager;
 
-        [EventfulProperty] private List<PlayerSession> _players = new();
-        [EventfulProperty] private Dictionary<string, PlayerRole> _roles = new();
+        private List<PlayerSession> _players = new();
+        private Dictionary<string, PlayerRole> _roles = new();
 
         #region Steam Fields
 
         private CSteamID _lobbyId;
 
         #endregion
+
+        // Regular C# properties with events
+        public List<PlayerSession> Players
+        {
+            get => _players;
+            set
+            {
+                _players = value;
+                OnPlayersChanged?.Invoke(value);
+            }
+        }
+
+        public Dictionary<string, PlayerRole> Roles
+        {
+            get => _roles;
+            set
+            {
+                _roles = value;
+                OnRolesChanged?.Invoke(value);
+            }
+        }
+
+        // Events for UI updates
+        public static event System.Action<List<PlayerSession>> OnPlayersChanged;
+        public static event System.Action<Dictionary<string, PlayerRole>> OnRolesChanged;
 
         protected override void OnAwake()
         {
@@ -273,7 +297,7 @@ namespace Managers
             {
                 Instance.Roles[roleEntry.userId] = roleEntry.role;
             }
-            Instance.OnRolesChanged?.Invoke(Instance.Roles);
+            OnRolesChanged?.Invoke(Instance.Roles);
         }
 
         #endregion
@@ -317,7 +341,7 @@ namespace Managers
         private void OnJoinRequest(GameLobbyJoinRequested_t callback)
         {
             SteamMatchmaking.JoinLobby(callback.m_steamIDLobby);
-            GameManager.Instance.Navigate("/join");
+            UIManager.Instance.ShowLobbyScreen();
         }
 
         /// <summary>
@@ -384,9 +408,7 @@ namespace Managers
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            // Change the game state.
-            // GameManager.Instance.State = GameState.Lobby;
+            GameManager.Instance.State = GameState.Lobby;
         }
 
         /// <summary>

@@ -14,8 +14,8 @@ public class LeaderBoardManager : MonoBehaviour
     [SerializeField] private TMP_InputField userNameInput;
     [SerializeField] private Button submitButton;
 
-    [SerializeField] private int minNameLength = 3;
-    [SerializeField] private int maxNameLength = 15;
+    //[SerializeField] private int minNameLength = 3;
+    //[SerializeField] private int maxNameLength = 15;
 
     [Header("Loading")] [SerializeField] private GameObject loadingImage;
     [SerializeField] private GameObject leaderBoardNameBox;

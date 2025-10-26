@@ -6,18 +6,18 @@ namespace Managers
     {
         private Inputs _inputs;
 
-        public static InputAction Movement => Instance._inputs.Player.Movement;
+        public static InputAction Movement => Instance?._inputs.Player.Movement;
         /// <summary>
         /// This is used when the game is in local multiplayer mode.
         /// </summary>
-        public static InputAction Movement2 => Instance._inputs.Player.Movement2;
+        public static InputAction Movement2 => Instance?._inputs.Player.Movement2;
 
-        public static InputAction Attack => Instance._inputs.Player.Attack;
-        public static InputAction Interact => Instance._inputs.Player.Interact;
-        public static InputAction Dab => Instance._inputs.Player.Dab;
-        public static InputAction Inventory => Instance._inputs.Player.Inventory;
-        public static InputAction Menu => Instance._inputs.Player.Menu;
-        public static InputAction Invite => Instance._inputs.Player.Invite;
+        public static InputAction Attack => Instance?._inputs.Player.Attack;
+        public static InputAction Interact => Instance?._inputs.Player.Interact;
+        public static InputAction Dab => Instance?._inputs.Player.Dab;
+        public static InputAction Inventory => Instance?._inputs.Player.Inventory;
+        public static InputAction Menu => Instance?._inputs.Player.Menu;
+        public static InputAction Invite => Instance?._inputs.Player.Invite;
 
         protected override void OnAwake()
         {
@@ -27,18 +27,24 @@ namespace Managers
         protected override void OnEnable()
         {
             base.OnEnable();
-            _inputs.Enable();
+            _inputs?.Enable();
         }
 
         private void OnDisable()
         {
-            _inputs.Disable();
+            _inputs?.Disable();
         }
 
         protected override void OnDestroy()
         {
+            if (_inputs != null)
+            {
+                _inputs.Disable();
+                _inputs.Dispose();
+                _inputs = null;
+            }
+
             base.OnDestroy();
-            _inputs.Dispose();
         }
     }
 }

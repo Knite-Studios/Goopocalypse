@@ -79,9 +79,7 @@ namespace Entity.Enemies
             var distance = Vector2.Distance(transform.position, targetPosition);
             var canMove = distance > 0.1f;
 
-            // If we can move then set the animator to moving and not idle.
             Animator.SetBool(IsMovingHash, canMove);
-            Animator.SetBool(IsIdleHash, !canMove);
 
             if (canMove)
             {

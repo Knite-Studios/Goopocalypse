@@ -37,7 +37,6 @@ namespace Managers
 
         #region JavaScript Accessible - Convert to regular properties
 
-        // Remove [EventfulProperty] and create proper C# properties
         private Texture2D _profilePicture;
         private string _username;
         private bool _localMultiplayer = false;
@@ -328,11 +327,11 @@ namespace Managers
         /// <summary>
         /// Stops the game.
         /// </summary>
-        public void StopGame()
+        public async void StopGame()
         {
             State = GameState.Menu;
             Navigate("/");
-            LoadScene(0);
+            await LoadScene(menuScene);
 
             // TODO: We could return the players to the lobby scene.
             if (!LocalMultiplayer)
@@ -535,6 +534,7 @@ namespace Managers
 
         #endregion
     }
+
     public struct GameEvent
     {
         public GameEventType Type;

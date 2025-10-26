@@ -53,9 +53,7 @@ namespace Entity.Enemies
             var distance = Vector2.Distance(transform.position, targetPosition);
             var canMove = distance > 0.1f;
 
-            // If we can move then set the animator to moving and not idle.
             Animator.SetBool(IsMovingHash, canMove);
-            Animator.SetBool(IsIdleHash, !canMove);
 
             if (canMove)
             {
@@ -128,8 +126,6 @@ namespace Entity.Enemies
 
                 yield return new WaitForSeconds(0.3f);
             }
-
-            // ReSharper disable once IteratorNeverReturns
         }
 
         public override void OnDeath()
@@ -217,18 +213,24 @@ namespace Entity.Enemies
         }
 
         /// <summary>
-        /// Gets a random walkable position around the specified position within a given radius.
+        /// Gets a random walkable position around the specified position within a given radius. Iterative.
         /// </summary>
-        protected Vector2? GetRandomWalkablePositionAround(Vector2 center, float radius)
+        protected Vector2? GetRandomWalkablePositionAround(Vector2 center, float radius, int maxAttempts = 10)
         {
-            // NOTE: Might be best to do recurssion here.
             var grid = Pathfinder.grid;
-            var randomPosition = center + Random.insideUnitCircle * radius;
-            var node = grid!.GetNode(randomPosition);
 
-            return node != null && node.isWalkable ? randomPosition : null;
+            for (int i = 0; i < maxAttempts; i++)
+            {
+                var randomPosition = center + Random.insideUnitCircle * radius;
+                var node = grid!.GetNode(randomPosition);
+
+                if (node != null && node.isWalkable)
+                    return randomPosition;
+            }
+
+            Debug.LogWarning($"Could not find walkable position around {center} after {maxAttempts} attempts");
+            return null;
         }
-
         #endregion
     }
 

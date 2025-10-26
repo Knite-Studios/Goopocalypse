@@ -8,12 +8,16 @@
 
         public override void EnterState()
         {
-            player.Animator.SetBool(player.IsIdleHash, true);
+            //player.Animator.SetBool(player.IsIdleHash, true);
+            // Idle animation is now the default state in the animation tree
+
         }
 
         public override void ExitState()
         {
-            player.Animator.SetBool(player.IsIdleHash, false);
+            //player.Animator.SetBool(player.IsIdleHash, false);
+            // No cleanup needed since idle is the default state
+
         }
     }
 }

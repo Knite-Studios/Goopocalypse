@@ -20,7 +20,7 @@ namespace Entity
         /// <summary>
         /// Constants for the animator hashes.
         /// </summary>
-        protected internal readonly int IsIdleHash = Animator.StringToHash("IsIdle");
+        // protected internal readonly int IsIdleHash = Animator.StringToHash("IsIdle");
         protected internal readonly int IsMovingHash = Animator.StringToHash("IsMoving");
         protected internal readonly int IsAttackingHash = Animator.StringToHash("IsAttacking");
         protected internal readonly int IsDeadHash = Animator.StringToHash("IsDead");

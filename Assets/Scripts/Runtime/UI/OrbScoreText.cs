@@ -9,7 +9,7 @@ namespace UI
     {
         [SerializeField] private float upForce = 1.5f;
         [SerializeField] private float duration = 1.5f;
-        [SerializeField] private float speed = 0.5f;
+        //[SerializeField] private float speed = 0.5f;
 
         private TMP_Text _text;
 

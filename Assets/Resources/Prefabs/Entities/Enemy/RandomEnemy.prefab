@@ -221,8 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowColor: {r: 0.759434, g: 0.759434, b: 0.759434, a: 1}
-  glowBrightness: 1.15
+  glowColor: {r: 0.03137255, g: 0.03137255, b: 0.058823533, a: 1}
+  glowBrightness: 1.33
   outlineWidth: 1
   alphaThreshold: 0.01
   drawOutside: 0
@@ -270,7 +270,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025978129988184381}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 078e3cd37819c7247b93cf922c083310, type: 2}
   m_CullingMode: 0

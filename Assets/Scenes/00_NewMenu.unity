@@ -80232,10 +80232,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d2b460122b84c41bf770e96b0a4e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileGrid: {fileID: 0}
-  groundTilemap: {fileID: 0}
+  tileGrid: {fileID: 1460172414}
+  groundTilemap: {fileID: 1056665866}
   unwalkableTilemaps:
-  - {fileID: 0}
+  - {fileID: 1307133154}
   width: 71
   height: 53
   nodeRadius: 0.25

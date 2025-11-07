@@ -53,7 +53,7 @@ MonoBehaviour:
   syncInterval: 0
   fwend: {fileID: 0}
   buddie: {fileID: 0}
-  lineMaterial: {fileID: 2100000, guid: 78fb95482e1ee3f4e97811e80ce0bde0, type: 2}
+  lineMaterial: {fileID: 2100000, guid: d9425447cb05af641b0ff8182291c848, type: 2}
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 1, g: 1, b: 1, a: 1}
   maxDistance: 7.5
@@ -111,7 +111,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 78fb95482e1ee3f4e97811e80ce0bde0, type: 2}
+  - {fileID: 2100000, guid: d9425447cb05af641b0ff8182291c848, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -143,7 +143,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.5175457
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -155,19 +155,19 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 1, g: 0.051886797, b: 0.051886797, a: 1}
+      key1: {r: 0, g: 0.31034517, b: 1, a: 1}
+      key2: {r: 0.7875431, g: 0.3726415, b: 1, a: 0}
+      key3: {r: 0.3176471, g: 1, b: 0.35315225, a: 0}
+      key4: {r: 0.18396229, g: 0.34827906, b: 1, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
+      ctime1: 5204
+      ctime2: 11758
+      ctime3: 18119
+      ctime4: 25443
       ctime5: 0
       ctime6: 0
       ctime7: 0
@@ -181,12 +181,12 @@ LineRenderer:
       atime7: 0
       m_Mode: 0
       m_ColorSpace: -1
-      m_NumColorKeys: 2
+      m_NumColorKeys: 5
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 3
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0

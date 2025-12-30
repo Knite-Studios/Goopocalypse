@@ -41,6 +41,8 @@ ExportedObj/
 *.csproj
 *.unityproj
 *.sln
+OneJS.csproj
+OneJSEditor.csproj
 *.suo
 *.tmp
 *.user
@@ -80,3 +82,28 @@ crashlytics-build.properties
 # Build Materials
 Build/
 ScriptsBundleZip.bytes
+
+# Documentation and Claude artifacts (not for repo)
+requirements.md
+design.md
+changelog.md
+code-architecture.md
+plan.md
+task-list.md
+claude.md
+**/claude.md
+**/CLAUDE.md
+
+# Notetaking and temporary files
+notes.md
+todo.md
+scratch.md
+*.scratch
+*.notes
+*.todo
+
+# Old OneJS UI output
+UserInterface/
+
+# Documentation folder if created
+Documentation/

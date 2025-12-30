@@ -139,8 +139,6 @@ namespace Managers
         public PlayerRole GetPlayerRole(NetworkConnectionToClient conn)
             => Roles[FindPlayer(conn).userId];
 
-        #region JavaScript Accessible
-
         /// <summary>
         /// Invoked when the client leaves the lobby.
         /// When hosting: this will close the lobby.
@@ -163,8 +161,6 @@ namespace Managers
 
             SteamMatchmaking.LeaveLobby(_lobbyId);
         }
-
-        #endregion
 
         #region Mirror Callbacks
 
@@ -434,7 +430,8 @@ namespace Managers
         /// </summary>
         public void InvitePlayer()
         {
-            if (!NetworkManager.IsHost() || Players.Count >= 2 || GameManager.Instance.Route != "/join") return;
+            if (!NetworkManager.IsHost() || Players.Count >= 2) return;
+            if (GameManager.Instance.State != GameState.Lobby) return;
 
             switch (transport)
             {
@@ -455,13 +452,5 @@ namespace Managers
     {
         Kcp,
         Steam
-    }
-
-    /// <summary>
-    /// Interface for managing lobbies.
-    /// </summary>
-    public class Lobby
-    {
-
     }
 }

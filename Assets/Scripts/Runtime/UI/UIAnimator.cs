@@ -1,7 +1,5 @@
-using System;
-using DG.Tweening;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 [RequireComponent(typeof(CanvasGroup))]

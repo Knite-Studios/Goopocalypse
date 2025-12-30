@@ -3,7 +3,7 @@
 namespace Managers
 {
     /// <summary>
-    /// Handles both Lua and JavaScript engines.
+    /// Handles the Lua scripting environment for entity stats.
     /// </summary>
     public class ScriptManager : MonoSingleton<ScriptManager>
     {

@@ -35,7 +35,7 @@ namespace Managers
 
         private int _currentScene;
 
-        #region JavaScript Accessible - Convert to regular properties
+        #region State Properties
 
         private Texture2D _profilePicture;
         private string _username;
@@ -44,7 +44,6 @@ namespace Managers
         private string _route = "/";
         private float _loadingProgress;
 
-        // Regular C# properties with events
         public Texture2D ProfilePicture
         {
             get => _profilePicture;
@@ -188,8 +187,8 @@ namespace Managers
         }
 
         /// <summary>
-        /// Method for JavaScript use.
-        /// Starts the game by invoking the event.
+        /// Starts the online co-op game.
+        /// Called by host when both players are ready.
         /// </summary>
         public async void StartRemoteGame()
         {
@@ -237,8 +236,8 @@ namespace Managers
         }
 
         /// <summary>
-        /// Method for JavaScript use.
-        /// Starts the game by invoking the event.
+        /// Starts the local co-op game.
+        /// Creates two players on the same machine.
         /// </summary>
         public async void StartLocalGame()
         {

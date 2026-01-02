@@ -337,7 +337,7 @@ namespace Managers
         private void OnJoinRequest(GameLobbyJoinRequested_t callback)
         {
             SteamMatchmaking.JoinLobby(callback.m_steamIDLobby);
-            UIManager.Instance.ShowLobbyScreen();
+            UIManager.Instance.ShowLobbyOnline();
         }
 
         /// <summary>

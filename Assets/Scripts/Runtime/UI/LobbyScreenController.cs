@@ -1,190 +1,291 @@
 using System.Collections.Generic;
 using Entity.Player;
 using Managers;
-using Mirror;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Controls the lobby panel.
+/// Handles both Local and Online coop modes.
+/// </summary>
 public class LobbyScreenController : MonoBehaviour
 {
+    [Header("Player 1")]
+    [SerializeField] private RawImage player1Image;
+    [SerializeField] private TMP_Text player1StatusText;
+
+    [Header("Player 2")]
+    [SerializeField] private RawImage player2Image;
+    [SerializeField] private TMP_Text player2StatusText;
+
     [Header("Buttons")]
-    [SerializeField] private Button playCoopButton;
-    [SerializeField] private Button inviteButton;
-    [SerializeField] private Button startGameButton;
+    [SerializeField] private Button player1Button;
+    [SerializeField] private Button player2Button;
     [SerializeField] private Button backButton;
 
-    [Header("Player List")]
-    [SerializeField] private Transform playerListContainer;
-    [SerializeField] private GameObject playerEntryPrefab;
+    [Header("Default Texture")]
+    [SerializeField] private Texture2D defaultPlayerTexture;
 
-    [Header("Status")]
-    [SerializeField] private TMP_Text statusText;
+    [Header("Input Settings")]
+    [SerializeField] private KeyCode player1JoinKey = KeyCode.Space;
+    [SerializeField] private KeyCode player2JoinKey = KeyCode.Return;
+    [SerializeField] private KeyCode inviteKey = KeyCode.I;
 
-    private readonly List<PlayerEntryUI> _playerEntries = new();
+    private MenuController _menuController;
+    private bool _player1Joined;
+    private bool _player2Joined;
+
+    private void Awake()
+    {
+        _menuController = FindObjectOfType<MenuController>();
+    }
 
     private void OnEnable()
     {
+        if (player1Button != null)
+            player1Button.onClick.AddListener(OnPlayer1ButtonClicked);
+        if (player2Button != null)
+            player2Button.onClick.AddListener(OnPlayer2ButtonClicked);
+        if (backButton != null)
+            backButton.onClick.AddListener(OnBackClicked);
+
+        // Subscribe to lobby events for online mode
         LobbyManager.OnPlayersChanged += OnPlayersChanged;
-        LobbyManager.OnRolesChanged += OnRolesChanged;
 
-        if (playCoopButton != null) playCoopButton.onClick.AddListener(OnPlayCoopClicked);
-        if (inviteButton != null) inviteButton.onClick.AddListener(OnInviteClicked);
-        if (startGameButton != null) startGameButton.onClick.AddListener(OnStartGameClicked);
-        if (backButton != null) backButton.onClick.AddListener(OnBackClicked);
-
-        UpdateButtonStates();
-        RefreshPlayerList();
+        ResetState();
+        UpdateUI();
     }
 
     private void OnDisable()
     {
-        LobbyManager.OnPlayersChanged -= OnPlayersChanged;
-        LobbyManager.OnRolesChanged -= OnRolesChanged;
+        if (player1Button != null)
+            player1Button.onClick.RemoveListener(OnPlayer1ButtonClicked);
+        if (player2Button != null)
+            player2Button.onClick.RemoveListener(OnPlayer2ButtonClicked);
+        if (backButton != null)
+            backButton.onClick.RemoveListener(OnBackClicked);
 
-        if (playCoopButton != null) playCoopButton.onClick.RemoveListener(OnPlayCoopClicked);
-        if (inviteButton != null) inviteButton.onClick.RemoveListener(OnInviteClicked);
-        if (startGameButton != null) startGameButton.onClick.RemoveListener(OnStartGameClicked);
-        if (backButton != null) backButton.onClick.RemoveListener(OnBackClicked);
+        LobbyManager.OnPlayersChanged -= OnPlayersChanged;
     }
 
     private void Update()
     {
-        UpdateButtonStates();
-
-        // Keyboard shortcut for invite (I key)
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            var isHost = Managers.NetworkManager.IsHost();
-            var playerCount = LobbyManager.HasInstance() ? LobbyManager.Instance.Players.Count : 0;
-            if (isHost && playerCount < 2)
-            {
-                OnInviteClicked();
-            }
-        }
-
-        // Keyboard shortcut to start game (Enter key)
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
-        {
-            var isHost = Managers.NetworkManager.IsHost();
-            var playerCount = LobbyManager.HasInstance() ? LobbyManager.Instance.Players.Count : 0;
-            if (isHost && playerCount == 2)
-            {
-                OnStartGameClicked();
-            }
-        }
-
         // Escape to go back
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             OnBackClicked();
+            return;
         }
-    }
 
-    private void UpdateButtonStates()
-    {
-        var isConnected = NetworkClient.isConnected || NetworkServer.active;
-        var isHost = Managers.NetworkManager.IsHost();
-        var playerCount = LobbyManager.HasInstance() ? LobbyManager.Instance.Players.Count : 0;
-
-        if (playCoopButton != null)
-            playCoopButton.gameObject.SetActive(!isConnected);
-        if (inviteButton != null)
-            inviteButton.gameObject.SetActive(isHost && playerCount < 2);
-        if (startGameButton != null)
-            startGameButton.gameObject.SetActive(isHost && playerCount == 2);
-
-        if (statusText != null)
+        // Player 1 join (local mode or host in online)
+        if (!_player1Joined && Input.GetKeyDown(player1JoinKey))
         {
-            if (!isConnected)
-                statusText.text = "Click 'Play Co-op' to create a lobby";
-            else if (isHost && playerCount < 2)
-                statusText.text = "Press I to invite a friend";
-            else if (isHost)
-                statusText.text = "Press Enter to start!";
+            OnPlayer1Join();
+        }
+
+        // Player 2 input
+        if (!_player2Joined)
+        {
+            if (IsOnlineMode())
+            {
+                // Online: Press to invite
+                if (Input.GetKeyDown(inviteKey))
+                {
+                    OnInvitePressed();
+                }
+            }
             else
-                statusText.text = "Waiting for host to start...";
+            {
+                // Local: Press to join or detect controller
+                if (Input.GetKeyDown(player2JoinKey))
+                {
+                    OnPlayer2Join();
+                }
+                // Also check for second controller input
+                else if (InputManager.Movement2 != null &&
+                         InputManager.Movement2.ReadValue<Vector2>().magnitude > 0.5f)
+                {
+                    OnPlayer2Join();
+                }
+            }
         }
     }
 
-    public void OnPlayCoopClicked()
+    private void ResetState()
     {
-        LobbyManager.Instance.MakeLobby();
-    }
+        _player1Joined = false;
+        _player2Joined = false;
 
-    public void OnInviteClicked()
-    {
-        LobbyManager.Instance.InvitePlayer();
-    }
-
-    public void OnStartGameClicked()
-    {
-        GameManager.Instance.StartRemoteGame();
-    }
-
-    public void OnBackClicked()
-    {
-        if (NetworkClient.isConnected || NetworkServer.active)
+        // In online mode, check if we're already connected
+        if (IsOnlineMode() && LobbyManager.HasInstance())
         {
-            LobbyManager.Instance.LeaveLobby();
+            var players = LobbyManager.Instance.Players;
+            _player1Joined = players.Count >= 1;
+            _player2Joined = players.Count >= 2;
         }
-        UIManager.Instance.ShowMainMenu();
+    }
+
+    private bool IsOnlineMode()
+    {
+        return _menuController != null && _menuController.IsOnlineMode;
+    }
+
+    private void UpdateUI()
+    {
+        bool isOnline = IsOnlineMode();
+
+        // Player 1 status text and button
+        if (player1StatusText != null)
+        {
+            if (_player1Joined)
+            {
+                player1StatusText.text = "Connected";
+            }
+            else
+            {
+                player1StatusText.text = "Join";
+            }
+        }
+        if (player1Button != null)
+        {
+            player1Button.interactable = !_player1Joined;
+        }
+
+        // Player 2 status text and button
+        if (player2StatusText != null)
+        {
+            if (_player2Joined)
+            {
+                player2StatusText.text = "Connected";
+            }
+            else if (isOnline)
+            {
+                player2StatusText.text = "Invite";
+            }
+            else
+            {
+                player2StatusText.text = "Join";
+            }
+        }
+        if (player2Button != null)
+        {
+            player2Button.interactable = !_player2Joined;
+        }
+
+        // Player images
+        if (isOnline)
+        {
+            UpdateOnlinePlayerImages();
+        }
+        else
+        {
+            if (player1Image != null)
+                player1Image.texture = defaultPlayerTexture;
+            if (player2Image != null)
+                player2Image.texture = defaultPlayerTexture;
+        }
+
+        // Check if both players are ready to start
+        if (_player1Joined && _player2Joined)
+        {
+            // Auto-start after a short delay
+            CancelInvoke(nameof(StartGame));
+            Invoke(nameof(StartGame), 1.5f);
+        }
+    }
+
+    private void UpdateOnlinePlayerImages()
+    {
+        if (!LobbyManager.HasInstance()) return;
+
+        var players = LobbyManager.Instance.Players;
+
+        if (players.Count > 0 && player1Image != null)
+        {
+            player1Image.texture = players[0].profileIcon ?? defaultPlayerTexture;
+        }
+        else if (player1Image != null)
+        {
+            player1Image.texture = defaultPlayerTexture;
+        }
+
+        if (players.Count > 1 && player2Image != null)
+        {
+            player2Image.texture = players[1].profileIcon ?? defaultPlayerTexture;
+        }
+        else if (player2Image != null)
+        {
+            player2Image.texture = defaultPlayerTexture;
+        }
     }
 
     private void OnPlayersChanged(List<PlayerSession> players)
     {
-        RefreshPlayerList();
-        UpdateButtonStates();
+        // Update join states based on player count (online mode)
+        _player1Joined = players.Count >= 1;
+        _player2Joined = players.Count >= 2;
+        UpdateUI();
     }
 
-    private void OnRolesChanged(Dictionary<string, PlayerRole> roles)
+    private void OnPlayer1Join()
     {
-        UpdatePlayerRoles();
+        _player1Joined = true;
+        UpdateUI();
     }
 
-    private void RefreshPlayerList()
+    private void OnPlayer2Join()
     {
-        foreach (var entry in _playerEntries)
+        _player2Joined = true;
+        UpdateUI();
+    }
+
+    /// <summary>
+    /// Called when Player 1 button is clicked.
+    /// </summary>
+    private void OnPlayer1ButtonClicked()
+    {
+        if (!_player1Joined)
         {
-            if (entry != null)
-                Destroy(entry.gameObject);
-        }
-        _playerEntries.Clear();
-
-        if (!LobbyManager.HasInstance()) return;
-
-        var players = LobbyManager.Instance.Players;
-        var roles = LobbyManager.Instance.Roles;
-
-        foreach (var player in players)
-        {
-            if (playerEntryPrefab == null || playerListContainer == null) continue;
-
-            var entryObj = Instantiate(playerEntryPrefab, playerListContainer);
-            var entry = entryObj.GetComponent<PlayerEntryUI>();
-
-            if (entry != null)
-            {
-                var role = roles.TryGetValue(player.userId, out var r) ? r : PlayerRole.None;
-                entry.Setup(player, role);
-                _playerEntries.Add(entry);
-            }
+            OnPlayer1Join();
         }
     }
 
-    private void UpdatePlayerRoles()
+    /// <summary>
+    /// Called when Player 2 button is clicked.
+    /// In local mode: joins P2. In online mode: opens invite.
+    /// </summary>
+    private void OnPlayer2ButtonClicked()
     {
-        if (!LobbyManager.HasInstance()) return;
+        if (_player2Joined) return;
 
-        var roles = LobbyManager.Instance.Roles;
-
-        foreach (var entry in _playerEntries)
+        if (IsOnlineMode())
         {
-            if (entry == null) continue;
-            if (roles.TryGetValue(entry.UserId, out var role))
-            {
-                entry.UpdateRole(role);
-            }
+            OnInvitePressed();
         }
+        else
+        {
+            OnPlayer2Join();
+        }
+    }
+
+    private void OnInvitePressed()
+    {
+        // Opens Steam overlay to invite friends
+        if (_menuController != null)
+            _menuController.InvitePlayer();
+    }
+
+    private void OnBackClicked()
+    {
+        CancelInvoke(nameof(StartGame));
+        if (_menuController != null)
+            _menuController.ReturnFromLobby();
+    }
+
+    private void StartGame()
+    {
+        if (_menuController != null)
+            _menuController.StartGame();
     }
 }

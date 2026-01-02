@@ -53,27 +53,5 @@ namespace Utils
                 PlayerPrefs.Save();
             }
         }
-
-        /// <summary>
-        /// Stores input binding overrides as JSON from InputActionAsset.SaveBindingOverridesAsJson().
-        /// </summary>
-        public static string KeybindOverrides
-        {
-            get => PlayerPrefs.GetString("KeybindOverrides", string.Empty);
-            set
-            {
-                PlayerPrefs.SetString("KeybindOverrides", value);
-                PlayerPrefs.Save();
-            }
-        }
-
-        /// <summary>
-        /// Clears all keybind overrides, resetting to defaults.
-        /// </summary>
-        public static void ClearKeybindOverrides()
-        {
-            PlayerPrefs.DeleteKey("KeybindOverrides");
-            PlayerPrefs.Save();
-        }
     }
 }

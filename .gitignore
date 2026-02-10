@@ -107,3 +107,6 @@ UserInterface/
 
 # Documentation folder if created
 Documentation/
+*.md.meta
+*.md
+.claude

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Attributes;
 using Cinemachine;
 using Discord;
@@ -130,6 +131,13 @@ namespace Entity.Player
 
             base.OnDeath();
             HeartManager.OnPlayerDeath();
+            var animationDuration = Animator.GetCurrentAnimatorStateInfo(0).length;
+            StartCoroutine(DeathAnimation(animationDuration));
+        }
+        IEnumerator DeathAnimation(float duration)
+        {
+            yield return new WaitForSeconds(duration);
+            OnDeathAnimation();
         }
 
         public override void OnDeathAnimation()

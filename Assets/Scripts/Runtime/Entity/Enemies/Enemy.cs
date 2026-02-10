@@ -139,6 +139,13 @@ namespace Entity.Enemies
             Collider.enabled = false;
 
             Animator.SetTrigger(IsDeadHash);
+            var animationDuration = Animator.GetCurrentAnimatorStateInfo(0).length;
+            StartCoroutine(DeathAnimation(animationDuration));
+        }
+        IEnumerator DeathAnimation(float duration)
+        {
+            yield return new WaitForSeconds(duration);
+            OnDeathAnimation();
         }
 
         protected virtual void SpawnOrb()

@@ -1,4 +1,4 @@
-﻿using Entity;
+using Entity;
 using Interfaces;
 using Managers;
 using Mirror;
@@ -41,6 +41,7 @@ namespace Projectiles
 
         protected virtual void OnTriggerEnter2D(Collider2D other)
         {
+            if (owner == null) return;
             if (!other.TryGetComponent(out BaseEntity entity)) return;
 
             // Check if the projectile should do damage.

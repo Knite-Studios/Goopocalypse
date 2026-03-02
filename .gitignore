@@ -110,3 +110,15 @@ Documentation/
 *.md.meta
 *.md
 .claude
+
+# Cursor AI workspace files
+.cursor/
+.cursorrules
+AGENTS.md
+
+# Other AI tool files
+.aider*
+.continue/
+.copilot/
+.codeium/
+.windsurf/

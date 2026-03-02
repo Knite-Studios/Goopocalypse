@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78e7360cb2ba44c78a7293e7a71f8f94, type: 3}
   m_Name: Config_Fwend
   m_EditorClassIdentifier: 
-  luaScript: players/fwend.lua
+  playerName: Fwend
   animatorController: {fileID: 9100000, guid: 1bb994bbc2e1ced4f8be4574e652446f, type: 2}
   sprite: {fileID: -2513610387572724556, guid: 5f257f7485939ff46b9cd3c2a5ba06a1, type: 3}
   mass: 1
-  colliderOffset: {x: 0.05, y: 0.25}
-  colliderSize: {x: 0.7, y: 0.45}
   sortingOrder: 10
   spawnPoint: {x: -1, y: 0}
+  maxHealth: 100
+  speed: 4
+  armor: 8
+  stamina: 100
+  areaOfEffect: 3.5
+  cameraDistance: 6.5

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Entity;
@@ -32,9 +32,6 @@ namespace Managers
 
         public static void RegisterEntity(BaseEntity entity)
         {
-            // TODO: This is temporary since on the host's side, its updating both the host and client entities.
-            if (entity.isServer) return;
-
             var entityData = new EntityData
             {
                 entity = entity,

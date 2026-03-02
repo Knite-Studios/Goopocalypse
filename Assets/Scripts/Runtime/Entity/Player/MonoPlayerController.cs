@@ -8,6 +8,8 @@ namespace Entity.Player
         public PlayerRole playerRole;
         public float moveSpeed = 10.0f;
 
+        private static readonly int IsMovingHash = Animator.StringToHash("IsMoving");
+
         private Rigidbody2D _rb;
         [SerializeField] private Animator _animator;
 
@@ -15,8 +17,8 @@ namespace Entity.Player
         {
             _rb = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
-
         }
+
         private void FixedUpdate()
         {
             var move = InputManager.Movement.ReadValue<Vector2>();
@@ -24,16 +26,12 @@ namespace Entity.Player
             _rb.MovePosition(_rb.position + movement);
 
             bool isMoving = move != Vector2.zero;
-            _animator.SetBool("IsMoving", isMoving);
+            _animator.SetBool(IsMovingHash, isMoving);
 
             if (move.x < 0)
-            {
-                transform.localScale = new Vector3(-1, 1, 1); 
-            }
+                transform.localScale = new Vector3(-1, 1, 1);
             else if (move.x > 0)
-            {
-                transform.localScale = new Vector3(1, 1, 1); 
-            }
+                transform.localScale = new Vector3(1, 1, 1);
         }
     }
 }

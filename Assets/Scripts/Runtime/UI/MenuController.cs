@@ -85,6 +85,14 @@ public class MenuController : MonoBehaviour
         if (exitMenu) exitMenu.SetActive(false);
     }
 
+    /// <summary>
+    /// Loads the Leaderboard scene. Call from Extras menu or main menu Leaderboard button.
+    /// </summary>
+    public void OpenLeaderboard()
+    {
+        LoadScene("02_Leaderboard");
+    }
+
     public void ShowExitConfirm()
     {
         if (exitMenu) exitMenu.SetActive(true);

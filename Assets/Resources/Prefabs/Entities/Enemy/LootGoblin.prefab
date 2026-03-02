@@ -109,7 +109,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  luaScript: enemies/lootgoblin.lua
+  statsData: {fileID: 11400000, guid: 436a384ff76f75443b9760eaac7eb78f, type: 2}
   onDeathEvent:
     m_PersistentCalls:
       m_Calls: []

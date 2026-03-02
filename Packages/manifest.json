@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.elringus.spriteglow": "https://github.com/elringus/sprite-glow.git#package",
+    "com.singularitygroup.hotreload": "git+https://gitlab.hotreload.net/root/hot-reload-releases.git#1.13.17",
     "com.unity.cinemachine": "2.10.3",
     "com.unity.collab-proxy": "2.7.1",
     "com.unity.feature.2d": "2.0.1",

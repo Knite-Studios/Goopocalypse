@@ -5,8 +5,8 @@ using UnityEngine.UI;
 namespace UI
 {
     /// <summary>
-    /// Controls the pause menu during gameplay.
-    /// Press ESC to toggle pause state.
+    /// Controls the pause menu UI during gameplay.
+    /// Reacts to GameManager.OnGamePause. All UI must be built in the scene; assign references in the Inspector.
     /// </summary>
     public class PauseMenuController : MonoBehaviour
     {
@@ -15,96 +15,64 @@ namespace UI
         [SerializeField] private Button settingsButton;
         [SerializeField] private Button quitButton;
 
-        private bool _isPaused;
-
         private void Start()
         {
-            if (pauseMenuPanel)
+            if (pauseMenuPanel != null)
                 pauseMenuPanel.SetActive(false);
 
-            if (resumeButton)
-                resumeButton.onClick.AddListener(Resume);
-            if (settingsButton)
+            if (resumeButton != null)
+                resumeButton.onClick.AddListener(OnResumeClicked);
+            if (settingsButton != null)
                 settingsButton.onClick.AddListener(OpenSettings);
-            if (quitButton)
+            if (quitButton != null)
                 quitButton.onClick.AddListener(QuitToMainMenu);
         }
 
-        private void Update()
+        private void OnEnable()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (_isPaused)
-                    Resume();
-                else
-                    Pause();
-            }
+            GameManager.OnGamePause += HandlePauseChanged;
         }
 
-        private void Pause()
+        private void OnDisable()
         {
-            _isPaused = true;
-
-            if (pauseMenuPanel)
-                pauseMenuPanel.SetActive(true);
-
-            Time.timeScale = 0f;  // Freeze game
-
-            if (GameManager.HasInstance())
-                GameManager.Instance.State = GameState.Paused;
+            GameManager.OnGamePause -= HandlePauseChanged;
         }
 
-        private void Resume()
+        private void HandlePauseChanged(bool paused)
         {
-            _isPaused = false;
+            if (GameManager.HasInstance() && GameManager.Instance.State == GameState.GameOver)
+                return;
+            if (pauseMenuPanel != null)
+                pauseMenuPanel.SetActive(paused);
+        }
 
-            if (pauseMenuPanel)
-                pauseMenuPanel.SetActive(false);
-
-            Time.timeScale = 1f;  // Resume game
-
+        private void OnResumeClicked()
+        {
             if (GameManager.HasInstance())
-                GameManager.Instance.State = GameState.Playing;
+                GameManager.Instance.ResumeGame();
         }
 
         private void OpenSettings()
         {
-            // TODO: Show settings overlay in pause menu
-            Debug.Log("Settings not implemented in pause menu yet");
+            // Optional: open same settings as main menu (e.g. show options canvas or a dedicated in-game settings panel).
+            if (settingsButton != null)
+                Debug.Log("Pause Settings: assign a panel or open options in the scene.");
         }
 
-        private async void QuitToMainMenu()
+        private void QuitToMainMenu()
         {
-            Time.timeScale = 1f;  // Reset time scale
-
-            if (!GameManager.HasInstance()) return;
-
-            if (GameManager.Instance.LocalMultiplayer)
-            {
-                // Local co-op: just load main menu
-                await GameManager.Instance.LoadScene(0);
-            }
-            else
-            {
-                // Online: disconnect from lobby first
-                if (LobbyManager.HasInstance())
-                    LobbyManager.Instance.LeaveLobby();
-
-                await GameManager.Instance.LoadScene(0);
-            }
+            if (GameManager.HasInstance())
+                GameManager.Instance.StopGame();
         }
 
         private void OnDestroy()
         {
-            if (resumeButton)
-                resumeButton.onClick.RemoveListener(Resume);
-            if (settingsButton)
+            if (resumeButton != null)
+                resumeButton.onClick.RemoveListener(OnResumeClicked);
+            if (settingsButton != null)
                 settingsButton.onClick.RemoveListener(OpenSettings);
-            if (quitButton)
+            if (quitButton != null)
                 quitButton.onClick.RemoveListener(QuitToMainMenu);
-
-            // Ensure time scale is reset
-            Time.timeScale = 1f;
         }
     }
 }

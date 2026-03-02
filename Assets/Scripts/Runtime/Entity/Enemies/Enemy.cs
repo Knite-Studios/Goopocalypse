@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Attributes;
 using Entity.Pathfinding;
 using Entity.Player;
 using Managers;
+using Scriptable;
 using Systems.Attributes;
 using UnityEngine;
-using XLua;
 using Random = UnityEngine.Random;
 
 namespace Entity.Enemies
 {
-    [CSharpCallLua]
     public class Enemy : BaseEntity
     {
+        [TitleHeader("Enemy Data")]
+        [SerializeField] private EnemyStatsData statsData;
+
         protected Pathfinder Pathfinder;
         protected Transform Target;
         protected BaseEntity TargetEntity => Target ? Target.GetComponent<BaseEntity>() : null;
@@ -26,7 +29,8 @@ namespace Entity.Enemies
 
         protected virtual void Start()
         {
-            InitializeEntityFromLua();
+            if (statsData)
+                ApplyEnemyStats(statsData);
 
             Pathfinder = GetComponent<Pathfinder>();
 
@@ -93,11 +97,10 @@ namespace Entity.Enemies
 
         #endregion
 
-        protected override void ApplyBaseStats(LuaTable stats)
+        protected void ApplyEnemyStats(EnemyStatsData data)
         {
-            base.ApplyBaseStats(stats);
-
-            this.GetOrCreateAttribute(Attribute.Points, stats.Get<long>("points"));
+            ApplyStats(data);
+            this.GetOrCreateAttribute(Attribute.Points, data.points);
         }
 
         /// <summary>
@@ -135,16 +138,18 @@ namespace Entity.Enemies
 
             base.OnDeath();
 
-            // Disable the collider in case the player runs into the enemy while the animation is playing.
             Collider.enabled = false;
 
             Animator.SetTrigger(IsDeadHash);
-            var animationDuration = Animator.GetCurrentAnimatorStateInfo(0).length;
-            StartCoroutine(DeathAnimation(animationDuration));
+            StartCoroutine(DeathAnimation());
         }
-        IEnumerator DeathAnimation(float duration)
+
+        IEnumerator DeathAnimation()
         {
-            yield return new WaitForSeconds(duration);
+            // Wait a frame so the animator transitions into the death state
+            yield return null;
+            var animationDuration = Animator.GetCurrentAnimatorStateInfo(0).length;
+            yield return new WaitForSeconds(animationDuration);
             OnDeathAnimation();
         }
 
@@ -241,8 +246,4 @@ namespace Entity.Enemies
         #endregion
     }
 
-    public static class LuaEnemies
-    {
-        public const string MeleeEnemy = "enemies/melee_enemy.lua";
-    }
 }

@@ -45,9 +45,6 @@ namespace Entity.Enemies
 
         private void HandleAttack()
         {
-            var isReadyToAttack = _attackTimer <= 0;
-
-            // Check if the attack timer is ready.
             if (_attackTimer <= 0)
             {
                 // Set the animator to attacking.

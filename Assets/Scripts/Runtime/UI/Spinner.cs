@@ -1,26 +1,14 @@
-﻿using Common.Extensions;
-using Managers;
 using UnityEngine;
 
 namespace UI
 {
     public class Spinner : MonoBehaviour
     {
-        private delegate void LuaSpinnerUpdate(Transform transform);
-        private LuaSpinnerUpdate _luaSpinnerUpdate;
-
-        private void Start()
-        {
-            var env = ScriptManager.Environment;
-            env.DoFile("spinner");
-            _luaSpinnerUpdate = env.Global.Get<LuaSpinnerUpdate>(ScriptManager.BehaviorUpdateFunc);
-        }
+        [SerializeField] private float rotationSpeed = 100f;
 
         private void Update()
         {
-            _luaSpinnerUpdate?.Invoke(transform);
+            transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
         }
-
-        private void OnDisable() => _luaSpinnerUpdate = null;
     }
 }

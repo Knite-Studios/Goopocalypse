@@ -109,7 +109,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  luaScript: enemies/weepingangelenemy.lua
+  statsData: {fileID: 11400000, guid: 33f4f200bb487ca4a8f970f2b90f5fa2, type: 2}
   onDeathEvent:
     m_PersistentCalls:
       m_Calls: []

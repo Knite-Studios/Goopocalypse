@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using Attributes;
 using Managers;
 using UnityEngine;
@@ -17,8 +17,6 @@ namespace Entity.Enemies
         protected override void Awake()
         {
             base.Awake();
-
-            luaScript = "enemies/randomenemy.lua";
         }
 
         protected override void FixedUpdate()

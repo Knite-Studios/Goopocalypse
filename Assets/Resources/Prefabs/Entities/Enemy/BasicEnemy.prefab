@@ -109,7 +109,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  luaScript: enemies/basicenemy.lua
+  statsData: {fileID: 11400000, guid: 35b7ebf2367164547b397ddeb82bd5a9, type: 2}
   onDeathEvent:
     m_PersistentCalls:
       m_Calls: []

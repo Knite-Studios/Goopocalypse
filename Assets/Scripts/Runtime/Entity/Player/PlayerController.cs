@@ -51,6 +51,7 @@ namespace Entity.Player
         private void Update()
         {
             if (!isLocalPlayer && !GameManager.Instance.LocalMultiplayer) return;
+            if (_isDead || GameManager.Instance.State == GameState.GameOver) return;
 
             if (!Indicator)
                 Indicator = PrefabManager.Create<ArrowIndicator>(PrefabType.ArrowIndicator, active:false, network:false);
@@ -61,6 +62,7 @@ namespace Entity.Player
         private void FixedUpdate()
         {
             if (!isLocalPlayer && !GameManager.Instance.LocalMultiplayer) return;
+            if (_isDead || GameManager.Instance.State == GameState.GameOver) return;
 
             _currentState?.FixedUpdateState();
         }

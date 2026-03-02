@@ -455,9 +455,16 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     /// Destroys this asset and all associated <see cref="InputAction"/> instances.
     /// </summary>
     public void Dispose()
-    {
-        UnityEngine.Object.Destroy(asset);
-    }
+        {
+#if UNITY_EDITOR
+            if (!UnityEngine.Application.isPlaying)
+            {
+                UnityEngine.Object.DestroyImmediate(asset);
+                return;
+            }
+#endif
+            UnityEngine.Object.Destroy(asset);
+        }
 
     /// <inheritdoc cref="UnityEngine.InputSystem.InputActionAsset.bindingMask" />
     public InputBinding? bindingMask

@@ -23,6 +23,7 @@ public class LobbyScreenController : MonoBehaviour
     [SerializeField] private Button player1Button;
     [SerializeField] private Button player2Button;
     [SerializeField] private Button backButton;
+    [SerializeField] private Button startGameButton;
 
     [Header("Default Texture")]
     [SerializeField] private Texture2D defaultPlayerTexture;
@@ -49,6 +50,8 @@ public class LobbyScreenController : MonoBehaviour
             player2Button.onClick.AddListener(OnPlayer2ButtonClicked);
         if (backButton != null)
             backButton.onClick.AddListener(OnBackClicked);
+        if (startGameButton != null)
+            startGameButton.onClick.AddListener(OnStartGameClicked);
 
         // Subscribe to lobby events for online mode
         LobbyManager.OnPlayersChanged += OnPlayersChanged;
@@ -65,6 +68,8 @@ public class LobbyScreenController : MonoBehaviour
             player2Button.onClick.RemoveListener(OnPlayer2ButtonClicked);
         if (backButton != null)
             backButton.onClick.RemoveListener(OnBackClicked);
+        if (startGameButton != null)
+            startGameButton.onClick.RemoveListener(OnStartGameClicked);
 
         LobbyManager.OnPlayersChanged -= OnPlayersChanged;
     }
@@ -173,6 +178,12 @@ public class LobbyScreenController : MonoBehaviour
             player2Button.interactable = !_player2Joined;
         }
 
+        // Start Game: only interactable when both players are ready (no auto-start)
+        if (startGameButton != null)
+        {
+            startGameButton.interactable = _player1Joined && _player2Joined;
+        }
+
         // Player images
         if (isOnline)
         {
@@ -186,13 +197,7 @@ public class LobbyScreenController : MonoBehaviour
                 player2Image.texture = defaultPlayerTexture;
         }
 
-        // Check if both players are ready to start
-        if (_player1Joined && _player2Joined)
-        {
-            // Auto-start after a short delay
-            CancelInvoke(nameof(StartGame));
-            Invoke(nameof(StartGame), 1.5f);
-        }
+        // No auto-start: Start Game button is shown and enabled only when both ready (see startGameButton.interactable above).
     }
 
     private void UpdateOnlinePlayerImages()
@@ -281,6 +286,11 @@ public class LobbyScreenController : MonoBehaviour
         CancelInvoke(nameof(StartGame));
         if (_menuController != null)
             _menuController.ReturnFromLobby();
+    }
+
+    private void OnStartGameClicked()
+    {
+        StartGame();
     }
 
     private void StartGame()

@@ -7,23 +7,19 @@ using Effects;
 using JetBrains.Annotations;
 using Managers;
 using Mirror;
+using Scriptable;
 using Systems.Attributes;
 using UnityEngine;
-using XLua;
 using Attribute = Systems.Attributes.Attribute;
 
 namespace Entity.Player
 {
-    [CSharpCallLua]
     public class Player : BaseEntity
     {
         [TitleHeader("Player Settings")]
         [SyncVar] public PlayerRole playerRole;
         [SerializeField] private CinemachineVirtualCamera virtualCameraPrefab;
 
-        /// <summary>
-        /// The name of the hero.
-        /// </summary>
         public string Name { get; private set; }
 
         #region Attribute Getters
@@ -33,7 +29,7 @@ namespace Entity.Player
 
         #endregion
 
-        private bool _isDead;
+        protected bool _isDead;
         private CinemachineVirtualCamera _virtualCamera;
         private Vector2 _spawnPosition;
 
@@ -46,21 +42,18 @@ namespace Entity.Player
 
         protected virtual void Start()
         {
-            InitializeEntityFromLua();
             InitializePlayerConfig();
             InitializePlayerCamera();
         }
 
         /// <summary>
-        /// Loads the player's configuration from the scriptable object.
+        /// Loads visual config and stats from the PlayerConfig ScriptableObject.
         /// </summary>
-        /// <exception cref="Exception">Thrown when the player role is not found in the map.</exception>
         private void InitializePlayerConfig()
         {
             if (!PlayerRoleMap.Map.TryGetValue(playerRole, out var config))
                 throw new Exception($"Missing player config for role: {playerRole}");
 
-            luaScript = config.luaScript;
             Animator.runtimeAnimatorController = config.animatorController;
             SpriteRenderer.sprite = config.sprite;
             SpriteRenderer.sortingOrder = config.sortingOrder;
@@ -68,12 +61,11 @@ namespace Entity.Player
             _spawnPosition = config.spawnPoint;
             transform.position = _spawnPosition;
 
+            ApplyPlayerStats(config);
+
             DiscordController.Instance.SetSmallImage(playerRole);
         }
 
-        /// <summary>
-        /// Creates the player's own camera.
-        /// </summary>
         private void InitializePlayerCamera()
         {
             if (isLocalPlayer)
@@ -87,7 +79,6 @@ namespace Entity.Player
             }
             else if (GameManager.Instance.LocalMultiplayer)
             {
-                // We only need 1 camera for local multiplayer.
                 if (playerRole is PlayerRole.Buddie) return;
 
                 _virtualCamera = Instantiate(virtualCameraPrefab, transform);
@@ -104,17 +95,19 @@ namespace Entity.Player
         }
 
         /// <summary>
-        /// Loads the statistics from a Lua script.
+        /// Loads player stats from a PlayerConfig ScriptableObject into the Attribute system.
         /// </summary>
-        /// <param name="stats">The Lua table containing the base stats.</param>
-        protected override void ApplyBaseStats(LuaTable stats)
+        private void ApplyPlayerStats(PlayerConfig config)
         {
-            base.ApplyBaseStats(stats);
+            this.GetOrCreateAttribute(Attribute.MaxHealth, config.maxHealth);
+            this.GetOrCreateAttribute(Attribute.Speed, config.speed);
+            this.GetOrCreateAttribute(Attribute.Armor, config.armor);
+            this.GetOrCreateAttribute(Attribute.Stamina, config.stamina);
+            this.GetOrCreateAttribute(Attribute.AreaOfEffect, config.areaOfEffect);
+            this.GetOrCreateAttribute(Attribute.CameraDistance, config.cameraDistance);
 
-            Name = stats.Get<string>("name");
-            this.GetOrCreateAttribute(Attribute.Stamina, stats.Get<float>("stamina"));
-            this.GetOrCreateAttribute(Attribute.AreaOfEffect, stats.Get<float>("aoe"));
-            this.GetOrCreateAttribute(Attribute.CameraDistance, stats.Get<float>("camera_distance"));
+            Name = config.playerName;
+            CurrentHealth = MaxHealth;
         }
 
         public override void OnDeath()
@@ -130,22 +123,26 @@ namespace Entity.Player
             Collider.enabled = false;
 
             base.OnDeath();
-            HeartManager.OnPlayerDeath();
-            var animationDuration = Animator.GetCurrentAnimatorStateInfo(0).length;
-            StartCoroutine(DeathAnimation(animationDuration));
+            StartCoroutine(DeathAnimation());
         }
-        IEnumerator DeathAnimation(float duration)
+
+        IEnumerator DeathAnimation()
         {
-            yield return new WaitForSeconds(duration);
+            yield return null;
+            var animationDuration = Animator.GetCurrentAnimatorStateInfo(0).length;
+            yield return new WaitForSeconds(animationDuration);
             OnDeathAnimation();
         }
 
         public override void OnDeathAnimation()
         {
-            if (HeartManager.Instance.Hearts <= 0)
-                Dispose();
-            else
-                RespawnPlayer();
+            // One death = game over. Invoke on this machine first so host/server also stops (both players freeze).
+            GameManager.OnGameOver?.Invoke();
+
+            if (!GameManager.Instance.LocalMultiplayer && NetworkServer.active)
+                NetworkServer.SendToAll(new GameOverS2CNotify());
+
+            Dispose();
         }
 
         /// <summary>
@@ -155,19 +152,6 @@ namespace Entity.Player
         {
             if (AudioSource.isPlaying) AudioSource.Stop();
             AudioManager.Instance.PlayOneShot(deathSound, transform.position);
-        }
-
-        public void RespawnPlayer()
-        {
-            _isDead = false;
-            Collider.enabled = true;
-            transform.Reset(true, true);
-            transform.position = _spawnPosition;
-            Rb.constraints = RigidbodyConstraints2D.None;
-            Rb.velocity = Vector2.zero;
-            Rb.angularVelocity = 0;
-            Animator.ResetTrigger(IsDeadHash);
-            if (_virtualCamera) CameraShake.StopShake();
         }
     }
 
@@ -184,9 +168,4 @@ namespace Entity.Player
         public bool isReady;
     }
 
-    public static class LuaPlayer
-    {
-        public const string Fwend = "players/fwend.lua";
-        public const string Buddie = "players/buddie.lua";
-    }
 }

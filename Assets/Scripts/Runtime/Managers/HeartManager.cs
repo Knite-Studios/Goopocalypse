@@ -1,4 +1,4 @@
-﻿using Mirror;
+using Mirror;
 using UnityEngine.SceneManagement;
 
 namespace Managers
@@ -35,6 +35,7 @@ namespace Managers
 
         protected override void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+            OnHeartsChanged -= HandleHeartsChanged;
             OnHeartsChanged += HandleHeartsChanged;
         }
 
@@ -46,14 +47,16 @@ namespace Managers
 
         private void HandleHeartsChanged(int sharedHearts)
         {
-            // TODO: Here, we can update the UI.
-
             if (sharedHearts <= 0)
             {
-                if (NetworkServer.active)
-                    NetworkServer.SendToAll(new GameOverS2CNotify());
-                else
+                if (GameManager.Instance.LocalMultiplayer)
+                {
                     GameManager.OnGameOver?.Invoke();
+                }
+                else if (NetworkServer.active)
+                {
+                    NetworkServer.SendToAll(new GameOverS2CNotify());
+                }
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -41,7 +41,6 @@ namespace Managers
         private string _username;
         private bool _localMultiplayer = false;
         private GameState _state = GameState.Menu;
-        private string _route = "/";
         private float _loadingProgress;
 
         public Texture2D ProfilePicture
@@ -84,16 +83,6 @@ namespace Managers
             }
         }
 
-        public string Route
-        {
-            get => _route;
-            set
-            {
-                _route = value;
-                OnRouteChanged?.Invoke(value);
-            }
-        }
-
         public float LoadingProgress
         {
             get => _loadingProgress;
@@ -109,7 +98,6 @@ namespace Managers
         public static event System.Action<string> OnUsernameChanged;
         public static event System.Action<bool> OnLocalMultiplayerChanged;
         public static event System.Action<GameState> OnGameStateChanged;
-        public static event System.Action<string> OnRouteChanged;
         public static event System.Action<float> OnLoadingProgressChanged;
 
         #endregion
@@ -128,7 +116,6 @@ namespace Managers
             DiscordController.Initialize();
             AudioManager.Initialize();
             SettingsManager.Initialize();
-            HeartManager.Initialize();
 
             // Find references.
             _networkManager = FindObjectOfType<NetworkManager>();
@@ -140,7 +127,6 @@ namespace Managers
             OnGameStart += () =>
             {
                 State = GameState.Playing;
-                Navigate("/game");
             };
             OnGameOver += GameOver;
             OnAfterSceneLoad += AfterSceneLoad;
@@ -293,12 +279,11 @@ namespace Managers
         {
             if (State is GameState.GameOver) return;
 
-            Navigate(paused ? "/game/pause" : "/game");
-
-            // Only pause when its local multiplayer
-            if (!LocalMultiplayer) return;
             State = paused ? GameState.Paused : GameState.Playing;
-            Time.timeScale = paused ? 0 : 1;
+
+            // Only freeze time in local multiplayer (can't pause a networked server)
+            if (LocalMultiplayer)
+                Time.timeScale = paused ? 0 : 1;
         }
 
         /// <summary>
@@ -308,18 +293,12 @@ namespace Managers
         {
             if (LocalMultiplayer)
             {
-                // Restart as local game.
                 StartLocalGame();
-                Navigate("/game");
             }
             else
             {
-                // Only the host can restart the game.
                 if (!NetworkManager.IsHost()) return;
-
-                // Restart as remote game.
                 StartRemoteGame();
-                Navigate("/game");
             }
         }
 
@@ -329,7 +308,6 @@ namespace Managers
         public async void StopGame()
         {
             State = GameState.Menu;
-            Navigate("/");
             await LoadScene(menuScene);
 
             // TODO: We could return the players to the lobby scene.
@@ -338,12 +316,12 @@ namespace Managers
         }
 
         /// <summary>
-        /// Invoked whenever a player dies.
+        /// Invoked when any player dies (game over).
         /// </summary>
         private void GameOver()
         {
             State = GameState.GameOver;
-            Navigate("/game/over");
+            Time.timeScale = 0;
         }
 
         /// <summary>
@@ -404,11 +382,6 @@ namespace Managers
                 new CinemachineTargetGroup.Target { target = player2, weight = 1, radius = 1 }
             };
         }
-
-        /// <summary>
-        /// Navigate the user interface to a specific path.
-        /// </summary>
-        public void Navigate(string path) => Route = path;
 
         /// <summary>
         /// Global method to quit the game.
@@ -499,35 +472,19 @@ namespace Managers
 
         public async Task<AsyncOperation> LoadScene(int sceneId)
         {
-            var currentScene = SceneManager.GetActiveScene();
-            if (string.IsNullOrEmpty(currentScene.name)) return null;
-
-            var unloadOperation = SceneManager.UnloadSceneAsync(currentScene);
-            if (unloadOperation != null)
-            {
-                while (!unloadOperation.isDone)
-                    await Task.Yield();
-            }
-            else
-            {
-                Debug.LogWarning($"Failed to unload scene {currentScene.name}.");
-            }
-
+            // LoadSceneMode.Single replaces the current scene; do not unload first (Unity disallows UnloadSceneAsync on the last loaded scene).
             var loadOperation = SceneManager.LoadSceneAsync(sceneId, LoadSceneMode.Single);
             if (loadOperation == null) throw new Exception("Failed to load scene.");
 
             while (!loadOperation.isDone)
             {
-                // TODO: Use this value for loading screen.
                 State = GameState.Loading;
                 LoadingProgress = loadOperation.progress * 100;
                 await Task.Yield();
             }
 
             LoadingProgress = 0;
-
             OnAfterSceneLoad?.Invoke(sceneId);
-
             return loadOperation;
         }
 

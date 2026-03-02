@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Mirror;
 using Runtime;
 
@@ -32,15 +32,12 @@ namespace Managers
 
             NetworkClient.RegisterHandler<WaveInfoS2CNotify>(WaveManager.OnWaveInfo);
             NetworkClient.RegisterHandler<ScoreUpdateS2CNotify>(WaveManager.OnScoreUpdate);
-
-            NetworkClient.RegisterHandler<HeartUpdateS2CNotify>(HeartManager.OnHeartsUpdate);
         }
 
         public override void OnClientDisconnect()
         {
-            // If in lobby as client, navigate back.
             // TODO: Show message stating user got disconnected.
-            GameManager.Instance.Navigate("/");
+            GameManager.Instance.State = GameState.Menu;
             LobbyManager.Instance.DisposeConnection();
         }
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 #if UNITY_EDITOR
 using Managers;
 using UnityEditor;
@@ -34,8 +34,6 @@ namespace Editor
             // Check if a GameManager already exists in the scene.
             if (Object.FindObjectOfType<GameManager>() != null) return;
 
-            // ScriptEngine has been removed - using XLua for scripting instead
-            Debug.Log("ScriptEngine removed - using XLua for scripting");
 
             // Add the game manager to the scene.
             var prefab = Resources.Load<GameObject>("Prefabs/Managers/GameManager");
@@ -81,24 +79,6 @@ namespace Editor
                 }
             }
 
-            // Initialize ScriptManager if not present (for XLua)
-            if (Object.FindObjectOfType<ScriptManager>() == null)
-            {
-                try
-                {
-                    // Create ScriptManager manually since it doesn't have an Initialize method
-                    var scriptManagerPrefab = Resources.Load<GameObject>("Prefabs/Managers/ScriptManager");
-                    if (scriptManagerPrefab != null)
-                    {
-                        var instance = Object.Instantiate(scriptManagerPrefab);
-                        instance.name = "Managers.ScriptManager (Singleton)";
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.LogWarning($"Failed to initialize ScriptManager: {ex.Message}");
-                }
-            }
         }
     }
 #endif

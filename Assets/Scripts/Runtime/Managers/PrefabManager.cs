@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Attributes;
@@ -203,6 +203,7 @@ namespace Managers
         ArrowIndicator = 9,
         Orb = 10,
         OrbScoreText = 11,
+        XpOrb = 12,
     }
 
     [Serializable]

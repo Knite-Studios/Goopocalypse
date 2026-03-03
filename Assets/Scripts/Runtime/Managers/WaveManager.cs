@@ -43,8 +43,8 @@ namespace Managers
             get => _score;
             set
             {
-                _score = value;
-                OnScoreChanged?.Invoke(value);
+                _score = value < 0 ? 0 : value;
+                OnScoreChanged?.Invoke(_score);
             }
         }
 
@@ -145,6 +145,17 @@ namespace Managers
         public void AddScore(long points)
         {
             Score += points;
+            if (NetworkServer.active)
+                NetworkServer.SendToAll(new ScoreUpdateS2CNotify { score = Score });
+        }
+
+        /// <summary>
+        /// Deducts orbs (score). Clamps score to 0. Syncs to clients when server.
+        /// </summary>
+        public void DeductScore(long amount)
+        {
+            if (amount <= 0) return;
+            Score = _score - amount;
             if (NetworkServer.active)
                 NetworkServer.SendToAll(new ScoreUpdateS2CNotify { score = Score });
         }

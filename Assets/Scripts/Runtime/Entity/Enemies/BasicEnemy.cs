@@ -1,4 +1,4 @@
-﻿using Managers;
+using Managers;
 
 namespace Entity.Enemies
 {
@@ -9,7 +9,6 @@ namespace Entity.Enemies
         /// </summary>
         public override void OnDeathAnimation()
         {
-            SpawnOrb();
             Dispose();
         }
 

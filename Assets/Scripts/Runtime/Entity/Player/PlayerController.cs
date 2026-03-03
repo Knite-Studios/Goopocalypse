@@ -44,7 +44,8 @@ namespace Entity.Player
 
         private void OnDestroy()
         {
-            InputManager.Menu.canceled -= HandlePause;
+            if (InputManager.Instance != null)
+                InputManager.Menu.canceled -= HandlePause;
             GameManager.OnGameResume -= HandleResume;
         }
 

@@ -116,6 +116,8 @@ namespace Managers
             DiscordController.Initialize();
             AudioManager.Initialize();
             SettingsManager.Initialize();
+            UltimateManager.Initialize();
+            UpgradeManager.Initialize();
 
             // Find references.
             _networkManager = FindObjectOfType<NetworkManager>();
@@ -132,6 +134,9 @@ namespace Managers
             OnAfterSceneLoad += AfterSceneLoad;
             OnGamePause += PauseGame;
 
+            // When opening the game scene directly in the editor, bootstrap local game so players and link exist and ULT charges.
+            StartCoroutine(MaybeBootstrapLocalGameWhenSceneOpenedDirectly());
+
             // Check if Steam is active.
             if (SteamAPI.IsSteamRunning())
             {
@@ -139,6 +144,40 @@ namespace Managers
                 ProfilePicture = SteamUtilities.LoadLocalAvatar();
                 Username = SteamFriends.GetPersonaName();
             }
+        }
+
+        /// <summary>
+        /// If we're in the game scene with no players (e.g. opened 01_Game and pressed Play), set up local game so link and ULT work.
+        /// </summary>
+        private System.Collections.IEnumerator MaybeBootstrapLocalGameWhenSceneOpenedDirectly()
+        {
+            yield return null;
+
+            var scene = SceneManager.GetActiveScene();
+            if (scene.buildIndex != gameScene) yield break;
+            if (NetworkServer.active) yield break;
+            if (EntityManager.Instance == null) yield break;
+            if (EntityManager.Instance.GetPlayers().Count > 0) yield break;
+            if (_networkManager == null || _networkManager.playerPrefab == null) yield break;
+
+            SetupLocalGameInCurrentScene();
+        }
+
+        /// <summary>
+        /// Spawns local players and link in the current scene (no scene load). Used when opening the game scene directly.
+        /// </summary>
+        private void SetupLocalGameInCurrentScene()
+        {
+            var player1 = CreatePlayer(PlayerRole.Fwend, null);
+            var player2 = CreatePlayer(PlayerRole.Buddie, null);
+            if (player1 == null || player2 == null) return;
+
+            player2.Input = InputManager.Movement2;
+            LocalMultiplayer = true;
+            LinkPlayers(player1, player2);
+            CreateTargetGroup(player1.transform, player2.transform);
+            State = GameState.Playing;
+            OnGameStart?.Invoke();
         }
 
         protected override void OnSceneUnloaded(Scene scene)

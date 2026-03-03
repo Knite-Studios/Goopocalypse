@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Entity.Player;
 using Managers;
 using UnityEngine;
@@ -47,7 +47,10 @@ namespace Entity.StateMachines
             var move = player.Input.ReadValue<Vector2>();
             if (move != Vector2.zero) Direction = move.normalized;
 
-            var movement = move * (player.Speed * Time.fixedDeltaTime);
+            var speed = player.Speed;
+            if (Managers.UpgradeManager.HasInstance())
+                speed *= Managers.UpgradeManager.Instance.GetMoveSpeedMultiplier();
+            var movement = move * (speed * Time.fixedDeltaTime);
             player.Rb.MovePosition(player.Rb.position + movement);
 
             // Simulate a slime movement effect by applying force in the direction of movement.

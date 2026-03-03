@@ -19,7 +19,7 @@ namespace Managers
 
         #endregion
 
-        [SyncVar] private int _hearts = 3;
+        [SyncVar] private int _hearts = 1;
 
         public int Hearts
         {
@@ -42,7 +42,7 @@ namespace Managers
         protected override void OnSceneUnloaded(Scene scene)
         {
             OnHeartsChanged -= HandleHeartsChanged;
-            Hearts = 3;
+            Hearts = 1;
         }
 
         private void HandleHeartsChanged(int sharedHearts)

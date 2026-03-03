@@ -126,6 +126,17 @@ namespace Managers
         }
 
         /// <summary>
+        /// Gets the player with the given role, or null. Use for consistent P1/P2 mapping (Fwend = P1, Buddie = P2).
+        /// </summary>
+        public PlayerController GetPlayerByRole(PlayerRole role)
+        {
+            return entities
+                .Select(e => e.entity)
+                .OfType<PlayerController>()
+                .FirstOrDefault(p => p.playerRole == role);
+        }
+
+        /// <summary>
         /// Returns the local player.
         /// </summary>
         public PlayerController GetLocalPlayer()

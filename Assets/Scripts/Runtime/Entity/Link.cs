@@ -1,4 +1,4 @@
-﻿using Attributes;
+using Attributes;
 using Entity.Enemies;
 using Entity.Player;
 using JetBrains.Annotations;
@@ -17,7 +17,11 @@ namespace Entity
         [SerializeField, CanBeNull] Material lineMaterial;
         [SerializeField] Color startColor = Color.magenta;
         [SerializeField] Color endColor = Color.yellow;
-        [SerializeField] public float maxDistance = 5.0f;
+        [Tooltip("Base link length. Upgrades add to this via UpgradeManager.")]
+        [SerializeField] public float baseMaxDistance = 5.0f;
+
+        /// <summary> Effective max distance (base + upgrade bonus). Used for link check and visuals. </summary>
+        public float maxDistance => baseMaxDistance + (Managers.UpgradeManager.HasInstance() ? Managers.UpgradeManager.Instance.GetLinkLengthBonus() : 0f);
 
         [TitleHeader("Audio Settings")]
         [SerializeField] AudioClip linkConnected;
@@ -31,9 +35,14 @@ namespace Entity
         private LineRenderer _lineRenderer;
         private BoxCollider2D _collider;
         private AudioSource _audioSource;
-        private bool _isConnected;
+        [SyncVar] private bool _isConnected;
+        /// <summary> Used when LocalMultiplayer (no server) so link state still runs. </summary>
+        private bool _isConnectedLocal;
 
         private BaseEntity _fwendEntity, _buddieEntity;
+
+        /// <summary> True when link is active. Uses synced value on server/clients, local value in LocalMultiplayer. </summary>
+        private bool IsConnected => (isServer || GameManager.Instance.LocalMultiplayer) ? _isConnectedLocal : _isConnected;
 
         private void Awake()
         {
@@ -71,16 +80,20 @@ namespace Entity
 
         private void Update()
         {
+            // Only the server (or local multiplayer host) controls link state and light effects.
+            if (!isServer && !GameManager.Instance.LocalMultiplayer) return;
             if (!fwend || !buddie) return;
 
-            if (Vector2.Distance(fwend.position, buddie.position) <= maxDistance)
-            {
-                if (!_isConnected)
-                {
-                    _isConnected = true;
-                    onLinkConnected?.Invoke();
-                }
+            var distance = Vector2.Distance(fwend.position, buddie.position);
+            var shouldBeLinked = distance <= maxDistance;
 
+            if (shouldBeLinked != IsConnected)
+            {
+                SetLinked(shouldBeLinked);
+            }
+
+            if (IsConnected)
+            {
                 if (!_collider.enabled) _collider.enabled = true;
 
                 var fwendPos = _fwendEntity.GetSpriteMiddlePoint();
@@ -93,7 +106,6 @@ namespace Entity
                 // Get the midpoint between the players and adjust the collider size dynamically.
                 var midpoint = (fwendPos + buddiePos) / 2;
                 transform.position = midpoint;
-                var distance = Vector2.Distance(fwendPos, buddiePos);
                 _collider.size = new Vector2(distance, 0.3f);
                 transform.right = (fwendPos - buddiePos).normalized;
 
@@ -104,14 +116,9 @@ namespace Entity
                 {
                     float t = (distance - threshold) / (maxDistance - threshold);
                     currentColor = Color.Lerp(Color.green, Color.red, t);
-                    //_lineRenderer.startColor = currentColor;
-                    //_lineRenderer.endColor = currentColor;
                 }
                 else
                 {
-                    //_lineRenderer.startColor = currentColor;
-                    //_lineRenderer.endColor = currentColor;
-                    //_lineRenderer.material.SetColor("_TintColor", currentColor);
                     currentColor = Color.green;
                 }
                 _lineRenderer.startColor = currentColor;
@@ -120,10 +127,13 @@ namespace Entity
             }
             else
             {
-                if (_isConnected)
+                // Charge the shared ultimate bar only when players are SEPARATED (not linked).
+                if (UltimateManager.Instance)
                 {
-                    _isConnected = false;
-                    onLinkBreak?.Invoke();
+                    if (NetworkServer.active)
+                        UltimateManager.Instance.AddTimeCharge(Time.deltaTime);
+                    else if (GameManager.Instance.LocalMultiplayer)
+                        UltimateManager.Instance.AddTimeChargeLocal(Time.deltaTime);
                 }
 
                 _lineRenderer.SetPosition(0, Vector2.zero);
@@ -132,6 +142,24 @@ namespace Entity
 
                 //Reset Color when disconnected
                 _lineRenderer.material.SetColor("_TintColor", Color.green);
+            }
+        }
+
+        private void SetLinked(bool linked)
+        {
+            if (!isServer && !GameManager.Instance.LocalMultiplayer) return;
+
+            _isConnectedLocal = linked;
+            if (isServer)
+                _isConnected = linked;
+
+            if (linked)
+            {
+                onLinkConnected?.Invoke();
+            }
+            else
+            {
+                onLinkBreak?.Invoke();
             }
         }
 

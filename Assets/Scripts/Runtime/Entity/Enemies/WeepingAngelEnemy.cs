@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using Managers;
 using UnityEngine;
 
@@ -34,7 +34,6 @@ namespace Entity.Enemies
         /// </summary>
         public override void OnDeathAnimation()
         {
-            SpawnOrb();
             Dispose();
         }
 

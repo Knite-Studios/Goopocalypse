@@ -146,11 +146,22 @@ namespace Entity.Enemies
 
         IEnumerator DeathAnimation()
         {
-            // Wait a frame so the animator transitions into the death state
             yield return null;
             var animationDuration = Animator.GetCurrentAnimatorStateInfo(0).length;
             yield return new WaitForSeconds(animationDuration);
+
+            SpawnOrb();
+            yield return new WaitForSeconds(0.12f);
+            SpawnXpOrb();
             OnDeathAnimation();
+        }
+
+        protected virtual void SpawnXpOrb()
+        {
+            if (GameManager.Instance == null || (!GameManager.Instance.LocalMultiplayer && !isServer)) return;
+            var xpOrb = PrefabManager.Create<XpOrb>(PrefabType.XpOrb);
+            xpOrb.transform.position = transform.position;
+            xpOrb.xp = Mathf.Max(1, (int)this.GetAttributeValue<long>(Attribute.Points));
         }
 
         protected virtual void SpawnOrb()

@@ -1,4 +1,4 @@
-﻿using Mirror;
+using Mirror;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,14 +16,15 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         get
         {
-            // Return the instance if it exists.
             if (_instance != null) return _instance;
 
-            // Find the instance in the scene if it exists.
+            // Don't create during shutdown (stops "objects not cleaned up" when closing scene).
+            if (!Application.isPlaying)
+                return null;
+
             _instance = FindObjectOfType<T>();
             if (_instance != null) return _instance;
 
-            // Create a new instance if it doesn't exist.
             var singletonObject = new GameObject();
             _instance = singletonObject.AddComponent<T>();
             singletonObject.name = typeof(T) + " (Singleton)";
@@ -108,14 +109,14 @@ public class NetworkSingleton<T> : NetworkBehaviour where T : NetworkBehaviour
     {
         get
         {
-            // Return the instance if it exists.
             if (_instance != null) return _instance;
 
-            // Find the instance in the scene if it exists.
+            if (!Application.isPlaying)
+                return null;
+
             _instance = FindObjectOfType<T>();
             if (_instance != null) return _instance;
 
-            // Create a new instance if it doesn't exist.
             var NetworkSingletonObject = new GameObject();
             _instance = NetworkSingletonObject.AddComponent<T>();
             NetworkSingletonObject.name = typeof(T) + " (NetworkSingleton)";

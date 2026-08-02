@@ -122,3 +122,17 @@ AGENTS.md
 .copilot/
 .codeium/
 .windsurf/
+# --- build output and caches ---
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+UserSettings/
+node_modules/
+dist/
+out/
+coverage/
+MemoryCaptures/
+Recordings/
